@@ -1,5 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.SmartSenior" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Główny motyw aplikacji -->
+    <style name="Theme.SmartSenior" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="android:fontFamily">@android:fontFamilySansSerif</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+    </style>
+
+    <!-- Styl przycisków -->
+    <style name="SmartSeniorButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@android:fontFamilySansSerif</item>
+    </style>
+
 </resources>
