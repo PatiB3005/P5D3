@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnExit.setOnClickListener(v -> {
-            //TODO wyjście z aplikacji
             finish();
         });
 
