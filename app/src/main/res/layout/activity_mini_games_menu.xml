@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center"
+        android:fillViewport="true"
+        android:background="@color/backgroundColor">
+        <!-- Tytuł -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="Mini gry"
+            android:textColor="@color/textColor"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Przyciski -->
+        <Button
+            android:id="@+id/btnMiniGame1"
+            android:text="Mini gra 1"
+            style="@style/MainMenuButton" />
+
+        <Button
+            android:id="@+id/btnMiniGame2"
+            android:text="Mini gra 2"
+            style="@style/MainMenuButton" />
+
+        <Button
+            android:id="@+id/btnMiniGame3"
+            android:text="Mini gra 3"
+            style="@style/MainMenuButton" />
+
+    </LinearLayout>
+</ScrollView>
