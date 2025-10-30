@@ -6,4 +6,17 @@
     <string name="load">Wczytaj</string>
     <string name="username_hint">Wpisz swoje imię</string>
     <string name="progress_label">Postęp nauki</string>
+    <string name="logo_desc">Logo SMART SENIOR</string>
+    <string name="user_photo_desc">Zdjęcie użytkownika</string>
+    <string name="medal1_desc">Medal 1</string>
+    <string name="medal2_desc">Medal 2</string>
+    <string name="medal3_desc">Medal 3</string>
+    <string name="label_name">Imię:</string>
+    <string name="label_surname">Nazwisko:</string>
+    <string name="label_age">Wiek:</string>
+    <string name="hint_name">Wpisz imię</string>
+    <string name="hint_surname">Wpisz nazwisko</string>
+    <string name="hint_age">Podaj wiek</string>
+    <string name="button_back">Wróć do Menu</string>
+
 </resources>
