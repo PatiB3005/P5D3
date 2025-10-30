@@ -1,13 +1,16 @@
-package com.example.smartsenior;
+package com.example.smartsenior.ui.profile;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartsenior.R;
 import com.example.smartsenior.data.ProfileManager;
 
-public class MainActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private ProfileManager profileManager;
     private EditText editName;
@@ -17,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
+
 
         profileManager = new ProfileManager(this);
 

@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSenior">
-
-        <!-- Ekran główny (uruchamiany po starcie aplikacji) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -20,10 +18,19 @@
             android:theme="@style/Theme.SmartSenior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.moduleMenu.ModuleMenuActivity" />
+        <activity android:name=".ui.moduleMenu.modules.Module1Activity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.miniGamesMenu.MiniGamesMenuActivity" />
+        <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame1Activity" />
+        <activity android:name=".ui.wirtualAssistant.WirtualAssistantActivity" />
+        <activity android:name=".ui.tutorial.TutorialActivity" />
+        <activity android:name=".ui.notifications.NotificationsActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
         <!-- Ekrany samouczka -->
         <activity android:name=".ui.tutorial.TutorialActivity1" />
         <activity android:name=".ui.tutorial.TutorialActivity2" />
@@ -31,8 +38,6 @@
         <activity android:name=".ui.tutorial.TutorialActivity4" />
         <activity android:name=".ui.tutorial.TutorialActivity5" />
         <activity android:name=".ui.tutorial.TutorialActivity6" />
-
-
 
     </application>
 
