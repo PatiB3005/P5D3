@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <!-- Tytuł -->
+    <TextView
+        android:id="@+id/text_tytul"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Dodatkowe\nfunkcje"
+        android:textColor="#1A202C"
+        android:textSize="36sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Opis -->
+    <TextView
+        android:id="@+id/text_opis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Smart Senior to nie tylko nauka. Aplikacja przypomni Ci o lekach, zapisze Twoje postępy i pomoże w codziennych zadaniach."
+        android:textColor="#4A5568"
+        android:textSize="22sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toBottomOf="@id/text_tytul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Ikony (osoba + leki + pasek postępu) -->
+    <ImageView
+        android:id="@+id/icon_person"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_person"
+        android:alpha="0.9"
+        app:tint="#2B6CB0"
+        app:layout_constraintTop_toBottomOf="@id/text_opis"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_medicine"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_medicine"
+        android:alpha="0.9"
+        app:tint="#2B6CB0"
+        app:layout_constraintTop_toBottomOf="@id/icon_person"
+        android:layout_marginTop="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="59dp" />
+
+    <ImageView
+        android:id="@+id/icon_progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_progress"
+        android:alpha="0.9"
+        app:tint="#2B6CB0"
+        app:layout_constraintTop_toBottomOf="@id/icon_person"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="59dp" />
+
+    <!-- Przycisk Dalej -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_dalej"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Dalej ➜"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        app:backgroundTint="#2B6CB0"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
