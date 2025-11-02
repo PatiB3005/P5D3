@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Smart Senior</string>
-    <string name="main_title">Witaj w Smart Senior!</string>
-    <string name="profile">Profil</string>
     <string name="save">Zapisz</string>
     <string name="load">Wczytaj</string>
     <string name="username_hint">Wpisz swoje imię</string>
     <string name="progress_label">Postęp nauki</string>
+
+    <!-- TTS -->
+    <string name="tts_on">Lektor: włączony</string>
+    <string name="tts_off">Lektor: wyłączony</string>
 </resources>

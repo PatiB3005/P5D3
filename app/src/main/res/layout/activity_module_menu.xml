@@ -42,7 +42,6 @@
                 android:clipToOutline="true" />
 
             <ProgressBar
-                android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -53,7 +52,6 @@
                 android:progressDrawable="@drawable/module_progress_bar" />
 
             <TextView
-                android:id="@+id/progressText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -82,7 +80,6 @@
 
         <!-- Moduł 2 -->
         <LinearLayout
-            android:id="@+id/btnModule2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -100,7 +97,6 @@
                 android:clipToOutline="true" />
 
             <ProgressBar
-                android:id="@+id/progressBar2"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -111,7 +107,6 @@
                 android:progressDrawable="@drawable/module_progress_bar" />
 
             <TextView
-                android:id="@+id/progressText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -140,7 +135,6 @@
 
         <!-- Moduł 3 -->
         <LinearLayout
-            android:id="@+id/btnModule3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -158,7 +152,6 @@
                 android:clipToOutline="true" />
 
             <ProgressBar
-                android:id="@+id/progressBar3"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -169,7 +162,6 @@
                 android:progressDrawable="@drawable/module_progress_bar" />
 
             <TextView
-                android:id="@+id/progressText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

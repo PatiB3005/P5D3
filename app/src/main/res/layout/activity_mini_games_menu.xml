@@ -30,12 +30,10 @@
             style="@style/MainMenuButton" />
 
         <Button
-            android:id="@+id/btnMiniGame2"
             android:text="Mini gra 2"
             style="@style/MainMenuButton" />
 
         <Button
-            android:id="@+id/btnMiniGame3"
             android:text="Mini gra 3"
             style="@style/MainMenuButton" />
 

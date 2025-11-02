@@ -13,7 +13,6 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Samouczek"
@@ -23,7 +22,6 @@
             android:layout_marginBottom="24dp"/>
 
         <TextView
-            android:id="@+id/textDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tu będzie wszystko związane z samouczkiem"
