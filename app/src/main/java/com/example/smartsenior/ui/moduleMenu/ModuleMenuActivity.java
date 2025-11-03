@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.moduleMenu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartsenior.R;
@@ -26,6 +27,21 @@ public class ModuleMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
+
+// Sprawdź, czy użytkownik przyszedł z samouczka
+        boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
+
+        if (fromTutorial) {
+            btnBackToTutorial.setVisibility(View.VISIBLE);
+            btnBackToTutorial.setOnClickListener(v -> {
+                Intent intent = new Intent(ModuleMenuActivity.this, com.example.smartsenior.ui.tutorial.TutorialActivity4.class);
+                startActivity(intent);
+                finish();
+            });
+        }
+
     }
 
 

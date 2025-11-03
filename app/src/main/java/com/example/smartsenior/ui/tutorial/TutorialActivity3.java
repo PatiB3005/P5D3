@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 
 public class TutorialActivity3 extends AppCompatActivity {
     @Override
@@ -21,10 +22,13 @@ public class TutorialActivity3 extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("tutorial_progress", MODE_PRIVATE);
             prefs.edit().putInt("last_completed", 3).apply();
 
-            // Przejdź do ekranu głównego
-            Intent intent = new Intent(TutorialActivity3.this, MainActivity.class);
+            Intent intent = new Intent(TutorialActivity3.this, ModuleMenuActivity.class);
+
+            intent.putExtra("from_tutorial", true);
+
             startActivity(intent);
             finish();
+
         });
     }
 }
