@@ -2,6 +2,10 @@ package com.example.smartsenior.tts;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.os.Build;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
@@ -15,16 +19,36 @@ public class TTSManager {
     private final Context appContext;
     private TextToSpeech tts;
     private boolean ready = false;
-    private String pendingText = null; // ← zapamiętujemy tekst do pierwszego czytania
+    private String pendingText = null;
 
     private TTSManager(Context context) {
         this.appContext = context.getApplicationContext();
+
+        // 🔊 Ustaw maksymalną głośność multimediów
+        AudioManager audioManager = (AudioManager) appContext.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager != null) {
+            int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+        }
+
+        // 🔉 Inicjalizacja TTS
         this.tts = new TextToSpeech(appContext, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 Locale pl = Locale.forLanguageTag("pl-PL");
                 int langRes = tts.setLanguage(pl);
+
                 tts.setSpeechRate(0.95f);
                 tts.setPitch(1.0f);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    tts.setAudioAttributes(
+                            new AudioAttributes.Builder()
+                                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_ACCESSIBILITY)
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                    .build()
+                    );
+                }
+
                 ready = (langRes != TextToSpeech.LANG_MISSING_DATA && langRes != TextToSpeech.LANG_NOT_SUPPORTED);
 
                 if (!ready) {
@@ -33,12 +57,9 @@ public class TTSManager {
                     if (install.resolveActivity(appContext.getPackageManager()) != null) {
                         appContext.startActivity(install);
                     }
-                } else {
-                    // jeśli lektor jest włączony i mamy coś w buforze – powiedz to teraz
-                    if (isEnabled() && pendingText != null && !pendingText.trim().isEmpty()) {
-                        speakInternal(pendingText);
-                        pendingText = null; // czyścimy bufor
-                    }
+                } else if (isEnabled() && pendingText != null && !pendingText.trim().isEmpty()) {
+                    new Handler().postDelayed(() -> speakInternal(pendingText), 300);
+                    pendingText = null;
                 }
             } else {
                 ready = false;
@@ -52,7 +73,6 @@ public class TTSManager {
     }
 
     public boolean isEnabled() {
-        // domyślnie WYŁĄCZONY
         return appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
                 .getBoolean(KEY_TTS_ENABLED, false);
     }
@@ -61,7 +81,7 @@ public class TTSManager {
         appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
                 .edit().putBoolean(KEY_TTS_ENABLED, enabled).apply();
         if (!enabled) {
-            pendingText = null; // wyłączenie = zerujemy planowaną wypowiedź
+            pendingText = null;
             stop();
         }
     }
@@ -73,23 +93,40 @@ public class TTSManager {
         return newState;
     }
 
-    /** Publiczne API. Jeśli TTS nie gotowy – zapamiętujemy tekst i odtworzymy po onInit(). */
+    /** Publiczne API — jeśli TTS nie gotowy, zapamiętuje tekst i odczyta po inicjalizacji */
     public void speak(String text) {
         if (!isEnabled() || text == null || text.trim().isEmpty()) return;
-        if (!ready) {                 // ← klucz: pierwsze kliknięcie już coś „zrobi”
+
+        // ✨ Poprawki fonetyczne dla polskiej wymowy:
+        text = text
+                .replace("\n", " ")                        // unikaj nowej linii
+                .replaceAll("\\bw(?=\\s+[A-ZĄĆĘŁŃÓŚŹŻ])", "w\u00A0") // zamień „w” na „we” przed dużą literą
+                .replaceAll("\\bw(?=\\s+[a-ząćęłńóśźż])", "w\u00A0"); // twarda spacja dla płynności
+
+        if (!ready) {
             pendingText = text;
             return;
         }
+
+        if (text.length() > 3800) {
+            text = text.substring(0, 3800);
+        }
+
         speakInternal(text);
     }
 
     private void speakInternal(String text) {
-        try {
-            tts.stop();
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "smart_senior_utterance");
-        } catch (Exception e) {
-            Log.e("TTS", "speak error", e);
-        }
+        new Thread(() -> {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "smart_senior_utterance");
+                } else {
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            } catch (Exception e) {
+                Log.e("TTS", "speak error", e);
+            }
+        }).start();
     }
 
     public void stop() {
@@ -98,7 +135,12 @@ public class TTSManager {
 
     public void shutdown() {
         try {
-            if (tts != null) { tts.stop(); tts.shutdown(); }
-        } catch (Exception e) { Log.e("TTS", "shutdown error", e); }
+            if (tts != null) {
+                tts.stop();
+                tts.shutdown();
+            }
+        } catch (Exception e) {
+            Log.e("TTS", "shutdown error", e);
+        }
     }
 }
