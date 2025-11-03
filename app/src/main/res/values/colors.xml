@@ -1,7 +1,7 @@
 <resources>
     <color name="primaryColor">#1565C0</color>      <!-- niebieski -->
     <color name="primaryDarkColor">#003C8F</color>  <!-- ciemniejszy -->
-    <color name="accentColor">#FFC107</color>       <!-- żółty -->
+    <!-- żółty -->
     <color name="backgroundColor">#FAFAFA</color>   <!-- jasne tło -->
     <color name="textColor">#212121</color>         <!-- czarny -->
 </resources>

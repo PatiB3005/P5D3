@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SmartSenior"
 include(":app")
- 
+include(":smartsenior-tts")

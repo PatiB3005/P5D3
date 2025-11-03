@@ -5,12 +5,25 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="12dp"/>
+
     <!-- Tytuł -->
     <TextView
         android:id="@+id/text_tytul"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Pomoc i\nwsparcie"
+        android:text="Dodatkowe\nfunkcje"
         android:textColor="#1A202C"
         android:textSize="36sp"
         android:fontFamily="@font/montserrat_bold"
@@ -28,7 +41,7 @@
         android:id="@+id/text_opis"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Smart Senior pozwala dodać kontakt do bliskiej osoby lub zadzwonić na infolinię dla seniorów. W razie problemu możesz szybko wezwać pomoc."
+        android:text="Smart Senior to nie tylko nauka. Aplikacja przypomni Ci o lekach, zapisze Twoje postępy i pomoże w codziennych zadaniach."
         android:textColor="#4A5568"
         android:textSize="22sp"
         android:fontFamily="@font/montserrat_regular"
@@ -41,19 +54,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Ikona pomocy -->
+    <!-- Ikony (osoba + leki + pasek postępu) -->
     <ImageView
-        android:id="@+id/image_help"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:id="@+id/icon_person"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_person"
         android:alpha="0.9"
         app:tint="#2B6CB0"
-        android:src="@drawable/ic_help"
-    app:layout_constraintTop_toBottomOf="@id/text_opis"
-    app:layout_constraintBottom_toTopOf="@id/button_dalej"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@id/text_opis"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_medicine"
+        android:alpha="0.9"
+        app:tint="#2B6CB0"
+        app:layout_constraintTop_toBottomOf="@id/icon_person"
+        android:layout_marginTop="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="59dp" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_progress"
+        android:alpha="0.9"
+        app:tint="#2B6CB0"
+        app:layout_constraintTop_toBottomOf="@id/icon_person"
+        android:layout_marginTop="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="59dp" />
 
     <!-- Przycisk Dalej -->
     <com.google.android.material.button.MaterialButton

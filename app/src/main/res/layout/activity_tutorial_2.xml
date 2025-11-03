@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="12dp"/>
+
     <!-- Tytuł -->
     <TextView
         android:id="@+id/text_tytul"
@@ -41,19 +54,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Ikona (tu wstawisz swoją np. czapkę absolwenta) -->
+    <!-- Ikona -->
     <ImageView
-        android:id="@+id/image_hat1"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:alpha="0.9"
         app:tint="#2B6CB0"
         android:src="@drawable/ic_hat1"
-    app:layout_constraintTop_toBottomOf="@id/text_opis"
-    app:layout_constraintBottom_toTopOf="@id/button_dalej"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@id/text_opis"
+        app:layout_constraintBottom_toTopOf="@id/button_dalej"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <!-- Przycisk Dalej -->
     <com.google.android.material.button.MaterialButton

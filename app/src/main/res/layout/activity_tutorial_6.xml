@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="12dp"/>
+
     <!-- Tytuł -->
     <TextView
         android:id="@+id/text_tytul"
@@ -28,7 +41,8 @@
         android:id="@+id/text_opis"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ukończyłeś samouczek Smart Senior!\nMożesz teraz rozpocząć naukę i bezpiecznie korzystać z aplikacji."
+        android:text="Ukończyłeś samouczek Smart Senior!
+Możesz teraz rozpocząć naukę i bezpiecznie korzystać z aplikacji."
         android:textColor="#4A5568"
         android:textSize="22sp"
         android:fontFamily="@font/montserrat_regular"
@@ -43,7 +57,6 @@
 
     <!-- Ikona czapki absolwenta -->
     <ImageView
-        android:id="@+id/image_hat"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:alpha="0.9"

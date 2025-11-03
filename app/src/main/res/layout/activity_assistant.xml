@@ -14,7 +14,6 @@
 
         <!-- Nagłówek -->
         <TextView
-            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WIrtualny Assytent"
@@ -25,7 +24,6 @@
 
         <!-- Opis -->
         <TextView
-            android:id="@+id/textDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tu będzie wszystko związane z wirtualnym asystentem"

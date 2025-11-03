@@ -4,34 +4,40 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class TutorialActivity1 extends AppCompatActivity {
+public class TutorialActivity1 extends BaseTTSActivity {
+
+    @Override
+    protected boolean startWithTtsOff() { return true; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Sprawdź, czy użytkownik już przeszedł część tutoriala
         SharedPreferences prefs = getSharedPreferences("tutorial_progress", MODE_PRIVATE);
         int lastCompleted = prefs.getInt("last_completed", 0);
-
         if (lastCompleted == 3) {
-            // Użytkownik zakończył ekran 3, więc kontynuujemy od 4
-            Intent intent = new Intent(this, TutorialActivity4.class);
-            startActivity(intent);
+            startActivity(new Intent(this, TutorialActivity4.class));
             finish();
             return;
         }
 
-        // Jeśli nie ma postępu, pokaż pierwszy ekran
-        setContentView(R.layout.activity_tutorial_1);
+        setContentView(R.layout.activity_tutorial_1); // tylko raz; bez tts.setEnabled(false) i bez ręcznego setupu
 
         Button startButton = findViewById(R.id.button_zaczynamy);
         startButton.setOnClickListener(v -> {
-            Intent intent = new Intent(TutorialActivity1.this, TutorialActivity2.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(TutorialActivity1.this, TutorialActivity2.class));
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        CharSequence t = ((TextView) findViewById(R.id.text_tytul)).getText();
+        CharSequence d = ((TextView) findViewById(R.id.text_opis)).getText();
+        return (t == null ? "" : t + ". ") + (d == null ? "" : d.toString());
     }
 }

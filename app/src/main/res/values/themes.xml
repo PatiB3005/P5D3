@@ -10,11 +10,5 @@
     </style>
 
     <!-- Styl przycisków -->
-    <style name="SmartSeniorButton" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">@color/primaryColor</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">@android:fontFamilySansSerif</item>
-    </style>
 
 </resources>
