@@ -18,7 +18,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
-        btnModule1 = findViewById(R.id.btnModule1);
+        btnModule1 = findViewById(R.id.btnSafeMessages);
 
         btnModule1.setOnClickListener(new View.OnClickListener() {
             @Override

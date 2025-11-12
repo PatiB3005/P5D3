@@ -11,6 +11,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:padding="24dp">
+
         <!-- przycisk samouczek -->
         <Button
             android:id="@+id/button_back_to_tutorial"
@@ -39,7 +40,7 @@
 
         <!-- Moduł 1 -->
         <LinearLayout
-            android:id="@+id/btnModule1"
+            android:id="@+id/btnSafeMessages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -52,9 +53,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/module_placeholder_image"
+                android:src="@drawable/safe_messages_banner"
                 android:background="@drawable/rounded_image"
                 android:clipToOutline="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bezpieczne wiadomości"
+                android:fontFamily="@font/montserrat_bold"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="W tym module dowiesz się, jak rozpoznawać techniki oszustów używających fałszywych wiadomości (SMS, e-mail, komunikatory) oraz poznasz konkretne kroki, by skutecznie chronić swoje konta, dane i pieniądze."
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -69,28 +90,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="50%"
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Postęp: 50%"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Moduł 1"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra lorem a ultrices feugiat."
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
         </LinearLayout>
 
         <!-- Moduł 2 -->
@@ -202,6 +206,5 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>
