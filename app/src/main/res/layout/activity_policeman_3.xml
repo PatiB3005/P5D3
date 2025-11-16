@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <!-- Nagłówek SCENARIUSZ -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCENARIUSZ"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Dymek rozmowy -->
+    <ImageView
+        android:id="@+id/imgBubble"
+        android:layout_width="260dp"
+        android:layout_height="180dp"
+        android:src="@drawable/ic_speech_bubble"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tekst w dymku -->
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Żeby sprawdzić, czy to dotyczy Pani, proszę powiedzieć, w jakim banku ma Pani konto."
+        android:textSize="14sp"
+        android:padding="12dp"
+        app:layout_constraintTop_toTopOf="@id/imgBubble"
+        app:layout_constraintBottom_toBottomOf="@id/imgBubble"
+        app:layout_constraintStart_toStartOf="@id/imgBubble"
+        app:layout_constraintEnd_toEndOf="@id/imgBubble" />
+
+    <!-- Ikona policjanta -->
+    <ImageView
+        android:id="@+id/imgPoliceman"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_policeman"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/imgBubble"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Pytanie Co robisz? -->
+    <TextView
+        android:id="@+id/textQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Co robisz?"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:background="#C9E4FF"
+        android:padding="14dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/imgPoliceman"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Odpowiedź A -->
+    <TextView
+        android:id="@+id/textAnswerA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A) „To mój bank, PKO.”"
+        android:textSize="16sp"
+        android:background="#D8E8FF"
+        android:padding="14dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/textQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Odpowiedź B -->
+    <TextView
+        android:id="@+id/textAnswerB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B) „Nie wiem, zadzwonię do banku sama.”"
+        android:textSize="16sp"
+        android:background="#D8E8FF"
+        android:padding="14dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/textAnswerA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Czerwony przycisk rozłączenia -->
+    <ImageView
+        android:id="@+id/imgHangup"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_call_end"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textAnswerB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
