@@ -25,7 +25,7 @@ public class TutorialActivity1 extends BaseTTSActivity {
             return;
         }
 
-        setContentView(R.layout.activity_tutorial_1); // tylko raz; bez tts.setEnabled(false) i bez ręcznego setupu
+        setContentView(R.layout.activity_tutorial_1);
 
         Button startButton = findViewById(R.id.button_zaczynamy);
         startButton.setOnClickListener(v -> {
