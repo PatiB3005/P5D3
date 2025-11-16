@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.modules.tasks.TasksActivity;
 
 public class Module1Activity extends AppCompatActivity {
 

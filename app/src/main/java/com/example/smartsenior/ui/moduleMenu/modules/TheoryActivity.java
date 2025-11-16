@@ -1,4 +1,6 @@
 package com.example.smartsenior.ui.moduleMenu.modules;
 
-public class TheoryActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TheoryActivity extends AppCompatActivity {
 }

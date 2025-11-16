@@ -38,7 +38,15 @@
         <activity android:name=".ui.tutorial.TutorialActivity4" />
         <activity android:name=".ui.tutorial.TutorialActivity5" />
         <activity android:name=".ui.tutorial.TutorialActivity6" />
+        <activity android:name=".ui.moduleMenu.modules.TheoryActivity" />
+        <activity android:name=".ui.moduleMenu.modules.SmsEmailActivity" />
 
+        <!-- Zadania -->
+        <activity android:name=".ui.moduleMenu.modules.tasks.TasksActivity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task4Activity" />
     </application>
 
 </manifest>
