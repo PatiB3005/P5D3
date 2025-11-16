@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.SmsEmailActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
+        // Kafelek modułu "Bezpieczne wiadomości"
         btnModule1 = findViewById(R.id.btnSafeMessages);
 
         btnModule1.setOnClickListener(new View.OnClickListener() {
@@ -28,9 +31,8 @@ public class ModuleMenuActivity extends AppCompatActivity {
             }
         });
 
+        // Powrót do tutorialu
         Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
-
-// Sprawdź, czy użytkownik przyszedł z samouczka
         boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
 
         if (fromTutorial) {
@@ -41,8 +43,5 @@ public class ModuleMenuActivity extends AppCompatActivity {
                 finish();
             });
         }
-
     }
-
-
 }

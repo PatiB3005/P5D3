@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartSenior">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,12 +19,15 @@
             android:theme="@style/Theme.SmartSenior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.moduleMenu.ModuleMenuActivity" />
         <activity android:name=".ui.moduleMenu.modules.Module1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.TheoryActivity" />
+
+
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.miniGamesMenu.MiniGamesMenuActivity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame1Activity" />
@@ -31,7 +35,8 @@
         <activity android:name=".ui.tutorial.TutorialActivity" />
         <activity android:name=".ui.notifications.NotificationsActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
-        <!-- Ekrany samouczka -->
+
+        <!-- Samouczek -->
         <activity android:name=".ui.tutorial.TutorialActivity1" />
         <activity android:name=".ui.tutorial.TutorialActivity2" />
         <activity android:name=".ui.tutorial.TutorialActivity3" />

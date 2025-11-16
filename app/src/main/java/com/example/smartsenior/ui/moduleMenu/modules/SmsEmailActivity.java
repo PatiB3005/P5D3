@@ -1,4 +1,12 @@
 package com.example.smartsenior.ui.moduleMenu.modules;
 
-public class SmsEmailActivity {
+import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartsenior.R;
+public class SmsEmailActivity extends AppCompatActivity {
+
+
 }
+

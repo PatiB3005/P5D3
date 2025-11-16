@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Kolor tła środka -->
+    <solid android:color="@android:color/transparent"/>
+
+    <!-- GRUBA RAMKA -->
+    <stroke
+        android:width="4dp"
+        android:color="#000000" /> <!-- tu zmieniasz kolor obramowania -->
+
+    <!-- Zaokrąglenie rogów -->
+    <corners android:radius="12dp"/>
+
+</shape>

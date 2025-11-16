@@ -1,7 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#1565C0</color>      <!-- niebieski -->
-    <color name="primaryDarkColor">#003C8F</color>  <!-- ciemniejszy -->
-    <!-- żółty -->
-    <color name="backgroundColor">#FAFAFA</color>   <!-- jasne tło -->
-    <color name="textColor">#212121</color>         <!-- czarny -->
+
+    <color name="primaryColor">#1565C0</color>
+    <color name="primaryDarkColor">#003C8F</color>
+
+    <!-- jasne tło -->
+    <color name="backgroundColor">#FAFAFA</color>
+    <color name="backgroundColor2">#26BFDBFE</color>
+
+    <!-- czarny -->
+    <color name="textColor">#212121</color>
+
+    <!-- Kolor guzika ROZPOCZNIJ -->
+    <color name="buttonBlue">#0057D9</color>
+    <color name="buttonChange">#9D9FB0</color>
+
+    <!-- Biały (potrzebny do tekstu na przycisku) -->
+    <color name="white">#FFFFFF</color>
+
 </resources>
