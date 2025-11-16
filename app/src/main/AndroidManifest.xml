@@ -23,11 +23,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Menu modułów i moduł 1 -->
         <activity android:name=".ui.moduleMenu.ModuleMenuActivity" />
         <activity android:name=".ui.moduleMenu.modules.Module1Activity" />
         <activity android:name=".ui.moduleMenu.modules.TheoryActivity" />
 
-
+        <!-- Profil, gry, asystent, tutorial, powiadomienia, ustawienia -->
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.miniGamesMenu.MiniGamesMenuActivity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame1Activity" />
@@ -52,6 +53,37 @@
         <activity android:name=".ui.moduleMenu.modules.tasks.Task2Activity" />
         <activity android:name=".ui.moduleMenu.modules.tasks.Task3Activity" />
         <activity android:name=".ui.moduleMenu.modules.tasks.Task4Activity" />
+
+        <!-- Scenariusz: Telefon na policjanta -->
+        <activity android:name=".ui.scenariosModule1.Policeman1Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman2Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman2aActivity" />
+        <activity android:name=".ui.scenariosModule1.Policeman3Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman4Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman5Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman6Activity" />
+        <activity android:name=".ui.scenariosModule1.Policeman7Activity" />
+
+        <activity android:name=".ui.scenariosModule3.Bank1Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank2Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank3Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank3aActivity" />
+        <activity android:name=".ui.scenariosModule3.Bank4Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank4aActivity" />
+        <activity android:name=".ui.scenariosModule3.Bank5Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank6Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank7Activity" />
+        <activity android:name=".ui.scenariosModule3.Bank8Activity" />
+
+        <activity android:name=".scenariosModule2.Grandchild1Activity" />
+        <activity android:name=".scenariosModule2.Grandchild2Activity" />
+        <activity android:name=".scenariosModule2.Grandchild2aActivity" />
+        <activity android:name=".scenariosModule2.Grandchild3Activity" />
+        <activity android:name=".scenariosModule2.Grandchild4Activity" />
+        <activity android:name=".scenariosModule2.Grandchild5Activity" />
+        <activity android:name=".scenariosModule2.Grandchild6Activity" />
+        <activity android:name=".scenariosModule2.Grandchild6PositiveActivity" />
+        <activity android:name=".scenariosModule2.Grandchild7Activity" />
     </application>
 
 </manifest>

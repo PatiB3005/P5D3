@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF3FF">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCENARIUSZ"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/bubble"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_speech_bubble"
+        android:adjustViewBounds="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Aby zablokować próbę, proszę podać kod weryfikacyjny,\nktóry zaraz przekażemy w wiadomości SMS."
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/bubble"
+        app:layout_constraintBottom_toBottomOf="@id/bubble"
+        app:layout_constraintStart_toStartOf="@id/bubble"
+        app:layout_constraintEnd_toEndOf="@id/bubble" />
+
+    <ImageView
+        android:id="@+id/bankAgent"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/ic_contact"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/bubble"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Co robisz?"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/bg_scenario_question"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/bankAgent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textAnswerA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="A) „Już mam, kod to: 543762.”"
+        android:textSize="14sp"
+        android:background="@drawable/bg_scenario_answer"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textAnswerB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="B) „Nie mam pewności, że Pan jest pracownikiem banku.”"
+        android:textSize="14sp"
+        android:background="@drawable/bg_scenario_answer"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textAnswerA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgHangup"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/ic_call_end"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
