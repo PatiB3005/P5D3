@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF2FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Tytuł sekcji -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CZĘŚĆ TESTOWA"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Nagłówek -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BEZPIECZNE WIADOMOŚCI"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Górne pytanie -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jeśli podejrzewam oszustwo, czy powinienem zrobić zrzut ekranu wiadomości i skontaktować się z bankiem/policją?"
+            android:background="#BFDBFE"
+            android:padding="20dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Dolne pytanie -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Czy powinieneś odpowiedzieć na taką wiadomość?"
+            android:background="#BFDBFE"
+            android:padding="20dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- TAK / NIE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp">
+
+            <Button
+                android:id="@+id/yesButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="TAK"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="#32CD32" />
+
+            <Button
+                android:id="@+id/noButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="NIE"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="#FF0000" />
+        </LinearLayout>
+
+        <!-- Wstecz / Dalej -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Wstecz" />
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Dalej" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
