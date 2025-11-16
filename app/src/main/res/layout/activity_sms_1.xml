@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF2FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Tytuł sekcji -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CZĘŚĆ TESTOWA"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Nagłówek -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BEZPIECZNE WIADOMOŚCI"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Obraz -->
+        <ImageView
+            android:id="@+id/testIntroImage"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_white_bg"
+            android:padding="8dp"
+            android:src="@drawable/secure_messages" />
+
+        <!-- Tekst główny -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zapoznaliśmy się z wiedzą na temat Bezpiecznych Wiadomości. Czas przetestować swoją wiedzę!"
+            android:background="#BFDBFE"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Instrukcja -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Naciśnij dalej, żeby przejść do części testowej."
+            android:background="#BFDBFE"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Przyciski na dole -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Wstecz" />
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Dalej" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

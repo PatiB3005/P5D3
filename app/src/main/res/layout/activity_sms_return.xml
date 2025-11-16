@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF2FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Tytuł sekcji -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CZĘŚĆ TESTOWA"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Nagłówek -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BEZPIECZNE WIADOMOŚCI"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Smutna emotka -->
+        <ImageView
+            android:id="@+id/sadEmoji"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/sad_emoji"
+            android:background="@drawable/rounded_white_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Tekst O NIE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="O NIE!\nNiestety nieprzyswoiłeś wiedzy z tego modułu zbyt dobrze.\n\nNaciśnij „Powrót do menu głównego”, aby kontynuować naukę w pozostałych modułach lub „Powtórz moduł”, żeby powtórzyć materiał przed kolejnym testem!"
+            android:background="#BFDBFE"
+            android:padding="24dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Dwa przyciski -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/retryModuleButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Powtórz moduł" />
+
+            <Button
+                android:id="@+id/backToMenuButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Powrót do menu głównego" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
