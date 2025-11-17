@@ -44,7 +44,7 @@
         <activity android:name=".ui.tutorial.TutorialActivity4" />
         <activity android:name=".ui.tutorial.TutorialActivity5" />
         <activity android:name=".ui.tutorial.TutorialActivity6" />
-        <activity android:name=".ui.moduleMenu.modules.TheoryActivity" />
+<!--        <activity android:name=".ui.moduleMenu.modules.TheoryActivity" />-->
         <activity android:name=".ui.moduleMenu.modules.SmsEmailActivity" />
 
         <!-- Zadania -->
@@ -54,36 +54,41 @@
         <activity android:name=".ui.moduleMenu.modules.tasks.Task3Activity" />
         <activity android:name=".ui.moduleMenu.modules.tasks.Task4Activity" />
 
+        <!-- Moduł: Telefon od podejrzanego nieznajomego -->
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.TheoryActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity" />
         <!-- Scenariusz: Telefon na policjanta -->
-        <activity android:name=".ui.scenariosModule1.Policeman1Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman2Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman2aActivity" />
-        <activity android:name=".ui.scenariosModule1.Policeman3Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman4Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman5Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman6Activity" />
-        <activity android:name=".ui.scenariosModule1.Policeman7Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman2aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman7Activity" />
 
-        <activity android:name=".ui.scenariosModule3.Bank1Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank2Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank3Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank3aActivity" />
-        <activity android:name=".ui.scenariosModule3.Bank4Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank4aActivity" />
-        <activity android:name=".ui.scenariosModule3.Bank5Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank6Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank7Activity" />
-        <activity android:name=".ui.scenariosModule3.Bank8Activity" />
+        <!-- Scenariusz: Telefon na bank -->
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank3aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank4aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank7Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank8Activity" />
 
-        <activity android:name=".scenariosModule2.Grandchild1Activity" />
-        <activity android:name=".scenariosModule2.Grandchild2Activity" />
-        <activity android:name=".scenariosModule2.Grandchild2aActivity" />
-        <activity android:name=".scenariosModule2.Grandchild3Activity" />
-        <activity android:name=".scenariosModule2.Grandchild4Activity" />
-        <activity android:name=".scenariosModule2.Grandchild5Activity" />
-        <activity android:name=".scenariosModule2.Grandchild6Activity" />
-        <activity android:name=".scenariosModule2.Grandchild6PositiveActivity" />
-        <activity android:name=".scenariosModule2.Grandchild7Activity" />
+        <!-- Scenariusz: Telefon na wnuczka -->
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild2aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild7Activity" />
     </application>
 
 </manifest>
