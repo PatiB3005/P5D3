@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF3FF">
+
+    <!-- Nagłówek -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCENARIUSZ"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:letterSpacing="0.08"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Avatar kontaktu -->
+    <ImageView
+        android:id="@+id/imgContact"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_contact"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- NIEZNANY NUMER -->
+    <TextView
+        android:id="@+id/textUnknown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NIEZNANY NUMER"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imgContact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Zielona słuchawka -->
+    <ImageView
+        android:id="@+id/imgCall"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/ic_call"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textUnknown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tekst pod słuchawką -->
+    <TextView
+        android:id="@+id/textClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Naciśnij, aby odebrać"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imgCall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Przycisk Koniec -->
+    <Button
+        android:id="@+id/btnEnd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Koniec"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:backgroundTint="#C6C9D1"
+        android:textColor="#000000"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/textClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

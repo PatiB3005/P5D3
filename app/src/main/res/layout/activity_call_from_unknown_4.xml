@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor2">
+
+    <TextView
+        android:id="@+id/main_title_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="CZĘŚĆ TEORETYCZNA"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/main_title_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="Czego nie podawać"
+        android:textColor="@android:color/black"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_title_1" />
+
+    <TextView
+        android:id="@+id/text_block_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/blue_box_radius"
+        android:lineSpacingExtra="4dp"
+        android:padding="20dp"
+        android:text="Wiedząc już jaki mają cel oszuści - możemy im to uniemożliwić niepodając informacji których potrzebują."
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title_2" />
+
+    <TextView
+        android:id="@+id/text_block_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nigdy nie udostępniaj:
+        \n\n• danych osobowych: PESEL, numer dowodu, adres, datę urodzenia
+        \n\n• danych finansowych: numer konta, numer karty, PIN, hasła do bankowości online
+        \n\n• kodów SMS lub BLIK
+        \n\n• informacji o tym, kto mieszka w domu lub o twoich codziennych planach"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:background="@drawable/bluer_box_radius"
+        android:padding="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_block_1" />
+
+    <TextView
+        android:id="@+id/text_block_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/blue_box_radius"
+        android:lineSpacingExtra="4dp"
+        android:padding="20dp"
+        android:text="Znając te granice, chronisz siebie i swoje pieniądze, bo oszuści często próbują wykorzystać nawet pozornie nieistotne informacje."
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_block_2" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wstecz"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dalej"
+        android:background="@drawable/rounded_button"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

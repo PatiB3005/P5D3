@@ -1,4 +1,4 @@
-package com.example.smartsenior.ui.scenariosModule1;
+package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario;
 
 import android.content.Intent;
 import android.os.Bundle;
