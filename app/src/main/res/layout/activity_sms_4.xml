@@ -34,7 +34,7 @@
             android:id="@+id/testMessageImage"
             android:layout_width="260dp"
             android:layout_height="300dp"
-            android:background="@drawable/rounded_white_bg"
+
             android:padding="8dp"
             android:src="@drawable/fake_sms"
             android:layout_marginBottom="24dp" />
@@ -89,7 +89,7 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/backButton"
+                android:id="@+id/btnBack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -97,7 +97,7 @@
                 android:text="Wstecz"/>
 
             <Button
-                android:id="@+id/nextButton"
+                android:id="@+id/btnNext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
