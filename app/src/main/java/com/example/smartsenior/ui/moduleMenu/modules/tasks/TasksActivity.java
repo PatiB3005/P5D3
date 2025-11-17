@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -31,5 +33,17 @@ public class TasksActivity extends AppCompatActivity {
 
         task4.setOnClickListener(v ->
                 startActivity(new Intent(this, Task4Activity.class)));
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+
+        toolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent(TasksActivity.this, Module1Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
+
+
     }
+
 }

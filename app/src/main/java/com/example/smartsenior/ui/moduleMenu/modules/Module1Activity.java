@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.moduleMenu.modules.tasks.TasksActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class Module1Activity extends AppCompatActivity {
 
@@ -36,5 +37,9 @@ public class Module1Activity extends AppCompatActivity {
             Intent intent = new Intent(this, TasksActivity.class);
             startActivity(intent);
         });
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
     }
 }

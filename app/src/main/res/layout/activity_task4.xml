@@ -3,44 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDF2F7">
+    android:background="#E9EEF5">
 
-    <!-- Zadanie 1 -->
+    <!-- ZADANIE 4 -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zadanie 1"
+        android:text="Zadanie 4"
         android:textSize="44sp"
         android:textColor="#000"
         android:fontFamily="@font/montserrat_bold"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dopasuj zasadę -->
+    <!-- CO JEST PODEJRZANE? -->
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dopasuj zasadę do\nsytuacji"
-        android:textSize="36sp"
+        android:text="Co jest podejrzane\nw tej wiadomości?"
+        android:textSize="32sp"
         android:textColor="#000"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tekst główny (wyśrodkowany i wyżej) -->
+    <!-- Opis -->
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Przeczytaj sytuację i wybierz zasadę, która \npomoże Ci zachować \nbezpieczeństwo."
-        android:textSize="28sp"
+        android:text="Zobacz przykładowe wiadomości i sprawdź, co w nich może być oszustwem. Może być jedna albo dwie prawidłowe odpowiedzi."
+        android:textSize="26sp"
         android:textColor="#000"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
@@ -51,16 +51,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- KOPERTA – BEZ ZMIAN -->
+    <!-- IKONA UWAGA (większa) -->
     <ImageView
-        android:id="@+id/iconEnvelope"
-        android:layout_width="260dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_envelope"
+        android:id="@+id/iconWarning"
+        android:layout_width="320dp"
+        android:layout_height="260dp"
+        android:src="@drawable/ic_triangle"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- WSTECZ -->
     <com.google.android.material.button.MaterialButton
@@ -78,7 +78,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <!-- ROZPOCZNIJ -->
     <com.google.android.material.button.MaterialButton
@@ -96,6 +96,6 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
