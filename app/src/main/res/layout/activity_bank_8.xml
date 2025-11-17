@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF3FF">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POUCZENIE"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#D8E8FF"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="• Bank nigdy nie prosi o podanie kodów z SMS-ów przez telefon.\n\n• Bank nigdy nie każe przelewać pieniędzy na „konto techniczne”.\n\n• Jeśli telefon wydaje Ci się podejrzany, rozłącz się i zadzwoń samodzielnie na oficjalną infolinię banku.\n\n• Nie ufaj numerowi wyświetlanemu na ekranie – oszuści mogą się pod niego podszywać.\n\n• Porozmawiaj z rodziną i ostrzeż innych przed takimi telefonami."
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:text="Zakończ"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#D80000"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintTop_toBottomOf="@id/textInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
