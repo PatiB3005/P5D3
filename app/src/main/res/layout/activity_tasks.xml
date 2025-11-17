@@ -1,139 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BFDBFE">
+    android:background="#E9EEF5">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <!-- 🔹 Toolbar na pełną szerokość -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="32dp"
-        android:gravity="center_horizontal">
-        <!-- Tytuł główny -->
-        <TextView
-            android:id="@+id/titleMain"
-            android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:background="#4F46E5"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="" />
+
+    <!-- 🔹 Reszta treści w ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bezpieczne wiadomości"
-            android:textColor="#0F172A"
-            android:textSize="32sp"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="4dp"
-            android:textAlignment="center" />
-
-        <!-- Podtytuł -->
-        <TextView
-            android:id="@+id/titleSub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Zadania"
-            android:textColor="#0F172A"
-            android:textSize="30sp"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="36dp"
-            android:textAlignment="center" />
-
-
-
-        <!-- KAFELKI  -->
-        <!-- Styl: duże, pełna szerokość, zaokrąglone, ładne marginesy -->
-
-        <!-- Zadanie 1 -->
-        <LinearLayout
-            android:id="@+id/btnTask1"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:elevation="8dp"
-            android:clipToOutline="true"
-            android:layout_marginBottom="28dp"
-            android:padding="12dp"
-            android:backgroundTintMode="src_in"
-            android:foreground="?attr/selectableItemBackground"
-            android:backgroundTint="#93C5FD"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="8dp">
+            android:padding="32dp"
+            android:gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/titleMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zadanie 1"
+                android:text="Bezpieczne wiadomości"
                 android:textColor="#0F172A"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
-
-        <!-- Zadanie 2 -->
-        <LinearLayout
-            android:id="@+id/btnTask2"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:elevation="8dp"
-            android:clipToOutline="true"
-            android:layout_marginBottom="28dp"
-            android:padding="12dp"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="8dp">
+                android:textSize="32sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="4dp"
+                android:textAlignment="center" />
 
             <TextView
+                android:id="@+id/titleSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zadanie 2"
+                android:text="Zadania"
                 android:textColor="#0F172A"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat_bold"/>
+                android:textSize="30sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="36dp"
+                android:textAlignment="center" />
+
+            <!-- Zadanie 1 -->
+            <LinearLayout
+                android:id="@+id/btnTask1"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="#93C5FD"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clipToOutline="true"
+                android:layout_marginBottom="28dp"
+                android:padding="12dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zadanie 1"
+                    android:textColor="#0F172A"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
+            <!-- Zadanie 2 -->
+            <LinearLayout
+                android:id="@+id/btnTask2"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="#93C5FD"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clipToOutline="true"
+                android:layout_marginBottom="28dp"
+                android:padding="12dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zadanie 2"
+                    android:textColor="#0F172A"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
+            <!-- Zadanie 3 -->
+            <LinearLayout
+                android:id="@+id/btnTask3"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="#93C5FD"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clipToOutline="true"
+                android:layout_marginBottom="28dp"
+                android:padding="12dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zadanie 3"
+                    android:textColor="#0F172A"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
+            <!-- Zadanie 4 -->
+            <LinearLayout
+                android:id="@+id/btnTask4"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="#93C5FD"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clipToOutline="true"
+                android:layout_marginBottom="28dp"
+                android:padding="12dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zadanie 4"
+                    android:textColor="#0F172A"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!-- Zadanie 3 -->
-        <LinearLayout
-            android:id="@+id/btnTask3"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:elevation="8dp"
-            android:clipToOutline="true"
-            android:layout_marginBottom="28dp"
-            android:padding="12dp"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="8dp">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zadanie 3"
-                android:textColor="#0F172A"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
-
-        <!-- Zadanie 4 -->
-        <LinearLayout
-            android:id="@+id/btnTask4"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:elevation="8dp"
-            android:clipToOutline="true"
-            android:layout_marginBottom="28dp"
-            android:padding="12dp"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zadanie 4"
-                android:textColor="#0F172A"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

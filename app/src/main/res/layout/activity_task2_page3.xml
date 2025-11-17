@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- TYTUŁ -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prawda czy Fałsz"
+            android:textSize="38sp"
+            android:textColor="#000"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- =============== PYTANIE 1 =============== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="26dp"
+            app:cardBackgroundColor="#BFDBFE"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp"
+                android:text="QR-kod zawsze można bezpiecznie zeskanować."
+                android:textSize="22sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI Q1 -->
+        <LinearLayout
+            android:id="@+id/buttonsQ1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ1True"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ1False"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Fałsz"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+        </LinearLayout>
+
+        <!-- KOMENTARZ Q1 -->
+        <TextView
+            android:id="@+id/commentQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- =============== PYTANIE 2 =============== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="#BFDBFE"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp"
+                android:text="Nie wysyłaj pieniędzy bez potwierdzenia."
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textColor="#000"
+                android:fontFamily="@font/montserrat_bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI Q2 -->
+        <LinearLayout
+            android:id="@+id/buttonsQ2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ2True"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ2False"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Fałsz"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+        </LinearLayout>
+
+        <!-- KOMENTARZ Q2 -->
+        <TextView
+            android:id="@+id/commentQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- =============== PYTANIE 3 =============== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="#BFDBFE"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp"
+                android:text="Słowo „PILNE” często oznacza oszustwo."
+                android:textSize="22sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI Q3 -->
+        <LinearLayout
+            android:id="@+id/buttonsQ3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ3True"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ3False"
+                android:layout_width="130dp"
+                android:layout_height="52dp"
+                android:text="Fałsz"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#E5E7EB" />
+        </LinearLayout>
+
+        <!-- KOMENTARZ Q3 -->
+        <TextView
+            android:id="@+id/commentQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- ZAKOŃCZ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFinish"
+            android:layout_width="170dp"
+            android:layout_height="56dp"
+            android:text="Zakończ"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="false"
+            app:backgroundTint="#9D9FB0"
+            android:textColor="#000"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="40dp"
+            android:enabled="false"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#E9EEF5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <!-- TYTUŁ -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prawda czy Fałsz"
+            android:textSize="34sp"
+            android:textColor="#000"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <!-- ===================================================== -->
+        <!-- ===================== PYTANIE 1 ===================== -->
+        <!-- ===================================================== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="#D5E9FF"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:text="Bank może poprosić Cię o podanie kodu SMS przez telefon."
+                android:textSize="22sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI Q1 -->
+        <LinearLayout
+            android:id="@+id/buttonsQ1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ1True"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ1False"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Fałsz"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+        </LinearLayout>
+
+        <!-- KOMENTARZ 1 -->
+        <TextView
+            android:id="@+id/commentQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+        <!-- ===================================================== -->
+        <!-- ===================== PYTANIE 2 ===================== -->
+        <!-- ===================================================== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="28dp"
+            app:cardBackgroundColor="#D5E9FF"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:text="Wiadomość z błędami i literówkami może być fałszywa."
+                android:textSize="22sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/buttonsQ2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ2True"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ2False"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Fałsz"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/commentQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+        <!-- ===================================================== -->
+        <!-- ===================== PYTANIE 3 ===================== -->
+        <!-- ===================================================== -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="28dp"
+            app:cardBackgroundColor="#D5E9FF"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtQ3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:text="Jeśli masz wątpliwości, kliknij w link, żeby sprawdzić."
+                android:textSize="22sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/buttonsQ3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/cardQ3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ3True"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Prawda"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQ3False"
+                android:layout_width="135dp"
+                android:layout_height="54dp"
+                android:text="Fałsz"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="#E5E7EB"
+                app:cornerRadius="20dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/commentQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:background="#FFFFFF"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonsQ3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <!-- PRZYCISK DALEJ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="170dp"
+            android:layout_height="56dp"
+            android:text="Dalej"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:backgroundTint="#9D9FB0"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@id/commentQ3"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

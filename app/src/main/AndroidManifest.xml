@@ -50,6 +50,19 @@
         <activity android:name=".ui.moduleMenu.modules.tasks.Task2Activity" />
         <activity android:name=".ui.moduleMenu.modules.tasks.Task3Activity" />
         <activity android:name=".ui.moduleMenu.modules.tasks.Task4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task1Page1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task1Page2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task1Page3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task1Page4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task2Page1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task2Page2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task2Page3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task3Page1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task3Page2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task4Page1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task4Page2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task4Page3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.tasks.Task4Page4Activity" />
     </application>
 
 </manifest>

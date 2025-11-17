@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#E9EEF5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="80dp">
+
+        <!-- OBRAZ WIADOMOŚCI -->
+        <ImageView
+            android:id="@+id/imgMessage"
+            android:layout_width="0dp"
+            android:layout_height="310dp"
+            android:src="@drawable/ic_energa"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="75dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- OPCJA 1 – błędna -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAmount"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:text="Numer klienta"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:backgroundTint="#A7D0FF"
+            app:cornerRadius="28dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@id/imgMessage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- OPCJA 2 – poprawna -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSender"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:text="Nadawca"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:backgroundTint="#A7D0FF"
+            app:cornerRadius="28dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="55dp"
+            app:layout_constraintTop_toBottomOf="@id/btnAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- OPCJA 3 – poprawna -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLink"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:text="Link do płatności"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:backgroundTint="#A7D0FF"
+            app:cornerRadius="28dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="55dp"
+            app:layout_constraintTop_toBottomOf="@id/btnSender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- POPUP BOX -->
+        <LinearLayout
+            android:id="@+id/popupBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="26dp"
+            android:background="#FFFFFF"
+            android:elevation="8dp"
+            android:visibility="gone"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/popupText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Poprawna odpowiedź"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000"
+                android:gravity="center" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/popupClose"
+                android:layout_width="160dp"
+                android:layout_height="48dp"
+                android:text="OK"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#D1D5DB"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- TŁO POD POPUPEM -->
+        <View
+            android:id="@+id/overlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#88000000"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- DALEJ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="170dp"
+            android:layout_height="56dp"
+            android:text="Dalej"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#000"
+            android:backgroundTint="#9D9FB0"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnLink"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

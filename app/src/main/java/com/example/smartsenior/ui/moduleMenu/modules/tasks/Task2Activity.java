@@ -1,6 +1,29 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartsenior.R;
+
 public class Task2Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_task2);
+
+        Button btnBack = findViewById(R.id.btnBack);
+        Button btnStart = findViewById(R.id.btnStart);
+
+        btnBack.setOnClickListener(v ->
+                finish() // wracamy do listy zadań
+        );
+
+        btnStart.setOnClickListener(v ->
+                startActivity(new Intent(Task2Activity.this, Task2Page1Activity.class))
+        );
+    }
 }
