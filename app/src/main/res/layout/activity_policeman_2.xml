@@ -4,67 +4,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9EEF5">
+    android:background="#EAF3FF">
 
-    <!-- Tytuł SCENARIUSZ -->
+    <!-- Tytuł -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SCENARIUSZ"
-        android:textSize="22sp"
         android:textStyle="bold"
-        android:paddingTop="24dp"
+        android:textSize="20sp"
+        android:layout_marginTop="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dymek konwersacji -->
     <ImageView
         android:id="@+id/imgBubble"
-        android:layout_width="260dp"
-        android:layout_height="180dp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         android:src="@drawable/ic_speech_bubble"
-        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tekst w dymku -->
     <TextView
         android:id="@+id/textMessage"
-        android:layout_width="220dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Dzień dobry, mówi sierżant Kowalski z policji. Dzwonię w sprawie zgłoszenia o próbach wyłudzeń pieniędzy. Mamy informacje, że ktoś może próbować wykorzystać Pani dane."
-        android:textSize="14sp"
-        android:padding="12dp"
+        android:textSize="16sp"
+        android:padding="20dp"
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintTop_toTopOf="@id/imgBubble"
         app:layout_constraintBottom_toBottomOf="@id/imgBubble"
         app:layout_constraintStart_toStartOf="@id/imgBubble"
         app:layout_constraintEnd_toEndOf="@id/imgBubble" />
 
-    <!-- Avatar policjanta -->
+    <!-- Avatar – jak we wnuczku (72dp, po lewej) -->
     <ImageView
         android:id="@+id/imgPoliceman"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:src="@drawable/ic_policeman"
         android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintTop_toBottomOf="@id/imgBubble"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Nagłówek pytania -->
+    <!-- Pytanie – identyczne jak w Wnuczku -->
     <TextView
         android:id="@+id/textQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Co robisz?"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:background="#C9E4FF"
-        android:padding="14dp"
-        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:background="@drawable/bg_scenario_question"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="32dp"
         app:layout_constraintTop_toBottomOf="@id/imgPoliceman"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -72,13 +77,15 @@
     <!-- Odpowiedź A -->
     <TextView
         android:id="@+id/textAnswerA"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="A) „Słucham dalej, o co chodzi.”"
-        android:textSize="16sp"
-        android:background="#D8E8FF"
-        android:padding="14dp"
+        android:text="A) „Słucham dalej, o co chodzi?”"
+        android:textSize="14sp"
+        android:background="@drawable/bg_scenario_answer"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="32dp"
         app:layout_constraintTop_toBottomOf="@id/textQuestion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -86,28 +93,28 @@
     <!-- Odpowiedź B -->
     <TextView
         android:id="@+id/textAnswerB"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="B) „A skąd mam wiedzieć, że to naprawdę policja?”"
-        android:textSize="16sp"
-        android:background="#D8E8FF"
-        android:padding="14dp"
-        android:layout_marginTop="12dp"
+        android:textSize="14sp"
+        android:background="@drawable/bg_scenario_answer"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="32dp"
         app:layout_constraintTop_toBottomOf="@id/textAnswerA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Czerwony przycisk rozłączenia -->
+    <!-- Przycisk rozłączenia – styl wnuczka -->
     <ImageView
         android:id="@+id/imgHangup"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/ic_call_end"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintTop_toBottomOf="@id/textAnswerB"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

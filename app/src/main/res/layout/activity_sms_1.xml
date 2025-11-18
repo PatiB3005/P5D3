@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAF2FF">
@@ -11,75 +12,120 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
-        <!-- Tytuł sekcji -->
+        <!-- CZĘŚĆ TESTOWA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CZĘŚĆ TESTOWA"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="12dp" />
 
-        <!-- Nagłówek -->
+        <!-- BEZPIECZNE WIADOMOŚCI -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BEZPIECZNE WIADOMOŚCI"
             android:textSize="26sp"
             android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_marginBottom="24dp" />
 
-        <!-- Obraz -->
-        <ImageView
-            android:id="@+id/testIntroImage"
-            android:layout_width="375dp"
-            android:layout_height="200dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/rounded_white_bg"
-            android:padding="8dp"/>
 
-        <!-- Tekst główny -->
-        <TextView
+        <!-- OBRAZ W BIAŁEJ KARCE (jak na Twoim screenie) -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zapoznaliśmy się z wiedzą na temat Bezpiecznych Wiadomości. Czas przetestować swoją wiedzę!"
-            android:background="#BFDBFE"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp" />
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="2dp"
+            android:layout_marginBottom="24dp">
 
-        <!-- Instrukcja -->
-        <TextView
+            <ImageView
+                android:id="@+id/testIntroImage"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rounded_white_bg" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- PIERWSZY NIEBIESKI BLOK -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Naciśnij dalej, żeby przejść do części testowej."
-            android:background="#BFDBFE"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#A5CCFF">
 
-        <!-- Przyciski na dole -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Zapoznaliśmy się z wiedzą na temat Bezpiecznych Wiadomości. Czas przetestować swoją wiedzę!"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#000" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- DRUGI NIEBIESKI BLOK (jaśniejszy) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#DCEAFF">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Naciśnij dalej, żeby przejść do części testowej."
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#000" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- PRZYCISKI DÓŁ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBack"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Wstecz" />
+                android:text="Wstecz"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                app:backgroundTint="#CBD5E1"
+                app:cornerRadius="16dp"
+                android:layout_marginEnd="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNext"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Dalej" />
+                android:text="Dalej"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                app:backgroundTint="#9D9FB0"
+                app:cornerRadius="16dp"
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
     </LinearLayout>

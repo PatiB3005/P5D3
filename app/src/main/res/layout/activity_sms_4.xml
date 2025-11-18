@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAF2FF">
@@ -11,98 +12,151 @@
         android:gravity="center_horizontal"
         android:padding="24dp">
 
-        <!-- Tytuł sekcji -->
+        <!-- GÓRNY TYTUŁ (NIEBIESKA KARTA) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#93C5FD" />
+
+        <!-- NAGŁÓWEK 1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CZĘŚĆ TESTOWA"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="12dp" />
 
-        <!-- Nagłówek -->
+        <!-- NAGŁÓWEK 2 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="26sp"
+            android:textSize="23sp"
             android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_marginBottom="24dp" />
 
-        <!-- Obraz wiadomości -->
-        <ImageView
-            android:id="@+id/testMessageImage"
-            android:layout_width="260dp"
-            android:layout_height="300dp"
+        <!-- OBRAZ W KARCIE – TAK JAK W activity_sms_1 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="2dp">
 
-            android:padding="8dp"
-            android:src="@drawable/fake_sms"
-            android:layout_marginBottom="24dp" />
+            <ImageView
+                android:id="@+id/testMessageImage"
+                android:layout_width="260dp"
+                android:layout_height="300dp"
+                android:padding="12dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fake_sms" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Pytanie -->
-        <TextView
+        <!-- NIEBIESKI BLOK Z PYTANIEM + TAK/NIE -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Czy powinieneś odpowiedzieć na taką wiadomość?"
-            android:background="#BFDBFE"
-            android:padding="20dp"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#BFDBFE">
 
-        <!-- Przyciski TAK/NIE -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="32dp">
-
-            <Button
-                android:id="@+id/yesButton"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="TAK"
-                android:textStyle="bold"
-                android:background="#32CD32"
-                android:textColor="#FFFFFF"/>
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
 
-            <Button
-                android:id="@+id/noButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="NIE"
-                android:textStyle="bold"
-                android:background="#FF0000"
-                android:textColor="#FFFFFF"/>
-        </LinearLayout>
+                <!-- PYTANIE -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Czy powinieneś odpowiedzieć na taką wiadomość?"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="15dp" />
 
-        <!-- Przyciski Wstecz / Dalej -->
+                <!-- TAK/NIE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <ImageButton
+                        android:id="@+id/yesButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/yes_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="16dp" />
+
+                    <ImageButton
+                        android:id="@+id/noButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/no_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI WSTECZ / DALEJ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBack"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Wstecz"/>
+                android:text="Wstecz"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#CBD5E1"
+                android:layout_marginEnd="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNext"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Dalej"/>
+                android:text="Dalej"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#9D9FB0"
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
     </LinearLayout>

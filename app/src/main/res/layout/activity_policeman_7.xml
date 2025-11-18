@@ -60,20 +60,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Czerwony przycisk Zakończ -->
     <Button
-        android:id="@+id/btnFinish"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:text="Zakończ"
-        android:textSize="16sp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#D80000"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintTop_toBottomOf="@id/textInfo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_weight="1"
+        android:text="Dalej"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_bold"
+        app:cornerRadius="16dp"
+        app:backgroundTint="#9D9FB0"
+        android:layout_marginStart="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

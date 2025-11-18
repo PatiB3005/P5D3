@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAF2FF">
@@ -11,105 +12,149 @@
         android:gravity="center_horizontal"
         android:padding="24dp">
 
-        <!-- Nagłówek -->
+        <!-- GÓRNY TYTUŁ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#93C5FD">
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- NAGŁÓWEK 1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CZĘŚĆ TESTOWA"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="12dp" />
 
+        <!-- NAGŁÓWEK 2 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="26sp"
+            android:textSize="23sp"
             android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_marginBottom="24dp" />
 
-        <!-- Obraz wiadomości -->
-        <ImageView
-            android:id="@+id/testQuestionImage"
-            android:layout_width="260dp"
-            android:layout_height="300dp"
-            android:background="@drawable/rounded_white_bg"
-            android:padding="8dp"
+        <!-- OBRAZ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/secure_messages" />
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="2dp">
 
-        <!-- Pytanie -->
-        <TextView
+            <ImageView
+                android:id="@+id/testQuestionImage"
+                android:layout_width="260dp"
+                android:layout_height="300dp"
+                android:adjustViewBounds="true"
+                android:padding="12dp"
+                android:src="@drawable/secure_messages"
+                android:scaleType="fitCenter"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- NIEBIESKI BLOK (pytanie + TAK/NIE) -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Czy powinieneś kliknąć w ten link?"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:padding="24dp"
-            android:background="#BFDBFE"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#BFDBFE">
 
-        <!-- Przyciski TAK / NIE -->
-        <!-- Przyciski TAK / NIE (obrazki) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- PYTANIE -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Czy powinieneś kliknąć w ten link?"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/montserrat_bold"/>
+
+                <!-- TAK / NIE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/yesButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/yes_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="16dp"/>
+
+                    <ImageButton
+                        android:id="@+id/noButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/no_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginStart="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI WSTECZ / DALEJ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="32dp">
+            android:weightSum="2">
 
-            <ImageButton
-                android:id="@+id/yesButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/yes_button"
-                android:background="@android:color/transparent"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Tak"
-                android:layout_marginEnd="16dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
-                android:id="@+id/noButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/no_button"
-                android:background="@android:color/transparent"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Nie"
-                android:layout_marginStart="16dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-
-        </LinearLayout>
-
-        <!-- Przyciski nawigacyjne -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:paddingTop="8dp">
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBack"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="12dp"
-                android:text="Wstecz" />
+                android:text="Wstecz"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#CBD5E1"
+                android:layout_marginEnd="8dp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNext"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:text="Dalej" />
+                android:text="Dalej"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#9D9FB0"
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAF2FF">
@@ -11,97 +12,139 @@
         android:gravity="center_horizontal"
         android:padding="24dp">
 
-        <!-- Tytuł sekcji -->
+        <!-- NAGŁÓWEK 1 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CZĘŚĆ TESTOWA"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="12dp" />
 
-        <!-- Nagłówek -->
+        <!-- NAGŁÓWEK 2 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BEZPIECZNE WIADOMOŚCI"
+            android:textSize="23sp"
             android:textStyle="bold"
-            android:textSize="26sp"
-            android:layout_marginBottom="24dp"/>
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="24dp" />
 
-        <!-- Obraz maila -->
-        <ImageView
-            android:id="@+id/emailImage"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:padding="8dp"
-            android:src="@drawable/fake_email_scam"
-            android:layout_marginBottom="24dp"/>
+        <!-- RAMKA Z OBRAZKIEM MAILA -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#000000"
+            app:strokeWidth="2dp">
 
-        <!-- Pytanie -->
-        <TextView
+            <ImageView
+                android:id="@+id/emailImage"
+                android:layout_width="260dp"
+                android:layout_height="220dp"
+                android:padding="12dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fake_email_scam"/>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- KARTA Z PYTANIEM + TAK/NIE -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dostajesz maila, który zaczyna się w powyższy sposób. Czy powinieneś odpowiadać na niego?"
-            android:background="#BFDBFE"
-            android:padding="20dp"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#BFDBFE">
 
-        <!-- TAK/NIE -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="32dp">
-
-            <Button
-                android:id="@+id/yesButton"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="TAK"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:background="#32CD32"/>
+                android:orientation="vertical"
+                android:padding="24dp">
 
-            <Button
-                android:id="@+id/noButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="NIE"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:background="#FF0000"/>
-        </LinearLayout>
+                <!-- PYTANIE -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dostajesz maila, który zaczyna się w powyższy sposób. Czy powinieneś odpowiadać na niego?"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/montserrat_bold" />
 
-        <!-- Wstecz / Dalej -->
+                <!-- TAK / NIE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/yesButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/yes_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="16dp" />
+
+                    <ImageButton
+                        android:id="@+id/noButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/no_button"
+                        android:background="@android:color/transparent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PRZYCISKI WSTECZ / DALEJ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBack"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Wstecz"/>
+                android:text="Wstecz"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#CBD5E1"
+                android:layout_marginEnd="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNext"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Dalej"/>
+                android:text="Dalej"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_bold"
+                app:cornerRadius="16dp"
+                app:backgroundTint="#9D9FB0"
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
     </LinearLayout>

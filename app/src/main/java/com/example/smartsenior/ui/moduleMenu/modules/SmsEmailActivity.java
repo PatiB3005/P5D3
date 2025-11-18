@@ -78,8 +78,8 @@ public class SmsEmailActivity extends AppCompatActivity {
      */
     private void setupAnswerButtons() {
 
-        Button yes = findViewById(R.id.yesButton);
-        Button no = findViewById(R.id.noButton);
+        View yes = findViewById(R.id.yesButton);
+        View no = findViewById(R.id.noButton);
 
         // JEŚLI OBECNY EKRAN NIE MA PRZYCISKÓW TAK/NIE — WYJDŹ
         if (yes == null || no == null) {
@@ -170,9 +170,12 @@ public class SmsEmailActivity extends AppCompatActivity {
         }
 
         // Powrót do menu – jeśli taki przycisk istnieje
-        View backToMenuButton = findViewById(R.id.backToMenuButton);
-        if (backToMenuButton != null) {
-            backToMenuButton.setOnClickListener(v -> finish());
+        View retryTestButton = findViewById(R.id.retryTestButton);
+        if (retryTestButton != null) {
+            retryTestButton.setOnClickListener(v -> {
+                currentScreen = 1;
+                showScreen(currentScreen);
+            });
         }
     }
 
