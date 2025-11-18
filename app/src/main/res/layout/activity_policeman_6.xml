@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#EAF3FF">
 
-    <!-- Tytuł -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
@@ -46,7 +45,6 @@
         app:layout_constraintStart_toStartOf="@id/imgBubble"
         app:layout_constraintEnd_toEndOf="@id/imgBubble" />
 
-    <!-- Avatar – jak we wnuczku (72dp, po lewej) -->
     <ImageView
         android:id="@+id/imgPoliceman"
         android:layout_width="72dp"
@@ -57,7 +55,6 @@
         app:layout_constraintTop_toBottomOf="@id/imgBubble"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Pytanie – identyczne jak w Wnuczku -->
     <TextView
         android:id="@+id/textQuestion"
         android:layout_width="0dp"
@@ -74,14 +71,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Odpowiedź A -->
     <TextView
         android:id="@+id/textAnswerA"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="NEGATYWNY WYNIK (utrata oszczędności)"
         android:textSize="14sp"
-        android:textColor = "red"
+        android:textColor="?android:attr/colorError"
         android:background="@drawable/bg_scenario_answer"
         android:paddingHorizontal="18dp"
         android:paddingVertical="12dp"
@@ -91,20 +87,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-        android:layout_width=""
-        android:layout_height=""
-    <!-- Przycisk rozłączenia – styl wnuczka -->
+    <Button
         android:id="@+id/btnNext"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_weight="1"
         android:text="Dalej"
         android:textSize="20sp"
         android:fontFamily="@font/montserrat_bold"
         android:textAllCaps="false"
         app:backgroundTint="#9D9FB0"
         app:cornerRadius="16dp"
-        android:layout_marginStart="8dp" />
-
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textAnswerA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
