@@ -177,6 +177,13 @@ public class SmsEmailActivity extends AppCompatActivity {
                 showScreen(currentScreen);
             });
         }
+
+        View backToMenuButton = findViewById(R.id.backToMenuButton);
+        if (backToMenuButton != null) {
+            backToMenuButton.setOnClickListener(v -> {
+               finish();
+            });
+        }
     }
 
 

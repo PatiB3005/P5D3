@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BFDBFE"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Wyśrodkowany tytuł -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oszustwo czy nie?"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textSize="36sp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:layout_marginBottom="5dp" />
+
+
+        <!-- DUŻA BIAŁA KARTA W STYLU ZALANDO (POPRAWIONA JAK CZARNA) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_white"
+            android:padding="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="18dp"
+            android:elevation="8dp">
+
+            <!-- Pasek adresu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@drawable/url_box"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/zalando_logo"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:id="@+id/addressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="www.zalando.pl"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- Zdjęcie -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="250dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sukienka1"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp" />
+
+
+            <!-- Tytuł -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sukienka z długim rękawem"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Cena -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cena: 80 zł"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="250dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/zakupy"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp" />
+
+
+            <!-- Opinie -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opinie"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Jedna opinia -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/profilowe"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dobrze leży, sprawdziła się na przyjęciu"
+                    android:textColor="#000000"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnFake"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="FAŁSZYWA"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:backgroundTint="#D92D20"
+                android:layout_marginEnd="10dp" />
+
+            <Button
+                android:id="@+id/btnReal"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="PRAWDZIWA"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:backgroundTint="#12B76A"
+                android:layout_marginStart="5dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#BFDBFE">
+
+    <!-- Pasek z samą strzałką -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#4F46E5"
+        app:navigationIcon="@drawable/ic_arrow_back" />
+
+    <!-- RESZTA UKŁADU jak wcześniej -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <!-- Tytuł (TEN który chcesz mieć JAK WCZEŚNIEJ) -->
+        <TextView
+            android:id="@+id/moduleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zakupy Online"
+            android:textColor="#0F172A"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="48dp" />
+
+        <!-- Kafelek 1 -->
+        <LinearLayout
+            android:id="@+id/btnTeoriaZO"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:background="#93C5FD"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:elevation="6dp"
+            android:padding="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginHorizontal="12dp"
+            android:clipToOutline="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teoria"
+                android:textColor="#0F172A"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold" />
+        </LinearLayout>
+
+        <!-- Kafelek 2 -->
+        <LinearLayout
+            android:id="@+id/btnWebsiteZO"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:background="#93C5FD"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:elevation="6dp"
+            android:padding="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginHorizontal="12dp"
+            android:clipToOutline="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strony"
+                android:textColor="#0F172A"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold" />
+        </LinearLayout>
+
+        <!-- Kafelek 3 -->
+        <LinearLayout
+            android:id="@+id/btnZadaniaZO"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#93C5FD"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:elevation="6dp"
+            android:padding="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginHorizontal="12dp"
+            android:clipToOutline="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zadania"
+                android:textColor="#0F172A"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

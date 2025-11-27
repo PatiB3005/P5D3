@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
 
-    private LinearLayout btnModule1, btnCallFromAnUnknown;
+    private LinearLayout btnModule1, btnCallFromAnUnknown, btnModule3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         // Kafelek modułu "Bezpieczne wiadomości"
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
+        btnModule3 = findViewById(R.id.btnShoppingOnline);
 
         btnModule1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +38,14 @@ public class ModuleMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnModule3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModuleMenuActivity.this, Module3Activity.class);
                 startActivity(intent);
             }
         });

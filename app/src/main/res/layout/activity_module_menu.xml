@@ -158,6 +158,7 @@
 
         <!-- Moduł 3 -->
         <LinearLayout
+            android:id="@+id/btnShoppingOnline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -170,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/module_placeholder_image"
+                android:src="@drawable/online_shopping"
                 android:background="@drawable/rounded_image"
                 android:clipToOutline="true" />
 
@@ -195,7 +196,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moduł 3"
+                android:text="Zakupy Online"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"

@@ -100,6 +100,15 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild7Activity" />
+
+        <activity android:name=".ui.moduleMenu.modules.Module3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.WebsiteActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.Website2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.Website3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.Website4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.Website5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.Website6Activity" />
+
     </application>
 
 </manifest>
