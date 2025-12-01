@@ -100,6 +100,12 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild7Activity" />
+
+        <!-- QUIZ Z NAGŁÓWKÓW (fake news) -->
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
+
     </application>
 
 </manifest>
