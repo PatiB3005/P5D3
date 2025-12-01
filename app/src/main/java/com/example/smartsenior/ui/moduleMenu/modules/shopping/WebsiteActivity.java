@@ -18,6 +18,7 @@ public class WebsiteActivity extends AppCompatActivity {
         Button btnStart = findViewById(R.id.btnStart);
 
         btnStart.setOnClickListener(v -> {
+            ScoreManager.reset();
             Intent intent = new Intent(WebsiteActivity.this, Website2Activity.class);
             startActivity(intent);
         });

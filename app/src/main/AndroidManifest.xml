@@ -108,6 +108,10 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.Website4Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.Website5Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.Website6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.PracticeMoreActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.MedalBronzeActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.MedalSilverActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.MedalGoldActivity" />
 
     </application>
 
