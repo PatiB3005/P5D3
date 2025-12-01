@@ -7,9 +7,10 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
-import com.example.smartsenior.ui.moduleMenu.modules.tasks.TasksActivity;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.example.smartsenior.ui.moduleMenu.modules.shopping.ShoppingTheory1Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.shopping.quiz.ShoppingQuizIntroActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.shopping.WebsiteActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class Module3Activity extends AppCompatActivity {
 
@@ -21,11 +22,11 @@ public class Module3Activity extends AppCompatActivity {
         // Znajdź kafelki po ID
         LinearLayout teoria = findViewById(R.id.btnTeoriaZO);
         LinearLayout strony = findViewById(R.id.btnWebsiteZO);
-        LinearLayout zadania = findViewById(R.id.btnZadaniaZO);
+        LinearLayout quiz = findViewById(R.id.btnQuizZO); // ← poprawiona nazwa
 
         // Obsługa kliknięć — otwieranie nowych ekranów
         teoria.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TheoryActivity.class);
+            Intent intent = new Intent(this, ShoppingTheory1Activity.class);
             startActivity(intent);
         });
 
@@ -34,13 +35,12 @@ public class Module3Activity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        zadania.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TasksActivity.class);
+        quiz.setOnClickListener(v -> {      // ← poprawione
+            Intent intent = new Intent(this, ShoppingQuizIntroActivity.class);
             startActivity(intent);
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> finish());
-
     }
 }

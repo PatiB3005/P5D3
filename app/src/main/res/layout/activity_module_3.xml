@@ -14,7 +14,7 @@
         android:background="#4F46E5"
         app:navigationIcon="@drawable/ic_arrow_back" />
 
-    <!-- RESZTA UKŁADU jak wcześniej -->
+    <!-- RESZTA UKŁADU -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
         android:gravity="center"
         android:padding="24dp">
 
-        <!-- Tytuł (TEN który chcesz mieć JAK WCZEŚNIEJ) -->
+        <!-- Tytuł -->
         <TextView
             android:id="@+id/moduleTitle"
             android:layout_width="wrap_content"
@@ -86,9 +86,9 @@
                 android:fontFamily="@font/montserrat_bold" />
         </LinearLayout>
 
-        <!-- Kafelek 3 -->
+        <!-- Kafelek 3 (QUIZ) -->
         <LinearLayout
-            android:id="@+id/btnZadaniaZO"
+            android:id="@+id/btnQuizZO"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="#93C5FD"
@@ -105,7 +105,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zadania"
+                android:text="Quiz"
                 android:textColor="#0F172A"
                 android:textSize="22sp"
                 android:fontFamily="@font/montserrat_bold" />

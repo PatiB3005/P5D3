@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Tytuł -->
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jak sprawdzić, czy\nsklep naprawdę istnieje?"
+                android:textSize="32sp"
+                android:textColor="#1A202C"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Obrazek -->
+            <ImageView
+                android:id="@+id/theoryImage"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:src="@drawable/ic_verify_store"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Tekst – prosta wersja dla seniorów -->
+            <TextView
+                android:id="@+id/textContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zanim zrobisz zakupy, upewnij się, że sklep istnieje naprawdę.\n\n• Wpisz nazwę sklepu w Google i zobacz opinie.\n• Sprawdź adres — czy po wpisaniu w Google Maps pojawia się prawdziwe miejsce.\n• Jeśli sklep nie ma żadnych opinii — to może być podejrzane.\n• Zwróć uwagę, czy sklep działa dłużej niż kilka dni.\n• Jeśli o sklepie nie ma żadnych informacji — lepiej zachować ostrożność."
+                android:textSize="22sp"
+                android:textColor="#1A202C"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="6dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Przyciski -->
+    <LinearLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Wstecz"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            app:backgroundTint="#9D9FB0"
+            app:cornerRadius="16dp"
+            android:layout_marginEnd="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Dalej"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="16dp"
+            android:layout_marginStart="12dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -113,6 +113,23 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.MedalSilverActivity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.MedalGoldActivity" />
 
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory7Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory8Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory9Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheory10Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.ShoppingTheoryEndActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizIntroActivity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage1Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizSummaryActivity" />
     </application>
 
 </manifest>
