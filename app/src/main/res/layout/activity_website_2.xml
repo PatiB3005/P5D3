@@ -1,108 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#E8F0FA"
-    android:padding="5dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- ====== GŁÓWNY EKRAN ====== -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="#E8F0FA"
+        android:padding="5dp">
 
-        <!-- Wyśrodkowany tytuł -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Oszustwo czy nie?"
-            android:padding="5dp"
-            android:textStyle="bold"
-            android:textSize="36sp"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:layout_marginBottom="5dp" />
-
-
-        <!-- DUŻA CZARNA KARTA -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_card"
-            android:padding="18dp"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:elevation="10dp">
+            android:orientation="vertical">
 
-            <!-- Pasek adresu -->
+            <!-- Wyśrodkowany tytuł -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oszustwo czy nie?"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp" />
+
+            <!-- DUŻA CZARNA KARTA -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:background="@drawable/rounded_dark"
-                android:paddingHorizontal="18dp"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="22dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_card"
+                android:padding="18dp"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:elevation="10dp">
 
+                <!-- Pasek adresu -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:background="@drawable/rounded_dark"
+                    android:paddingHorizontal="18dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="22dp">
+
+                    <ImageView
+                        android:id="@+id/logoSite"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/vinted_logo"
+                        android:layout_marginRight="12dp" />
+
+                    <TextView
+                        android:id="@+id/addressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="www.vinteb.com"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <!-- Zdjęcie produktu -->
                 <ImageView
-                    android:id="@+id/logoSite"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/vinted_logo"
-                    android:layout_marginRight="12dp" />
+                    android:id="@+id/productImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/proc_1"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:layout_marginBottom="14dp" />
+
+                <!-- Tytuł -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Samba OG"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="start"
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
-                    android:id="@+id/addressBar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="www.vinteb.com"
+                    android:text="42 • Nowy bez metki • adidas"
+                    android:textColor="#CCCCCC"
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:layout_marginBottom="14dp" />
+
+                <!-- Cena -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cena: 20 zł"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     android:textColor="#FFFFFF"
-                    android:textSize="22sp" />
-            </LinearLayout>
-
-            <!-- Zdjęcie produktu -->
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/proc_1"
-                android:scaleType="centerCrop"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true"
-                android:layout_marginBottom="14dp" />
-
-            <!-- Tytuł -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Samba OG"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:gravity="start"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="42 • Nowy bez metki • adidas"
-                android:textColor="#CCCCCC"
-                android:textSize="20sp"
-                android:gravity="start"
-                android:layout_marginBottom="14dp" />
-
-            <!-- Cena -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cena: 20 zł"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:gravity="start"
-                android:layout_marginBottom="20dp" />
+                    android:gravity="start"
+                    android:layout_marginBottom="20dp" />
 
                 <!-- Opis -->
                 <TextView
@@ -111,50 +116,180 @@
                     android:text="Opis"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kupuj i się nie zastanawiaj! Oferta limitowana!"
+                    android:textColor="#CCCCCC"
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:layout_marginBottom="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnFake"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:text="FAŁSZYWA"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:backgroundTint="#D92D20"
+                    android:layout_marginEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnReal"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:text="PRAWDZIWA"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:backgroundTint="#12B76A"
+                    android:layout_marginStart="5dp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNext"
+                android:layout_width="253dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="#D1D5DB"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Przejdź dalej"
+                android:textColor="#000"
+                android:visibility="gone"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ====== POPUP (NIE WPŁYWA NA LAYOUT) ====== -->
+    <LinearLayout
+        android:id="@+id/popupOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="#80000000">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="22dp"
+            android:background="@drawable/popup_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="325dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/titleFalse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:visibility="visible"
+                android:textStyle="bold"
+                android:text="Niepoprawna odpowiedź"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#1A202C"
+                android:gravity="center"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:id="@+id/titleTrue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:text="Poprawna odpowiedź"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#1A202C"
+                android:gravity="center"
+                android:layout_marginBottom="14dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kupuj i się nie zastanawiaj! Oferta limitowana!"
-                android:textColor="#CCCCCC"
-                android:textSize="20sp"
-                android:gravity="start"
+                android:textSize="18sp"
+                android:text="Ta strona ma elementy wskazujące na oszustwo:"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textColor="#4A5568"
                 android:layout_marginBottom="18dp" />
+
+
+            <LinearLayout
+                android:id="@+id/popupList"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="• Zła domena / podejrzany adres – wygląda inaczej niż prawdziwy Vinted"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#4A5568"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="• Cena zbyt niska – markowe buty za 20 zł to zwykle oszustwo"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#4A5568"
+                    android:layout_marginBottom="8dp"
+                />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="• Brak opinii – zerowe recenzje mogą świadczyć o oszustwie."
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#4A5568"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="• Opis gra na emocjach – „kup i się nie zastanawiaj!” oraz „oferta limitowana”, co jest typowym trikiem oszustów, abyś działał szybko"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#4A5568"
+                    android:layout_marginBottom="8dp"
+                    />
             </LinearLayout>
 
 
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+            <Button
+                android:id="@+id/btnOk"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="#2B6CB0"
+                android:text="OK"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnFake"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:text="FAŁSZYWA"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:backgroundTint="#D92D20"
-            android:layout_marginEnd="10dp" />
-
-        <Button
-            android:id="@+id/btnReal"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:text="PRAWDZIWA"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:backgroundTint="#12B76A"
-            android:layout_marginStart="5dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
-    </ScrollView>
+</FrameLayout>

@@ -47,7 +47,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/shein"
+                    android:src="@drawable/shein_logo"
                     android:layout_marginRight="10dp" />
 
                 <TextView

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <!-- SCROLL VIEW — zawiera CAŁĄ treść ekranu -->
+    <ScrollView
+        android:id="@+id/scrollArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="32dp">
+
+            <!-- Tytuł -->
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Co chcesz zrobić dalej?"
+                android:textSize="32sp"
+                android:textColor="#1A202C"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginBottom="28dp" />
+
+            <!-- Obrazek -->
+            <ImageView
+                android:id="@+id/theoryImage"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:src="@drawable/ic_end_options"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="36dp" />
+
+            <!-- Opis -->
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Możesz przejść do quizu, sprawdzać strony lub wrócić do modułu."
+                android:textSize="22sp"
+                android:textColor="#1A202C"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginBottom="36dp" />
+
+            <!-- DUŻY PRZYCISK: QUIZ -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:text="PRZEJDŹ DO QUIZU"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_bold"
+                app:backgroundTint="#2B6CB0"
+                app:cornerRadius="24dp"
+                android:layout_marginBottom="24dp"
+                android:letterSpacing="0.02"/>
+
+            <!-- DUŻY PRZYCISK: MODUŁ STRONY -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPages"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:text="PRZEJDŹ DO MODUŁU STRON"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_bold"
+                app:backgroundTint="#4A5568"
+                app:cornerRadius="24dp"
+                android:layout_marginBottom="24dp"
+                android:letterSpacing="0.02"/>
+
+            <!-- DUŻY PRZYCISK: WYJŚCIE -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExit"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:text="WYJDŹ Z MODUŁU"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_bold"
+                app:backgroundTint="#9D9FB0"
+                app:cornerRadius="24dp"
+                android:letterSpacing="0.02"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
