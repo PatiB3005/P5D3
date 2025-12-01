@@ -1,7 +1,12 @@
 package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -11,22 +16,96 @@ import com.example.smartsenior.R;
 
 public class Policeman1Activity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+    private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policeman_1);
 
         ImageView call = findViewById(R.id.imgCall);
-
         Button end = findViewById(R.id.btnEnd);
 
+        // Start dźwięku i wibracji po wejściu na ekran
+        startRingtoneSafely();
+        startVibrationSafely();
+
+        // Zielona słuchawka -> przejście do sceny 2
         call.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Policeman2Activity.class);
+            stopRingtone();
+            stopVibration();
+
+            Intent intent = new Intent(Policeman1Activity.this, Policeman2Activity.class);
             startActivity(intent);
         });
 
+        // "Koniec" -> zatrzymanie wszystkiego i wyjście
         end.setOnClickListener(v -> {
+            stopRingtone();
+            stopVibration();
             finish();
         });
     }
+
+    // ---------------- DŹWIĘK ----------------
+    private void startRingtoneSafely() {
+        try {
+            mediaPlayer = MediaPlayer.create(this, R.raw.suspicious_ring);
+            if (mediaPlayer != null) {
+                mediaPlayer.setLooping(true);
+                mediaPlayer.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void stopRingtone() {
+        try {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ---------------- WIBRACJE ----------------
+    private void startVibrationSafely() {
+        try {
+            vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator == null || !vibrator.hasVibrator()) return;
+
+            long[] pattern = {0, 600, 400, 600, 400};
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                VibrationEffect effect = VibrationEffect.createWaveform(pattern, 0);
+                vibrator.vibrate(effect);
+            } else {
+                vibrator.vibrate(pattern, 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void stopVibration() {
+        try {
+            if (vibrator != null) vibrator.cancel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Bezpieczeństwo – zatrzymujemy dźwięk/wibracje, gdy użytkownik opuści ekran
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopRingtone();
+        stopVibration();
+    }
 }
+
