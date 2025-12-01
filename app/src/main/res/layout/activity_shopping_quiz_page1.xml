@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
+
+    <ScrollView
+        android:id="@+id/scrollArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Tytuł -->
+            <TextView
+                android:id="@+id/quizTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QUIZ – pytania 1 i 2"
+                android:textColor="#1A202C"
+                android:textSize="30sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"/>
+
+            <!-- Obrazek -->
+            <ImageView
+                android:id="@+id/quizImage"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_quiz_shopping"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- PYTANIE 1 -->
+            <TextView
+                android:id="@+id/question1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Na stronie sklepu widzisz kłódkę i HTTPS. Co powinieneś zrobić, aby upewnić się, że to nie jest fałszywe zabezpieczenie?"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#1A202C"
+                android:layout_marginBottom="12dp"/>
+
+            <RadioGroup
+                android:id="@+id/groupQ1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/q1_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nic — skoro jest HTTPS, to strona na pewno jest bezpieczna."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+                <RadioButton
+                    android:id="@+id/q1_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kliknąć kłódkę i sprawdzić szczegóły certyfikatu."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+                <RadioButton
+                    android:id="@+id/q1_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Odświeżyć stronę kilka razy — jeśli kłódka nie znika, jest OK."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/feedbackQ1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#1A202C"
+                android:visibility="gone"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- PYTANIE 2 (POPRAWIONE) -->
+            <TextView
+                android:id="@+id/question2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Wchodzisz na nowy sklep internetowy. Która sytuacja powinna najbardziej Cię zaniepokoić?"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#1A202C"
+                android:layout_marginBottom="12dp"/>
+
+            <RadioGroup
+                android:id="@+id/groupQ2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/q2_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sklep ma tylko kilka opinii."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+                <RadioButton
+                    android:id="@+id/q2_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sklep wygląda profesjonalnie, ale ma mało produktów."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+                <RadioButton
+                    android:id="@+id/q2_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Podany w regulaminie adres firmy nie istnieje w Google Maps — wyszukiwarka nie znajduje takiego miejsca."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/feedbackQ2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#1A202C"
+                android:visibility="gone"
+                android:layout_marginBottom="24dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- PRZYCISK DALEJ -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Dalej"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="20dp"
+            android:enabled="false"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
