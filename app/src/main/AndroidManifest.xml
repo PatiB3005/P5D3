@@ -133,6 +133,12 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage3Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage4Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizSummaryActivity" />
+
+        <!-- QUIZ Z NAGŁÓWKÓW (fake news) -->
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
+
     </application>
 
 </manifest>
