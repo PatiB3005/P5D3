@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
@@ -37,6 +38,11 @@ public class ModuleMenuActivity extends AppCompatActivity {
 
         btnCallFromAnUnknown.setOnClickListener(v -> {
             Intent intent = new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class);
+            startActivity(intent);
+        });
+
+        btnShoppingOnline.setOnClickListener(v -> {
+            Intent intent = new Intent(ModuleMenuActivity.this, Module3Activity.class);
             startActivity(intent);
         });
 
