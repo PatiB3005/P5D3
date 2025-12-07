@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
@@ -15,7 +14,7 @@ import com.example.smartsenior.ui.notifications.NotificationsActivity;
 import com.example.smartsenior.ui.profile.ProfileActivity;
 import com.example.smartsenior.ui.settings.SettingsActivity;
 import com.example.smartsenior.ui.tutorial.TutorialActivity1;
-import com.example.smartsenior.ui.wirtualAssistant.WirtualAssistantActivity;
+import com.example.smartsenior.ui.virtualAssistant.virtualAssistantActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnWirtualAssistant.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, WirtualAssistantActivity.class);
+            Intent intent = new Intent(MainActivity.this, virtualAssistantActivity.class);
             startActivity(intent);
         });
 
