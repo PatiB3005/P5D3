@@ -1,0 +1,177 @@
+[
+  {
+    "question": "Jak rozpoznać oszustwo na wnuczka",
+    "answer": "Uważaj na presję czasu, prośby o pieniądze i tajemnicę. Zadzwoń do rodziny i w razie potrzeby na 112.",
+    "keywords": ["wnuczek", "wnuczka", "rodzina", "gotowka", "pieniadze", "tajemnica", "presja czasu", "oszustwo"]
+  },
+  {
+    "question": "Co zrobić gdy ktoś prosi o kod BLIK",
+    "answer": "Nie podawaj kodu BLIK i niczego nie zatwierdzaj w aplikacji. Bank i rodzina nie proszą o BLIK przez telefon. Rozłącz się i oddzwoń na znany numer.",
+    "keywords": ["blik", "kod blik", "zatwierdz", "aplikacja banku", "przelew", "oszust", "telefon", "sms"]
+  },
+  {
+    "question": "Dlaczego nie warto klikać w podejrzane linki?",
+    "answer": "Klikanie w podejrzane linki może prowadzić do kradzieży danych lub zainfekowania urządzenia złośliwym oprogramowaniem.",
+    "keywords": ["podejrzany link", "link", "phishing", "zlosliwe oprogramowanie", "kradziez danych", "strona", "oszustwo", "sms"]
+  },
+  {
+    "question": "Na co zwracać uwagę przy zakupach online?",
+    "answer": "Sprawdzaj opinie o sprzedawcy, unikaj podejrzanie niskich cen i korzystaj z bezpiecznych metod płatności.",
+    "keywords": ["zakupy online", "sklep", "sprzedawca", "opinie", "podejrzanie niska cena", "platnosc", "bezpieczenstwo", "oszustwo"]
+  },
+  {
+    "question": "Jak chronić swoje hasła?",
+    "answer": "Używaj silnych, unikalnych haseł dla różnych kont. Włącz weryfikację dwuetapową (2FA) i nie podawaj haseł nikomu przez telefon ani w wiadomościach.",
+    "keywords": ["haslo", "hasla", "silne haslo", "unikalne haslo", "2fa", "weryfikacja dwuetapowa", "logowanie", "bezpieczenstwo"]
+  },
+  {
+    "question": "Jak rozpoznać czy zdjęcie w internecie jest fałszywe?",
+    "answer": "Zwracaj uwagę na nienaturalne cechy, niespójności w tle oraz użyj narzędzi do wyszukiwania obrazem, aby sprawdzić źródło.",
+    "keywords": ["zdjecie", "falszywe zdjecie", "deepfake", "manipulacja", "wyszukiwanie obrazem", "google lens", "zrodlo", "fejk"]
+  },
+  {
+    "question": "Czy ten nagłówek jest prawdziwy?",
+    "answer": "Sprawdź wiarygodne źródła informacji i porównaj z innymi doniesieniami na ten temat. Zwróć uwagę na datę i autora.",
+    "keywords": ["naglowek", "fake news", "fejk", "wiarygodne zrodlo", "weryfikacja", "autor", "data", "informacja"]
+  },
+  {
+    "question": "Gdzie zgłosić podejrzaną aktywność online?",
+    "answer": "Zgłoś podejrzaną aktywność odpowiednim służbom, takim jak policja lub CERT Polska.",
+    "keywords": ["zglosic", "zgloszenie", "podejrzana aktywnosc", "oszustwo", "policja", "cert polska", "internet", "phishing"]
+  },
+  {
+    "question": "Gdzie sprawdzać opinie o sprzedawcach online?",
+    "answer": "Sprawdzaj opinie na wiarygodnych portalach z recenzjami np. Google Reviews, Opineo czy Ceneo.",
+    "keywords": ["opinie", "sprzedawca", "recenzje", "google reviews", "opineo", "ceneo", "sklep", "zakupy"]
+  },
+  {
+    "question": "Jakie informacje powinien zawierać sklep na stronie internetowej, by uznać go za bezpieczny?",
+    "answer": "Sklep powinien zawierać dane kontaktowe, regulamin, politykę prywatności oraz jasne informacje o zwrotach i reklamacjach.",
+    "keywords": ["sklep internetowy", "dane kontaktowe", "regulamin", "polityka prywatnosci", "zwroty", "reklamacje", "bezpieczny sklep", "zakupy"]
+  },
+  {
+    "question": "Jakie dane są wrażliwe i nie powinienem ich podawać",
+    "answer": "Nie podawaj haseł, PIN-u, kodów SMS, kodów BLIK, danych karty (numer, data, CVV) ani zdjęć dokumentów. Bank nie wymaga tego przez telefon.",
+    "keywords": ["dane wrazliwe", "pin", "kod sms", "blik", "cvv", "numer karty", "dowod", "pesel"]
+  },
+  {
+    "question": "Czy mogę podać numer PESEL albo dowodu przez telefon",
+    "answer": "Lepiej nie. Jeśli ktoś tego żąda, przerwij rozmowę i zweryfikuj kontakt przez oficjalny numer instytucji.",
+    "keywords": ["pesel", "dowod", "dane osobowe", "telefon", "instytucja", "weryfikacja", "oszust", "podszywanie"]
+  },
+  {
+    "question": "Jakie są najczęstsze typy oszustw w wiadomościach?",
+    "answer": "- Fałszywa wygrana w konkursie\n- Prośba o dopłatę za paczkę\n- Wiadomości od rzekomego znajomego proszącego o pieniądze",
+    "keywords": ["sms", "wiadomosc", "wygrana", "konkurs", "doplaty", "paczka", "znajomy", "oszustwo"]
+  },
+  {
+    "question": "Ktoś podszywa się pod policjanta i mówi o zagrożonych oszczędnościach",
+    "answer": "To znany scenariusz oszustwa. Policja nie każe przelewać pieniędzy ani przekazywać gotówki. Rozłącz się i zadzwoń na 112.",
+    "keywords": ["policja", "podszywanie", "oszczednosci", "zagrozone konto", "przelew", "gotowka", "112", "oszustwo"]
+  },
+  {
+    "question": "Jak rozpoznać oszusta telefonicznego",
+    "answer": "Typowe sygnały to presja czasu, straszenie konsekwencjami, prośby o kody SMS/BLIK/PIN, prośba o instalację aplikacji i zakaz konsultacji z bliskimi.",
+    "keywords": ["oszust telefoniczny", "presja czasu", "straszenie", "kod sms", "blik", "pin", "aplikacja", "zakaz rozmawiania"]
+  },
+  {
+    "question": "Ktoś dzwoni i mówi że jest z banku i moje konto jest zagrożone",
+    "answer": "Rozłącz się i zadzwoń do banku na numer z oficjalnej strony lub z karty. Nie podawaj haseł ani kodów SMS i nie wykonuj przelewów na prośbę rozmówcy.",
+    "keywords": ["bank", "infolinia", "konto zagrozone", "oszust", "kod sms", "haslo", "przelew", "podszywanie"]
+  },
+  {
+    "question": "Jakie informacje oszuści najczęściej próbują wyciągnąć przez telefon",
+    "answer": "Kody SMS, kody BLIK, PIN, hasła, dane karty (numer, data, CVV), dane logowania i prośby o instalację aplikacji do zdalnego pulpitu.",
+    "keywords": ["kod sms", "blik", "pin", "haslo", "cvv", "dane karty", "logowanie", "zdalny dostep"]
+  },
+  {
+    "question": "Co najlepiej zrobić w sytuacji, gdy znajdę się w niebezpieczeństwie?",
+    "answer": "Zachowaj spokój, rozłącz się i skontaktuj się z bliską osobą. Jeśli sytuacja jest pilna, zadzwoń na 112.",
+    "keywords": ["niebezpieczenstwo", "pomoc", "112", "rozlacz sie", "zadzwoń", "bliscy", "zagrozenie", "alarm"]
+  },
+  {
+    "question": "Jakie mogą spotkać mnie konsekwencje, jeśli podam oszustowi swoje dane?",
+    "answer": "Podanie danych osobowych lub finansowych może prowadzić do:\n• Kradzieży pieniędzy\n• Zaciągania kredytów i pożyczek na Twoje nazwisko\n• Kradzieży tożsamości (podszywanie się pod Ciebie)",
+    "keywords": ["konsekwencje", "kradziez pieniedzy", "kradziez tozsamosci", "kredyt", "pozyczka", "dane osobowe", "podszywanie", "oszust"]
+  },
+  {
+    "question": "Czy bank może prosić przez telefon o kod SMS do logowania",
+    "answer": "Nie. Kod SMS służy do zatwierdzania operacji i nie powinien być podawany nikomu. Jeśli ktoś o niego prosi, to bardzo prawdopodobnie oszust.",
+    "keywords": ["bank", "kod sms", "logowanie", "zatwierdzanie", "oszust", "telefon", "infolinia", "bezpieczenstwo"]
+  },
+  {
+    "question": "Ktoś dzwoni i mówi że mam dopłacić do paczki albo przesyłki",
+    "answer": "Nie podawaj danych i nie wykonuj płatności w trakcie rozmowy. Rozłącz się i sprawdź status przesyłki w oficjalnej aplikacji lub na stronie przewoźnika wpisanej ręcznie.",
+    "keywords": ["paczka", "przesylka", "doplaty", "kurier", "inpost", "dhl", "dpd", "link"]
+  },
+  {
+    "question": "Ktoś dzwoni i podszywa się pod pracownika Microsoft lub serwisu i straszy wirusem",
+    "answer": "To może być oszustwo. Nie instaluj żadnych programów ani nie dawaj zdalnego dostępu. Zakończ rozmowę i przeskanuj urządzenie zaufanym antywirusem.",
+    "keywords": ["microsoft", "serwis", "wirus", "komputer", "zdalny dostep", "anydesk", "teamviewer", "oszustwo"]
+  },
+  {
+    "question": "Ktoś z banku każe mi zainstalować aplikację albo podać dane do logowania",
+    "answer": "Nie instaluj niczego na polecenie rozmówcy i nie podawaj danych logowania. Rozłącz się i zadzwoń do banku na oficjalny numer z karty lub strony banku.",
+    "keywords": ["bank", "aplikacja", "instalacja", "dane logowania", "haslo", "kod sms", "infolinia", "podszywanie"]
+  },
+  {
+    "question": "Ktoś prosi żebym zrobił przelew testowy albo weryfikacyjny",
+    "answer": "Nie rób przelewów na prośbę osoby z telefonu. To częsta metoda oszustów. Zweryfikuj sprawę niezależnie: oddzwoń do instytucji na oficjalny numer.",
+    "keywords": ["przelew", "testowy", "weryfikacyjny", "konto techniczne", "pieniadze", "oszust", "bank", "telefon"]
+  },
+  {
+    "question": "Dostałem SMS z prośbą żeby oddzwonić na numer albo podać dane",
+    "answer": "Nie oddzwaniaj na podejrzane numery i nie podawaj danych. Jeśli to bank lub urząd, zadzwoń na numer znaleziony samodzielnie na oficjalnej stronie.",
+    "keywords": ["sms", "oddzwonic", "numer", "podejrzany", "phishing", "podszywanie", "dane", "oficjalny numer"]
+  },
+  {
+    "question": "Jak sprawdzić, czy strona internetowa jest bezpieczna?",
+    "answer": "Sprawdź czy adres zaczyna się od https i czy jest ikona kłódki. Uważaj na błędy w nazwie strony, podejrzane reklamy i prośby o dane. W razie wątpliwości nie loguj się i nie podawaj danych.",
+    "keywords": ["bezpieczna strona", "strona internetowa", "https", "klodka", "certyfikat", "adres strony", "podejrzana strona", "oszustwo"]
+  },
+  {
+    "question": "Co to jest phishing i jak go rozpoznać?",
+    "answer": "Phishing to próba wyłudzenia danych przez fałszywe wiadomości lub strony. Sygnały to presja czasu, link do logowania, błędy językowe i prośby o hasło, kod SMS lub BLIK. Zamiast klikać w link, wejdź na stronę ręcznie.",
+    "keywords": ["phishing", "wyłudzenie", "oszustwo", "fałszywy mail", "link", "podszywanie", "kod sms", "haslo"]
+  },
+  {
+    "question": "Czy mogę podawać swoje dane w formularzach online?",
+    "answer": "Podawaj dane tylko na zaufanych stronach (np. bank, urząd, znany sklep) i tylko wtedy, gdy są potrzebne. Nie wpisuj haseł, PIN-u ani kodów SMS. Gdy formularz jest podejrzany, zamknij stronę i zweryfikuj ją.",
+    "keywords": ["formularz", "dane osobowe", "pesel", "adres", "zaufana strona", "bezpieczenstwo", "oszustwo", "phishing"]
+  },
+  {
+    "question": "Jak rozpoznać fałszywe wiadomości na Facebooku?",
+    "answer": "Uważaj na sensacyjne nagłówki, prośby o pieniądze, linki i wiadomości od 'znajomych' proszących o pilną pomoc. Sprawdź profil nadawcy, porównaj informację w innych źródłach i nie klikaj podejrzanych linków.",
+    "keywords": ["facebook", "wiadomosc", "fejk", "fake news", "link", "znajomy", "oszustwo", "podszywanie"]
+  },
+  {
+    "question": "Jak ustawić mocniejsze hasło i czy muszę je często zmieniać?",
+    "answer": "Używaj długich haseł (minimum 12 znaków), mieszaj litery i cyfry oraz nie używaj tego samego hasła w wielu miejscach. Zmieniaj hasło, gdy podejrzewasz wyciek lub ktoś mógł je poznać. Włącz 2FA tam gdzie możesz.",
+    "keywords": ["mocne haslo", "haslo", "dlugie haslo", "2fa", "weryfikacja dwuetapowa", "zmiana hasla", "bezpieczenstwo", "logowanie"]
+  },
+  {
+    "question": "Co zrobić, gdy ktoś w internecie prosi mnie o numer karty?",
+    "answer": "Nie podawaj numeru karty, daty ważności ani kodu CVV. Bezpieczniej płacić przez zaufane bramki płatności lub BLIK w aplikacji banku. Jeśli ktoś naciska, to może być oszustwo.",
+    "keywords": ["numer karty", "karta", "cvv", "dane karty", "platnosc", "oszustwo", "wyłudzenie", "bezpieczenstwo"]
+  },
+  {
+    "question": "Jak bezpiecznie robić zakupy przez internet?",
+    "answer": "Kupuj w znanych sklepach, sprawdzaj opinie i dane kontaktowe. Unikaj podejrzanie niskich cen i płatności poza platformą. Płać bezpiecznymi metodami i nie klikaj linków z dziwnych SMS-ów o dopłacie.",
+    "keywords": ["zakupy internet", "zakupy online", "sklep", "opinie", "platnosc", "bezpieczne zakupy", "oszustwo", "phishing"]
+  },
+  {
+    "question": "Czy bank może pisać do mnie przez Messenger albo WhatsApp?",
+    "answer": "Zazwyczaj nie. Jeśli ktoś pisze jako 'bank' na Messengerze lub WhatsAppie, to może być oszust. Nie klikaj linków i nie podawaj danych. Skontaktuj się z bankiem przez oficjalną aplikację lub infolinię.",
+    "keywords": ["bank", "messenger", "whatsapp", "wiadomosc", "podszywanie", "link", "oszustwo", "infolinia"]
+  },
+  {
+    "question": "Jak sprawdzić, czy e-mail jest prawdziwy, a nie od oszusta?",
+    "answer": "Sprawdź adres nadawcy (często różni się drobną literą). Uważaj na pilne prośby, linki i załączniki. Nie loguj się przez link z maila — wejdź na stronę ręcznie lub użyj aplikacji. W razie wątpliwości skontaktuj się z firmą oficjalnie.",
+    "keywords": ["email", "mail", "nadawca", "fałszywy mail", "phishing", "zalacznik", "link", "oszustwo"]
+  },
+  {
+    "question": "Co zrobić, gdy kliknęłam lub kliknąłem w podejrzany link?",
+    "answer": "Zamknij stronę i nic nie wpisuj. Jeśli podałeś hasło lub dane, zmień hasło i skontaktuj się z bankiem. Dla bezpieczeństwa przeskanuj telefon/komputer i obserwuj konto pod kątem podejrzanych transakcji.",
+    "keywords": ["kliknalem link", "podejrzany link", "phishing", "kradziez danych", "zmien haslo", "bank", "oszustwo", "wirus"]
+  }
+]
