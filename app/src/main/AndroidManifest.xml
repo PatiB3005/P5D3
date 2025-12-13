@@ -139,6 +139,24 @@
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
 
+        <!-- AI Lite -->
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiTheoryActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiTheory2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiTheory3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiTheory4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiTheory5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhotoActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto2Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto3Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto4Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto5Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalBronzeActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalGoldActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalSilverActivity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiPracticeMoreActivity" />
+
     </application>
 
 </manifest>

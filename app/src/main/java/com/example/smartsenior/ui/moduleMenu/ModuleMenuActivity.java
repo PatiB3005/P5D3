@@ -17,10 +17,11 @@ import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
 
-    private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline;
+    private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnAiLite;
     private LinearLayout btnFakeNewsModule;
 
     @Override
@@ -33,6 +34,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
+        btnAiLite = findViewById(R.id.btnAiLite);
 
         btnModule1.setOnClickListener(v -> {
             Intent intent = new Intent(ModuleMenuActivity.this, Module1Activity.class);
@@ -54,6 +56,11 @@ public class ModuleMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class));
             }
+        });
+
+        btnAiLite.setOnClickListener(v -> {
+            Intent intent = new Intent(ModuleMenuActivity.this, AiActivity.class);
+            startActivity(intent);
         });
 
         // Powrót do tutorialu
