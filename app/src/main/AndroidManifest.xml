@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Uprawnienie do wibracji -->
+    <!-- Uprawnienia muszą być TU: bezpośrednio pod <manifest> -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -71,6 +72,7 @@
         <!-- Moduł: Telefon od podejrzanego nieznajomego -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.TheoryActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity" />
+
         <!-- Scenariusz: Telefon na policjanta -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman1Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman2Activity" />
@@ -104,6 +106,7 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild7Activity" />
 
+        <!-- Zakupy online -->
         <activity android:name=".ui.moduleMenu.modules.Module3Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.WebsiteActivity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.Website2Activity" />
@@ -134,13 +137,14 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage4Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizSummaryActivity" />
 
-        <!-- QUIZ Z NAGŁÓWKÓW (fake news) -->
+        <!-- Fake news -->
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
+
+        <!-- Zaufane kontakty -->
         <activity android:name=".ui.trustedContacts.TrustedContactsActivity" />
         <activity android:name=".ui.trustedContacts.TrustedContactFormActivity" />
-
 
     </application>
 

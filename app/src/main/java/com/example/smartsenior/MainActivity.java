@@ -1,31 +1,44 @@
 package com.example.smartsenior;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.widget.Button;
 
+import com.example.smartsenior.ui.help.HelpRequestManager;
 import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 import com.example.smartsenior.ui.notifications.NotificationsActivity;
 import com.example.smartsenior.ui.profile.ProfileActivity;
 import com.example.smartsenior.ui.settings.SettingsActivity;
+import com.example.smartsenior.ui.trustedContacts.TrustedContactsActivity;
+import com.example.smartsenior.ui.trustedContacts.TrustedContactsStorage;
 import com.example.smartsenior.ui.tutorial.TutorialActivity1;
 import com.example.smartsenior.ui.virtualAssistant.virtualAssistantActivity;
-import com.example.smartsenior.ui.trustedContacts.TrustedContactsActivity;
-import android.view.MotionEvent;
 import com.example.smartsenior.utils.TripleTapHelper;
-
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnModuleMenu, btnProfile, btnMiniGames, btnWirtualAssistant,
             btnTutorial, btnNotifications, btnSettings, btnExit, btnTrustedContacts;
+
     private final TripleTapHelper tripleTap = new TripleTapHelper(1300);
 
+    private HelpRequestManager helpManager;
+
+    private final ActivityResultLauncher<String> smsPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (helpManager != null) {
+                    helpManager.onSmsPermissionResult(granted);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         btnNotifications    = findViewById(R.id.btnNotifications);
         btnSettings         = findViewById(R.id.btnSettings);
         btnExit             = findViewById(R.id.btnExit);
+
+        helpManager = new HelpRequestManager(this, smsPermissionLauncher);
+
+        findViewById(R.id.btnHelp).setOnClickListener(v -> {
+            helpManager.startHelpFlow();
+        });
 
         btnProfile.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class)));
@@ -73,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         applyFontSize();
+        ensureTrustedContactsExist();
+    }
+
+    private void ensureTrustedContactsExist() {
+        if (!TrustedContactsStorage.load(this).isEmpty()) return;
+
+        new AlertDialog.Builder(this)
+                .setTitle("Dodaj zaufany kontakt")
+                .setMessage("Aby funkcja „Pomoc” mogła działać, dodaj przynajmniej jeden zaufany kontakt.")
+                .setCancelable(false)
+                .setPositiveButton("Dodaj teraz", (d, w) -> {
+                    startActivity(new Intent(MainActivity.this, TrustedContactsActivity.class));
+                })
+                .setNegativeButton("Później", null)
+                .show();
     }
 
     private void applyFontSize() {
@@ -99,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             button.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
         }
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (tripleTap.onTouch(this, ev)) {
@@ -106,7 +141,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
-
-
-
 }
