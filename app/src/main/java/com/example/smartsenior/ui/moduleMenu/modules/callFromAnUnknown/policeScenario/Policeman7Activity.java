@@ -6,6 +6,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 
 public class Policeman7Activity extends AppCompatActivity {
 
@@ -16,8 +18,9 @@ public class Policeman7Activity extends AppCompatActivity {
 
         Button finish = findViewById(R.id.btnFinish);
 
-        // ▶ Przycisk „Zakończ” – kończy moduł i wraca do poprzedniego ekranu
         finish.setOnClickListener(v -> {
+            // ZALICZENIE CZĘŚCI: scenariusz policjant ukończony
+            ProgressStore.markDone(this, ProgressKeys.M2_POLICEMAN_DONE);
             finish();
         });
     }

@@ -31,7 +31,8 @@ public class FakeNewsResultActivity extends AppCompatActivity {
         backToMenuButton = findViewById(R.id.backToMenuButton);
 
         int score = getIntent().getIntExtra("score", 0);
-        int maxScore = getIntent().getIntExtra("maxScore", 10);
+        int maxScore = getIntent().getIntExtra("maxScore", 0);
+        if (maxScore <= 0) maxScore = 1;
 
         setupResult(score, maxScore);
 
@@ -55,19 +56,15 @@ public class FakeNewsResultActivity extends AppCompatActivity {
         float percent = (score * 100f) / maxScore;
 
         if (percent >= 80f) {
-            // ZŁOTY MEDAL
             finishMedal.setImageResource(R.drawable.medal_gold);
             resultText.setText("GRATULACJE!\nŚwietnie rozpoznajesz fake newsy!");
         } else if (percent >= 60f) {
-            // SREBRNY MEDAL
             finishMedal.setImageResource(R.drawable.medal_silver);
             resultText.setText("Bardzo dobrze!\nCzasem dajesz się jeszcze nabrać, ale jesteś czujny.");
         } else if (percent >= 40f) {
-            // BRĄZOWY MEDAL
             finishMedal.setImageResource(R.drawable.medal_bronze);
             resultText.setText("Całkiem nieźle,\nale warto jeszcze poćwiczyć rozpoznawanie fałszywych treści.");
         } else {
-            // PORAŻKA
             finishMedal.setImageResource(R.drawable.sad_emoji);
             resultText.setText("Tym razem się nie udało.\nSpróbuj jeszcze raz i uważnie czytaj nagłówki oraz komentarze.");
         }

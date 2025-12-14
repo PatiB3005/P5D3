@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.google.android.material.button.MaterialButton;
 
 public class Task2Page3Activity extends AppCompatActivity {
@@ -28,8 +30,6 @@ public class Task2Page3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task2_page3);
 
-        // ============================ POWIĄZANIA ============================
-
         btnQ1True = findViewById(R.id.btnQ1True);
         btnQ1False = findViewById(R.id.btnQ1False);
         commentQ1 = findViewById(R.id.commentQ1);
@@ -47,9 +47,6 @@ public class Task2Page3Activity extends AppCompatActivity {
         btnFinish.setEnabled(false);
         btnFinish.setAlpha(0.4f);
 
-
-        // ===================== PYTANIE 1 =====================
-
         btnQ1True.setOnClickListener(v -> {
             setAnswer(btnQ1True, btnQ1False, false);
             commentQ1.setText("Źle! QR-kody mogą prowadzić do fałszywych stron lub pobierać wirusy.");
@@ -65,8 +62,6 @@ public class Task2Page3Activity extends AppCompatActivity {
             answered1 = true;
             checkAllAnswered();
         });
-
-        // ===================== PYTANIE 2 =====================
 
         btnQ2True.setOnClickListener(v -> {
             setAnswer(btnQ2True, btnQ2False, true);
@@ -84,8 +79,6 @@ public class Task2Page3Activity extends AppCompatActivity {
             checkAllAnswered();
         });
 
-        // ===================== PYTANIE 3 =====================
-
         btnQ3True.setOnClickListener(v -> {
             setAnswer(btnQ3True, btnQ3False, true);
             commentQ3.setText("Dobrze! Słowo „PILNE” często oznacza oszustwo.");
@@ -102,9 +95,10 @@ public class Task2Page3Activity extends AppCompatActivity {
             checkAllAnswered();
         });
 
-        // ===================== ZAKOŃCZ =====================
-
         btnFinish.setOnClickListener(v -> {
+            // ZALICZENIE CZĘŚCI: Task2 ukończony
+            ProgressStore.markDone(this, ProgressKeys.M1_TASK2_DONE);
+
             Intent intent = new Intent(Task2Page3Activity.this, TasksActivity.class);
             startActivity(intent);
             finish();
@@ -112,16 +106,11 @@ public class Task2Page3Activity extends AppCompatActivity {
     }
 
     private void setAnswer(MaterialButton selected, MaterialButton other, boolean isCorrect) {
-
-        // Reset drugiego
         other.setBackgroundTintList(getColorStateList(android.R.color.darker_gray));
         other.setTextColor(getColor(android.R.color.black));
 
-        if (isCorrect) {
-            selected.setBackgroundTintList(getColorStateList(android.R.color.holo_green_light));
-        } else {
-            selected.setBackgroundTintList(getColorStateList(android.R.color.holo_red_light));
-        }
+        if (isCorrect) selected.setBackgroundTintList(getColorStateList(android.R.color.holo_green_light));
+        else selected.setBackgroundTintList(getColorStateList(android.R.color.holo_red_light));
 
         selected.setTextColor(getColor(android.R.color.black));
     }
@@ -133,5 +122,4 @@ public class Task2Page3Activity extends AppCompatActivity {
             btnFinish.setAlpha(1f);
         }
     }
-
 }

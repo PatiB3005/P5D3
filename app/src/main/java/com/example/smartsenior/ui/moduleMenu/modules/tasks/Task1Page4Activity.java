@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.button.MaterialButton;
 
@@ -22,37 +24,33 @@ public class Task1Page4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1_page4);
 
-        // Karty
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
-        card3 = findViewById(R.id.card3); // POPRAWNA
+        card3 = findViewById(R.id.card3);
         card4 = findViewById(R.id.card4);
 
-        // Przycisk zakończenia
         btnFinish = findViewById(R.id.btnFinish);
-
-        // Ukryj na start
         btnFinish.setEnabled(false);
         btnFinish.setAlpha(0f);
 
-        // Ustaw reakcje
         setupCard(card1, false);
         setupCard(card2, false);
-        setupCard(card3, false); // twoje oznaczenie "correct" nie było używane w logice
-        setupCard(card4, true);  // tu była dobra odpowiedź
+        setupCard(card3, false);
+        setupCard(card4, true);
 
-        btnFinish.setOnClickListener(v ->
-                startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class))
-        );
+        btnFinish.setOnClickListener(v -> {
+            // ZALICZENIE CZĘŚCI: Task1 ukończony
+            ProgressStore.markDone(this, ProgressKeys.M1_TASK1_DONE);
+
+            startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class));
+        });
     }
 
     private void setupCard(MaterialCardView card, boolean isCorrect) {
         card.setOnClickListener(v -> {
-
             if (answered) return;
             answered = true;
 
-            // Odkryj przycisk Zakończ
             btnFinish.setEnabled(true);
             btnFinish.setAlpha(1f);
 
@@ -66,7 +64,6 @@ public class Task1Page4Activity extends AppCompatActivity {
                 card.setCardBackgroundColor(Color.parseColor("#FECACA"));
                 card.setStrokeColor(Color.parseColor("#DC2626"));
                 card.setStrokeWidth(6);
-
                 showErrorDialog();
             }
         });

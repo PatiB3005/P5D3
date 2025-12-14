@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 
@@ -123,10 +125,9 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
     }
 
     private void resetCardsVisual() {
-        int defaultColor = Color.parseColor("#E5E7EB"); // jasnoszary
+        int defaultColor = Color.parseColor("#E5E7EB");
         cardYes.setCardBackgroundColor(defaultColor);
         cardYes.setStrokeWidth(0);
-
         cardNo.setCardBackgroundColor(defaultColor);
         cardNo.setStrokeWidth(0);
     }
@@ -176,18 +177,25 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
     }
 
     private void showSummaryDialog() {
+        int maxScore = questions.size();
+
         String message = "Ukończyłeś quiz.\n\n"
-                + "Poprawnych odpowiedzi: " + correctCount + " z " + questions.size() + ".\n\n"
+                + "Poprawnych odpowiedzi: " + correctCount + " z " + maxScore + ".\n\n"
                 + "Pamiętaj: nawet jeśli coś wygląda jak „sensacyjna bomba”, warto sprawdzić źródło.";
 
         new AlertDialog.Builder(this)
                 .setTitle("Podsumowanie")
                 .setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton("Powrót do modułu", (dialog, which) -> {
+                .setPositiveButton("Zobacz wynik", (dialog, which) -> {
                     dialog.dismiss();
-                    // wracamy do ekranu modułu Fake news
-                    Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsModuleActivity.class);
+
+                    // Progres: ukończono quiz Fake News
+                    ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
+
+                    Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
+                    intent.putExtra("score", correctCount);
+                    intent.putExtra("maxScore", maxScore);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();

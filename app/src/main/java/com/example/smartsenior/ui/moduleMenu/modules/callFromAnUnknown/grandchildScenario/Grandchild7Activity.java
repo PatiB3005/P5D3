@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class Grandchild7Activity extends AppCompatActivity {
@@ -18,10 +20,11 @@ public class Grandchild7Activity extends AppCompatActivity {
 
         Button finishButton = findViewById(R.id.btnFinish);
 
-        // "Zakończ" -> wraca do menu modułów
         finishButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild7Activity.this,
-                    CallFromAnUnknownMenuActivity.class);
+            // ZALICZENIE CZĘŚCI: scenariusz wnuczek ukończony
+            ProgressStore.markDone(this, ProgressKeys.M2_GRANDCHILD_DONE);
+
+            Intent intent = new Intent(Grandchild7Activity.this, CallFromAnUnknownMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
