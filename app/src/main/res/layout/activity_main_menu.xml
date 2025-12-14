@@ -50,6 +50,11 @@
             style="@style/MainMenuButton" />
 
         <Button
+            android:id="@+id/btnTrustedContacts"
+            android:text="Zaufane kontakty"
+            style="@style/MainMenuButton" />
+
+        <Button
             android:id="@+id/btnNotifications"
             android:text="Przypomnienia"
             style="@style/MainMenuButton" />

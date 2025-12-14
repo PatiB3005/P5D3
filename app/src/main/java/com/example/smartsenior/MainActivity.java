@@ -15,60 +15,56 @@ import com.example.smartsenior.ui.profile.ProfileActivity;
 import com.example.smartsenior.ui.settings.SettingsActivity;
 import com.example.smartsenior.ui.tutorial.TutorialActivity1;
 import com.example.smartsenior.ui.virtualAssistant.virtualAssistantActivity;
+import com.example.smartsenior.ui.trustedContacts.TrustedContactsActivity;
+import android.view.MotionEvent;
+import com.example.smartsenior.utils.TripleTapHelper;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnModuleMenu, btnProfile, btnMiniGames, btnWirtualAssistant,
-            btnTutorial, btnNotifications, btnSettings, btnExit;
+            btnTutorial, btnNotifications, btnSettings, btnExit, btnTrustedContacts;
+    private final TripleTapHelper tripleTap = new TripleTapHelper(1300);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        btnProfile = findViewById(R.id.btnProfile);
-        btnTutorial = findViewById(R.id.btnTutorial);
-        btnModuleMenu = findViewById(R.id.btnModulesMenu);
-        btnMiniGames = findViewById(R.id.btnMiniGames);
+        btnProfile          = findViewById(R.id.btnProfile);
+        btnTutorial         = findViewById(R.id.btnTutorial);
+        btnModuleMenu       = findViewById(R.id.btnModulesMenu);
+        btnMiniGames        = findViewById(R.id.btnMiniGames);
         btnWirtualAssistant = findViewById(R.id.btnWirtualAssistant);
-        btnNotifications = findViewById(R.id.btnNotifications);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnExit = findViewById(R.id.btnExit);
+        btnTrustedContacts  = findViewById(R.id.btnTrustedContacts);
+        btnNotifications    = findViewById(R.id.btnNotifications);
+        btnSettings         = findViewById(R.id.btnSettings);
+        btnExit             = findViewById(R.id.btnExit);
 
-        btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intent);
-        });
+        btnProfile.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class)));
 
-        btnTutorial.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, TutorialActivity1.class);
-            startActivity(intent);
-        });
+        btnTutorial.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, TutorialActivity1.class)));
 
-        btnModuleMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ModuleMenuActivity.class);
-            startActivity(intent);
-        });
+        btnModuleMenu.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ModuleMenuActivity.class)));
 
-        btnMiniGames.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, MiniGamesMenuActivity.class);
-            startActivity(intent);
-        });
+        btnMiniGames.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, MiniGamesMenuActivity.class)));
 
-        btnWirtualAssistant.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, virtualAssistantActivity.class);
-            startActivity(intent);
-        });
+        btnWirtualAssistant.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, virtualAssistantActivity.class)));
 
-        btnNotifications.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
-            startActivity(intent);
-        });
+        btnTrustedContacts.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, TrustedContactsActivity.class)));
 
-        btnSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
+        btnNotifications.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, NotificationsActivity.class)));
+
+        btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
 
         btnExit.setOnClickListener(v -> finishAffinity());
     }
@@ -83,18 +79,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLarge = prefs.getBoolean("large_font", false);
 
-        float sizeNormal = 18f; // sp
-        float sizeBig    = 24f; // sp
-        float sizeToUse  = isLarge ? sizeBig : sizeNormal;
+        float sizeNormal = 18f;
+        float sizeBig = 24f;
+        float sizeToUse = isLarge ? sizeBig : sizeNormal;
 
-        setButtonTextSize(btnProfile,          sizeToUse);
-        setButtonTextSize(btnTutorial,         sizeToUse);
-        setButtonTextSize(btnModuleMenu,       sizeToUse);
-        setButtonTextSize(btnMiniGames,        sizeToUse);
+        setButtonTextSize(btnProfile, sizeToUse);
+        setButtonTextSize(btnTutorial, sizeToUse);
+        setButtonTextSize(btnModuleMenu, sizeToUse);
+        setButtonTextSize(btnMiniGames, sizeToUse);
         setButtonTextSize(btnWirtualAssistant, sizeToUse);
-        setButtonTextSize(btnNotifications,    sizeToUse);
-        setButtonTextSize(btnSettings,         sizeToUse);
-        setButtonTextSize(btnExit,             sizeToUse);
+        setButtonTextSize(btnTrustedContacts, sizeToUse);
+        setButtonTextSize(btnNotifications, sizeToUse);
+        setButtonTextSize(btnSettings, sizeToUse);
+        setButtonTextSize(btnExit, sizeToUse);
     }
 
     private void setButtonTextSize(Button button, float sizeSp) {
@@ -102,4 +99,14 @@ public class MainActivity extends AppCompatActivity {
             button.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
         }
     }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (tripleTap.onTouch(this, ev)) {
+            // nie "połykamy" eventu, żeby normalne klikanie dalej działało
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+
 }

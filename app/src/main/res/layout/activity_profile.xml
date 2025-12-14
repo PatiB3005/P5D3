@@ -46,7 +46,7 @@
             android:id="@+id/medal1"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/medal_silver"
+            android:src="@drawable/ic_medal_silver"
             android:layout_margin="4dp"
             android:contentDescription="@string/medal1_desc" />
 
@@ -54,7 +54,7 @@
             android:id="@+id/medal2"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/medal_silver"
+            android:src="@drawable/ic_medal_silver"
             android:layout_margin="4dp"
             android:contentDescription="@string/medal2_desc" />
 
@@ -62,7 +62,7 @@
             android:id="@+id/medal3"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/medal_silver"
+            android:src="@drawable/ic_medal_silver"
             android:layout_margin="4dp"
             android:contentDescription="@string/medal3_desc" />
     </LinearLayout>

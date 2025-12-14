@@ -1,116 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#BFDBFE">
+    android:background="#E8F0FA"
+    tools:context=".ui.moduleMenu.modules.Module1Activity">
 
-    <!-- Pasek z samą strzałką -->
+    <!-- Pasek górny z powrotem -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="#4F46E5"
-        app:navigationIcon="@drawable/ic_arrow_back" />
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- RESZTA UKŁADU jak wcześniej -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp">
+    <!-- Scroll z kafelkami -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Tytuł (TEN który chcesz mieć JAK WCZEŚNIEJ) -->
-        <TextView
-            android:id="@+id/moduleTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bezpieczne wiadomości"
-            android:textColor="#0F172A"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="48dp" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
 
-        <!-- Kafelek 1 -->
-        <LinearLayout
-            android:id="@+id/btnTeoria"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="24dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:elevation="6dp"
-            android:padding="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="12dp"
-            android:clipToOutline="true">
-
+            <!-- Nagłówek -->
             <TextView
+                android:id="@+id/moduleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teoria"
+                android:text="Bezpieczne wiadomości"
+                android:textSize="28sp"
+                android:textStyle="bold"
                 android:textColor="#0F172A"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold" />
-        </LinearLayout>
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="28dp" />
 
-        <!-- Kafelek 2 -->
-        <LinearLayout
-            android:id="@+id/btnSmsEmail"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="24dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:elevation="6dp"
-            android:padding="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="12dp"
-            android:clipToOutline="true">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- KAFEL 1: TEORIA -->
+            <LinearLayout
+                android:id="@+id/btnTeoria"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SMS / E-mail"
-                android:textColor="#0F172A"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
-        <!-- Kafelek 3 -->
-        <LinearLayout
-            android:id="@+id/btnZadania"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#93C5FD"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:elevation="6dp"
-            android:padding="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:layout_marginHorizontal="12dp"
-            android:clipToOutline="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_theorybanner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teoria"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poznaj najczęstsze techniki oszustów i zobacz, jak wyglądają podejrzane wiadomości."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- KAFEL 2: SMS / E-mail -->
+            <LinearLayout
+                android:id="@+id/btnSmsEmail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zadania"
-                android:textColor="#0F172A"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold" />
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_sms_email_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SMS / E-mail"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ćwicz rozpoznawanie fałszywych linków i podejrzanych próśb o dopłatę lub weryfikację."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- KAFEL 3: ZADANIA -->
+            <LinearLayout
+                android:id="@+id/btnZadania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_tasks_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zadania"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sprawdź się w krótkich zadaniach i utrwal najważniejsze zasady bezpieczeństwa."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

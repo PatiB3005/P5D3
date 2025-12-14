@@ -13,9 +13,9 @@ import com.google.android.material.button.MaterialButton;
 
 public class Task1Page4Activity extends AppCompatActivity {
 
-    MaterialCardView card1, card2, card3, card4;
-    MaterialButton btnFinish;
-    boolean answered = false;
+    private MaterialCardView card1, card2, card3, card4;
+    private MaterialButton btnFinish;
+    private boolean answered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,24 @@ public class Task1Page4Activity extends AppCompatActivity {
         // Przycisk zakończenia
         btnFinish = findViewById(R.id.btnFinish);
 
-        // Ukryj na start
-        btnFinish.setEnabled(false);
-        btnFinish.setAlpha(0f);
+        // Start: widoczny, ale nieaktywny (półprzezroczysty)
+        setFinishEnabled(false);
 
-        // Ustaw reakcje
+        // Ustaw reakcje (POPRAWNA: card3)
         setupCard(card1, false);
         setupCard(card2, false);
-        setupCard(card3, false); // twoje oznaczenie "correct" nie było używane w logice
-        setupCard(card4, true);  // tu była dobra odpowiedź
+        setupCard(card3, true);   // <-- tu jest poprawna
+        setupCard(card4, false);  // <-- a tu nie
 
         btnFinish.setOnClickListener(v ->
                 startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class))
         );
+    }
+
+    private void setFinishEnabled(boolean enabled) {
+        btnFinish.setEnabled(enabled);
+        btnFinish.setClickable(enabled);
+        btnFinish.setAlpha(enabled ? 1f : 0.45f);
     }
 
     private void setupCard(MaterialCardView card, boolean isCorrect) {
@@ -52,9 +57,8 @@ public class Task1Page4Activity extends AppCompatActivity {
             if (answered) return;
             answered = true;
 
-            // Odkryj przycisk Zakończ
-            btnFinish.setEnabled(true);
-            btnFinish.setAlpha(1f);
+            // Aktywuj przycisk Zakończ dopiero po odpowiedzi
+            setFinishEnabled(true);
 
             disableAll();
 

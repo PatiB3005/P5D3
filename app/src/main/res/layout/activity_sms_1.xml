@@ -1,133 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF2FF">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- CZĘŚĆ TESTOWA -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CZĘŚĆ TESTOWA"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="12dp" />
+    <!-- Scroll content -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- BEZPIECZNE WIADOMOŚCI -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="24dp" />
-
-
-        <!-- OBRAZ W BIAŁEJ KARCE (jak na Twoim screenie) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="4dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="2dp"
-            android:layout_marginBottom="24dp">
-
-            <ImageView
-                android:id="@+id/testIntroImage"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:adjustViewBounds="true"
-                android:padding="12dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/rounded_white_bg" />
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!-- PIERWSZY NIEBIESKI BLOK -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="#A5CCFF">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="Zapoznaliśmy się z wiedzą na temat Bezpiecznych Wiadomości. Czas przetestować swoją wiedzę!"
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="#000" />
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!-- DRUGI NIEBIESKI BLOK (jaśniejszy) -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="#DCEAFF">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="Naciśnij dalej, żeby przejść do części testowej."
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="#000" />
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!-- PRZYCISKI DÓŁ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="16dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBack"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Wstecz"
-                android:textSize="20sp"
+            <!-- Tytuł (jak w intro) -->
+            <TextView
+                android:id="@+id/titleSafeMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bezpieczne\nwiadomości"
+                android:textColor="#1A202C"
+                android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textAllCaps="false"
-                app:backgroundTint="#CBD5E1"
-                app:cornerRadius="16dp"
-                android:layout_marginEnd="8dp" />
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNext"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Dalej"
-                android:textSize="20sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAllCaps="false"
-                app:backgroundTint="#9D9FB0"
-                app:cornerRadius="16dp"
-                android:layout_marginStart="8dp" />
+            <!-- Podtytuł (jak w intro) -->
+            <TextView
+                android:id="@+id/titleTestPart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Część testowa"
+                android:textColor="#4A5568"
+                android:textSize="24sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="18dp"/>
+
+            <!-- OBRAZ: bez białej karty, zaokrąglony, jak banery -->
+            <ImageView
+                android:id="@+id/testIntroImage"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_smsemail1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@drawable/rounded_image"
+                android:clipToOutline="true"
+                android:contentDescription="@null" />
+
+            <!-- Blok 1 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#A5CCFF">
+
+                <TextView
+                    android:id="@+id/contentText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Zapoznaliśmy się z wiedzą na temat Bezpiecznych Wiadomości. Czas przetestować swoją wiedzę!"
+                    android:textSize="24sp"
+                    android:lineSpacingExtra="9dp"
+                    android:textColor="#1A202C"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Blok 2 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#DCEAFF">
+
+                <TextView
+                    android:id="@+id/contentText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Naciśnij dalej, żeby przejść do części testowej."
+                    android:textSize="24sp"
+                    android:lineSpacingExtra="9dp"
+                    android:textColor="#1A202C"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
         </LinearLayout>
+    </ScrollView>
 
+    <!-- separator nad przyciskami -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Dolne przyciski -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:baselineAligned="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_weight="1"
+            android:text="Wstecz"
+            android:textAllCaps="false"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp" />
+
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_weight="1"
+            android:text="Dalej"
+            android:textAllCaps="false"
+            android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp" />
     </LinearLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

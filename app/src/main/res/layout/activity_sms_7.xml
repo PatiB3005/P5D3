@@ -1,153 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF2FF">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:padding="24dp">
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- NAGŁÓWEK 1 -->
+    <!-- CONTENT -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="44dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/titleSafeMessages"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="CZĘŚĆ TESTOWA"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:text="Bezpieczne\nwiadomości"
+            android:textColor="#1A202C"
+            android:textSize="36sp"
             android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="12dp"/>
+            android:gravity="center"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- NAGŁÓWEK 2 -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/titleTestPart"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="24dp"/>
+            android:text="Część testowa"
+            android:textColor="#4A5568"
+            android:textSize="24sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/titleSafeMessages"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- KARTA OBRAZU -->
+        <!-- OBRAZ -->
+        <ImageView
+            android:id="@+id/testQuestionImage"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_fake_call_screen"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            android:contentDescription="@null"
+            android:padding="6dp"
+            app:layout_constraintTop_toBottomOf="@id/titleTestPart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- KARTA: wyciągnięta w górę do obrazka i wyższa o ~50dp (poprzez mniejszy marginBottom) -->
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="20dp"
+            android:id="@+id/questionCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="-25dp"
+            android:layout_marginBottom="18dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="0dp"
-            android:layout_marginBottom="24dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="2dp">
+            app:cardBackgroundColor="#BFDBFE"
+            app:strokeWidth="1dp"
+            app:strokeColor="#A7C7F7"
+            android:stateListAnimator="@null"
+            app:layout_constraintTop_toBottomOf="@id/testQuestionImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/callImage"
-                android:layout_width="260dp"
-                android:layout_height="300dp"
-                android:padding="12dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/fake_call_screen"
-                android:scaleType="fitCenter"/>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!-- NIEBIESKA KARTA Z PYTANIEM I TAK/NIE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#BFDBFE">
-
-            <LinearLayout
+            <!-- W środku: pytanie wyżej + przyciski na dole -->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
+                android:layout_height="match_parent"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
 
-                <!-- PYTANIE -->
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/questionText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Dzwoni do ciebie numer, który znasz i masz zapisany w kontaktach. Czy powinieneś odebrać?"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                    android:text="Dzwoni do Ciebie numer, który znasz i masz zapisany w kontaktach. Czy powinieneś odebrać?"
+                    android:textColor="#1A202C"
+                    android:textSize="23sp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="#000"
-                    android:fontFamily="@font/montserrat_bold"/>
+                    android:textAlignment="center"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="4dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/buttonsRow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.12" />
 
-                <!-- TAK / NIE -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/buttonsRow"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:baselineAligned="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
 
-                    <ImageButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/yesButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="76dp"
                         android:layout_weight="1"
-                        android:src="@drawable/yes_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginEnd="16dp"/>
+                        android:text="TAK"
+                        android:textAllCaps="false"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#2B6CB0"
+                        app:cornerRadius="24dp"
+                        app:rippleColor="#00000000"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"
+                        android:layout_marginEnd="10dp" />
 
-                    <ImageButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/noButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="76dp"
                         android:layout_weight="1"
-                        android:src="@drawable/no_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginStart="16dp"/>
+                        android:text="NIE"
+                        android:textAllCaps="false"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#2B6CB0"
+                        app:cornerRadius="24dp"
+                        app:rippleColor="#00000000"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"
+                        android:layout_marginStart="10dp" />
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- PRZYCISKI WSTECZ / DALEJ -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBack"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Wstecz"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#CBD5E1"
-                android:layout_marginEnd="8dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNext"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Dalej"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#9D9FB0"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

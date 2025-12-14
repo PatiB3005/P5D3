@@ -138,6 +138,9 @@
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
+        <activity android:name=".ui.trustedContacts.TrustedContactsActivity" />
+        <activity android:name=".ui.trustedContacts.TrustedContactFormActivity" />
+
 
     </application>
 
