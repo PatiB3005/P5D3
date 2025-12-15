@@ -93,10 +93,10 @@
 
     <!-- Przycisk rozłączenia – styl wnuczka -->
     <ImageView
-        android:id="@+id/imgHangup"
+        android:id="@+id/declineCall"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/ic_call_end"
+        android:src="@drawable/ic_decline_call"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

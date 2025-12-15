@@ -1,130 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87A9D7">
+    android:fillViewport="true"
+    android:background="#E9EEF5">
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SCENARIUSZ"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:textColor="#1E3A5F"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <!-- Dymek z tekstem -->
-    <TextView
-        android:id="@+id/textMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Dzień dobry babciu/dziadku. Miałem wypadek i plinle potrzebuję pieniędzy, żeby wszystko załatwić."
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:lineSpacingExtra="4dp"
-        android:padding="24dp"
-        android:background="@drawable/edittext_bg"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Tytuł -->
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="SYMULACJA\nROZMOWY"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- AVATAR PRZY LEWEJ -->
-    <ImageView
-        android:id="@+id/imgGrandchild"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_grandchild"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="48dp"
-        app:layout_constraintTop_toBottomOf="@id/textMessage"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Wiadomość -->
+        <TextView
+            android:id="@+id/textMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Dzień dobry babciu/dziadku. Miałem wypadek i plinle potrzebuję pieniędzy, żeby wszystko załatwić."
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="4dp"
+            android:padding="24dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:background="@drawable/edittext_bg"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/textTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Co robisz? -->
-    <TextView
-        android:id="@+id/textQuestion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
-        android:background="@drawable/bg_scenario_question"
-        android:gravity="center"
-        android:paddingVertical="16dp"
-        android:text="Co robisz?"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgGrandchild"
-        app:layout_constraintTop_toBottomOf="@id/imgGrandchild" />
-
-    <TextView
-        android:id="@+id/textAnswerA"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="A) „Słucham dalej, co się stało?"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        android:background="@drawable/bg_scenario_answer"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textQuestion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/textAnswerB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="B) „Który wnuczek? Jak masz na imię?"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        android:background="@drawable/bg_scenario_answer"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/textAnswerA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Przyciski telefonu na dole -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        <!-- Avatar -->
         <ImageView
-            android:id="@+id/imgCallAccept"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:src="@drawable/ic_call"
-            android:layout_marginEnd="80dp"
-            />
+            android:id="@+id/imgGrandchild"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_grandchild"
+            android:background="@drawable/full_rounded_image"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="48dp"
+            app:layout_constraintTop_toBottomOf="@id/textMessage"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/imgHangup"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:src="@drawable/ic_call_end"
-            />
+        <!-- Pytania i odpowiedzi -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/question"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgGrandchild"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_box_radius"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="16dp"
+                android:text="Co robisz?"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/textAnswerA"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:background="@drawable/bluer_box_radius"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
+                android:text="A) „Słucham dalej, co się stało?"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textQuestion" />
+
+            <TextView
+                android:id="@+id/textAnswerB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:background="@drawable/bluer_box_radius"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="16dp"
+                android:text="B) „Który wnuczek? Jak masz na imię?"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAnswerA" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Kontener na przyciski -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:paddingBottom="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- Zakończ połączenie -->
+            <LinearLayout
+                android:id="@+id/declineCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_decline_call" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="Zakończ\npołączenie"
+                    android:textColor="#5A6A85"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

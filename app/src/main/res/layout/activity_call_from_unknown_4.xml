@@ -81,10 +81,11 @@
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
+
                 android:layout_marginBottom="16dp"
-                android:src="@null"
-                android:scaleType="fitCenter"
+                android:src="@drawable/ic_call_from_unknown4"
+                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
                 android:contentDescription="@null" />

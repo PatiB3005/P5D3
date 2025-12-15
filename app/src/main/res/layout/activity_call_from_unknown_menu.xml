@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_theorybanner"
+                    android:src="@drawable/ic_theory_banner"
                     android:background="@drawable/rounded_image"
                     android:clipToOutline="true"
                     android:contentDescription="@null" />
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_theorybanner"
+                    android:src="@drawable/ic_grandchild_banner"
                     android:background="@drawable/rounded_image"
                     android:clipToOutline="true"
                     android:contentDescription="@null" />
@@ -157,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_theorybanner"
+                    android:src="@drawable/ic_policeman_banner"
                     android:background="@drawable/rounded_image"
                     android:clipToOutline="true"
                     android:contentDescription="@null" />
@@ -200,7 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_theorybanner"
+                    android:src="@drawable/ic_banker_banner"
                     android:background="@drawable/rounded_image"
                     android:clipToOutline="true"
                     android:contentDescription="@null" />

@@ -16,8 +16,8 @@ public class Policeman4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policeman_4);
 
-        TextView answerA = findViewById(R.id.answerA); // ← poprawione ID
-        ImageView hangup = findViewById(R.id.hangup);  // ← poprawione ID
+        TextView answerA = findViewById(R.id.textAnswerA); // ← poprawione ID
+        ImageView hangup = findViewById(R.id.declineCall);  // ← poprawione ID
 
         // ▶ A → SCENA 5
         answerA.setOnClickListener(v -> {
