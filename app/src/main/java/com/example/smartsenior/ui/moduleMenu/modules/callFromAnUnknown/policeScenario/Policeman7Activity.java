@@ -1,11 +1,13 @@
 package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class Policeman7Activity extends AppCompatActivity {
 
@@ -18,7 +20,8 @@ public class Policeman7Activity extends AppCompatActivity {
 
         // ▶ Przycisk „Zakończ” – kończy moduł i wraca do poprzedniego ekranu
         finish.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(this, CallFromAnUnknownMenuActivity.class);
+            startActivity(intent);
         });
     }
 }

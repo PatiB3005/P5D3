@@ -20,8 +20,8 @@ public class Grandchild7Activity extends AppCompatActivity {
 
         // "Zakończ" -> wraca do menu modułów
         finishButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild7Activity.this,
-                    CallFromAnUnknownMenuActivity.class);
+            Intent intent = new Intent(this, CallFromAnUnknownMenuActivity.class);
+            startActivity(intent);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
