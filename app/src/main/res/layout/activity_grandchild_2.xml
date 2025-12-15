@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF3FF">
+    android:background="#87A9D7">
 
     <TextView
         android:id="@+id/textTitle"
@@ -12,78 +12,71 @@
         android:layout_height="wrap_content"
         android:text="SCENARIUSZ"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="24dp"
+        android:textSize="22sp"
+        android:textColor="#1E3A5F"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dymek -->
-    <ImageView
-        android:id="@+id/imgBubble"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_speech_bubble"
-        android:adjustViewBounds="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- WIĘKSZA CZCIONKA -->
+    <!-- Dymek z tekstem -->
     <TextView
         android:id="@+id/textMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dzień dobry babciu/dziadku. Miałem wypadek i pilnie potrzebuję pieniędzy, żeby wszystko załatwić."
-        android:textSize="16sp"
-        android:padding="16dp"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="@id/imgBubble"
-        app:layout_constraintBottom_toBottomOf="@id/imgBubble"
-        app:layout_constraintStart_toStartOf="@id/imgBubble"
-        app:layout_constraintEnd_toEndOf="@id/imgBubble" />
+        android:text="Dzień dobry babciu/dziadku. Miałem wypadek i plinle potrzebuję pieniędzy, żeby wszystko załatwić."
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="4dp"
+        android:padding="24dp"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- AVATAR PRZY LEWEJ -->
     <ImageView
         android:id="@+id/imgGrandchild"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/ic_grandchild"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintTop_toBottomOf="@id/imgBubble"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintTop_toBottomOf="@id/textMessage"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Co robisz? -->
     <TextView
         android:id="@+id/textQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Co robisz?"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="80dp"
         android:background="@drawable/bg_scenario_question"
-        android:paddingVertical="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/imgGrandchild"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="Co robisz?"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgGrandchild"
+        app:layout_constraintTop_toBottomOf="@id/imgGrandchild" />
 
     <TextView
         android:id="@+id/textAnswerA"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="A) „Słucham dalej, co się stało?”"
-        android:textSize="14sp"
+        android:text="A) „Słucham dalej, co się stało?"
+        android:textSize="16sp"
+        android:textColor="#000000"
         android:background="@drawable/bg_scenario_answer"
-        android:paddingHorizontal="18dp"
-        android:paddingVertical="12dp"
-        android:layout_marginTop="12dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintTop_toBottomOf="@id/textQuestion"
@@ -94,26 +87,44 @@
         android:id="@+id/textAnswerB"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="B) „Który wnuczek? Jak masz na imię?”"
-        android:textSize="14sp"
+        android:text="B) „Który wnuczek? Jak masz na imię?"
+        android:textSize="16sp"
+        android:textColor="#000000"
         android:background="@drawable/bg_scenario_answer"
-        android:paddingHorizontal="18dp"
-        android:paddingVertical="12dp"
-        android:layout_marginTop="10dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintTop_toBottomOf="@id/textAnswerA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgHangup"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:src="@drawable/ic_call_end"
-        android:layout_marginBottom="32dp"
+    <!-- Przyciski telefonu na dole -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgCallAccept"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_call"
+            android:layout_marginEnd="80dp"
+            />
+
+        <ImageView
+            android:id="@+id/imgHangup"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_call_end"
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

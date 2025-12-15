@@ -10,6 +10,7 @@ import com.example.smartsenior.R;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank1Activity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class CallFromAnUnknownMenuActivity extends AppCompatActivity {
     @Override
@@ -43,5 +44,8 @@ public class CallFromAnUnknownMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Bank1Activity.class);
             startActivity(intent);
         });
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

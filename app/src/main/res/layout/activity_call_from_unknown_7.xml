@@ -2,96 +2,413 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor2">
+    android:background="#E9EEF5">
 
-    <TextView
-        android:id="@+id/main_title_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:text="CZĘŚĆ TEORETYCZNA"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Scroll -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="18dp">
 
-    <TextView
-        android:id="@+id/main_title_2"
-        android:layout_width="367dp"
-        android:layout_height="77dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:text="Jak działają oszuści (część 2)"
-        android:textColor="@android:color/black"
-        android:textSize="27sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+            <!-- Tytuł główny -->
+            <TextView
+                android:id="@+id/headerMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TELEFON OD PODEJRZANEGO NIEZNAJOMEGO"
+                android:textColor="#1A202C"
+                android:textSize="32sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginTop="8dp" />
+
+            <!-- CHARAKTERYSTYKA z większym odstępem -->
+            <TextView
+                android:id="@+id/headerSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAK DZIAŁAJĄ OSZUŚCI (CZĘŚĆ 2)"
+                android:textColor="#1A202C"
+                android:textSize="28sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginTop="14dp" />
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Część teoretyczna"
+                android:textColor="#4A5568"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="14dp" />
+
+            <!-- OBRAZEK -->
+            <ImageView
+                android:id="@+id/headerImage"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="16dp"
+                android:src="@null"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:padding="4dp"
+                android:contentDescription="@null" />
+
+            <!-- Blok 1 -->
+            <TextView
+                android:id="@+id/contentText1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:textSize="22sp"
+                android:lineSpacingExtra="7dp"
+                android:textColor="#1A202C"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Manipulacja często polega też na zdobywaniu informacji lub zmuszeniu do ujawnienia danych. Oszuści wykorzystują poniższe techniki:"
+                android:layout_marginBottom="14dp" />
+
+            <!-- ITEM 1 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <!-- numer -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="1"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Mieszają prawdę z kłamstwem, aby zmylić i utrudnić ocenę sytuacji."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ITEM 2 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="2"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Pytają o prywatne szczegóły, takie jak adres, rodzina czy majątek, ponieważ te informacje pozwalają im tworzyć bardziej wiarygodne historie."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ITEM 3 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="3"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Proszą o hasła, kody lub dostęp do urządzenia, co daje im bezpośrednią drogę do pieniędzy."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ITEM 4 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="4"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Wywołują poczucie winy lub obowiązku, sugerując, że tylko Ty możesz pomóc lub zapobiec problemom"
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ITEM 3 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="5"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Kuszą obietnicami zysku lub nagrody, aby skłonić do szybkiego działania bez sprawdzania źródła."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- separator -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_title_1" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/text_block_1"
+    <!-- Bottom buttons -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/blue_box_radius"
-        android:lineSpacingExtra="4dp"
-        android:padding="20dp"
-        android:text="Manipulacja często polega też na zdobywaniu informacji lub zmuszeniu do ujawnienia danych. Dlatego oszuści:
-        \n\n• Mieszają prawdę z kłamstwem, by zmylić i utrudnić ocenę sytuacji.
-        \n\n• Pytają o detale prywatne — adres, rodzinę czy majątek — bo takie dane pozwalają im tworzyć bardziej wiarygodne historie.
-        \n\n• Proszą o hasła, kody lub dostęp do urządzenia, bo to daje im bezpośrednią drogę do pieniędzy.
-        \n\n• Wywołują poczucie winy lub obowiązku, sugerując, że tylko Ty możesz pomóc lub zapobiec problemom.
-        \n\n• Kuszą obietnicami zysku lub nagrody, by zachęcić do szybkiego działania bez sprawdzenia źródła."
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:baselineAligned="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_title_2" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_weight="1"
+            android:text="Wstecz"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wstecz"
-        android:background="@drawable/rounded_button"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp" />
 
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dalej"
-        android:background="@drawable/rounded_button"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="66dp"
+            android:layout_weight="1"
+            android:text="Dalej"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

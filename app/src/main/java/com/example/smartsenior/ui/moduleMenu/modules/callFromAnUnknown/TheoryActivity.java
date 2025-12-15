@@ -45,9 +45,6 @@ public class TheoryActivity extends AppCompatActivity {
             case 8:
                 setContentView(R.layout.activity_call_from_unknown_8);
                 break;
-            case 9:
-                setContentView(R.layout.activity_call_from_unknown_9);
-                break;
         }
 
         setupButtons();
@@ -59,7 +56,7 @@ public class TheoryActivity extends AppCompatActivity {
         View next = findViewById(R.id.btnNext);
         if (next != null) {
             next.setOnClickListener(v -> {
-                if (currentScreen < 9) {
+                if (currentScreen < 8) {
                     currentScreen++;
                     showScreen(currentScreen);
                 } else {
