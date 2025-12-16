@@ -45,7 +45,7 @@
                 android:padding="24dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/medal_gold"
+                android:src="@drawable/ic_medal_gold"
                 android:contentDescription="Złoty medal za ukończenie modułu" />
         </com.google.android.material.card.MaterialCardView>
 
