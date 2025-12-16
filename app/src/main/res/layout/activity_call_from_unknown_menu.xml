@@ -1,124 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="#BFDBFE"
-    android:padding="24dp">
+    android:background="#E8F0FA"
+    tools:context=".ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity">
 
-    <TextView
-        android:id="@+id/moduleTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefon od\npodejrzanego\nnieznajomego"
-        android:textColor="#0F172A"
-        android:gravity="center"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_marginBottom="48dp" />
+    <!-- Pasek górny z powrotem -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="#4F46E5"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/btnTeoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="24dp"
-        android:background="#93C5FD"
-        android:clickable="true"
-        android:clipToOutline="true"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="12dp">
+    <!-- Scroll z kafelkami -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Teoria"
-            android:textColor="#0F172A"
-            android:textSize="22sp" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
 
-    <LinearLayout
-        android:id="@+id/btnGrandChild"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="24dp"
-        android:background="#93C5FD"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:elevation="6dp"
-        android:padding="12dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:layout_marginHorizontal="12dp"
-        android:clipToOutline="true">
+            <TextView
+                android:id="@+id/moduleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefon od\npodejrzanego\nnieznajomego"
+                android:textSize="28sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#0F172A"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="28dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Połączenie od nieznajomego na wnuczka"
-            android:gravity="center"
-            android:textColor="#0F172A"
-            android:textSize="22sp"
-            android:fontFamily="@font/montserrat_bold"/>
-    </LinearLayout>
+            <!-- KAFEL 1: TEORIA -->
+            <LinearLayout
+                android:id="@+id/btnTeoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
-        android:id="@+id/btnPoliceman"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="24dp" android:background="#93C5FD"
-        android:clickable="true"
-        android:clipToOutline="true"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="12dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_theory_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Połączenie od nieznajomego na Policjanta"
-            android:textColor="#0F172A"
-            android:textSize="22sp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teoria"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
 
-    <LinearLayout
-        android:id="@+id/btnBankEmployee"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginHorizontal="12dp"
-        android:background="#93C5FD"
-        android:clickable="true"
-        android:clipToOutline="true"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="12dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poznaj jak rozpoznawać podejrzane telefony od nieznajomych, jakie techniki stosują oszuści oraz jak bezpiecznie reagować, aby nie stracić danych ani pieniędzy."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Połączenie od nieznajomego na pracownika banku"
-            android:textColor="#0F172A"
-            android:textSize="22sp" />
-    </LinearLayout>
+            <!-- KAFEL 2: POłĄCZENIE OD NIEZNAJOMEGO NA WNUCZKA  -->
+            <LinearLayout
+                android:id="@+id/btnGrandChild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
-</LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_grandchild_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Połączenie od nieznajomego na wnuczka"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sprawdź się w krótkiej symulacji rozmowy z wnuczkiem, aby sprawdzić swoją wiedzę w praktyce."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- KAFEL 3: POłĄCZENIE OD NIEZNAJOMEGO NA POLICJANTA  -->
+            <LinearLayout
+                android:id="@+id/btnPoliceman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_policeman_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Połączenie od nieznajomego na Policjanta"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sprawdź swoją wiedzę w praktyce w krótkiej symulacji rozmowy z policjantem."                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- KAFEL 4: POłĄCZENIE OD NIEZNAJOMEGO NA PRACOWNIKA BANKU  -->
+            <LinearLayout
+                android:id="@+id/btnBankEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="20dp"
+                android:layout_marginBottom="22dp"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_banker_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Połączenie od nieznajomego na pracownika banku"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sprawdź swoją wiedzę w praktyce w krótkiej symulacji rozmowy z pracownikiem banku."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

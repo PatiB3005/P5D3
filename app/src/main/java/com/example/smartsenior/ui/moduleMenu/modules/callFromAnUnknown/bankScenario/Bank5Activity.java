@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,7 @@ public class Bank5Activity extends AppCompatActivity {
         setContentView(R.layout.activity_bank_5);
 
         TextView textAnswerA = findViewById(R.id.textAnswerA);
-        ImageView imgHangup = findViewById(R.id.imgHangup);
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // A) dziękujesz, nadal wierzysz -> scena 6
         textAnswerA.setOnClickListener(v -> {
@@ -25,6 +26,6 @@ public class Bank5Activity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        imgHangup.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> finish());
     }
 }

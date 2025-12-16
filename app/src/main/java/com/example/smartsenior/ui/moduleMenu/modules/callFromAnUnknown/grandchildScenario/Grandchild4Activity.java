@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchi
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +17,8 @@ public class Grandchild4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grandchild_4);
 
-        TextView answerA = findViewById(R.id.answerA); // ID z XML-a
-        ImageView hangup = findViewById(R.id.hangup);
+        TextView answerA = findViewById(R.id.textAnswerA); // ID z XML-a
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // A -> przygotowujesz pieniądze -> scena 5
         answerA.setOnClickListener(v -> {
@@ -27,6 +28,6 @@ public class Grandchild4Activity extends AppCompatActivity {
         });
 
         // Czerwona słuchawka – przerwanie
-        hangup.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> finish());
     }
 }

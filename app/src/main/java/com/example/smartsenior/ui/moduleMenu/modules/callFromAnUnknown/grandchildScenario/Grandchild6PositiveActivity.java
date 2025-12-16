@@ -17,7 +17,6 @@ public class Grandchild6PositiveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grandchild_6_positive);
 
         Button next = findViewById(R.id.btnNext);
-        ImageView hangup = findViewById(R.id.imgHangup);
 
         // Dalej -> to samo POUCZENIE co po negatywnym wyniku
         next.setOnClickListener(v -> {
@@ -25,7 +24,5 @@ public class Grandchild6PositiveActivity extends AppCompatActivity {
                     Grandchild7Activity.class);
             startActivity(intent);
         });
-
-        hangup.setOnClickListener(v -> finish());
     }
 }

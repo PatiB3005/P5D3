@@ -21,10 +21,13 @@ public class Grandchild7Activity extends AppCompatActivity {
         Button finishButton = findViewById(R.id.btnFinish);
 
         finishButton.setOnClickListener(v -> {
-            // ZALICZENIE CZĘŚCI: scenariusz wnuczek ukończony
+            // zapis progresu – scenariusz wnuczek ukończony
             ProgressStore.markDone(this, ProgressKeys.M2_GRANDCHILD_DONE);
 
-            Intent intent = new Intent(Grandchild7Activity.this, CallFromAnUnknownMenuActivity.class);
+            Intent intent = new Intent(
+                    Grandchild7Activity.this,
+                    CallFromAnUnknownMenuActivity.class
+            );
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

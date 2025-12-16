@@ -17,7 +17,6 @@ public class Grandchild6Activity extends AppCompatActivity {
         setContentView(R.layout.activity_grandchild_6);
 
         Button next = findViewById(R.id.btnNext);
-        ImageView hangup = findViewById(R.id.imgHangup);
 
         // Dalej -> POUCZENIE (Grandchild7Activity)
         next.setOnClickListener(v -> {
@@ -26,7 +25,5 @@ public class Grandchild6Activity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Czerwona słuchawka – zamyka ekran
-        hangup.setOnClickListener(v -> finish());
     }
 }
