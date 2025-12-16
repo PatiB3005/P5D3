@@ -1,9 +1,9 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,25 +12,17 @@ import com.google.android.material.button.MaterialButton;
 
 public class Task2Page1Activity extends AppCompatActivity {
 
-    // Pytanie 1
     MaterialButton btnQ1True, btnQ1False;
-    View commentQ1;
-
-    // Pytanie 2
     MaterialButton btnQ2True, btnQ2False;
-    View commentQ2;
-
-    // Pytanie 3
     MaterialButton btnQ3True, btnQ3False;
-    View commentQ3;
 
-    // Dalej
+    TextView commentQ1, commentQ2, commentQ3;
+
     MaterialButton btnNext;
 
-    // Kontrola – czy odpowiedziano na pytania
-    boolean q1Answered = false;
-    boolean q2Answered = false;
-    boolean q3Answered = false;
+    boolean answered1 = false;
+    boolean answered2 = false;
+    boolean answered3 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,121 +44,90 @@ public class Task2Page1Activity extends AppCompatActivity {
 
         btnNext = findViewById(R.id.btnNext);
 
+        // ===================== PYTANIE 1 =====================
+        btnQ1True.setOnClickListener(v -> {
+            setAnswer(btnQ1True, btnQ1False, false);
+            commentQ1.setText("Źle! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa.");
+            commentQ1.setVisibility(View.VISIBLE);
+            answered1 = true;
+            checkAllAnswered();
+        });
 
-        // ================== PRZYCISKI PYTANIA 1 ==================
-        btnQ1True.setOnClickListener(v -> handleAnswer(
-                true,   // user clicked TRUE
-                false,  // correct answer is FALSE
-                btnQ1True, btnQ1False,
-                commentQ1,
-                "Źle! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa."
-        ));
+        btnQ1False.setOnClickListener(v -> {
+            setAnswer(btnQ1False, btnQ1True, true);
+            commentQ1.setText("Dobrze! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa.");
+            commentQ1.setVisibility(View.VISIBLE);
+            answered1 = true;
+            checkAllAnswered();
+        });
 
-        btnQ1False.setOnClickListener(v -> handleAnswer(
-                false,
-                false,
-                btnQ1True, btnQ1False,
-                commentQ1,
-                "Dobrze! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa."
-        ));
+        // ===================== PYTANIE 2 =====================
+        btnQ2True.setOnClickListener(v -> {
+            setAnswer(btnQ2True, btnQ2False, true);
+            commentQ2.setText("Dobrze! Oficjalne instytucje nie wysyłają wiadomości z błędami.");
+            commentQ2.setVisibility(View.VISIBLE);
+            answered2 = true;
+            checkAllAnswered();
+        });
 
+        btnQ2False.setOnClickListener(v -> {
+            setAnswer(btnQ2False, btnQ2True, false);
+            commentQ2.setText("Źle! Wiadomości z błędami często są oszustwem.");
+            commentQ2.setVisibility(View.VISIBLE);
+            answered2 = true;
+            checkAllAnswered();
+        });
 
-        // ================== PRZYCISKI PYTANIA 2 ==================
-        btnQ2True.setOnClickListener(v -> handleAnswer(
-                true,
-                true,
-                btnQ2True, btnQ2False,
-                commentQ2,
-                "Dobrze! Oficjalne instytucje nie wysyłają wiadomości z błędami — to typowy znak oszustwa."
-        ));
+        // ===================== PYTANIE 3 =====================
+        btnQ3True.setOnClickListener(v -> {
+            setAnswer(btnQ3True, btnQ3False, false);
+            commentQ3.setText("Źle! Kliknięcie w link może prowadzić do kradzieży danych.");
+            commentQ3.setVisibility(View.VISIBLE);
+            answered3 = true;
+            checkAllAnswered();
+        });
 
-        btnQ2False.setOnClickListener(v -> handleAnswer(
-                false,
-                true,
-                btnQ2True, btnQ2False,
-                commentQ2,
-                "Źle! Oficjalne instytucje nie wysyłają wiadomości z błędami — to typowy znak oszustwa."
-        ));
+        btnQ3False.setOnClickListener(v -> {
+            setAnswer(btnQ3False, btnQ3True, true);
+            commentQ3.setText("Dobrze! Takie linki często są fałszywe.");
+            commentQ3.setVisibility(View.VISIBLE);
+            answered3 = true;
+            checkAllAnswered();
+        });
 
-
-        // ================== PRZYCISKI PYTANIA 3 ==================
-        btnQ3True.setOnClickListener(v -> handleAnswer(
-                true,
-                false,
-                btnQ3True, btnQ3False,
-                commentQ3,
-                "Źle! Kliknięcie w link może prowadzić na fałszywą stronę, która ukradnie Twoje dane."
-        ));
-
-        btnQ3False.setOnClickListener(v -> handleAnswer(
-                false,
-                false,
-                btnQ3True, btnQ3False,
-                commentQ3,
-                "Dobrze! Kliknięcie w link może prowadzić na fałszywą stronę, która ukradnie Twoje dane."
-        ));
-
-
-        // ================== DALEJ ==================
+        // ===================== DALEJ =====================
         btnNext.setOnClickListener(v ->
-                startActivity(new Intent(Task2Page1Activity.this, Task2Page2Activity.class))
+                startActivity(new Intent(this, Task2Page2Activity.class))
         );
     }
 
-
-
     // =====================================================
-    //                FUNKCJA OBSŁUGI ODPOWIEDZI
+    // IDENTYCZNA LOGIKA KOLORÓW JAK W PAGE 2
     // =====================================================
-    private void handleAnswer(
-            boolean userAnswer,
-            boolean correctAnswer,
-            MaterialButton btnTrue,
-            MaterialButton btnFalse,
-            View commentBox,
-            String commentText
-    ) {
-        // Zablokuj oba przyciski, aby nie zmieniać odpowiedzi
-        btnTrue.setClickable(false);
-        btnFalse.setClickable(false);
+    private void setAnswer(MaterialButton selected, MaterialButton other, boolean isCorrect) {
 
-        // Ustaw komentarz
-        if (commentBox instanceof android.widget.TextView) {
-            ((android.widget.TextView) commentBox).setText(commentText);
-        }
-        commentBox.setVisibility(View.VISIBLE);
+        selected.setClickable(false);
+        other.setClickable(false);
 
-        // Kolorowanie
-        if (userAnswer == correctAnswer) {
-            // poprawna odpowiedź = zielony
-            if (userAnswer)
-                btnTrue.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#86EFAC")));
-            else
-                btnFalse.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#86EFAC")));
+        // wyszarz drugi przycisk
+        other.setBackgroundTintList(getColorStateList(android.R.color.darker_gray));
+
+        if (isCorrect) {
+            selected.setBackgroundTintList(
+                    getColorStateList(android.R.color.holo_green_light)
+            );
         } else {
-            // błędna odpowiedź = czerwony
-            if (userAnswer)
-                btnTrue.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#FCA5A5")));
-            else
-                btnFalse.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#FCA5A5")));
+            selected.setBackgroundTintList(
+                    getColorStateList(android.R.color.holo_red_light)
+            );
         }
-
-        // Ustaw, które pytanie zostało rozwiązane
-        if (commentBox == commentQ1) q1Answered = true;
-        if (commentBox == commentQ2) q2Answered = true;
-        if (commentBox == commentQ3) q3Answered = true;
-
-        // Sprawdź, czy wszystkie trzy są gotowe
-        checkAllAnswered();
     }
 
-
-    // =====================================================
-    //             ODBLOKOWANIE PRZYCISKU DALEJ
-    // =====================================================
     private void checkAllAnswered() {
-        if (q1Answered && q2Answered && q3Answered) {
+        if (answered1 && answered2 && answered3) {
             btnNext.setVisibility(View.VISIBLE);
+            btnNext.setEnabled(true);
+            btnNext.setAlpha(1f);
         }
     }
 }

@@ -28,8 +28,10 @@
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
                 app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginEnd="12dp">
 
                 <LinearLayout
@@ -44,7 +46,8 @@
                         android:text="play"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -53,7 +56,8 @@
                         android:text=".pl"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                 </LinearLayout>
@@ -64,8 +68,10 @@
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
                 app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginStart="12dp">
 
                 <LinearLayout
@@ -80,7 +86,8 @@
                         android:text="play"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -89,7 +96,8 @@
                         android:text=".pl"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                 </LinearLayout>
@@ -101,10 +109,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Komentarz: „W fałszywej nazwie użyto dużej litery I zamiast małego l.”"
-            android:textColor="#333333"
+            android:textColor="#1A202C"
             android:textSize="22sp"
             android:fontFamily="@font/montserrat_regular"
+            android:includeFontPadding="false"
             android:gravity="center"
+            android:background="#E9EEF5"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
@@ -125,7 +135,9 @@
                 android:layout_height="140dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginEnd="12dp">
 
                 <LinearLayout
@@ -140,7 +152,8 @@
                         android:text="facebook"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -149,7 +162,8 @@
                         android:text=".com"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                 </LinearLayout>
@@ -161,7 +175,9 @@
                 android:layout_height="140dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginStart="12dp">
 
                 <LinearLayout
@@ -176,7 +192,8 @@
                         android:text="faceb00k"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -185,7 +202,8 @@
                         android:text=".com"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                 </LinearLayout>
@@ -197,10 +215,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Komentarz: „Oszust zamienił litery ‘o’ na cyfry 0.”"
-            android:textColor="#333333"
+            android:textColor="#1A202C"
             android:textSize="22sp"
             android:fontFamily="@font/montserrat_regular"
+            android:includeFontPadding="false"
             android:gravity="center"
+            android:background="#E9EEF5"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
@@ -221,7 +241,9 @@
                 android:layout_height="140dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginEnd="12dp">
 
                 <LinearLayout
@@ -236,7 +258,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"/>
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"/>
 
                     <TextView
                         android:text=".pl"
@@ -244,7 +267,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"/>
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"/>
 
                 </LinearLayout>
 
@@ -256,7 +280,9 @@
                 android:layout_height="140dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF"
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
                 android:layout_marginStart="12dp">
 
                 <LinearLayout
@@ -271,7 +297,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"/>
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"/>
 
                     <TextView
                         android:text=".pl"
@@ -279,7 +306,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"/>
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"/>
 
                 </LinearLayout>
 
@@ -291,10 +319,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Komentarz: „Zamiana litery na cyfrę — klasyczny trik oszustów.”"
-            android:textColor="#333333"
+            android:textColor="#1A202C"
             android:textSize="22sp"
             android:fontFamily="@font/montserrat_regular"
+            android:includeFontPadding="false"
             android:gravity="center"
+            android:background="#E9EEF5"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
@@ -316,7 +346,9 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="12dp"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF">
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,7 +362,8 @@
                         android:text="olx"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -339,7 +372,8 @@
                         android:text=".pl"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -351,7 +385,9 @@
                 android:layout_weight="1"
                 android:layout_marginStart="12dp"
                 app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#96D7FF">
+                app:cardBackgroundColor="#DCEAFF"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -365,7 +401,8 @@
                         android:text="olx-pay"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
 
                     <TextView
@@ -374,7 +411,8 @@
                         android:text=".pl"
                         android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="#000"
+                        android:textColor="#1A202C"
+                        android:includeFontPadding="false"
                         android:gravity="center"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -385,10 +423,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Komentarz: „Dodatkowe słowo ‘pay’ sugeruje fałszywy moduł płatności.”"
-            android:textColor="#333333"
+            android:textColor="#1A202C"
             android:textSize="22sp"
             android:fontFamily="@font/montserrat_regular"
+            android:includeFontPadding="false"
             android:gravity="center"
+            android:background="#E9EEF5"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
@@ -402,11 +442,16 @@
             android:layout_height="70dp"
             android:text="Zakończ"
             android:textSize="22sp"
+            android:fontFamily="@font/montserrat_bold"
             android:textAllCaps="false"
-            android:textColor="#000"
-            app:cornerRadius="18dp"
-            app:backgroundTint="#BFBFC7"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="24dp"
+            android:backgroundTint="#2B6CB0"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            app:rippleColor="#00000000"
             android:visibility="gone"
+            android:enabled="false"
             android:layout_gravity="center"/>
 
     </LinearLayout>

@@ -4,157 +4,247 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor2">
+    android:background="#E9EEF5">
 
     <!-- TTS toggle -->
     <ImageButton
         android:id="@+id/btnTTS"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="8dp"
         android:contentDescription="@string/tts_off"
         android:src="@drawable/ic_volume_off"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tytuł -->
-    <TextView
-        android:id="@+id/headerTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CZĘŚĆ TEORETYCZNA"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <!-- Scroll content -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Podtytuł -->
-    <TextView
-        android:id="@+id/headerSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BEZPIECZNE WIADOMOŚCI JAK SIĘ BRONIĆ?"
-        android:textColor="#000"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/headerTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="2dp"/>
-
-    <!-- Ramka z obrazem -->
-    <FrameLayout
-        android:id="@+id/imageFrame"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:background="@drawable/border_rounded"
-        android:padding="6dp"
-        app:layout_constraintTop_toBottomOf="@id/headerSubtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-
-        <ImageView
-            android:id="@+id/headerImage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/img_internet_comm"
-            android:scaleType="centerCrop" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="18dp">
 
-    <!-- Pierwszy blok tekstu -->
-    <TextView
-        android:id="@+id/contentText1"
+            <!-- Header -->
+            <TextView
+                android:id="@+id/headerMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BEZPIECZNE\nWIADOMOŚCI"
+                android:textColor="#1A202C"
+                android:textSize="32sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/headerSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAK SIĘ BRONIĆ?"
+                android:textColor="#1A202C"
+                android:textSize="26sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Część teoretyczna"
+                android:textColor="#4A5568"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Obrazek: bez ramki -->
+            <ImageView
+                android:id="@+id/headerImage"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_safemsg6"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null" />
+
+            <!-- ITEM 4 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="4"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Włącz dwuetapowe uwierzytelnianie na ważnych kontach."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ITEM 5 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:strokeColor="#D9E2EF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#E7F0FF">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="5"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#2B6CB0"
+                            android:gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/contentText2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Blokuj i zgłaszaj podejrzane numery/wiadomości. Operatorzy i usługodawcy mają opcje zgłaszania spamu."
+                        android:textColor="#1A202C"
+                        android:textSize="21sp"
+                        android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- separator -->
+    <View
+        android:id="@+id/bottomDivider"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bluer_box_radius"
-        android:textColor="#000"
-        android:padding="8dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/imageFrame"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:text="1. Nie klikaj linków w podejrzanych SMS/wiadomościach" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Drugi blok tekstu -->
-    <TextView
-        android:id="@+id/contentText2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_box_radius"
-        android:padding="8dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        app:layout_constraintTop_toBottomOf="@id/contentText1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:text="2. Nigdy nie podawaj kodów OTP, PIN-ów ani haseł przez SMS lub w odpowiedzi na wiadomość. Prawdziwy bank nie poprosi Cię o kod przez SMS w celu „weryfikacji” przy rozmowie telefonicznej." />
-
-    <!-- Trzeci blok tekstu -->
-    <TextView
-        android:id="@+id/contentText3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bluer_box_radius"
-        android:padding="8dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        app:layout_constraintTop_toBottomOf="@id/contentText2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:text="3. Sprawdź adres strony zanim zalogujesz się: fałszywe strony często mają literówki, dodatkowe znaki lub nietypowe domeny. Jeśli masz wątpliwość — nie loguj się." />
-
-    <!-- Przyciski -->
+    <!-- Bottom buttons -->
     <LinearLayout
-        android:id="@+id/buttonsLayout"
+        android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="12dp"
+        android:baselineAligned="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:layout_weight="1"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/rounded_button"
-            android:textColor="#161010"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Wstecz"/>
+            android:text="Wstecz"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
 
-        <Button
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_button"
-            android:textColor="#161010"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Dalej"/>
+            android:text="Dalej"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

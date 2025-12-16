@@ -1,74 +1,89 @@
 package com.example.smartsenior;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.widget.Button;
 
+import com.example.smartsenior.ui.help.HelpRequestManager;
 import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 import com.example.smartsenior.ui.notifications.NotificationsActivity;
 import com.example.smartsenior.ui.profile.ProfileActivity;
 import com.example.smartsenior.ui.settings.SettingsActivity;
+import com.example.smartsenior.ui.trustedContacts.TrustedContactsActivity;
+import com.example.smartsenior.ui.trustedContacts.TrustedContactsStorage;
 import com.example.smartsenior.ui.tutorial.TutorialActivity1;
 import com.example.smartsenior.ui.virtualAssistant.virtualAssistantActivity;
+import com.example.smartsenior.utils.TripleTapHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnModuleMenu, btnProfile, btnMiniGames, btnWirtualAssistant,
-            btnTutorial, btnNotifications, btnSettings, btnExit;
+            btnTutorial, btnNotifications, btnSettings, btnExit, btnTrustedContacts;
+
+    private final TripleTapHelper tripleTap = new TripleTapHelper(1300);
+
+    private HelpRequestManager helpManager;
+
+    private final ActivityResultLauncher<String> smsPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (helpManager != null) {
+                    helpManager.onSmsPermissionResult(granted);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        btnProfile = findViewById(R.id.btnProfile);
-        btnTutorial = findViewById(R.id.btnTutorial);
-        btnModuleMenu = findViewById(R.id.btnModulesMenu);
-        btnMiniGames = findViewById(R.id.btnMiniGames);
+        btnProfile          = findViewById(R.id.btnProfile);
+        btnTutorial         = findViewById(R.id.btnTutorial);
+        btnModuleMenu       = findViewById(R.id.btnModulesMenu);
+        btnMiniGames        = findViewById(R.id.btnMiniGames);
         btnWirtualAssistant = findViewById(R.id.btnWirtualAssistant);
-        btnNotifications = findViewById(R.id.btnNotifications);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnExit = findViewById(R.id.btnExit);
+        btnTrustedContacts  = findViewById(R.id.btnTrustedContacts);
+        btnNotifications    = findViewById(R.id.btnNotifications);
+        btnSettings         = findViewById(R.id.btnSettings);
+        btnExit             = findViewById(R.id.btnExit);
 
-        btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intent);
+        helpManager = new HelpRequestManager(this, smsPermissionLauncher);
+
+        findViewById(R.id.btnHelp).setOnClickListener(v -> {
+            helpManager.startHelpFlow();
         });
 
-        btnTutorial.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, TutorialActivity1.class);
-            startActivity(intent);
-        });
+        btnProfile.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class)));
 
-        btnModuleMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ModuleMenuActivity.class);
-            startActivity(intent);
-        });
+        btnTutorial.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, TutorialActivity1.class)));
 
-        btnMiniGames.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, MiniGamesMenuActivity.class);
-            startActivity(intent);
-        });
+        btnModuleMenu.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ModuleMenuActivity.class)));
 
-        btnWirtualAssistant.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, virtualAssistantActivity.class);
-            startActivity(intent);
-        });
+        btnMiniGames.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, MiniGamesMenuActivity.class)));
 
-        btnNotifications.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
-            startActivity(intent);
-        });
+        btnWirtualAssistant.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, virtualAssistantActivity.class)));
 
-        btnSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
+        btnTrustedContacts.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, TrustedContactsActivity.class)));
+
+        btnNotifications.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, NotificationsActivity.class)));
+
+        btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
 
         btnExit.setOnClickListener(v -> finishAffinity());
     }
@@ -77,29 +92,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         applyFontSize();
+        ensureTrustedContactsExist();
+    }
+
+    private void ensureTrustedContactsExist() {
+        if (!TrustedContactsStorage.load(this).isEmpty()) return;
+
+        new AlertDialog.Builder(this)
+                .setTitle("Dodaj zaufany kontakt")
+                .setMessage("Aby funkcja „Pomoc” mogła działać, dodaj przynajmniej jeden zaufany kontakt.")
+                .setCancelable(false)
+                .setPositiveButton("Dodaj teraz", (d, w) -> {
+                    startActivity(new Intent(MainActivity.this, TrustedContactsActivity.class));
+                })
+                .setNegativeButton("Później", null)
+                .show();
     }
 
     private void applyFontSize() {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLarge = prefs.getBoolean("large_font", false);
 
-        float sizeNormal = 18f; // sp
-        float sizeBig    = 24f; // sp
-        float sizeToUse  = isLarge ? sizeBig : sizeNormal;
+        float sizeNormal = 18f;
+        float sizeBig = 24f;
+        float sizeToUse = isLarge ? sizeBig : sizeNormal;
 
-        setButtonTextSize(btnProfile,          sizeToUse);
-        setButtonTextSize(btnTutorial,         sizeToUse);
-        setButtonTextSize(btnModuleMenu,       sizeToUse);
-        setButtonTextSize(btnMiniGames,        sizeToUse);
+        setButtonTextSize(btnProfile, sizeToUse);
+        setButtonTextSize(btnTutorial, sizeToUse);
+        setButtonTextSize(btnModuleMenu, sizeToUse);
+        setButtonTextSize(btnMiniGames, sizeToUse);
         setButtonTextSize(btnWirtualAssistant, sizeToUse);
-        setButtonTextSize(btnNotifications,    sizeToUse);
-        setButtonTextSize(btnSettings,         sizeToUse);
-        setButtonTextSize(btnExit,             sizeToUse);
+        setButtonTextSize(btnTrustedContacts, sizeToUse);
+        setButtonTextSize(btnNotifications, sizeToUse);
+        setButtonTextSize(btnSettings, sizeToUse);
+        setButtonTextSize(btnExit, sizeToUse);
     }
 
     private void setButtonTextSize(Button button, float sizeSp) {
         if (button != null) {
             button.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (tripleTap.onTouch(this, ev)) {
+            // nie "połykamy" eventu, żeby normalne klikanie dalej działało
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

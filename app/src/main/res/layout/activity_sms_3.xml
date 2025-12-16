@@ -1,156 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF2FF">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp">
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/tts_off"
+        android:padding="8dp"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- NAGŁÓWEK 1 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CZĘŚĆ TESTOWA"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="12dp" />
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- NAGŁÓWEK 2 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="24dp" />
-
-
-        <!-- KARTA Z PYTANIEM #1 -->
-        <com.google.android.material.card.MaterialCardView
+        <!-- WAŻNE: match_parent, żeby constraints mogły “dociągnąć” kafelek do dołu -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="#A5CCFF">
+            android:layout_height="match_parent"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="18dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/titleSafeMessages"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="Jeśli podejrzewasz oszustwo, czy powinieneś zrobić zrzut ekranu wiadomości i skontaktować się z bankiem lub policją?"
-                android:textSize="30sp"
-                android:textStyle="bold"
+                android:text="Bezpieczne\nwiadomości"
+                android:textColor="#1A202C"
+                android:textSize="36sp"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:textColor="#000"
-                android:fontFamily="@font/montserrat_regular" />
-        </com.google.android.material.card.MaterialCardView>
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-
-        <!-- KARTA Z PYTANIEM #2 + TAK/NIE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="#BFDBFE">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/titleTestPart"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:text="Część testowa"
+                android:textColor="#4A5568"
+                android:textSize="24sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/titleSafeMessages"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-                <!-- PYTANIE 2 -->
+            <!-- KARTA #1 (opis sytuacji) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuestion1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
+                app:cardBackgroundColor="#A5CCFF"
+                app:layout_constraintTop_toBottomOf="@id/titleTestPart"
+                app:layout_constraintBottom_toTopOf="@id/cardQuestion2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside">
+
                 <TextView
+                    android:id="@+id/question1Text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Czy powinieneś wykonać polecenie osoby dzwoniącej?"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
+                    android:padding="20dp"
+                    android:text="Dzwoni do Ciebie osoba podająca się za pracownika banku i mówi, że Twoje konto jest zagrożone. Prosi, abyś podał(a) dane lub wykonał(a) pilne polecenia."
+                    android:textSize="26sp"
+                    android:lineSpacingExtra="6dp"
+                    android:textColor="#1A202C"
+                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/montserrat_regular" />
+                    android:includeFontPadding="false"/>
+            </com.google.android.material.card.MaterialCardView>
 
-                <!-- TAK / NIE -->
+            <!-- KARTA #2 (pytanie + TAK/NIE) — siedzi niżej, bez pustki -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuestion2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                android:stateListAnimator="@null"
+                app:cardBackgroundColor="#BFDBFE"
+                app:strokeWidth="1dp"
+                app:strokeColor="#A7C7F7"
+                app:layout_constraintTop_toBottomOf="@id/cardQuestion1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="22dp">
 
-                    <ImageButton
-                        android:id="@+id/yesButton"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/question2Text"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/yes_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginEnd="10dp" />
+                        android:text="Czy powinieneś wykonać polecenia osoby dzwoniącej?"
+                        android:textSize="26sp"
+                        android:lineSpacingExtra="6dp"
+                        android:textColor="#1A202C"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:includeFontPadding="false"
+                        android:layout_marginBottom="12dp"/>
 
-                    <ImageButton
-                        android:id="@+id/noButton"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/no_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginStart="10dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:baselineAligned="false">
 
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/yesButton"
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1"
+                            android:text="TAK"
+                            android:textAllCaps="false"
+                            android:textSize="26sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#2B6CB0"
+                            app:cornerRadius="26dp"
+                            app:rippleColor="#00000000"
+                            android:elevation="0dp"
+                            android:stateListAnimator="@null"
+                            android:layout_marginEnd="12dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/noButton"
+                            android:layout_width="0dp"
+                            android:layout_height="86dp"
+                            android:layout_weight="1"
+                            android:text="NIE"
+                            android:textAllCaps="false"
+                            android:textSize="26sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#2B6CB0"
+                            app:cornerRadius="26dp"
+                            app:rippleColor="#00000000"
+                            android:elevation="0dp"
+                            android:stateListAnimator="@null"
+                            android:layout_marginStart="12dp" />
+                    </LinearLayout>
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-
-        <!-- PRZYCISKI WSTECZ / DALEJ -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBack"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Wstecz"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#CBD5E1"
-                android:layout_marginEnd="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNext"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Dalej"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#9D9FB0"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

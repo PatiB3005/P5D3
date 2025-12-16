@@ -22,6 +22,10 @@ public class Task4Page1Activity extends AppCompatActivity {
 
     boolean answered = false;
 
+    // KOLORY JAK W POPRZEDNICH ZADANIACH
+    private static final String GREEN = "#86EFAC";
+    private static final String RED = "#FCA5A5";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +41,10 @@ public class Task4Page1Activity extends AppCompatActivity {
         popupText = findViewById(R.id.popupText);
         popupClose = findViewById(R.id.popupClose);
 
+        // NA START UKRYTY
         btnNext.setVisibility(View.GONE);
 
-        // Wszystkie kliknięcia
+        // KLIKNIĘCIA
         btnName.setOnClickListener(v -> checkAnswer(false, btnName));
         btnContent.setOnClickListener(v -> checkAnswer(false, btnContent));
         btnLink.setOnClickListener(v -> checkAnswer(true, btnLink));
@@ -53,23 +58,28 @@ public class Task4Page1Activity extends AppCompatActivity {
 
     private void checkAnswer(boolean correct, MaterialButton clicked) {
 
-        if (answered) return; // blokada ponownego wyboru
-
+        if (answered) return;
         answered = true;
 
-        // Odblokuj przycisk "Dalej"
+        // POKAŻ "DALEJ" (NIE ZMIENIAMY KOLORU – BIERZE Z XML)
         btnNext.setVisibility(View.VISIBLE);
+        btnNext.setEnabled(true);
+        btnNext.setAlpha(1f);
 
-        // Zablokuj wszystkie przyciski, aby nie kliknąć ponownie
+        // BLOKADA PONOWNEGO KLIKANIA
         btnName.setClickable(false);
         btnContent.setClickable(false);
         btnLink.setClickable(false);
 
-        // Kolorowanie odpowiedzi
+        // KOLOR JAK W INNYCH ZADANIACH
         if (correct) {
-            clicked.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#86EFAC"))); // zielony
+            clicked.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.parseColor(GREEN))
+            );
         } else {
-            clicked.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FCA5A5"))); // czerwony
+            clicked.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.parseColor(RED))
+            );
         }
 
         showPopup(correct);
@@ -81,11 +91,15 @@ public class Task4Page1Activity extends AppCompatActivity {
         popupBox.setVisibility(View.VISIBLE);
 
         if (correct) {
-            popupText.setText("✓ Dobrze!\n");
-            popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CFF9C7")));
+            popupText.setText("✓ Dobrze!");
+            popupBox.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.parseColor(GREEN))
+            );
         } else {
-            popupText.setText("✗ Niepoprawnie.\n");
-            popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1D1")));
+            popupText.setText("✗ Niepoprawnie.");
+            popupBox.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.parseColor(RED))
+            );
         }
     }
 

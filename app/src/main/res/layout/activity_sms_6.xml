@@ -1,157 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF2FF">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp">
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- NAGŁÓWEK 1 -->
+    <!-- CONTENT -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="44dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/titleSafeMessages"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="CZĘŚĆ TESTOWA"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:text="Bezpieczne\nwiadomości"
+            android:textColor="#1A202C"
+            android:textSize="36sp"
             android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="12dp" />
+            android:gravity="center"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- NAGŁÓWEK 2 -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/titleTestPart"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="BEZPIECZNE WIADOMOŚCI"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="24dp" />
+            android:text="Część testowa"
+            android:textColor="#4A5568"
+            android:textSize="24sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/titleSafeMessages"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- OBRAZ (minimalnie większy, nadal bez przycinania) -->
+        <ImageView
+            android:id="@+id/testQuestionImage"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_fake_sms_link"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:contentDescription="@null"
+            android:padding="6dp"
+            app:layout_constraintTop_toBottomOf="@id/titleTestPart"
+            app:layout_constraintBottom_toTopOf="@id/questionCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <!-- KARTA OBRAZU -->
+        <!-- Karta -->
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
+            android:id="@+id/questionCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="18dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="0dp"
-            app:strokeColor="#000000"
-            app:strokeWidth="2dp">
-
-            <ImageView
-                android:id="@+id/fakeMessageImage"
-                android:layout_width="260dp"
-                android:layout_height="300dp"
-                android:adjustViewBounds="true"
-                android:padding="12dp"
-                android:src="@drawable/fake_sms_link"
-                android:scaleType="fitCenter"/>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!-- KARTA PYTANIE + TAK/NIE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="#BFDBFE">
+            app:cardBackgroundColor="#BFDBFE"
+            app:strokeWidth="1dp"
+            app:strokeColor="#A7C7F7"
+            app:layout_constraintTop_toBottomOf="@id/testQuestionImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:gravity="center_horizontal"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="28dp">
 
-                <!-- PYTANIE -->
                 <TextView
+                    android:id="@+id/questionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Czy powinieneś kliknąć w ten link?"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textColor="#1A202C"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/montserrat_bold"/>
+                    android:textAlignment="center"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="5dp"
+                    android:layout_marginBottom="14dp" />
 
-                <!-- TAK / NIE -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp">
+                    android:baselineAligned="false">
 
-                    <ImageButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/yesButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:src="@drawable/yes_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginEnd="12dp"/>
+                        android:text="TAK"
+                        android:textAllCaps="false"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#2B6CB0"
+                        app:cornerRadius="26dp"
+                        android:layout_marginEnd="12dp" />
 
-                    <ImageButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/noButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="80dp"
                         android:layout_weight="1"
-                        android:src="@drawable/no_button"
-                        android:background="@android:color/transparent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_marginStart="12dp"/>
-
+                        android:text="NIE"
+                        android:textAllCaps="false"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#2B6CB0"
+                        app:cornerRadius="26dp"
+                        android:layout_marginStart="12dp" />
                 </LinearLayout>
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- NAWIGACJA -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBack"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Wstecz"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#CBD5E1"
-                android:layout_marginEnd="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNext"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:text="Dalej"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#9D9FB0"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

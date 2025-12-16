@@ -1,68 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="24dp"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:fillViewport="true">
 
-        android:gravity="center"
-        android:fillViewport="true"
-        android:background="@color/backgroundColor">
-        <!-- Tytuł -->
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:text="Menu główne"
-            android:textColor="@color/textColor"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:background="@color/backgroundColor">
 
-        <!-- Przyciski -->
-        <Button
-            android:id="@+id/btnModulesMenu"
-            android:text="Menu modułów"
-            style="@style/MainMenuButton" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:text="Menu główne"
+                android:textColor="@color/textColor"
+                android:textSize="32sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnTutorial"
-            android:text="Samouczek"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnModulesMenu"
+                android:text="Menu modułów"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnProfile"
-            android:text="Profil"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnTutorial"
+                android:text="Samouczek"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnMiniGames"
-            android:text="Mini-gry"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnProfile"
+                android:text="Profil"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnWirtualAssistant"
-            android:text="Wirtualny Asystent"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnMiniGames"
+                android:text="Mini-gry"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnNotifications"
-            android:text="Przypomnienia"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnWirtualAssistant"
+                android:text="Wirtualny Asystent"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnSettings"
-            android:text="Ustawienia"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnTrustedContacts"
+                android:text="Zaufane kontakty"
+                style="@style/MainMenuButton" />
 
-        <Button
-            android:id="@+id/btnExit"
-            android:text="Wyjście"
-            style="@style/MainMenuButton" />
+            <Button
+                android:id="@+id/btnNotifications"
+                android:text="Przypomnienia"
+                style="@style/MainMenuButton" />
 
-    </LinearLayout>
-</ScrollView>
+            <Button
+                android:id="@+id/btnSettings"
+                android:text="Ustawienia"
+                style="@style/MainMenuButton" />
+
+            <Button
+                android:id="@+id/btnExit"
+                android:text="Wyjście"
+                style="@style/MainMenuButton" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/btnHelp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_lifebuoy"
+        android:contentDescription="Pomoc"
+        android:scaleType="centerInside"
+        android:padding="10dp" />
+
+</FrameLayout>
