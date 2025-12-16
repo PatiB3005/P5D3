@@ -20,10 +20,12 @@ import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
 
-    private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnFakeNewsModule;
+    private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnAiLite;
+    private LinearLayout btnFakeNewsModule;
 
     private ProgressBar progressModule1, progressModule2, progressModule3, progressFakeNews;
     private TextView labelModule1, labelModule2, labelModule3Number, labelFakeNews;
@@ -38,6 +40,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
+        btnAiLite = findViewById(R.id.btnAiLite);
 
         // Progresy + etykiety
         progressModule1 = findViewById(R.id.progressModule1);
@@ -61,6 +64,11 @@ public class ModuleMenuActivity extends AppCompatActivity {
         btnFakeNewsModule.setOnClickListener(v ->
                 startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class)));
 
+        btnAiLite.setOnClickListener(v -> {
+            Intent intent = new Intent(ModuleMenuActivity.this, AiActivity.class);
+            startActivity(intent);
+        });
+
         // Powrót do tutorialu
         Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
         boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
@@ -76,6 +84,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
         }
     }
 
+    // ============= POWIĘKSZANIE TEKSTU (AUTOMATYCZNIE NA CAŁYM EKRANIE) =============
     @Override
     protected void onResume() {
         super.onResume();
