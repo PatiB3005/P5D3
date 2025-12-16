@@ -3,15 +3,16 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
-import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 
 public class TheoryActivity extends AppCompatActivity {
-    private int currentScreen = 1; // zaczynamy od ekranu 1
+
+    private int currentScreen = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,32 +46,29 @@ public class TheoryActivity extends AppCompatActivity {
             case 8:
                 setContentView(R.layout.activity_call_from_unknown_8);
                 break;
-            case 9:
-                setContentView(R.layout.activity_call_from_unknown_9);
-                break;
         }
-
         setupButtons();
     }
 
     private void setupButtons() {
-
-        // next
         View next = findViewById(R.id.btnNext);
         if (next != null) {
             next.setOnClickListener(v -> {
-                if (currentScreen < 9) {
+                if (currentScreen < 8) {
                     currentScreen++;
                     showScreen(currentScreen);
                 } else {
-                    Intent intent = new Intent(TheoryActivity.this , CallFromAnUnknownMenuActivity.class);
+                    ProgressStore.markDone(this, ProgressKeys.M2_THEORY_DONE);
+                    Intent intent = new Intent(
+                            TheoryActivity.this,
+                            CallFromAnUnknownMenuActivity.class
+                    );
                     startActivity(intent);
                     finish();
                 }
             });
         }
 
-        // back
         View back = findViewById(R.id.btnBack);
         if (back != null) {
             back.setOnClickListener(v -> {
@@ -78,7 +76,7 @@ public class TheoryActivity extends AppCompatActivity {
                     currentScreen--;
                     showScreen(currentScreen);
                 } else {
-                    finish(); // wyjście z modułu
+                    finish();
                 }
             });
         }

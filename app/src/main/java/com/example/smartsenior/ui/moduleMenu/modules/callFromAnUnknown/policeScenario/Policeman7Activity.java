@@ -1,11 +1,15 @@
 package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class Policeman7Activity extends AppCompatActivity {
 
@@ -16,8 +20,16 @@ public class Policeman7Activity extends AppCompatActivity {
 
         Button finish = findViewById(R.id.btnFinish);
 
-        // ▶ Przycisk „Zakończ” – kończy moduł i wraca do poprzedniego ekranu
         finish.setOnClickListener(v -> {
+            // zapis progresu – scenariusz policjant ukończony
+            ProgressStore.markDone(this, ProgressKeys.M2_POLICEMAN_DONE);
+
+            Intent intent = new Intent(
+                    Policeman7Activity.this,
+                    CallFromAnUnknownMenuActivity.class
+            );
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             finish();
         });
     }

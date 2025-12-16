@@ -47,7 +47,6 @@ public class Task3Page1Activity extends AppCompatActivity {
 
         btnNext = findViewById(R.id.btnNext);
 
-
         // ===================== PARA 1 =====================
         btn1Left.setOnClickListener(v -> {
             showCorrect(btn1Left, btn1Right, comment1,
@@ -62,7 +61,6 @@ public class Task3Page1Activity extends AppCompatActivity {
             q1done = true;
             checkAllDone();
         });
-
 
         // ===================== PARA 2 =====================
         btn2Left.setOnClickListener(v -> {
@@ -79,7 +77,6 @@ public class Task3Page1Activity extends AppCompatActivity {
             checkAllDone();
         });
 
-
         // ===================== PARA 3 =====================
         btn3Left.setOnClickListener(v -> {
             showCorrect(btn3Left, btn3Right, comment3,
@@ -94,7 +91,6 @@ public class Task3Page1Activity extends AppCompatActivity {
             q3done = true;
             checkAllDone();
         });
-
 
         // ===================== PARA 4 =====================
         btn4Left.setOnClickListener(v -> {
@@ -111,13 +107,11 @@ public class Task3Page1Activity extends AppCompatActivity {
             checkAllDone();
         });
 
-
         // ===================== DALEJ =====================
         btnNext.setOnClickListener(v ->
                 startActivity(new Intent(Task3Page1Activity.this, Task3Page2Activity.class))
         );
     }
-
 
     // ===================== FUNKCJE =====================
 
@@ -146,10 +140,10 @@ public class Task3Page1Activity extends AppCompatActivity {
     private void checkAllDone() {
         if (q1done && q2done && q3done && q4done) {
 
-            // Przycisk pojawia się dopiero po 4 odpowiedziach
+            // przycisk pojawia się i JEST NIEBIESKI (kolor z XML)
             btnNext.setVisibility(View.VISIBLE);
             btnNext.setEnabled(true);
-            btnNext.setBackgroundTintList(getColorStateList(android.R.color.darker_gray));
+            btnNext.setAlpha(1f); // zapobiega przyciemnieniu
         }
     }
 }

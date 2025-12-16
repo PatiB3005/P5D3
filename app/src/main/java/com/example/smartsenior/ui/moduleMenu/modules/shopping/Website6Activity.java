@@ -2,16 +2,17 @@ package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.google.android.material.button.MaterialButton;
 
 public class Website6Activity extends AppCompatActivity {
@@ -44,27 +45,23 @@ public class Website6Activity extends AppCompatActivity {
 
         btnNext.setOnClickListener(v -> {
 
+            // ZALICZENIE CZĘŚCI: test stron ukończony (dotarcie do końca)
+            ProgressStore.markDone(this, ProgressKeys.M3_WEBSITE_DONE);
+
             int score = ScoreManager.score;
 
             if (score == 5) {
                 startActivity(new Intent(Website6Activity.this, MedalGoldActivity.class));
-            }
-            else if (score == 4) {
+            } else if (score == 4) {
                 startActivity(new Intent(Website6Activity.this, MedalSilverActivity.class));
-            }
-            else if (score == 3) {
+            } else if (score == 3) {
                 startActivity(new Intent(Website6Activity.this, MedalBronzeActivity.class));
-            }
-            else {
+            } else {
                 startActivity(new Intent(Website6Activity.this, PracticeMoreActivity.class));
             }
-
         });
 
-        btnOk.setOnClickListener(v -> {
-            popupOverlay.setVisibility(View.GONE);
-        });
-
+        btnOk.setOnClickListener(v -> popupOverlay.setVisibility(View.GONE));
     }
 
     private void handleAnswer(boolean isCorrect) {

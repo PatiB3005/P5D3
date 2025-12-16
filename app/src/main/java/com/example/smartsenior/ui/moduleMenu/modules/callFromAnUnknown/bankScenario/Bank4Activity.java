@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ public class Bank4Activity extends AppCompatActivity {
 
         TextView textAnswerA = findViewById(R.id.textAnswerA);
         TextView textAnswerB = findViewById(R.id.textAnswerB);
-        ImageView imgHangup = findViewById(R.id.imgHangup);
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // A) podajesz kod -> wchodzisz głębiej w oszustwo -> scena 5
         textAnswerA.setOnClickListener(v -> {
@@ -33,6 +34,6 @@ public class Bank4Activity extends AppCompatActivity {
         });
 
         // Czerwona słuchawka – przerwanie scenariusza
-        imgHangup.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> finish());
     }
 }

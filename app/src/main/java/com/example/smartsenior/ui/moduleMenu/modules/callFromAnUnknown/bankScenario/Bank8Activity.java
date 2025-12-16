@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
 public class Bank8Activity extends AppCompatActivity {
@@ -18,8 +20,10 @@ public class Bank8Activity extends AppCompatActivity {
 
         Button btnFinish = findViewById(R.id.btnFinish);
 
-        // Zakończ – wróć do menu modułów
         btnFinish.setOnClickListener(v -> {
+            // ZALICZENIE CZĘŚCI: scenariusz bank ukończony
+            ProgressStore.markDone(this, ProgressKeys.M2_BANK_DONE);
+
             Intent intent = new Intent(Bank8Activity.this, CallFromAnUnknownMenuActivity.class);
             startActivity(intent);
             finish();

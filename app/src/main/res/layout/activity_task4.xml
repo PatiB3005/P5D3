@@ -1,101 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- ZADANIE 4 -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zadanie 4"
-        android:textSize="44sp"
-        android:textColor="#000"
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_marginTop="30dp"
+    <!-- Scroll -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- CO JEST PODEJRZANE? -->
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Co jest podejrzane\nw tej wiadomości?"
-        android:textSize="32sp"
-        android:textColor="#000"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="16dp">
+
+            <!-- Tytuł -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zadanie 4"
+                android:textSize="36sp"
+                android:textColor="#1A202C"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Podtytuł -->
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Co jest podejrzane\nw tej wiadomości?"
+                android:textSize="24sp"
+                android:textColor="#4A5568"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="18dp"/>
+
+            <!-- IKONA -->
+            <ImageView
+                android:id="@+id/iconWarning"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/ic_warning"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@drawable/rounded_image"
+                android:clipToOutline="true"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Opis w kafelku -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#DCEAFF">
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Zobacz przykładowe wiadomości i sprawdź, co w nich może być oszustwem. Może być jedna albo dwie prawidłowe odpowiedzi."
+                    android:textSize="24sp"
+                    android:textColor="#1A202C"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:lineSpacingExtra="9dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Separator -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Opis -->
-    <TextView
-        android:id="@+id/description"
+    <!-- Dolne przyciski -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Zobacz przykładowe wiadomości i sprawdź, co w nich może być oszustwem. Może być jedna albo dwie prawidłowe odpowiedzi."
-        android:textSize="26sp"
-        android:textColor="#000"
-        android:fontFamily="@font/montserrat_regular"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="26dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- IKONA UWAGA (większa) -->
-    <ImageView
-        android:id="@+id/iconWarning"
-        android:layout_width="320dp"
-        android:layout_height="260dp"
-        android:src="@drawable/ic_triangle"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- WSTECZ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_weight="1"
+            android:text="Wstecz"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp"/>
 
-    <!-- WSTECZ -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBack"
-        android:layout_width="180dp"
-        android:layout_height="48dp"
-        android:text="Wstecz"
-        android:textSize="20sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="#000"
-        android:textAllCaps="false"
-        android:gravity="center"
-        app:cornerRadius="12dp"
-        app:backgroundTint="#9D9FB0"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp"/>
 
-    <!-- ROZPOCZNIJ -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStart"
-        android:layout_width="180dp"
-        android:layout_height="48dp"
-        android:text="Rozpocznij"
-        android:textSize="20sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="#000"
-        android:textAllCaps="false"
-        android:gravity="center"
-        app:cornerRadius="12dp"
-        app:backgroundTint="#9D9FB0"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <!-- ROZPOCZNIJ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStart"
+            android:layout_width="0dp"
+            android:layout_height="74dp"
+            android:layout_weight="1"
+            android:text="Rozpocznij"
+            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

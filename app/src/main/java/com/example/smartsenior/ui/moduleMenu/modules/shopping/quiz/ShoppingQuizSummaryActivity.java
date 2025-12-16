@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.google.android.material.button.MaterialButton;
 
@@ -24,29 +26,23 @@ public class ShoppingQuizSummaryActivity extends AppCompatActivity {
         summaryMessage = findViewById(R.id.summaryMessage);
         btnFinish = findViewById(R.id.btnFinish);
 
-        // Pobierz wynik z poprzedniej strony (0–8)
         int score = getIntent().getIntExtra("QUIZ_RESULT", 0);
 
-        // Wyświetl wynik
         summaryScore.setText("Twój wynik: " + score + "/8");
 
-        // Komunikat zależny od wyniku
         if (score == 8) {
             summaryMessage.setText("Świetnie! Doskonale rozpoznajesz fałszywe sklepy.");
-        }
-        else if (score >= 5) {
+        } else if (score >= 5) {
             summaryMessage.setText("Bardzo dobrze! Masz dobrą intuicję, ale warto zachować czujność.");
-        }
-        else {
+        } else {
             summaryMessage.setText("Uważaj! Warto przejrzeć lekcję jeszcze raz, aby robić bezpieczne zakupy.");
         }
 
-        // Przycisk zakończenia → powrót do Module3Activity
         btnFinish.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    ShoppingQuizSummaryActivity.this,
-                    Module3Activity.class
-            );
+            // ZALICZENIE CZĘŚCI: quiz zakupów online ukończony
+            ProgressStore.markDone(this, ProgressKeys.M3_QUIZ_DONE);
+
+            Intent intent = new Intent(ShoppingQuizSummaryActivity.this, Module3Activity.class);
             startActivity(intent);
             finish();
         });

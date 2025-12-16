@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeSc
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +17,8 @@ public class Policeman4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policeman_4);
 
-        TextView answerA = findViewById(R.id.answerA); // ← poprawione ID
-        ImageView hangup = findViewById(R.id.hangup);  // ← poprawione ID
+        TextView answerA = findViewById(R.id.textAnswerA); // ← poprawione ID
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // ▶ A → SCENA 5
         answerA.setOnClickListener(v -> {
@@ -26,7 +27,7 @@ public class Policeman4Activity extends AppCompatActivity {
         });
 
         // ▶ Czerwona słuchawka → KONIEC
-        hangup.setOnClickListener(v -> {
+        declineCall.setOnClickListener(v -> {
             finish();
         });
     }

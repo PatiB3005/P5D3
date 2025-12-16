@@ -9,6 +9,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,15 +25,15 @@ public class Bank1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_1);
 
-        ImageView imgCall = findViewById(R.id.imgCall);
-        Button btnEnd = findViewById(R.id.btnEnd);
+        LinearLayout answerCall = findViewById(R.id.answerCall);
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // Włącz dźwięk i wibracje po wejściu na ekran
         startRingtoneSafely();
         startVibrationSafely();
 
         // Po wciśnięciu zielonej słuchawki → przejście dalej
-        imgCall.setOnClickListener(v -> {
+        answerCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
 
@@ -41,7 +42,7 @@ public class Bank1Activity extends AppCompatActivity {
         });
 
         // Po kliknięciu "Koniec" → wyłącz wszystko i zamknij
-        btnEnd.setOnClickListener(v -> {
+        declineCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
             finish();

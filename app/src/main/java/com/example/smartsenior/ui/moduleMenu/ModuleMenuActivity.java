@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
@@ -24,39 +27,42 @@ public class ModuleMenuActivity extends AppCompatActivity {
     private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnAiLite;
     private LinearLayout btnFakeNewsModule;
 
+    private ProgressBar progressModule1, progressModule2, progressModule3, progressFakeNews;
+    private TextView labelModule1, labelModule2, labelModule3Number, labelFakeNews;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
-        // Kafelek modułu "Bezpieczne wiadomości"
+        // Kafelki
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
         btnAiLite = findViewById(R.id.btnAiLite);
 
-        btnModule1.setOnClickListener(v -> {
-            Intent intent = new Intent(ModuleMenuActivity.this, Module1Activity.class);
-            startActivity(intent);
-        });
+        // Progresy + etykiety
+        progressModule1 = findViewById(R.id.progressModule1);
+        progressModule2 = findViewById(R.id.progressModule2);
+        progressModule3 = findViewById(R.id.progressModule3);
+        progressFakeNews = findViewById(R.id.progressFakeNews);
 
-        btnCallFromAnUnknown.setOnClickListener(v -> {
-            Intent intent = new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class);
-            startActivity(intent);
-        });
+        labelModule1 = findViewById(R.id.textModule1ProgressLabel);
+        labelModule2 = findViewById(R.id.textModule2ProgressLabel);
+        labelModule3Number = findViewById(R.id.textModule3ProgressNumber);
+        labelFakeNews = findViewById(R.id.textFakeNewsProgressLabel);
 
-        btnShoppingOnline.setOnClickListener(v -> {
-            Intent intent = new Intent(ModuleMenuActivity.this, Module3Activity.class);
-            startActivity(intent);
-        });
+        btnModule1.setOnClickListener(v -> startActivity(new Intent(ModuleMenuActivity.this, Module1Activity.class)));
 
-        btnFakeNewsModule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class));
-            }
-        });
+        btnCallFromAnUnknown.setOnClickListener(v ->
+                startActivity(new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class)));
+
+        btnShoppingOnline.setOnClickListener(v ->
+                startActivity(new Intent(ModuleMenuActivity.this, Module3Activity.class)));
+
+        btnFakeNewsModule.setOnClickListener(v ->
+                startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class)));
 
         btnAiLite.setOnClickListener(v -> {
             Intent intent = new Intent(ModuleMenuActivity.this, AiActivity.class);
@@ -82,9 +88,32 @@ public class ModuleMenuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 1) Font
         applyFontSize(findViewById(android.R.id.content));
+
+        // 2) Progres
+        refreshProgressUI();
     }
 
+    private void refreshProgressUI() {
+        int p1 = ProgressStore.getPercent(this, ProgressKeys.MODULE1_PARTS);
+        int p2 = ProgressStore.getPercent(this, ProgressKeys.MODULE2_PARTS);
+        int p3 = ProgressStore.getPercent(this, ProgressKeys.MODULE3_PARTS);
+        int pFN = ProgressStore.getPercent(this, ProgressKeys.FAKENEWS_PARTS);
+
+        if (progressModule1 != null) progressModule1.setProgress(p1);
+        if (progressModule2 != null) progressModule2.setProgress(p2);
+        if (progressModule3 != null) progressModule3.setProgress(p3);
+        if (progressFakeNews != null) progressFakeNews.setProgress(pFN);
+
+        if (labelModule1 != null) labelModule1.setText("Postęp: " + p1 + "%");
+        if (labelModule2 != null) labelModule2.setText("Postęp: " + p2 + "%");
+        if (labelModule3Number != null) labelModule3Number.setText(p3 + "%");
+        if (labelFakeNews != null) labelFakeNews.setText("Postęp: " + pFN + "%");
+    }
+
+    // ================== POWIĘKSZANIE TEKSTU (Twoja logika) ==================
     private void applyFontSize(View root) {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLarge = prefs.getBoolean("large_font", false);
@@ -97,7 +126,6 @@ public class ModuleMenuActivity extends AppCompatActivity {
     }
 
     private void scaleTextRecursively(View view, float titleSize, float normalSize, float smallSize) {
-
         if (view instanceof TextView) {
             TextView tv = (TextView) view;
 

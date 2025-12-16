@@ -3,12 +3,16 @@ package com.example.smartsenior.ui.moduleMenu.modules;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.google.android.material.button.MaterialButton;
+
 public class TheoryActivity extends AppCompatActivity {
 
-    private int currentScreen = 1; // zaczynamy od ekranu 1
+    private static final int LAST_SCREEN = 7;
+    private int currentScreen = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,33 +43,39 @@ public class TheoryActivity extends AppCompatActivity {
             case 7:
                 setContentView(R.layout.activity_safe_msg7);
                 break;
-            case 8:
-                setContentView(R.layout.activity_safe_msg8);
-                break;
         }
 
         setupButtons();
     }
 
+    private void goToModule1() {
+        Intent intent = new Intent(TheoryActivity.this, Module1Activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
+    }
+
     private void setupButtons() {
 
-        // next
-        View next = findViewById(R.id.btnNext);
-        if (next != null) {
-            next.setOnClickListener(v -> {
-                if (currentScreen < 8) {
+        View nextView = findViewById(R.id.btnNext);
+        if (nextView != null) {
+
+            // (opcjonalnie) zmień napis na ostatnim ekranie
+            if (nextView instanceof MaterialButton) {
+                ((MaterialButton) nextView).setText(currentScreen == LAST_SCREEN ? "Koniec" : "Dalej");
+            }
+
+            nextView.setOnClickListener(v -> {
+                // ✅ jeśli jesteśmy na safe_msg7 -> wracamy do Module1
+                if (currentScreen >= LAST_SCREEN) {
+                    goToModule1();
+                } else {
                     currentScreen++;
                     showScreen(currentScreen);
-                } else {
-                    // 🔥 PO 8 EKRANIE – POWRÓT DO MENU
-                    Intent intent = new Intent(TheoryActivity.this, Module1Activity.class);
-                    startActivity(intent);
-                    finish();
                 }
             });
         }
 
-        // back
         View back = findViewById(R.id.btnBack);
         if (back != null) {
             back.setOnClickListener(v -> {
@@ -73,7 +83,7 @@ public class TheoryActivity extends AppCompatActivity {
                     currentScreen--;
                     showScreen(currentScreen);
                 } else {
-                    finish(); // wyjście z modułu
+                    finish();
                 }
             });
         }

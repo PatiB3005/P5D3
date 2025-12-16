@@ -7,8 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,15 +24,15 @@ public class Grandchild1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grandchild_1);
 
-        ImageView call = findViewById(R.id.imgCall);
-        Button end = findViewById(R.id.btnEnd);
+        LinearLayout answerCall = findViewById(R.id.answerCall);
+        LinearLayout declineCall = findViewById(R.id.declineCall);
 
         // Start dźwięku i wibracji po wejściu na ekran
         startRingtoneSafely();
         startVibrationSafely();
 
         // Zielona słuchawka → przejście do następnej sceny
-        call.setOnClickListener(v -> {
+        answerCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
 
@@ -41,7 +41,7 @@ public class Grandchild1Activity extends AppCompatActivity {
         });
 
         // "Koniec" → zatrzymanie wszystkiego i wyjście
-        end.setOnClickListener(v -> {
+        declineCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
             finish();

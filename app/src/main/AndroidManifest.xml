@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Uprawnienie do wibracji -->
+    <!-- Uprawnienia muszą być TU: bezpośrednio pod <manifest> -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -79,6 +80,7 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman4Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman5Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6aActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman7Activity" />
 
         <!-- Scenariusz: Telefon na bank -->
@@ -134,10 +136,14 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizPage4Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizSummaryActivity" />
 
-        <!-- QUIZ Z NAGŁÓWKÓW (fake news) -->
+        <!-- Fake news -->
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
         <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
+
+        <!-- Zaufane kontakty -->
+        <activity android:name=".ui.trustedContacts.TrustedContactsActivity" />
+        <activity android:name=".ui.trustedContacts.TrustedContactFormActivity" />
 
         <!-- AI Lite -->
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiActivity" />

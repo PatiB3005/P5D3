@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.google.android.material.button.MaterialButton;
 
 public class Task4Page4Activity extends AppCompatActivity {
@@ -24,7 +26,6 @@ public class Task4Page4Activity extends AppCompatActivity {
     boolean appSelected = false;
     boolean linkSelected = false;
     boolean contentSelected = false;
-
     boolean locked = false;
 
     @Override
@@ -51,6 +52,9 @@ public class Task4Page4Activity extends AppCompatActivity {
         popupClose.setOnClickListener(v -> hidePopup());
 
         btnFinish.setOnClickListener(v -> {
+            // ZALICZENIE CZĘŚCI: Task4 ukończony
+            ProgressStore.markDone(this, ProgressKeys.M1_TASK4_DONE);
+
             Intent i = new Intent(this, TasksActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
@@ -59,69 +63,52 @@ public class Task4Page4Activity extends AppCompatActivity {
     }
 
     private void toggle(MaterialButton btn, int id) {
-
         if (locked) return;
 
         if (id == 1) {
             appSelected = !appSelected;
             highlight(btn, appSelected);
-
         } else if (id == 2) {
             linkSelected = !linkSelected;
             highlight(btn, linkSelected);
-
         } else {
             contentSelected = !contentSelected;
             highlight(btn, contentSelected);
 
             if (contentSelected) {
-                // treść wiadomości = zła odpowiedź
                 showError();
                 return;
             }
         }
-
         checkIfReady();
     }
 
     private void highlight(MaterialButton btn, boolean selected) {
-        if (selected)
-            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6FB6FF")));
-        else
-            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A7D0FF")));
+        if (selected) btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6FB6FF")));
+        else btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A7D0FF")));
     }
 
     private void checkIfReady() {
         if (locked) return;
-
-        // poprawne: App + Link
-        if (appSelected && linkSelected) {
-            showSuccess();
-        }
+        if (appSelected && linkSelected) showSuccess();
     }
 
     private void showSuccess() {
         locked = true;
-
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
-
         popupText.setText("✓ Dobrze!\n");
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CFF9C7")));
-
         disableButtons();
         showFinish();
     }
 
     private void showError() {
         locked = true;
-
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
-
         popupText.setText("✗ Niepoprawnie.\n");
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1D1")));
-
         disableButtons();
         showFinish();
     }
