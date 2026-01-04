@@ -50,6 +50,29 @@
                 android:layout_marginBottom="36dp"
                 android:textAlignment="center" />
 
+            <!-- Kafelek: Teoria -->
+            <LinearLayout
+                android:id="@+id/btnFakeNewsTheory"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="#93C5FD"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clipToOutline="true"
+                android:layout_marginBottom="28dp"
+                android:padding="12dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teoria"
+                    android:textColor="#0F172A"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
             <!-- Kafelek: Quiz z nagłówkami -->
             <LinearLayout
                 android:id="@+id/btnFakeNewsQuiz"
@@ -72,6 +95,7 @@
                     android:textSize="24sp"
                     android:fontFamily="@font/montserrat_bold"/>
             </LinearLayout>
+
 
         </LinearLayout>
 

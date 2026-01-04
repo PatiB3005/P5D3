@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class FakeNewsModuleActivity extends AppCompatActivity {
@@ -19,11 +20,14 @@ public class FakeNewsModuleActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        // Kafelek do quizu
+        LinearLayout btnTheory = findViewById(R.id.btnFakeNewsTheory);
+        btnTheory.setOnClickListener(v ->
+                startActivity(new Intent(this, FakeNewsTheoryActivity.class))
+        );
+
         LinearLayout btnQuiz = findViewById(R.id.btnFakeNewsQuiz);
-        btnQuiz.setOnClickListener(v -> {
-            Intent intent = new Intent(FakeNewsModuleActivity.this, FakeNewsIntroActivity.class);
-            startActivity(intent);
-        });
+        btnQuiz.setOnClickListener(v ->
+                startActivity(new Intent(this, FakeNewsIntroActivity.class))
+        );
     }
 }
