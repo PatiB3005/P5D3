@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class FakeNewsResultActivity extends AppCompatActivity {
+public class FakeNewsResultActivity extends BaseTTSActivity {
 
     private ImageView finishMedal;
     private TextView resultText;
@@ -37,12 +36,14 @@ public class FakeNewsResultActivity extends AppCompatActivity {
         setupResult(score, maxScore);
 
         retryButton.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(FakeNewsResultActivity.this, FakeNewsQuizActivity.class);
             startActivity(intent);
             finish();
         });
 
         backToMenuButton.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(FakeNewsResultActivity.this, ModuleMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -56,21 +57,22 @@ public class FakeNewsResultActivity extends AppCompatActivity {
         float percent = (score * 100f) / maxScore;
 
         if (percent >= 80f) {
-            // ZŁOTY MEDAL
             finishMedal.setImageResource(R.drawable.ic_medal_gold);
             resultText.setText("GRATULACJE!\nŚwietnie rozpoznajesz fake newsy!");
         } else if (percent >= 60f) {
-            // SREBRNY MEDAL
             finishMedal.setImageResource(R.drawable.ic_medal_silver);
             resultText.setText("Bardzo dobrze!\nCzasem dajesz się jeszcze nabrać, ale jesteś czujny.");
         } else if (percent >= 40f) {
-            // BRĄZOWY MEDAL
             finishMedal.setImageResource(R.drawable.ic_medal_bronze);
             resultText.setText("Całkiem nieźle,\nale warto jeszcze poćwiczyć rozpoznawanie fałszywych treści.");
         } else {
-            // PORAŻKA
             finishMedal.setImageResource(R.drawable.ic_sad_emoji);
             resultText.setText("Tym razem się nie udało.\nSpróbuj jeszcze raz i uważnie czytaj nagłówki oraz komentarze.");
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }
