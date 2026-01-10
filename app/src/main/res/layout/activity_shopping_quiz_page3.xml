@@ -6,22 +6,28 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- Scroll (nie nachodzi na przycisk) -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
             <!-- Tytuł -->
             <TextView
@@ -33,129 +39,207 @@
                 android:textSize="30sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginBottom="32dp"/>
+                android:layout_marginBottom="18dp" />
 
-            <!-- Obrazek -->
-            <ImageView
-                android:id="@+id/quizImage"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:src="@drawable/ic_quiz_shopping_page3"
-                android:layout_marginBottom="32dp"/>
-
-
-            <!-- PYTANIE 5 -->
-            <TextView
-                android:id="@+id/question5"
+            <!-- BLOK: Pytanie 5 + odpowiedzi -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5. Które zachowanie może świadczyć o fałszywym sklepie internetowym?"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="12dp"
-                android:textColor="#1A202C"/>
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="22dp"
+                android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/groupQ5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/q5_a"
+                <TextView
+                    android:id="@+id/question5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Regulamin ma kilka drobnych literówek"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
+                    android:text="5. Które zachowanie może świadczyć o fałszywym sklepie internetowym?"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:layout_marginBottom="12dp" />
 
-                <RadioButton
-                    android:id="@+id/q5_b"
+                <!-- ŁADNE ODPOWIEDZI (kafelki) -->
+                <RadioGroup
+                    android:id="@+id/groupQ5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sklep nie oferuje płatności przy odbiorze"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/q5_c"
+                    <RadioButton
+                        android:id="@+id/q5_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Regulamin ma kilka drobnych literówek"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp" />
+
+                    <RadioButton
+                        android:id="@+id/q5_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sklep nie oferuje płatności przy odbiorze"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                    <RadioButton
+                        android:id="@+id/q5_c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Strona działa w HTTPS i prosi o akceptację plików cookies"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/feedbackQ5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Strona działa w HTTPS i prosi o akceptację plików cookies"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
-            </RadioGroup>
+                    android:textSize="19sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/feedbackQ5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="#1A202C"
-                android:visibility="gone"
-                android:layout_marginBottom="24dp"/>
-
-
-            <!-- PYTANIE 6 -->
-            <TextView
-                android:id="@+id/question6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="6. Co jest najmniej podejrzane przy zdjęciach produktów?"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="#1A202C"
-                android:layout_marginBottom="12dp"/>
-
-            <RadioGroup
-                android:id="@+id/groupQ6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/q6_a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Zdjęcia są lekko rozmazane — wyglądają na zrobione telefonem"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
-
-                <RadioButton
-                    android:id="@+id/q6_b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Zdjęcia są idealne i wyglądają jak z banku zdjęć"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
-
-                <RadioButton
-                    android:id="@+id/q6_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Produkt pokazano tylko na jednym zdjęciu i w jednym ujęciu"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/montserrat_regular"/>
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/feedbackQ6"
+            <!-- BLOK: Pytanie 6 + odpowiedzi -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="#1A202C"
-                android:visibility="gone"
-                android:layout_marginBottom="24dp"/>
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:layout_marginBottom="6dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6. Co jest najmniej podejrzane przy zdjęciach produktów?"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- ŁADNE ODPOWIEDZI (kafelki) -->
+                <RadioGroup
+                    android:id="@+id/groupQ6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/q6_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Zdjęcia są lekko rozmazane — wyglądają na zrobione telefonem"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp" />
+
+                    <RadioButton
+                        android:id="@+id/q6_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Zdjęcia są idealne i wyglądają jak z banku zdjęć"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                    <RadioButton
+                        android:id="@+id/q6_c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Produkt pokazano tylko na jednym zdjęciu i w jednym ujęciu"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/feedbackQ6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Przyciski -->
+    <!-- separator -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- PRZYCISK DALEJ -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -172,8 +256,7 @@
             android:fontFamily="@font/montserrat_bold"
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="20dp"
-            android:enabled="false"/>
-
+            android:enabled="false" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

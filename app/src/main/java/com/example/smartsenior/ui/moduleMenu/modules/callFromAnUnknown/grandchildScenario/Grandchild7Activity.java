@@ -1,5 +1,7 @@
 package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

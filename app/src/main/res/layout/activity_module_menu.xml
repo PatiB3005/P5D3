@@ -179,7 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/online_shopping"
+                android:src="@drawable/ic_online_shopping"
                 android:background="@drawable/rounded_image"
                 android:clipToOutline="true" />
 
@@ -208,6 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Zakupy Online"
+                android:fontFamily="@font/montserrat_bold"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
@@ -217,11 +218,13 @@
                 android:id="@+id/textModule3Description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra lorem a ultrices feugiat."
+                android:text="W tym module nauczysz się, jak bezpiecznie robić zakupy w internecie. Poznasz typowe triki oszustów w fałszywych sklepach i ogłoszeniach, dowiesz się jak sprawdzać sprzedawcę, unikać podejrzanych linków oraz chronić swoje dane i pieniądze podczas płatności."
                 android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp" />
+
         </LinearLayout>
 
         <!-- Fake News -->

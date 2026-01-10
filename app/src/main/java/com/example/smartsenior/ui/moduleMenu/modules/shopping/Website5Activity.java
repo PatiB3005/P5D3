@@ -1,9 +1,10 @@
 package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -15,11 +16,15 @@ import com.google.android.material.button.MaterialButton;
 
 public class Website5Activity extends AppCompatActivity {
 
-    Button btnFake, btnReal, btnOk;
-    MaterialButton btnNext;
-    LinearLayout popupOverlay;
-    ScrollView scrollView;
-    TextView titleFalse, titleTrue;
+    private MaterialButton btnFake, btnReal, btnOk, btnNext;
+    private LinearLayout popupOverlay;
+    private ScrollView scrollView;
+    private TextView titleFalse, titleTrue;
+
+    // Kolory bez colors.xml
+    private static final int BLUE  = Color.parseColor("#2B6CB0");
+    private static final int GREEN = Color.parseColor("#12B76A");
+    private static final int RED   = Color.parseColor("#D92D20");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,35 +34,57 @@ public class Website5Activity extends AppCompatActivity {
         btnFake = findViewById(R.id.btnFake);
         btnReal = findViewById(R.id.btnReal);
         btnNext = findViewById(R.id.btnNext);
-        btnOk = findViewById(R.id.btnOk);
+        btnOk   = findViewById(R.id.btnOk);
+
         popupOverlay = findViewById(R.id.popupOverlay);
         titleFalse = findViewById(R.id.titleFalse);
-        titleTrue = findViewById(R.id.titleTrue);
+        titleTrue  = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
+
+        // Startowo oba niebieskie
+        setTint(btnFake, BLUE);
+        setTint(btnReal, BLUE);
+        btnFake.setAlpha(1f);
+        btnReal.setAlpha(1f);
 
         setButtonState(btnNext, false);
 
-        btnFake.setOnClickListener(v -> handleAnswer(true));
-        btnReal.setOnClickListener(v -> handleAnswer(false));
+        // Website5: FAŁSZYWA = poprawna
+        btnFake.setOnClickListener(v -> handleAnswer(btnFake, true));
+        btnReal.setOnClickListener(v -> handleAnswer(btnReal, false));
 
         btnNext.setOnClickListener(v ->
                 startActivity(new Intent(this, Website6Activity.class))
         );
 
-        btnOk.setOnClickListener(v -> {
-            popupOverlay.setVisibility(View.GONE);
-        });
+        btnOk.setOnClickListener(v -> popupOverlay.setVisibility(View.GONE));
     }
 
-    private void handleAnswer(boolean isCorrect) {
+    private void handleAnswer(MaterialButton clickedButton, boolean isCorrect) {
         btnFake.setClickable(false);
         btnReal.setClickable(false);
+
         setButtonState(btnNext, true);
+        btnNext.setVisibility(View.VISIBLE);
 
-        btnReal.setAlpha(isCorrect ? 0.3f : 1f);
-        btnFake.setAlpha(isCorrect ? 1f : 0.3f);
+        // Reset do BLUE
+        setTint(btnFake, BLUE);
+        setTint(btnReal, BLUE);
+        btnFake.setAlpha(1f);
+        btnReal.setAlpha(1f);
 
-        if (isCorrect) ScoreManager.addPoint();
+        // Kolor klikniętego + przygaszenie drugiego
+        if (isCorrect) {
+            setTint(clickedButton, GREEN);
+            if (clickedButton == btnFake) btnReal.setAlpha(0.35f);
+            else btnFake.setAlpha(0.35f);
+
+            ScoreManager.addPoint();
+        } else {
+            setTint(clickedButton, RED);
+            if (clickedButton == btnFake) btnReal.setAlpha(0.35f);
+            else btnFake.setAlpha(0.35f);
+        }
 
         popupOverlay.setVisibility(View.VISIBLE);
         if (isCorrect) {
@@ -68,12 +95,15 @@ public class Website5Activity extends AppCompatActivity {
             titleTrue.setVisibility(View.GONE);
         }
 
-        btnNext.setVisibility(View.VISIBLE);
         scrollView.post(() -> scrollView.smoothScrollTo(0, btnNext.getBottom()));
     }
 
     private void setButtonState(MaterialButton button, boolean enabled) {
         button.setEnabled(enabled);
         button.setAlpha(enabled ? 1f : 0.4f);
+    }
+
+    private void setTint(MaterialButton button, int color) {
+        button.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 }

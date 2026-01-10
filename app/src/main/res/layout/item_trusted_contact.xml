@@ -28,19 +28,19 @@
                 android:id="@+id/imgAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:visibility="gone"
-                android:contentDescription="@null" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvInitials"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="A"
-                android:textSize="26sp"
-                android:textColor="#1A202C"
                 android:fontFamily="@font/montserrat_bold"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="A"
+                android:textColor="#1A202C"
+                android:textSize="26sp" />
         </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -62,16 +62,18 @@
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Imię i nazwisko"
+        android:layout_marginStart="14dp"
+        android:text="Imię i nazwisko bardzo długie bardzo długie"
         android:textSize="24sp"
         android:textColor="#1A202C"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_marginStart="14dp"
-        android:maxLines="2"
+        android:maxLines="1"
         android:ellipsize="end"
+        android:includeFontPadding="false"
+        app:layout_constrainedWidth="true"
         app:layout_constraintStart_toEndOf="@id/avatarCircle"
-        app:layout_constraintTop_toTopOf="@id/avatarCircle"
-        app:layout_constraintEnd_toStartOf="@id/tvMenu" />
+        app:layout_constraintEnd_toStartOf="@id/tvMenu"
+        app:layout_constraintTop_toTopOf="@id/avatarCircle" />
 
     <!-- Chip POD nazwą -->
     <com.google.android.material.card.MaterialCardView
@@ -99,16 +101,20 @@
             android:gravity="center" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Numer telefonu osobno (duży) -->
+    <!-- Numer telefonu (pod avatarem / chipem) -->
     <TextView
         android:id="@+id/tvPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:text="697 242 875"
         android:textSize="22sp"
         android:textColor="#1A202C"
         android:fontFamily="@font/montserrat_regular"
-        android:layout_marginTop="22dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        app:layout_constrainedWidth="true"
         app:layout_constraintTop_toBottomOf="@id/avatarCircle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -118,6 +124,7 @@
         android:id="@+id/btnCall"
         android:layout_width="0dp"
         android:layout_height="72dp"
+        android:layout_marginTop="16dp"
         android:text="Zadzwoń"
         android:textAllCaps="false"
         android:textSize="24sp"
@@ -125,7 +132,6 @@
         android:textColor="#FFFFFF"
         app:backgroundTint="#2B6CB0"
         app:cornerRadius="24dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/tvPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

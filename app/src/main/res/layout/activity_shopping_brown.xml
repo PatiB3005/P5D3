@@ -1,106 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF2FF"
-    android:fillViewport="true">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="20dp">
+    <!-- Scroll content -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingBottom="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-
-        <!-- Nagłówek modułu -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ZAKUPY ONLINE"
-            android:gravity="center"
-            android:textColor="#1E293B"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
-            android:shadowColor="#55000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="4" />
-
-        <!-- Medal -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_marginBottom="40dp"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="12dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <ImageView
-                android:id="@+id/finishMedal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="24dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_medal_bronze"
-                android:contentDescription="Srebrny medal za ukończenie modułu" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Gratulacje -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="24dp"
-            app:cardBackgroundColor="#DBEAFE">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="GRATULACJE!\nUkończyłeś moduł „Zakupy Online”.\n\nMożesz wrócić do menu głównego, aby kontynuować naukę, lub powtórzyć test, aby poprawić wynik!"
-                android:textSize="20sp"
-                android:textColor="#1E293B"
-                android:gravity="center"
-                android:padding="28dp"
-                android:lineSpacingExtra="4dp"
-                android:fontFamily="@font/montserrat_regular"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Przyciski -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="12dp">
 
+            <!-- Header (jedna linia) -->
+            <TextView
+                android:id="@+id/titleSafeMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ZAKUPY ONLINE"
+                android:textColor="#1A202C"
+                android:textSize="36sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- MEDAL -->
+            <ImageView
+                android:id="@+id/finishMedal"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:src="@drawable/ic_medal_bronze"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Karta tekstowa -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/congratsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#BFDBFE"
+                app:strokeWidth="1dp"
+                app:strokeColor="#A7C7F7"
+                android:stateListAnimator="@null">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp">
+
+                    <TextView
+                        android:id="@+id/congratsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GRATULACJE!"
+                        android:textColor="#1A202C"
+                        android:textSize="26sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:includeFontPadding="false"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:id="@+id/congratsText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ukończyłeś moduł \n„Zakupy Online”.\n\nMożesz wrócić do menu głównego, aby kontynuować naukę, lub powtórzyć test, aby poprawić wynik!"
+                        android:textColor="#1A202C"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="5dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- PRZYCISKI: jeden pod drugim -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/backToMenuButton"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="82dp"
                 android:text="Powrót do menu głównego"
-                android:textSize="18sp"
                 android:textAllCaps="false"
+                android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#2563EB"
-                android:layout_marginBottom="10dp" />
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="14sp"
+                android:autoSizeMaxTextSize="20sp"
+                android:autoSizeStepGranularity="1sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#2B6CB0"
+                app:rippleColor="#00000000"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:layout_marginBottom="12dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retryTestButton"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="82dp"
                 android:text="Powtórz test"
-                android:textSize="18sp"
                 android:textAllCaps="false"
+                android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
-                app:cornerRadius="16dp"
-                app:backgroundTint="#3F51B5"/>
-        </LinearLayout>
+                android:gravity="center"
+                android:textAlignment="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="14sp"
+                android:autoSizeMaxTextSize="20sp"
+                android:autoSizeStepGranularity="1sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                app:cornerRadius="24dp"
+                app:backgroundTint="#2B6CB0"
+                app:rippleColor="#00000000"
+                android:elevation="0dp"
+                android:stateListAnimator="@null" />
 
-    </LinearLayout>
-</ScrollView>
+            <!-- mały dystans od dołu -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

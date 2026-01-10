@@ -22,7 +22,18 @@ public class TrustedContactsStorage {
             JSONArray arr = new JSONArray(raw);
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject o = arr.getJSONObject(i);
-                out.add(TrustedContact.fromJson(o));
+                TrustedContact c = TrustedContact.fromJson(o);
+
+                // Normalizacja numeru do +48... (żeby nie trzymać śmieci)
+                String norm = PhoneUtils.normalizeToPL(c.phone);
+                c.phone = (norm == null ? "" : norm);
+
+                // bezpieczeństwo nulli
+                c.id = (c.id == null ? "" : c.id);
+                c.name = (c.name == null ? "" : c.name);
+                c.photoUri = (c.photoUri == null ? "" : c.photoUri);
+
+                out.add(c);
             }
         } catch (JSONException e) {
             out.clear();
