@@ -2,11 +2,12 @@ package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class AiPhotoActivity extends AppCompatActivity {
+public class AiPhotoActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,10 +17,16 @@ public class AiPhotoActivity extends AppCompatActivity {
         MaterialButton next = findViewById(R.id.btnNext);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AiPhoto2Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(this, AiPhoto2Activity.class));
         });
+
         ScoreManageAi.reset();
     }
 
+    @Override
+    protected String getSpeakText() {
+        // Tu zwykle są opisy w TextView, a przycisk "Dalej" pomijamy (Button).
+        return collectSpeakableTextFromLayout();
+    }
 }

@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.google.android.material.button.MaterialButton;
 
-public class ShoppingQuizSummaryActivity extends AppCompatActivity {
+public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
 
     private TextView summaryScore, summaryMessage;
     private MaterialButton btnFinish;
@@ -39,12 +38,17 @@ public class ShoppingQuizSummaryActivity extends AppCompatActivity {
         }
 
         btnFinish.setOnClickListener(v -> {
-            // ZALICZENIE CZĘŚCI: quiz zakupów online ukończony
             ProgressStore.markDone(this, ProgressKeys.M3_QUIZ_DONE);
 
+            tts.stop();
             Intent intent = new Intent(ShoppingQuizSummaryActivity.this, Module3Activity.class);
             startActivity(intent);
             finish();
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

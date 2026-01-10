@@ -8,12 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Website2Activity extends AppCompatActivity {
+public class Website2Activity extends BaseTTSActivity {
 
     Button btnFake, btnReal, btnOk;
     MaterialButton btnNext;
@@ -40,16 +39,17 @@ public class Website2Activity extends AppCompatActivity {
         btnFake.setOnClickListener(v -> handleAnswer(true));
         btnReal.setOnClickListener(v -> handleAnswer(false));
 
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(this, Website3Activity.class))
-        );
-
-        btnOk.setOnClickListener(v -> {
-            popupOverlay.setVisibility(View.GONE);
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Website3Activity.class));
         });
+
+        btnOk.setOnClickListener(v -> popupOverlay.setVisibility(View.GONE));
     }
 
     private void handleAnswer(boolean isCorrect) {
+        tts.stop();
+
         btnFake.setClickable(false);
         btnReal.setClickable(false);
         setButtonState(btnNext, true);
@@ -75,5 +75,25 @@ public class Website2Activity extends AppCompatActivity {
     private void setButtonState(MaterialButton button, boolean enabled) {
         button.setEnabled(enabled);
         button.setAlpha(enabled ? 1f : 0.4f);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+        String a = (btnFake != null && btnFake.getText() != null) ? btnFake.getText().toString().trim() : "";
+        String b = (btnReal != null && btnReal.getText() != null) ? btnReal.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja pierwsza: ").append(a);
+        }
+        if (!b.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja druga: ").append(b);
+        }
+        return sb.toString().trim();
     }
 }

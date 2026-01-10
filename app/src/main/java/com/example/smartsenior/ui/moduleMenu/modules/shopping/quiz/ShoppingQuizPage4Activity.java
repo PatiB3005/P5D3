@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class ShoppingQuizPage4Activity extends AppCompatActivity {
+public class ShoppingQuizPage4Activity extends BaseTTSActivity {
 
     private RadioGroup groupQ1, groupQ2;
     private TextView feedbackQ1, feedbackQ2;
@@ -38,6 +37,7 @@ public class ShoppingQuizPage4Activity extends AppCompatActivity {
         setupQ2();
 
         btnNext.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, ShoppingQuizSummaryActivity.class);
             intent.putExtra("QUIZ_RESULT", score);
             startActivity(intent);
@@ -51,6 +51,7 @@ public class ShoppingQuizPage4Activity extends AppCompatActivity {
 
     private void setupQ1() {
         groupQ1.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ1);
 
             if (checkedId == R.id.q1_b) score++;
@@ -68,6 +69,7 @@ public class ShoppingQuizPage4Activity extends AppCompatActivity {
 
     private void setupQ2() {
         groupQ2.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ2);
 
             if (checkedId == R.id.q2_a) score++;
@@ -88,5 +90,10 @@ public class ShoppingQuizPage4Activity extends AppCompatActivity {
                 feedbackQ1.getVisibility() == View.VISIBLE &&
                         feedbackQ2.getVisibility() == View.VISIBLE
         );
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

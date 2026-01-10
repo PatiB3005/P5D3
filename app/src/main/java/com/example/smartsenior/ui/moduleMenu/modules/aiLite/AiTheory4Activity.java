@@ -3,12 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class AiTheory4Activity extends AppCompatActivity {
+public class AiTheory4Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +17,19 @@ public class AiTheory4Activity extends AppCompatActivity {
         MaterialButton btnBack = findViewById(R.id.btnBack);
         MaterialButton btnNext = findViewById(R.id.btnNext);
 
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
 
         btnNext.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    AiTheory4Activity.this,
-                    AiTheory5Activity.class
-            );
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(AiTheory4Activity.this, AiTheory5Activity.class));
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

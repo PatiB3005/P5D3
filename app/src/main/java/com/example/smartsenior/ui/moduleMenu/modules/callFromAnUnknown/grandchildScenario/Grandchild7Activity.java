@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 
-public class Grandchild7Activity extends AppCompatActivity {
+public class Grandchild7Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +23,16 @@ public class Grandchild7Activity extends AppCompatActivity {
             // zapis progresu – scenariusz wnuczek ukończony
             ProgressStore.markDone(this, ProgressKeys.M2_GRANDCHILD_DONE);
 
-            Intent intent = new Intent(
-                    Grandchild7Activity.this,
-                    CallFromAnUnknownMenuActivity.class
-            );
+            tts.stop();
+            Intent intent = new Intent(Grandchild7Activity.this, CallFromAnUnknownMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

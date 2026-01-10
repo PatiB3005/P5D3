@@ -10,8 +10,6 @@ import com.example.smartsenior.ui.BaseTTSActivity;
 
 public class TutorialActivity1 extends BaseTTSActivity {
 
-    @Override
-    protected boolean startWithTtsOff() { return true; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

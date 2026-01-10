@@ -6,18 +6,17 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class ShoppingQuizPage2Activity extends AppCompatActivity {
+public class ShoppingQuizPage2Activity extends BaseTTSActivity {
 
     private RadioGroup groupQ3, groupQ4;
     private TextView feedbackQ3, feedbackQ4;
     private MaterialButton btnNext;
 
-    private int score; // wynik przejęty z poprzedniej strony
+    private int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,7 @@ public class ShoppingQuizPage2Activity extends AppCompatActivity {
         setupQ4();
 
         btnNext.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, ShoppingQuizPage3Activity.class);
             intent.putExtra("QUIZ_RESULT", score);
             startActivity(intent);
@@ -51,6 +51,7 @@ public class ShoppingQuizPage2Activity extends AppCompatActivity {
 
     private void setupQ3() {
         groupQ3.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ3);
 
             if (checkedId == R.id.q3_b) score++;
@@ -68,6 +69,7 @@ public class ShoppingQuizPage2Activity extends AppCompatActivity {
 
     private void setupQ4() {
         groupQ4.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ4);
 
             if (checkedId == R.id.q4_a) score++;
@@ -88,5 +90,10 @@ public class ShoppingQuizPage2Activity extends AppCompatActivity {
                 feedbackQ3.getVisibility() == View.VISIBLE &&
                         feedbackQ4.getVisibility() == View.VISIBLE
         );
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

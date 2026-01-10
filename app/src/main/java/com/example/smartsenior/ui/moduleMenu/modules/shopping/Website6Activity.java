@@ -8,14 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Website6Activity extends AppCompatActivity {
+public class Website6Activity extends BaseTTSActivity {
 
     Button btnFake, btnReal, btnOk;
     MaterialButton btnNext;
@@ -44,8 +43,8 @@ public class Website6Activity extends AppCompatActivity {
         btnReal.setOnClickListener(v -> handleAnswer(false));
 
         btnNext.setOnClickListener(v -> {
+            tts.stop();
 
-            // ZALICZENIE CZĘŚCI: test stron ukończony (dotarcie do końca)
             ProgressStore.markDone(this, ProgressKeys.M3_WEBSITE_DONE);
 
             int score = ScoreManager.score;
@@ -65,6 +64,8 @@ public class Website6Activity extends AppCompatActivity {
     }
 
     private void handleAnswer(boolean isCorrect) {
+        tts.stop();
+
         btnFake.setClickable(false);
         btnReal.setClickable(false);
         setButtonState(btnNext, true);
@@ -90,5 +91,25 @@ public class Website6Activity extends AppCompatActivity {
     private void setButtonState(MaterialButton button, boolean enabled) {
         button.setEnabled(enabled);
         button.setAlpha(enabled ? 1f : 0.4f);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+        String a = (btnFake != null && btnFake.getText() != null) ? btnFake.getText().toString().trim() : "";
+        String b = (btnReal != null && btnReal.getText() != null) ? btnReal.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja pierwsza: ").append(a);
+        }
+        if (!b.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja druga: ").append(b);
+        }
+        return sb.toString().trim();
     }
 }

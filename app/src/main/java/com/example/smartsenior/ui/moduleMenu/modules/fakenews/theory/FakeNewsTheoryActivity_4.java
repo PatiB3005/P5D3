@@ -3,14 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.fakenews.theory;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class FakeNewsTheoryActivity_4 extends AppCompatActivity {
-
-    private boolean ttsOn = false;
+public class FakeNewsTheoryActivity_4 extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +17,19 @@ public class FakeNewsTheoryActivity_4 extends AppCompatActivity {
         MaterialButton btnBack = findViewById(R.id.btnBack);
         MaterialButton btnNext = findViewById(R.id.btnNext);
 
-        // WSTECZ
-        btnBack.setOnClickListener(v -> finish());
-
-        // DALEJ
-        btnNext.setOnClickListener(v -> {
-            startActivity(new Intent(this, FakeNewsTheoryActivity_5.class));
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
         });
 
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, FakeNewsTheoryActivity_5.class));
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

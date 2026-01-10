@@ -1,17 +1,17 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
-import com.google.android.material.card.MaterialCardView;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
-public class Task1Page3Activity extends AppCompatActivity {
+public class Task1Page3Activity extends BaseTTSActivity {
 
     MaterialCardView card1, card2, card3, card4;
     MaterialButton btnNext;
@@ -23,7 +23,7 @@ public class Task1Page3Activity extends AppCompatActivity {
 
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
-        card3 = findViewById(R.id.card3); // POPRAWNA
+        card3 = findViewById(R.id.card3);
         card4 = findViewById(R.id.card4);
         btnNext = findViewById(R.id.btnNext);
 
@@ -35,13 +35,15 @@ public class Task1Page3Activity extends AppCompatActivity {
         setupCard(card3, true);
         setupCard(card4, false);
 
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(Task1Page3Activity.this, Task1Page4Activity.class))
-        );
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(Task1Page3Activity.this, Task1Page4Activity.class));
+        });
     }
 
     private void setupCard(MaterialCardView card, boolean isCorrect) {
         card.setOnClickListener(v -> {
+            tts.stop();
 
             disableAll();
             btnNext.setEnabled(true);
@@ -74,5 +76,10 @@ public class Task1Page3Activity extends AppCompatActivity {
                 .setMessage("Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”")
                 .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Task2Page1Activity extends AppCompatActivity {
+public class Task2Page1Activity extends BaseTTSActivity {
 
     MaterialButton btnQ1True, btnQ1False;
     MaterialButton btnQ2True, btnQ2False;
@@ -29,7 +28,6 @@ public class Task2Page1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task2_page1);
 
-        // ================== FIND VIEW ==================
         btnQ1True = findViewById(R.id.btnQ1True);
         btnQ1False = findViewById(R.id.btnQ1False);
         commentQ1 = findViewById(R.id.commentQ1);
@@ -44,8 +42,8 @@ public class Task2Page1Activity extends AppCompatActivity {
 
         btnNext = findViewById(R.id.btnNext);
 
-        // ===================== PYTANIE 1 =====================
         btnQ1True.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ1True, btnQ1False, false);
             commentQ1.setText("Źle! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa.");
             commentQ1.setVisibility(View.VISIBLE);
@@ -54,6 +52,7 @@ public class Task2Page1Activity extends AppCompatActivity {
         });
 
         btnQ1False.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ1False, btnQ1True, true);
             commentQ1.setText("Dobrze! Bank nigdy nie prosi o kody SMS ani hasła. To próba oszustwa.");
             commentQ1.setVisibility(View.VISIBLE);
@@ -61,8 +60,8 @@ public class Task2Page1Activity extends AppCompatActivity {
             checkAllAnswered();
         });
 
-        // ===================== PYTANIE 2 =====================
         btnQ2True.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ2True, btnQ2False, true);
             commentQ2.setText("Dobrze! Oficjalne instytucje nie wysyłają wiadomości z błędami.");
             commentQ2.setVisibility(View.VISIBLE);
@@ -71,6 +70,7 @@ public class Task2Page1Activity extends AppCompatActivity {
         });
 
         btnQ2False.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ2False, btnQ2True, false);
             commentQ2.setText("Źle! Wiadomości z błędami często są oszustwem.");
             commentQ2.setVisibility(View.VISIBLE);
@@ -78,8 +78,8 @@ public class Task2Page1Activity extends AppCompatActivity {
             checkAllAnswered();
         });
 
-        // ===================== PYTANIE 3 =====================
         btnQ3True.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ3True, btnQ3False, false);
             commentQ3.setText("Źle! Kliknięcie w link może prowadzić do kradzieży danych.");
             commentQ3.setVisibility(View.VISIBLE);
@@ -88,6 +88,7 @@ public class Task2Page1Activity extends AppCompatActivity {
         });
 
         btnQ3False.setOnClickListener(v -> {
+            tts.stop();
             setAnswer(btnQ3False, btnQ3True, true);
             commentQ3.setText("Dobrze! Takie linki często są fałszywe.");
             commentQ3.setVisibility(View.VISIBLE);
@@ -95,31 +96,23 @@ public class Task2Page1Activity extends AppCompatActivity {
             checkAllAnswered();
         });
 
-        // ===================== DALEJ =====================
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(this, Task2Page2Activity.class))
-        );
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task2Page2Activity.class));
+        });
     }
 
-    // =====================================================
-    // IDENTYCZNA LOGIKA KOLORÓW JAK W PAGE 2
-    // =====================================================
     private void setAnswer(MaterialButton selected, MaterialButton other, boolean isCorrect) {
 
         selected.setClickable(false);
         other.setClickable(false);
 
-        // wyszarz drugi przycisk
         other.setBackgroundTintList(getColorStateList(android.R.color.darker_gray));
 
         if (isCorrect) {
-            selected.setBackgroundTintList(
-                    getColorStateList(android.R.color.holo_green_light)
-            );
+            selected.setBackgroundTintList(getColorStateList(android.R.color.holo_green_light));
         } else {
-            selected.setBackgroundTintList(
-                    getColorStateList(android.R.color.holo_red_light)
-            );
+            selected.setBackgroundTintList(getColorStateList(android.R.color.holo_red_light));
         }
     }
 
@@ -129,5 +122,36 @@ public class Task2Page1Activity extends AppCompatActivity {
             btnNext.setEnabled(true);
             btnNext.setAlpha(1f);
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        // collectSpeakableTextFromLayout() może pomijać przyciski, więc dopinamy etykiety opcji:
+        String base = collectSpeakableTextFromLayout();
+
+        String o1 = btnQ1True != null && btnQ1True.getText() != null ? btnQ1True.getText().toString().trim() : "";
+        String o2 = btnQ1False != null && btnQ1False.getText() != null ? btnQ1False.getText().toString().trim() : "";
+        String o3 = btnQ2True != null && btnQ2True.getText() != null ? btnQ2True.getText().toString().trim() : "";
+        String o4 = btnQ2False != null && btnQ2False.getText() != null ? btnQ2False.getText().toString().trim() : "";
+        String o5 = btnQ3True != null && btnQ3True.getText() != null ? btnQ3True.getText().toString().trim() : "";
+        String o6 = btnQ3False != null && btnQ3False.getText() != null ? btnQ3False.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!o1.isEmpty() || !o2.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Pytanie pierwsze. Opcje: ").append(o1).append(", ").append(o2);
+        }
+        if (!o3.isEmpty() || !o4.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Pytanie drugie. Opcje: ").append(o3).append(", ").append(o4);
+        }
+        if (!o5.isEmpty() || !o6.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Pytanie trzecie. Opcje: ").append(o5).append(", ").append(o6);
+        }
+
+        return sb.toString().trim();
     }
 }

@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Bank3Activity extends AppCompatActivity {
+public class Bank3Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +19,24 @@ public class Bank3Activity extends AppCompatActivity {
         TextView textAnswerB = findViewById(R.id.textAnswerB);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A) wierzysz od razu -> dalej w oszustwo -> scena 4
         textAnswerA.setOnClickListener(v -> {
-            Intent intent = new Intent(Bank3Activity.this, Bank4Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(Bank3Activity.this, Bank4Activity.class));
         });
 
-        // B) pytasz o wiarygodność -> scena 3a
         textAnswerB.setOnClickListener(v -> {
-            Intent intent = new Intent(Bank3Activity.this, Bank3aActivity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(Bank3Activity.this, Bank3aActivity.class));
         });
 
-        // Czerwona słuchawka – przerwanie scenariusza
-        declineCall.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

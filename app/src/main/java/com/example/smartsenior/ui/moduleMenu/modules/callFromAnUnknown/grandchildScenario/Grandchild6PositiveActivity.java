@@ -3,13 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchi
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Grandchild6PositiveActivity extends AppCompatActivity {
+public class Grandchild6PositiveActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +18,14 @@ public class Grandchild6PositiveActivity extends AppCompatActivity {
 
         // Dalej -> to samo POUCZENIE co po negatywnym wyniku
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild6PositiveActivity.this,
-                    Grandchild7Activity.class);
+            tts.stop();
+            Intent intent = new Intent(Grandchild6PositiveActivity.this, Grandchild7Activity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }
