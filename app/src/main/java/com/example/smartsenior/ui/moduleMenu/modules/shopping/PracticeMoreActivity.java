@@ -3,14 +3,12 @@ package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.google.android.material.button.MaterialButton;
 
-
-public class PracticeMoreActivity extends AppCompatActivity {
+public class PracticeMoreActivity extends BaseTTSActivity {
 
     MaterialButton btnBackToMenu, btnRetryTest;
 
@@ -23,15 +21,18 @@ public class PracticeMoreActivity extends AppCompatActivity {
         btnRetryTest = findViewById(R.id.retryTestButton);
 
         btnBackToMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(PracticeMoreActivity.this, Module3Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(PracticeMoreActivity.this, Module3Activity.class));
         });
 
         btnRetryTest.setOnClickListener(v -> {
-            Intent intent = new Intent(PracticeMoreActivity.this, WebsiteActivity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(PracticeMoreActivity.this, WebsiteActivity.class));
         });
-
     }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
+    }
 }
