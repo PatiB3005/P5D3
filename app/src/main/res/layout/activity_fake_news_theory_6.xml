@@ -80,11 +80,11 @@
             <!-- OBRAZEK -->
             <ImageView
                 android:id="@+id/headerImage"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
 
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_fakenews_phone"
+                android:src="@drawable/ic_fake_news_6"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
