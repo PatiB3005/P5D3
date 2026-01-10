@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchi
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Grandchild2aActivity extends AppCompatActivity {
+public class Grandchild2aActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +20,20 @@ public class Grandchild2aActivity extends AppCompatActivity {
 
         // A -> "Dobrze, mów szybko..." -> scena 3
         answerA.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild2aActivity.this,
-                    Grandchild3Activity.class);
+            tts.stop();
+            Intent intent = new Intent(Grandchild2aActivity.this, Grandchild3Activity.class);
             startActivity(intent);
         });
 
         // Czerwona słuchawka – przerwanie
-        declineCall.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

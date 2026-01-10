@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Bank6Activity extends AppCompatActivity {
+public class Bank6Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +18,19 @@ public class Bank6Activity extends AppCompatActivity {
         TextView textAnswerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A) dalej współpracujesz -> scena 7
         textAnswerA.setOnClickListener(v -> {
-            Intent intent = new Intent(Bank6Activity.this, Bank7Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(Bank6Activity.this, Bank7Activity.class));
         });
 
-        declineCall.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeSc
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Policeman2Activity extends AppCompatActivity {
+public class Policeman2Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +20,25 @@ public class Policeman2Activity extends AppCompatActivity {
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
         answerA.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, Policeman3Activity.class);
             startActivity(intent);
         });
 
         answerB.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, Policeman2aActivity.class);
             startActivity(intent);
         });
 
         declineCall.setOnClickListener(v -> {
+            tts.stop();
             finish();
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

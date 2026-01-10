@@ -4,20 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class TheoryActivity extends AppCompatActivity {
+public class TheoryActivity extends BaseTTSActivity {
 
     private int currentScreen = 1;
+    private boolean hasResumed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showScreen(currentScreen);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hasResumed = true;
     }
 
     private void showScreen(int screenNumber) {
@@ -47,22 +53,29 @@ public class TheoryActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_call_from_unknown_8);
                 break;
         }
+
         setupButtons();
+
+        // Jeśli użytkownik już jest "w środku" (po onResume), to po zmianie ekranu czytamy od razu.
+        if (hasResumed) {
+            tts.stop();
+            if (tts.isEnabled()) {
+                tts.speak(getSpeakText());
+            }
+        }
     }
 
     private void setupButtons() {
         View next = findViewById(R.id.btnNext);
         if (next != null) {
             next.setOnClickListener(v -> {
+                tts.stop();
                 if (currentScreen < 8) {
                     currentScreen++;
                     showScreen(currentScreen);
                 } else {
                     ProgressStore.markDone(this, ProgressKeys.M2_THEORY_DONE);
-                    Intent intent = new Intent(
-                            TheoryActivity.this,
-                            CallFromAnUnknownMenuActivity.class
-                    );
+                    Intent intent = new Intent(TheoryActivity.this, CallFromAnUnknownMenuActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -72,6 +85,7 @@ public class TheoryActivity extends AppCompatActivity {
         View back = findViewById(R.id.btnBack);
         if (back != null) {
             back.setOnClickListener(v -> {
+                tts.stop();
                 if (currentScreen > 1) {
                     currentScreen--;
                     showScreen(currentScreen);
@@ -80,5 +94,10 @@ public class TheoryActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchi
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Grandchild3Activity extends AppCompatActivity {
+public class Grandchild3Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +21,27 @@ public class Grandchild3Activity extends AppCompatActivity {
 
         // A -> idziesz za "wnuczkiem" -> dalszy scam (scena 4)
         answerA.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild3Activity.this,
-                    Grandchild4Activity.class);
+            tts.stop();
+            Intent intent = new Intent(Grandchild3Activity.this, Grandchild4Activity.class);
             startActivity(intent);
         });
 
         // B -> dzwonisz do rodziny/policji -> POZYTYWNE podsumowanie
         answerB.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild3Activity.this,
-                    Grandchild6PositiveActivity.class);
+            tts.stop();
+            Intent intent = new Intent(Grandchild3Activity.this, Grandchild6PositiveActivity.class);
             startActivity(intent);
         });
 
         // Czerwona słuchawka – zakończenie bez podsumowania
-        declineCall.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }
