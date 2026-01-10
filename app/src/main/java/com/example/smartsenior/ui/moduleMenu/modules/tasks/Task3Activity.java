@@ -2,11 +2,12 @@ package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Task3Activity extends AppCompatActivity {
+public class Task3Activity extends BaseTTSActivity {
 
     MaterialButton btnBack, btnStart;
 
@@ -18,13 +19,19 @@ public class Task3Activity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnStart = findViewById(R.id.btnStart);
 
-        // Powrót do menu zadań
-        btnBack.setOnClickListener(v -> finish());
-
-        // Start następnej strony zadania 3
-        btnStart.setOnClickListener(v -> {
-            Intent intent = new Intent(Task3Activity.this, Task3Page1Activity.class);
-            startActivity(intent);
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
         });
+
+        btnStart.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(Task3Activity.this, Task3Page1Activity.class));
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class TheoryActivity extends AppCompatActivity {
+public class TheoryActivity extends BaseTTSActivity {
 
     private static final int LAST_SCREEN = 7;
     private int currentScreen = 1;
@@ -21,28 +20,16 @@ public class TheoryActivity extends AppCompatActivity {
     }
 
     private void showScreen(int screenNumber) {
+        tts.stop();
+
         switch (screenNumber) {
-            case 1:
-                setContentView(R.layout.activity_safe_msg);
-                break;
-            case 2:
-                setContentView(R.layout.activity_safe_msg2);
-                break;
-            case 3:
-                setContentView(R.layout.activity_safe_msg3);
-                break;
-            case 4:
-                setContentView(R.layout.activity_safe_msg4);
-                break;
-            case 5:
-                setContentView(R.layout.activity_safe_msg5);
-                break;
-            case 6:
-                setContentView(R.layout.activity_safe_msg6);
-                break;
-            case 7:
-                setContentView(R.layout.activity_safe_msg7);
-                break;
+            case 1: setContentView(R.layout.activity_safe_msg); break;
+            case 2: setContentView(R.layout.activity_safe_msg2); break;
+            case 3: setContentView(R.layout.activity_safe_msg3); break;
+            case 4: setContentView(R.layout.activity_safe_msg4); break;
+            case 5: setContentView(R.layout.activity_safe_msg5); break;
+            case 6: setContentView(R.layout.activity_safe_msg6); break;
+            case 7: setContentView(R.layout.activity_safe_msg7); break;
         }
 
         setupButtons();
@@ -60,13 +47,13 @@ public class TheoryActivity extends AppCompatActivity {
         View nextView = findViewById(R.id.btnNext);
         if (nextView != null) {
 
-            // (opcjonalnie) zmień napis na ostatnim ekranie
             if (nextView instanceof MaterialButton) {
                 ((MaterialButton) nextView).setText(currentScreen == LAST_SCREEN ? "Koniec" : "Dalej");
             }
 
             nextView.setOnClickListener(v -> {
-                // ✅ jeśli jesteśmy na safe_msg7 -> wracamy do Module1
+                tts.stop();
+
                 if (currentScreen >= LAST_SCREEN) {
                     goToModule1();
                 } else {
@@ -79,6 +66,8 @@ public class TheoryActivity extends AppCompatActivity {
         View back = findViewById(R.id.btnBack);
         if (back != null) {
             back.setOnClickListener(v -> {
+                tts.stop();
+
                 if (currentScreen > 1) {
                     currentScreen--;
                     showScreen(currentScreen);
@@ -87,5 +76,10 @@ public class TheoryActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

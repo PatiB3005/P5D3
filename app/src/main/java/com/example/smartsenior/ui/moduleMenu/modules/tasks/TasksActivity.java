@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class TasksActivity extends AppCompatActivity {
+public class TasksActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +21,38 @@ public class TasksActivity extends AppCompatActivity {
         LinearLayout task3 = findViewById(R.id.btnTask3);
         LinearLayout task4 = findViewById(R.id.btnTask4);
 
-        task1.setOnClickListener(v ->
-                startActivity(new Intent(this, Task1Activity.class)));
+        task1.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task1Activity.class));
+        });
 
-        task2.setOnClickListener(v ->
-                startActivity(new Intent(this, Task2Activity.class)));
+        task2.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task2Activity.class));
+        });
 
-        task3.setOnClickListener(v ->
-                startActivity(new Intent(this, Task3Activity.class)));
+        task3.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task3Activity.class));
+        });
 
-        task4.setOnClickListener(v ->
-                startActivity(new Intent(this, Task4Activity.class)));
+        task4.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task4Activity.class));
+        });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-
         toolbar.setNavigationOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(TasksActivity.this, Module1Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         });
-
-
     }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
+    }
 }

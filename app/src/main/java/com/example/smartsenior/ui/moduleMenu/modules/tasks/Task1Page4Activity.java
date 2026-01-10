@@ -5,13 +5,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
-import com.google.android.material.card.MaterialCardView;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
-public class Task1Page4Activity extends AppCompatActivity {
+public class Task1Page4Activity extends BaseTTSActivity {
 
     private MaterialCardView card1, card2, card3, card4;
     private MaterialButton btnFinish;
@@ -22,27 +22,23 @@ public class Task1Page4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1_page4);
 
-        // Karty
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
-        card3 = findViewById(R.id.card3); // POPRAWNA
+        card3 = findViewById(R.id.card3);
         card4 = findViewById(R.id.card4);
 
-        // Przycisk zakończenia
         btnFinish = findViewById(R.id.btnFinish);
-
-        // Start: widoczny, ale nieaktywny (półprzezroczysty)
         setFinishEnabled(false);
 
-        // Ustaw reakcje (POPRAWNA: card3)
         setupCard(card1, false);
         setupCard(card2, false);
-        setupCard(card3, true);   // <-- tu jest poprawna
-        setupCard(card4, false);  // <-- a tu nie
+        setupCard(card3, true);
+        setupCard(card4, false);
 
-        btnFinish.setOnClickListener(v ->
-                startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class))
-        );
+        btnFinish.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class));
+        });
     }
 
     private void setFinishEnabled(boolean enabled) {
@@ -53,13 +49,12 @@ public class Task1Page4Activity extends AppCompatActivity {
 
     private void setupCard(MaterialCardView card, boolean isCorrect) {
         card.setOnClickListener(v -> {
+            tts.stop();
 
             if (answered) return;
             answered = true;
 
-            // Aktywuj przycisk Zakończ dopiero po odpowiedzi
             setFinishEnabled(true);
-
             disableAll();
 
             if (isCorrect) {
@@ -89,5 +84,10 @@ public class Task1Page4Activity extends AppCompatActivity {
                 .setMessage("Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”")
                 .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

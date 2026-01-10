@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Task2Activity extends AppCompatActivity {
+public class Task2Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +17,19 @@ public class Task2Activity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBack);
         Button btnStart = findViewById(R.id.btnStart);
 
-        btnBack.setOnClickListener(v ->
-                finish() // wracamy do listy zadań
-        );
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
 
-        btnStart.setOnClickListener(v ->
-                startActivity(new Intent(Task2Activity.this, Task2Page1Activity.class))
-        );
+        btnStart.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(Task2Activity.this, Task2Page1Activity.class));
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
-public class Task3Page1Activity extends AppCompatActivity {
+public class Task3Page1Activity extends BaseTTSActivity {
 
     MaterialCardView btn1Left, btn1Right;
     MaterialCardView btn2Left, btn2Right;
@@ -28,7 +27,6 @@ public class Task3Page1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task3_page1);
 
-        // POWIĄZANIA Z XML
         btn1Left = findViewById(R.id.btn1Left);
         btn1Right = findViewById(R.id.btn1Right);
         comment1 = findViewById(R.id.comment1);
@@ -47,73 +45,67 @@ public class Task3Page1Activity extends AppCompatActivity {
 
         btnNext = findViewById(R.id.btnNext);
 
-        // ===================== PARA 1 =====================
         btn1Left.setOnClickListener(v -> {
-            showCorrect(btn1Left, btn1Right, comment1,
-                    "Komentarz: „rn to nie m — fałszywa nazwa.”");
+            tts.stop();
+            showCorrect(btn1Left, btn1Right, comment1, "Komentarz: „rn to nie m — fałszywa nazwa.”");
             q1done = true;
             checkAllDone();
         });
 
         btn1Right.setOnClickListener(v -> {
-            showWrong(btn1Right, btn1Left, comment1,
-                    "Komentarz: „rn to nie m — fałszywa nazwa.”");
+            tts.stop();
+            showWrong(btn1Right, btn1Left, comment1, "Komentarz: „rn to nie m — fałszywa nazwa.”");
             q1done = true;
             checkAllDone();
         });
 
-        // ===================== PARA 2 =====================
         btn2Left.setOnClickListener(v -> {
-            showCorrect(btn2Left, btn2Right, comment2,
-                    "Komentarz: „Dodatkowe słowa w adresie to częsty trik oszustów.”");
+            tts.stop();
+            showCorrect(btn2Left, btn2Right, comment2, "Komentarz: „Dodatkowe słowa w adresie to częsty trik oszustów.”");
             q2done = true;
             checkAllDone();
         });
 
         btn2Right.setOnClickListener(v -> {
-            showWrong(btn2Right, btn2Left, comment2,
-                    "Komentarz: „Dodatkowe słowa w adresie to częsty trik oszustów.”");
+            tts.stop();
+            showWrong(btn2Right, btn2Left, comment2, "Komentarz: „Dodatkowe słowa w adresie to częsty trik oszustów.”");
             q2done = true;
             checkAllDone();
         });
 
-        // ===================== PARA 3 =====================
         btn3Left.setOnClickListener(v -> {
-            showCorrect(btn3Left, btn3Right, comment3,
-                    "Komentarz: „Prawdziwe firmy mają końcówkę .pl lub .com.”");
+            tts.stop();
+            showCorrect(btn3Left, btn3Right, comment3, "Komentarz: „Prawdziwe firmy mają końcówkę .pl lub .com.”");
             q3done = true;
             checkAllDone();
         });
 
         btn3Right.setOnClickListener(v -> {
-            showWrong(btn3Right, btn3Left, comment3,
-                    "Komentarz: „Prawdziwe firmy mają końcówkę .pl lub .com.”");
+            tts.stop();
+            showWrong(btn3Right, btn3Left, comment3, "Komentarz: „Prawdziwe firmy mają końcówkę .pl lub .com.”");
             q3done = true;
             checkAllDone();
         });
 
-        // ===================== PARA 4 =====================
         btn4Left.setOnClickListener(v -> {
-            showCorrect(btn4Left, btn4Right, comment4,
-                    "Komentarz: „Fałszywe strony Poczty Polskiej to częste oszustwo.”");
+            tts.stop();
+            showCorrect(btn4Left, btn4Right, comment4, "Komentarz: „Fałszywe strony Poczty Polskiej to częste oszustwo.”");
             q4done = true;
             checkAllDone();
         });
 
         btn4Right.setOnClickListener(v -> {
-            showWrong(btn4Right, btn4Left, comment4,
-                    "Komentarz: „Fałszywe strony Poczty Polskiej to częste oszustwo.”");
+            tts.stop();
+            showWrong(btn4Right, btn4Left, comment4, "Komentarz: „Fałszywe strony Poczty Polskiej to częste oszustwo.”");
             q4done = true;
             checkAllDone();
         });
 
-        // ===================== DALEJ =====================
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(Task3Page1Activity.this, Task3Page2Activity.class))
-        );
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(Task3Page1Activity.this, Task3Page2Activity.class));
+        });
     }
-
-    // ===================== FUNKCJE =====================
 
     private void showCorrect(MaterialCardView correct, MaterialCardView wrong,
                              TextView commentBox, String commentText) {
@@ -139,11 +131,14 @@ public class Task3Page1Activity extends AppCompatActivity {
 
     private void checkAllDone() {
         if (q1done && q2done && q3done && q4done) {
-
-            // przycisk pojawia się i JEST NIEBIESKI (kolor z XML)
             btnNext.setVisibility(View.VISIBLE);
             btnNext.setEnabled(true);
-            btnNext.setAlpha(1f); // zapobiega przyciemnieniu
+            btnNext.setAlpha(1f);
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }
