@@ -12,8 +12,11 @@ import android.util.Log;
 import java.util.Locale;
 
 public class TTSManager {
-    private static final String PREFS = "app_settings";
+
+    // UJEDNOLICONE – te same co w SettingsActivity i BaseTTSActivity
+    private static final String PREFS = "app_prefs";
     private static final String KEY_TTS_ENABLED = "tts_enabled";
+
     private static TTSManager instance;
 
     private final Context appContext;
@@ -24,14 +27,13 @@ public class TTSManager {
     private TTSManager(Context context) {
         this.appContext = context.getApplicationContext();
 
-        // 🔊 Ustaw maksymalną głośność multimediów
+        // Opcjonalnie: max głośność multimediów (zostawiam jak masz)
         AudioManager audioManager = (AudioManager) appContext.getSystemService(Context.AUDIO_SERVICE);
         if (audioManager != null) {
             int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
         }
 
-        // 🔉 Inicjalizacja TTS
         this.tts = new TextToSpeech(appContext, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 Locale pl = Locale.forLanguageTag("pl-PL");
@@ -73,8 +75,9 @@ public class TTSManager {
     }
 
     public boolean isEnabled() {
+        // DEFAULT TRUE – żeby lektor działał „od razu” dopóki user go nie wyłączy
         return appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                .getBoolean(KEY_TTS_ENABLED, false);
+                .getBoolean(KEY_TTS_ENABLED, true);
     }
 
     public void setEnabled(boolean enabled) {
@@ -93,15 +96,13 @@ public class TTSManager {
         return newState;
     }
 
-    /** Publiczne API — jeśli TTS nie gotowy, zapamiętuje tekst i odczyta po inicjalizacji */
     public void speak(String text) {
         if (!isEnabled() || text == null || text.trim().isEmpty()) return;
 
-        // ✨ Poprawki fonetyczne dla polskiej wymowy:
         text = text
-                .replace("\n", " ")                        // unikaj nowej linii
-                .replaceAll("\\bw(?=\\s+[A-ZĄĆĘŁŃÓŚŹŻ])", "w\u00A0") // zamień „w” na „we” przed dużą literą
-                .replaceAll("\\bw(?=\\s+[a-ząćęłńóśźż])", "w\u00A0"); // twarda spacja dla płynności
+                .replace("\n", " ")
+                .replaceAll("\\bw(?=\\s+[A-ZĄĆĘŁŃÓŚŹŻ])", "w\u00A0")
+                .replaceAll("\\bw(?=\\s+[a-ząćęłńóśźż])", "w\u00A0");
 
         if (!ready) {
             pendingText = text;
@@ -121,6 +122,7 @@ public class TTSManager {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "smart_senior_utterance");
                 } else {
+                    // starsze API
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                 }
             } catch (Exception e) {

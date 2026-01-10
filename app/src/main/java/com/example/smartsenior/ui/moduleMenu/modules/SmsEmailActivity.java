@@ -24,10 +24,14 @@ public class SmsEmailActivity extends BaseTTSActivity {
     private int currentScreen = INTRO_SCREEN;
     private int score = 0;
 
+    // zabezpieczenie przed podwójnym czytaniem startowego ekranu
+    private boolean firstScreenAlreadyShown = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showScreen(currentScreen);
+        firstScreenAlreadyShown = true;
     }
 
     private void showScreen(int screenNumber) {
@@ -52,6 +56,11 @@ public class SmsEmailActivity extends BaseTTSActivity {
 
         setupButtons();
         setupAnswerButtons();
+
+        // KLUCZOWE: po zmianie layoutu trzeba ręcznie uruchomić lektora
+        if (firstScreenAlreadyShown) {
+            getWindow().getDecorView().post(this::speakIfEnabled);
+        }
     }
 
     private void setupAnswerButtons() {
@@ -170,12 +179,13 @@ public class SmsEmailActivity extends BaseTTSActivity {
 
     @Override
     protected String getSpeakText() {
-        // Dla tego ekranu: teksty z layoutu + ewentualne etykiety TAK/NIE, jeśli są TextView
         String base = collectSpeakableTextFromLayout();
 
         View yes = findViewById(R.id.yesButton);
         View no = findViewById(R.id.noButton);
 
+        // Uwaga: jeśli to są Button/MaterialButton, to nie są TextView -> wtedy będzie pusty tekst.
+        // Wtedy trzeba pobrać tekst inaczej (patrz komentarz poniżej).
         String yesText = (yes instanceof TextView) ? ((TextView) yes).getText().toString().trim() : "";
         String noText = (no instanceof TextView) ? ((TextView) no).getText().toString().trim() : "";
 

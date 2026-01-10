@@ -55,14 +55,6 @@ public class TheoryActivity extends BaseTTSActivity {
         }
 
         setupButtons();
-
-        // Jeśli użytkownik już jest "w środku" (po onResume), to po zmianie ekranu czytamy od razu.
-        if (hasResumed) {
-            tts.stop();
-            if (tts.isEnabled()) {
-                tts.speak(getSpeakText());
-            }
-        }
     }
 
     private void setupButtons() {

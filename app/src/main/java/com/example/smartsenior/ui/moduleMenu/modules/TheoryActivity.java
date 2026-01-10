@@ -13,10 +13,14 @@ public class TheoryActivity extends BaseTTSActivity {
     private static final int LAST_SCREEN = 7;
     private int currentScreen = 1;
 
+    // Żeby nie czytało podwójnie na starcie (onResume + showScreen)
+    private boolean firstScreenAlreadyShown = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showScreen(currentScreen);
+        firstScreenAlreadyShown = true;
     }
 
     private void showScreen(int screenNumber) {
@@ -33,6 +37,12 @@ public class TheoryActivity extends BaseTTSActivity {
         }
 
         setupButtons();
+
+        // Kluczowe: po zmianie layoutu trzeba ponownie odpalić lektora,
+        // bo onResume się nie wykona.
+        if (firstScreenAlreadyShown) {
+            getWindow().getDecorView().post(this::speakIfEnabled);
+        }
     }
 
     private void goToModule1() {
@@ -43,7 +53,6 @@ public class TheoryActivity extends BaseTTSActivity {
     }
 
     private void setupButtons() {
-
         View nextView = findViewById(R.id.btnNext);
         if (nextView != null) {
 
