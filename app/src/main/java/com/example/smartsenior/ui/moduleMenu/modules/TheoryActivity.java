@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.increaseFont.FontScaler;
 import com.google.android.material.button.MaterialButton;
 
 public class TheoryActivity extends AppCompatActivity {
@@ -45,6 +46,7 @@ public class TheoryActivity extends AppCompatActivity {
                 break;
         }
 
+        FontScaler.applyFontSize(this, findViewById(android.R.id.content));
         setupButtons();
     }
 
@@ -66,7 +68,6 @@ public class TheoryActivity extends AppCompatActivity {
             }
 
             nextView.setOnClickListener(v -> {
-                // ✅ jeśli jesteśmy na safe_msg7 -> wracamy do Module1
                 if (currentScreen >= LAST_SCREEN) {
                     goToModule1();
                 } else {

@@ -1,14 +1,20 @@
 package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.data.increaseFont.FontScaler;
+
 
 public class TheoryActivity extends AppCompatActivity {
 
@@ -47,6 +53,8 @@ public class TheoryActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_call_from_unknown_8);
                 break;
         }
+
+        FontScaler.applyFontSize(this, findViewById(android.R.id.content));
         setupButtons();
     }
 
