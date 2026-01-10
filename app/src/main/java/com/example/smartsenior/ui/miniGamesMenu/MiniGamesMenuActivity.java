@@ -21,6 +21,8 @@ public class MiniGamesMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_games_menu);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         btnMiniGame1 = findViewById(R.id.btnMiniGame1);
 
         btnMiniGame1.setOnClickListener(new View.OnClickListener() {
