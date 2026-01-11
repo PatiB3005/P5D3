@@ -171,6 +171,14 @@
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalSilverActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPracticeMoreActivity" />
 
+        <!-- Mini Game 2 -->
+        <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame2Activity" />
+        <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame22Activity" />
+
+        <!-- Mini Game 3 -->
+        <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame3Activity" />
+        <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame32Activity" />
+
     </application>
 
 </manifest>
