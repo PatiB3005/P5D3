@@ -1,0 +1,306 @@
+package com.example.smartsenior.ui.miniGamesMenu.miniGames;
+
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.DragEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartsenior.R;
+import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class MiniGame32Activity extends AppCompatActivity {
+
+    private HorizontalScrollView topScroll;
+    private LinearLayout topChipsContainer;
+
+    private MaterialButton btnBack, btnEvaluate;
+
+    // wiersze definicji
+    private ViewGroup[] answerHosts = new ViewGroup[4]; // FrameLayout answerHost
+    private View[] placeholders = new View[4];          // ciemne placeholdery
+    private TextView[] defTexts = new TextView[4];
+
+    private boolean evaluated = false;
+
+    private final String[] correct = new String[]{
+            "https",
+            "AI",
+            "Metoda na wnuczka/policjanta",
+            "Fake News"
+    };
+
+    private final String[] definitions = new String[]{
+            "- zaczyna się od tego każdy bezpieczny adres strony internetowej.",
+            "- program komputerowy, mogący generować różne treści, np. zdjęcia, teksty.",
+            "- oszustwo, w którym przestępca podaje się za osobę bliską lub pracownika ważnej instytucji.",
+            "- fałszywe informacje mające na celu wprowadzić zamęt i dezinformację."
+    };
+
+    private final List<String> pool = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mini_game3_2);
+
+        topScroll = findViewById(R.id.topScroll);
+        topChipsContainer = findViewById(R.id.topChipsContainer);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnEvaluate = findViewById(R.id.btnEvaluate);
+
+        LinearLayout defsContainer = findViewById(R.id.definitionsContainer);
+
+        for (int i = 0; i < 4; i++) {
+            View row = defsContainer.getChildAt(i);
+
+            ViewGroup host = row.findViewById(R.id.answerHost);
+            View placeholder = row.findViewById(R.id.placeholder);
+            TextView tvDef = row.findViewById(R.id.tvDefinition);
+
+            answerHosts[i] = host;
+            placeholders[i] = placeholder;
+            defTexts[i] = tvDef;
+
+            host.setOnDragListener(this::onHostDrag);
+            tvDef.setText(definitions[i]);
+        }
+
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MiniGamesMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+
+        btnEvaluate.setOnClickListener(v -> evaluateAnswers());
+
+        startNewRound();
+    }
+
+    private void startNewRound() {
+        evaluated = false;
+
+        // czyść hosty i przywróć placeholdery
+        for (int i = 0; i < answerHosts.length; i++) {
+            ViewGroup host = answerHosts[i];
+            host.removeAllViews();
+            host.addView(placeholders[i]); // z powrotem ciemny placeholder
+        }
+
+        topChipsContainer.removeAllViews();
+
+        pool.clear();
+        Collections.addAll(pool,
+                "AI",
+                "Metoda na wnuczka/policjanta",
+                "Fake News",
+                "https",
+                "http"
+        );
+        Collections.shuffle(pool);
+
+        for (String word : pool) {
+            topChipsContainer.addView(createChip(word));
+        }
+    }
+
+    private View createChip(String word) {
+        View chip = LayoutInflater.from(this).inflate(R.layout.item_draggable_chip, topChipsContainer, false);
+        TextView tv = chip.findViewById(R.id.tvChip);
+        tv.setText(word);
+
+        chip.setTag(word);
+        resetChipColor(chip);
+
+        // klik na chipie w definicji -> wraca na górę i placeholder wraca
+        chip.setOnClickListener(v -> {
+            if (evaluated) return;
+            ViewGroup parent = (ViewGroup) v.getParent();
+            if (parent != null && parent != topChipsContainer) {
+                int index = findHostIndex(parent);
+                parent.removeView(v);
+
+                // wraca na górę -> LayoutParams dla LinearLayout
+                LinearLayout.LayoutParams topLp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                v.setLayoutParams(topLp);
+
+                topChipsContainer.addView(v);
+                resetChipColor(v);
+
+                restorePlaceholder(index);
+            }
+        });
+
+
+        // long press -> start drag (fix: scroll)
+        chip.setOnLongClickListener(v -> {
+            if (evaluated) return true;
+            if (topScroll != null) topScroll.requestDisallowInterceptTouchEvent(true);
+
+            String label = (String) v.getTag();
+            ClipData data = new ClipData(
+                    label,
+                    new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN},
+                    new ClipData.Item(label)
+            );
+
+            View.DragShadowBuilder shadow = new View.DragShadowBuilder(v);
+            v.startDragAndDrop(data, shadow, v, 0);
+            return true;
+        });
+
+        return chip;
+    }
+
+    private boolean onHostDrag(View target, DragEvent event) {
+        ViewGroup host = (ViewGroup) target;
+
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                return event.getClipDescription() != null
+                        && event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN);
+
+            case DragEvent.ACTION_DROP: {
+                if (evaluated) return true;
+
+                View dragged = (View) event.getLocalState();
+                if (dragged == null) return true;
+
+                // jeśli host ma już chip (poza placeholderem) -> zwróć go na górę
+                View existingChip = findChipInHost(host);
+                if (existingChip != null) {
+                    host.removeView(existingChip);
+                    topChipsContainer.addView(existingChip);
+                    resetChipColor(existingChip);
+
+                    // ważne: po powrocie na górę ustaw LayoutParams dla LinearLayout
+                    LinearLayout.LayoutParams topLp = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT
+                    );
+                    existingChip.setLayoutParams(topLp);
+                }
+
+                // usuń dragged z poprzedniego rodzica
+                ViewGroup oldParent = (ViewGroup) dragged.getParent();
+                if (oldParent != null) oldParent.removeView(dragged);
+
+                // host ma pokazać tylko chip (placeholder znika)
+                host.removeAllViews();
+                host.addView(dragged);
+
+                // KLUCZ: host jest FrameLayout -> muszą być FrameLayout.LayoutParams
+                android.widget.FrameLayout.LayoutParams hostLp =
+                        new android.widget.FrameLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.MATCH_PARENT
+                        );
+                hostLp.gravity = android.view.Gravity.CENTER;
+                dragged.setLayoutParams(hostLp);
+
+                resetChipColor(dragged);
+                return true;
+            }
+
+            case DragEvent.ACTION_DRAG_ENDED:
+                if (topScroll != null) topScroll.requestDisallowInterceptTouchEvent(false);
+                return true;
+        }
+
+        return true;
+    }
+
+    private View findChipInHost(ViewGroup host) {
+        for (int i = 0; i < host.getChildCount(); i++) {
+            View child = host.getChildAt(i);
+            if (child.getId() != R.id.placeholder) return child;
+        }
+        return null;
+    }
+
+    private int findHostIndex(ViewGroup host) {
+        for (int i = 0; i < answerHosts.length; i++) {
+            if (answerHosts[i] == host) return i;
+        }
+        return -1;
+    }
+
+    private void restorePlaceholder(int hostIndex) {
+        if (hostIndex < 0 || hostIndex >= answerHosts.length) return;
+
+        ViewGroup host = answerHosts[hostIndex];
+        // jeśli host jest pusty -> dodaj placeholder
+        if (findChipInHost(host) == null) {
+            host.removeAllViews();
+            host.addView(placeholders[hostIndex]);
+        }
+    }
+
+    private void evaluateAnswers() {
+        evaluated = true;
+
+        int good = 0;
+
+        for (int i = 0; i < answerHosts.length; i++) {
+            ViewGroup host = answerHosts[i];
+            View chip = findChipInHost(host);
+            if (chip == null) continue;
+
+            String word = (String) chip.getTag();
+            if (correct[i].equals(word)) {
+                setChipGreen(chip);
+                good++;
+            } else {
+                setChipRed(chip);
+            }
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Wynik")
+                .setMessage("Poprawne odpowiedzi: " + good + "/4")
+                .setPositiveButton("OK", null)
+                .show();
+    }
+
+    private void setChipGreen(View chip) {
+        if (chip instanceof MaterialCardView) {
+            ((MaterialCardView) chip).setCardBackgroundColor(0xFFB7F5C9);
+        } else {
+            chip.setBackgroundColor(0xFFB7F5C9);
+        }
+    }
+
+    private void setChipRed(View chip) {
+        if (chip instanceof MaterialCardView) {
+            ((MaterialCardView) chip).setCardBackgroundColor(0xFFF7B3B3);
+        } else {
+            chip.setBackgroundColor(0xFFF7B3B3);
+        }
+    }
+
+    private void resetChipColor(View chip) {
+        if (chip instanceof MaterialCardView) {
+            ((MaterialCardView) chip).setCardBackgroundColor(0xFFF6F1B5); // żółty
+        }
+    }
+}

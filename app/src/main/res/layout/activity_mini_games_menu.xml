@@ -30,11 +30,13 @@
             style="@style/MainMenuButton" />
 
         <Button
-            android:text="Mini gra 2"
+            android:id="@+id/btnMiniGame2"
+            android:text="Bezpieczne hasło"
             style="@style/MainMenuButton" />
 
         <Button
-            android:text="Mini gra 3"
+            android:id="@+id/btnMiniGame3"
+            android:text="Słownik"
             style="@style/MainMenuButton" />
 
     </LinearLayout>
