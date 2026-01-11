@@ -46,6 +46,8 @@ public class CallFromAnUnknownMenuActivity extends AppCompatActivity {
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v ->
+                com.example.smartsenior.ui.moduleMenu.ModuleMenuNav.go(this)
+        );
     }
 }

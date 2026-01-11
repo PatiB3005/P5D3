@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.scores.HighScoreStore;
+import com.example.smartsenior.data.scores.ScoreKeys;
 import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -31,10 +33,14 @@ public class MiniGame32Activity extends AppCompatActivity {
 
     private MaterialButton btnBack, btnEvaluate;
 
+    // UI: rekord + aktualny wynik
+    private TextView tvHighScore;
+    private TextView tvCurrentScore;
+
     // wiersze definicji
-    private ViewGroup[] answerHosts = new ViewGroup[4]; // FrameLayout answerHost
-    private View[] placeholders = new View[4];          // ciemne placeholdery
-    private TextView[] defTexts = new TextView[4];
+    private final ViewGroup[] answerHosts = new ViewGroup[4]; // FrameLayout answerHost
+    private final View[] placeholders = new View[4];          // ciemne placeholdery
+    private final TextView[] defTexts = new TextView[4];
 
     private boolean evaluated = false;
 
@@ -59,12 +65,23 @@ public class MiniGame32Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_game3_2);
 
+        // bind: top
         topScroll = findViewById(R.id.topScroll);
         topChipsContainer = findViewById(R.id.topChipsContainer);
 
+        // bind: buttons
         btnBack = findViewById(R.id.btnBack);
         btnEvaluate = findViewById(R.id.btnEvaluate);
 
+        // bind: score UI
+        tvHighScore = findViewById(R.id.tvHighScore);
+        tvCurrentScore = findViewById(R.id.tvCurrentScore);
+
+        // pokaż rekord od razu
+        updateHighScoreUi();
+        tvCurrentScore.setText("Wynik: -/4");
+
+        // definicje/sloty
         LinearLayout defsContainer = findViewById(R.id.definitionsContainer);
 
         for (int i = 0; i < 4; i++) {
@@ -82,6 +99,7 @@ public class MiniGame32Activity extends AppCompatActivity {
             tvDef.setText(definitions[i]);
         }
 
+        // back
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(this, MiniGamesMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -89,13 +107,23 @@ public class MiniGame32Activity extends AppCompatActivity {
             finish();
         });
 
+        // evaluate
         btnEvaluate.setOnClickListener(v -> evaluateAnswers());
 
+        // start
         startNewRound();
+    }
+
+    private void updateHighScoreUi() {
+        int best = HighScoreStore.getHighScore(this, ScoreKeys.MG3_DEFS_HIGH_SCORE);
+        tvHighScore.setText("Rekord: " + best + "/4");
     }
 
     private void startNewRound() {
         evaluated = false;
+
+        // reset aktualnego wyniku w UI
+        tvCurrentScore.setText("Wynik: -/4");
 
         // czyść hosty i przywróć placeholdery
         for (int i = 0; i < answerHosts.length; i++) {
@@ -132,6 +160,7 @@ public class MiniGame32Activity extends AppCompatActivity {
         // klik na chipie w definicji -> wraca na górę i placeholder wraca
         chip.setOnClickListener(v -> {
             if (evaluated) return;
+
             ViewGroup parent = (ViewGroup) v.getParent();
             if (parent != null && parent != topChipsContainer) {
                 int index = findHostIndex(parent);
@@ -150,7 +179,6 @@ public class MiniGame32Activity extends AppCompatActivity {
                 restorePlaceholder(index);
             }
         });
-
 
         // long press -> start drag (fix: scroll)
         chip.setOnLongClickListener(v -> {
@@ -209,7 +237,7 @@ public class MiniGame32Activity extends AppCompatActivity {
                 host.removeAllViews();
                 host.addView(dragged);
 
-                // KLUCZ: host jest FrameLayout -> muszą być FrameLayout.LayoutParams
+                // host jest FrameLayout -> muszą być FrameLayout.LayoutParams
                 android.widget.FrameLayout.LayoutParams hostLp =
                         new android.widget.FrameLayout.LayoutParams(
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -249,7 +277,6 @@ public class MiniGame32Activity extends AppCompatActivity {
         if (hostIndex < 0 || hostIndex >= answerHosts.length) return;
 
         ViewGroup host = answerHosts[hostIndex];
-        // jeśli host jest pusty -> dodaj placeholder
         if (findChipInHost(host) == null) {
             host.removeAllViews();
             host.addView(placeholders[hostIndex]);
@@ -275,9 +302,22 @@ public class MiniGame32Activity extends AppCompatActivity {
             }
         }
 
+        // aktualny wynik w UI (pod rekordem)
+        tvCurrentScore.setText("Wynik: " + good + "/4");
+
+        // zapis rekordu (większe = lepsze)
+        boolean newRecord = HighScoreStore.submitHighScore(this, ScoreKeys.MG3_DEFS_HIGH_SCORE, good);
+        updateHighScoreUi();
+
+        int best = HighScoreStore.getHighScore(this, ScoreKeys.MG3_DEFS_HIGH_SCORE);
+
+        String msg = "Poprawne odpowiedzi: " + good + "/4\n"
+                + "Rekord: " + best + "/4"
+                + (newRecord ? "\n\nNowy rekord!" : "");
+
         new AlertDialog.Builder(this)
                 .setTitle("Wynik")
-                .setMessage("Poprawne odpowiedzi: " + good + "/4")
+                .setMessage(msg)
                 .setPositiveButton("OK", null)
                 .show();
     }

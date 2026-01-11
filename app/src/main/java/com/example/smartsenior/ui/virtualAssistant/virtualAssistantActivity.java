@@ -1,5 +1,6 @@
 package com.example.smartsenior.ui.virtualAssistant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +9,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class virtualAssistantActivity extends AppCompatActivity {
 
@@ -24,12 +27,17 @@ public class virtualAssistantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_virtual_assistant);
 
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        if (toolbar != null) {
+            toolbar.setNavigationOnClickListener(v -> goToMainMenu());
+        }
+
         questionInput = findViewById(R.id.questionInput);
         btnAsk = findViewById(R.id.btnAsk);
         answerLabel = findViewById(R.id.answerLabel);
         answerArea = findViewById(R.id.answerArea);
 
-        // Na start ukryj odpowiedź (opcjonalnie)
+        // Na start ukryj odpowiedź
         answerLabel.setVisibility(View.GONE);
         answerArea.setVisibility(View.GONE);
         answerArea.setText("");
@@ -55,5 +63,12 @@ public class virtualAssistantActivity extends AppCompatActivity {
             answerArea.setVisibility(View.VISIBLE);
             answerArea.setText(response);
         });
+    }
+
+    private void goToMainMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 }

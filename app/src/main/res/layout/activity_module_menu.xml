@@ -1,350 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F0FA"
-    android:fillViewport="true">
+    android:background="#E8F0FA">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp">
+        android:layout_height="match_parent"
+        android:background="#E8F0FA"
+        android:fillViewport="true">
 
-        <!-- przycisk samouczek -->
-        <Button
-            android:id="@+id/button_back_to_tutorial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⟵ Wróć do samouczka"
-            android:textSize="16sp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#2B6CB0"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone"/>
-
-        <!-- Nagłówek -->
-        <TextView
-            android:id="@+id/textModulesHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Menu modułów"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:layout_marginBottom="32dp" />
-
-        <!-- Moduł 1 -->
         <LinearLayout
-            android:id="@+id/btnSafeMessages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/module_card"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="8dp">
+            android:gravity="center_horizontal"
+            android:padding="24dp">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/safe_messages_banner"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true" />
-
-            <TextView
-                android:id="@+id/textModule1Title"
+            <Button
+                android:id="@+id/button_back_to_tutorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bezpieczne wiadomości"
+                android:text="⟵ Wróć do samouczka"
+                android:textSize="16sp"
                 android:fontFamily="@font/montserrat_bold"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2B6CB0"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textModulesHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu modułów"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
+                android:textColor="@color/textColor"
+                android:layout_marginBottom="32dp" />
 
-            <TextView
-                android:id="@+id/textModule1Description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="W tym module dowiesz się, jak rozpoznawać techniki oszustów używających fałszywych wiadomości (SMS, e-mail, komunikatory) oraz poznasz konkretne kroki, by skutecznie chronić swoje konta, dane i pieniądze."
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-
-            <ProgressBar
-                android:id="@+id/progressModule1"
-                style="?android:attr/progressBarStyleHorizontal"
+            <!-- Moduł 1 -->
+            <LinearLayout
+                android:id="@+id/btnSafeMessages"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/module_progress_bar" />
-
-            <TextView
-                android:id="@+id/textModule1ProgressLabel"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Postęp: 0%"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/safe_messages_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:id="@+id/textModule1Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bezpieczne wiadomości"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/textModule1Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W tym module dowiesz się, jak rozpoznawać techniki oszustów używających fałszywych wiadomości (SMS, e-mail, komunikatory) oraz poznasz konkretne kroki, by skutecznie chronić swoje konta, dane i pieniądze."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressModule1"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textModule1ProgressLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Postęp: 0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Moduł 2 -->
+            <LinearLayout
+                android:id="@+id/btnCallFromAnUnknown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/call_from_a_unknown_person_banner"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:id="@+id/textModule2Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telefon od podejrzanego nieznajomego"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/textModule2Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W tym module nauczysz się rozpoznawać podejrzane rozmowy telefoniczne i bezpiecznie na nie reagować..."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressModule2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textModule2ProgressLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Postęp: 0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Moduł 3 -->
+            <LinearLayout
+                android:id="@+id/btnShoppingOnline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/online_shopping"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true" />
+
+                <ProgressBar
+                    android:id="@+id/progressModule3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textModule3ProgressNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textModule3Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zakupy Online"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/textModule3Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra lorem a ultrices feugiat."
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+            </LinearLayout>
+
+            <!-- Fake News -->
+            <LinearLayout
+                android:id="@+id/btnFakeNewsModule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/module_placeholder_image"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:id="@+id/textFakeNewsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fake news i sensacyjne nagłówki"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/textFakeNewsDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W tym module poćwiczysz rozpoznawanie fałszywych wiadomości i krzyczących nagłówków. Sprawdzisz, czy potrafisz odróżnić prawdę od fake newsa."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressFakeNews"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textFakeNewsProgressLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Postęp: 0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- AI Lite -->
+            <LinearLayout
+                android:id="@+id/btnAiLite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/module_card"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ailogo"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:id="@+id/textAiTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI Lite"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/textAiDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W tym module poćwiczysz rozpoznawanie zdjęć wygenerowanych przez AI od tych rzeczywistych. Sprawdzisz, czy potrafisz odróżnić prawdę od tych wygenerowanych."
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressAiLite"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textAiProgressLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Postęp: 0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-        <!-- Moduł 2 -->
-        <LinearLayout
-            android:id="@+id/btnCallFromAnUnknown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/module_card"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="8dp">
+    <ImageButton
+        android:id="@+id/btnBackToMain"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back_black"
+        android:contentDescription="Wróć do menu głównego"
+        android:scaleType="centerInside"
+        android:padding="10dp" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/call_from_a_unknown_person_banner"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true" />
-
-            <TextView
-                android:id="@+id/textModule2Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Telefon od podejrzanego nieznajomego"
-                android:fontFamily="@font/montserrat_bold"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/textModule2Description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="W tym module nauczysz się rozpoznawać podejrzane rozmowy telefoniczne i bezpiecznie na nie reagować..."
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-
-            <ProgressBar
-                android:id="@+id/progressModule2"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/module_progress_bar" />
-
-            <TextView
-                android:id="@+id/textModule2ProgressLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Postęp: 0%"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- Moduł 3 -->
-        <LinearLayout
-            android:id="@+id/btnShoppingOnline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/module_card"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/online_shopping"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true" />
-
-            <ProgressBar
-                android:id="@+id/progressModule3"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/module_progress_bar" />
-
-            <TextView
-                android:id="@+id/textModule3ProgressNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="0%"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textModule3Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zakupy Online"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/textModule3Description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra lorem a ultrices feugiat."
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-        </LinearLayout>
-
-        <!-- Fake News -->
-        <LinearLayout
-            android:id="@+id/btnFakeNewsModule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/module_card"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/module_placeholder_image"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true" />
-
-            <TextView
-                android:id="@+id/textFakeNewsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fake news i sensacyjne nagłówki"
-                android:fontFamily="@font/montserrat_bold"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/textFakeNewsDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="W tym module poćwiczysz rozpoznawanie fałszywych wiadomości i krzyczących nagłówków. Sprawdzisz, czy potrafisz odróżnić prawdę od fake newsa."
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-
-            <ProgressBar
-                android:id="@+id/progressFakeNews"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/module_progress_bar" />
-
-            <TextView
-                android:id="@+id/textFakeNewsProgressLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Postęp: 0%"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- AI Lite -->
-        <LinearLayout
-            android:id="@+id/btnAiLite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/module_card"
-            android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ailogo"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AI Lite"
-                android:fontFamily="@font/montserrat_bold"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="W tym module poćwiczysz rozpoznawanie zdjęć wygenerowanych przez AI od tych rzeczywistych. Sprawdzisz, czy potrafisz odróżnić prawdę od tych wygenerowanych."
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:progress="0"
-                android:max="100"
-                android:progressDrawable="@drawable/module_progress_bar" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Postęp: 0%"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+</FrameLayout>

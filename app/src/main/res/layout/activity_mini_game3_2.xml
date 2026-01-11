@@ -20,6 +20,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Rekord (nad aktualnym wynikiem) -->
+    <TextView
+        android:id="@+id/tvHighScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rekord: 0/4"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#1A202C"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Aktualny wynik (pod rekordem) -->
+    <TextView
+        android:id="@+id/tvCurrentScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Wynik: -/4"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#1A202C"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHighScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <HorizontalScrollView
         android:id="@+id/topScroll"
         android:layout_width="0dp"
@@ -28,7 +58,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentScore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

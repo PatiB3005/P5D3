@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
 
 public class SmsEmailActivity extends BaseTTSActivity {
@@ -24,8 +26,8 @@ public class SmsEmailActivity extends BaseTTSActivity {
     private int currentScreen = INTRO_SCREEN;
     private int score = 0;
 
-    // zabezpieczenie przed podwójnym czytaniem startowego ekranu
     private boolean firstScreenAlreadyShown = false;
+    private boolean progressMarked = false; // żeby nie zapisywać wielokrotnie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,6 @@ public class SmsEmailActivity extends BaseTTSActivity {
     }
 
     private void showScreen(int screenNumber) {
-        // zatrzymaj poprzednie czytanie przed podmianą layoutu
         tts.stop();
 
         switch (screenNumber) {
@@ -57,7 +58,6 @@ public class SmsEmailActivity extends BaseTTSActivity {
         setupButtons();
         setupAnswerButtons();
 
-        // KLUCZOWE: po zmianie layoutu trzeba ręcznie uruchomić lektora
         if (firstScreenAlreadyShown) {
             getWindow().getDecorView().post(this::speakIfEnabled);
         }
@@ -119,6 +119,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
         else if (score >= 4) currentScreen = SCREEN_BROWN;
         else currentScreen = SCREEN_RETURN;
 
+        // KONIEC QUIZU => zapis postępu (raz)
+        if (!progressMarked) {
+            ProgressStore.markDone(this, ProgressKeys.M1_SMSEMAIL_DONE);
+            progressMarked = true;
+        }
+
         showScreen(currentScreen);
     }
 
@@ -164,6 +170,7 @@ public class SmsEmailActivity extends BaseTTSActivity {
                 tts.stop();
                 score = 0;
                 currentScreen = INTRO_SCREEN;
+                progressMarked = false;
                 showScreen(currentScreen);
             });
         }
@@ -184,8 +191,6 @@ public class SmsEmailActivity extends BaseTTSActivity {
         View yes = findViewById(R.id.yesButton);
         View no = findViewById(R.id.noButton);
 
-        // Uwaga: jeśli to są Button/MaterialButton, to nie są TextView -> wtedy będzie pusty tekst.
-        // Wtedy trzeba pobrać tekst inaczej (patrz komentarz poniżej).
         String yesText = (yes instanceof TextView) ? ((TextView) yes).getText().toString().trim() : "";
         String noText = (no instanceof TextView) ? ((TextView) no).getText().toString().trim() : "";
 

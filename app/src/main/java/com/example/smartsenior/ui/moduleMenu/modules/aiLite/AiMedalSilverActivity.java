@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -16,17 +18,22 @@ public class AiMedalSilverActivity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ailite_silver);
 
+        // PO MEDALU => test zaliczony
+        ProgressStore.markDone(this, ProgressKeys.AI_QUIZ_DONE);
+
         btnBackToMenu = findViewById(R.id.backToMenuButton);
         btnRetryTest = findViewById(R.id.retryTestButton);
 
         btnBackToMenu.setOnClickListener(v -> {
             tts.stop();
             startActivity(new Intent(AiMedalSilverActivity.this, AiActivity.class));
+            finish();
         });
 
         btnRetryTest.setOnClickListener(v -> {
             tts.stop();
             startActivity(new Intent(AiMedalSilverActivity.this, AiPhotoActivity.class));
+            finish();
         });
     }
 
