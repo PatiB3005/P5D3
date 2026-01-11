@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class WebsiteActivity extends AppCompatActivity {
+public class WebsiteActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +15,15 @@ public class WebsiteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_website_1);
 
         Button btnStart = findViewById(R.id.btnStart);
-
         btnStart.setOnClickListener(v -> {
+            tts.stop();
             ScoreManager.reset();
-            Intent intent = new Intent(WebsiteActivity.this, Website2Activity.class);
-            startActivity(intent);
+            startActivity(new Intent(WebsiteActivity.this, Website2Activity.class));
         });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

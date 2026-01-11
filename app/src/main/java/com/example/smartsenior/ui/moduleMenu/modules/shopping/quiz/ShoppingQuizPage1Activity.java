@@ -3,22 +3,20 @@ package com.example.smartsenior.ui.moduleMenu.modules.shopping.quiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class ShoppingQuizPage1Activity extends AppCompatActivity {
+public class ShoppingQuizPage1Activity extends BaseTTSActivity {
 
     private RadioGroup groupQ1, groupQ2;
     private TextView feedbackQ1, feedbackQ2;
     private MaterialButton btnNext;
 
-    private int score = 0; // wynik częściowy
+    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,7 @@ public class ShoppingQuizPage1Activity extends AppCompatActivity {
         setupQ2();
 
         btnNext.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, ShoppingQuizPage2Activity.class);
             intent.putExtra("QUIZ_RESULT", score);
             startActivity(intent);
@@ -51,6 +50,7 @@ public class ShoppingQuizPage1Activity extends AppCompatActivity {
 
     private void setupQ1() {
         groupQ1.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ1);
 
             if (checkedId == R.id.q1_b) score++;
@@ -68,6 +68,7 @@ public class ShoppingQuizPage1Activity extends AppCompatActivity {
 
     private void setupQ2() {
         groupQ2.setOnCheckedChangeListener((group, checkedId) -> {
+            tts.stop();
             lockGroup(groupQ2);
 
             if (checkedId == R.id.q2_c) score++;
@@ -88,5 +89,10 @@ public class ShoppingQuizPage1Activity extends AppCompatActivity {
                 feedbackQ1.getVisibility() == View.VISIBLE &&
                         feedbackQ2.getVisibility() == View.VISIBLE
         );
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

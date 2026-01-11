@@ -24,12 +24,19 @@
         android:gravity="center_horizontal"
         android:padding="24dp">
 
-        <!-- Przycisk do zmiany wielkości czcionki -->
         <Button
             android:id="@+id/btnFontSizeToggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Powiększ tekst"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTtsToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Włącz lektora"
             android:textAllCaps="false" />
     </LinearLayout>
 

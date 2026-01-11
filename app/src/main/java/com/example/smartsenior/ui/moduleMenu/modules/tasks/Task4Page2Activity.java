@@ -1,19 +1,18 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Task4Page2Activity extends AppCompatActivity {
+public class Task4Page2Activity extends BaseTTSActivity {
 
     MaterialButton btnAmount, btnLink, btnSender, btnNext;
     View overlay;
@@ -25,7 +24,7 @@ public class Task4Page2Activity extends AppCompatActivity {
     boolean senderSelected = false;
     boolean linkSelected = false;
 
-    boolean locked = false; // blokada po błędnej lub poprawnej odpowiedzi
+    boolean locked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +43,19 @@ public class Task4Page2Activity extends AppCompatActivity {
 
         btnNext.setVisibility(View.GONE);
 
-        btnAmount.setOnClickListener(v -> toggle(btnAmount, 1));
-        btnSender.setOnClickListener(v -> toggle(btnSender, 2));
-        btnLink.setOnClickListener(v -> toggle(btnLink, 3));
+        btnAmount.setOnClickListener(v -> { tts.stop(); toggle(btnAmount, 1); });
+        btnSender.setOnClickListener(v -> { tts.stop(); toggle(btnSender, 2); });
+        btnLink.setOnClickListener(v -> { tts.stop(); toggle(btnLink, 3); });
 
-        popupClose.setOnClickListener(v -> hidePopup());
+        popupClose.setOnClickListener(v -> {
+            tts.stop();
+            hidePopup();
+        });
     }
 
     private void toggle(MaterialButton btn, int id) {
 
-        if (locked) return; // zablokowane po wyniku
+        if (locked) return;
 
         if (id == 1) {
             amountSelected = !amountSelected;
@@ -84,10 +86,7 @@ public class Task4Page2Activity extends AppCompatActivity {
     }
 
     private void checkIfReady() {
-
         if (locked) return;
-
-        // jeśli obie poprawne zaznaczone → dobry popup
         if (senderSelected && linkSelected) {
             showSuccess();
         }
@@ -116,7 +115,7 @@ public class Task4Page2Activity extends AppCompatActivity {
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1D1")));
 
         disableButtons();
-        showNextButton(); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< DODANE
+        showNextButton();
     }
 
     private void disableButtons() {
@@ -127,13 +126,35 @@ public class Task4Page2Activity extends AppCompatActivity {
 
     private void showNextButton() {
         btnNext.setVisibility(View.VISIBLE);
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(this, Task4Page3Activity.class))
-        );
+        btnNext.setEnabled(true);
+        btnNext.setAlpha(1f);
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task4Page3Activity.class));
+        });
     }
 
     private void hidePopup() {
         overlay.setVisibility(View.GONE);
         popupBox.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+
+        String a = btnAmount != null && btnAmount.getText() != null ? btnAmount.getText().toString().trim() : "";
+        String b = btnSender != null && btnSender.getText() != null ? btnSender.getText().toString().trim() : "";
+        String c = btnLink != null && btnLink.getText() != null ? btnLink.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty() || !b.isEmpty() || !c.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcje: ").append(a).append(", ").append(b).append(", ").append(c);
+        }
+
+        return sb.toString().trim();
     }
 }

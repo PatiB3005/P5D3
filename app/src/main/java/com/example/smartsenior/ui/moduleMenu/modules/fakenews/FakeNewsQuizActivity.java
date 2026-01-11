@@ -3,22 +3,21 @@ package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
-
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeNewsQuizActivity extends AppCompatActivity {
+public class FakeNewsQuizActivity extends BaseTTSActivity {
 
     private static class QuizItem {
         String headline;
@@ -43,13 +42,19 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
     private int correctCount = 0;
     private boolean answered = false;
 
+    // żeby nie dublować odczytu: onResume już powie raz, a kolejne pytania mówimy ręcznie
+    private boolean hasResumed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_quiz);
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
 
         headlineText = findViewById(R.id.headlineText);
         feedbackText = findViewById(R.id.feedbackText);
@@ -62,6 +67,27 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
 
         setupOption(cardYes, true);
         setupOption(cardNo, false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hasResumed = true;
+    }
+
+    @Override
+    protected String getSpeakText() {
+        // Czytamy bieżący nagłówek i instrukcję (najważniejsze elementy quizu)
+        String h = (headlineText != null && headlineText.getText() != null) ? headlineText.getText().toString().trim() : "";
+        String f = (feedbackText != null && feedbackText.getText() != null) ? feedbackText.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!h.isEmpty()) sb.append(h);
+        if (!f.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append(f);
+        }
+        return sb.toString().trim();
     }
 
     private void initQuestions() {
@@ -122,6 +148,12 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
         feedbackText.setText("Dotknij TAK lub NIE, aby sprawdzić odpowiedź.");
         resetCardsVisual();
         answered = false;
+
+        // Zmiana pytania nie powoduje onResume, więc czytamy ręcznie (po pierwszym wejściu).
+        if (hasResumed && tts.isEnabled()) {
+            tts.stop();
+            tts.speak(getSpeakText());
+        }
     }
 
     private void resetCardsVisual() {
@@ -136,6 +168,9 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
         card.setOnClickListener(v -> {
             if (answered) return;
             answered = true;
+
+            // przerywamy lektora, żeby nie nakładał się na interakcję
+            tts.stop();
 
             QuizItem item = questions.get(currentIndex);
             boolean isCorrect = (item.isTrue == answerValue);
@@ -190,9 +225,9 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
                 .setPositiveButton("Zobacz wynik", (dialog, which) -> {
                     dialog.dismiss();
 
-                    // Progres: ukończono quiz Fake News
                     ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
 
+                    tts.stop();
                     Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
                     intent.putExtra("score", correctCount);
                     intent.putExtra("maxScore", maxScore);

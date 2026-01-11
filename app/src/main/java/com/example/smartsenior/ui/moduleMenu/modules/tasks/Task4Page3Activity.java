@@ -1,19 +1,18 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Task4Page3Activity extends AppCompatActivity {
+public class Task4Page3Activity extends BaseTTSActivity {
 
     MaterialButton btnNewNumber, btnLink, btnContent, btnNext;
     View overlay;
@@ -25,7 +24,7 @@ public class Task4Page3Activity extends AppCompatActivity {
     boolean linkSelected = false;
     boolean contentSelected = false;
 
-    boolean locked = false; // blokada po błędzie lub poprawie
+    boolean locked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +43,21 @@ public class Task4Page3Activity extends AppCompatActivity {
 
         btnNext.setVisibility(View.GONE);
 
-        btnNewNumber.setOnClickListener(v -> toggle(btnNewNumber, 1));
-        btnLink.setOnClickListener(v -> toggle(btnLink, 2));
-        btnContent.setOnClickListener(v -> toggle(btnContent, 3));
+        btnNewNumber.setOnClickListener(v -> { tts.stop(); toggle(btnNewNumber, 1); });
+        btnLink.setOnClickListener(v -> { tts.stop(); toggle(btnLink, 2); });
+        btnContent.setOnClickListener(v -> { tts.stop(); toggle(btnContent, 3); });
 
-        popupClose.setOnClickListener(v -> hidePopup());
+        popupClose.setOnClickListener(v -> {
+            tts.stop();
+            hidePopup();
+        });
     }
 
     private void toggle(MaterialButton btn, int id) {
 
-        if (locked) return; // zablokowane po wyniku
+        if (locked) return;
 
-        if (id == 3) { // CONTENT = ZŁA ODPOWIEDŹ
+        if (id == 3) {
             contentSelected = !contentSelected;
             highlight(btn, contentSelected);
 
@@ -85,8 +87,6 @@ public class Task4Page3Activity extends AppCompatActivity {
 
     private void checkIfReady() {
         if (locked) return;
-
-        // Jeśli dwie poprawne zaznaczone → sukces
         if (newNumberSelected && linkSelected) {
             showSuccess();
         }
@@ -126,13 +126,35 @@ public class Task4Page3Activity extends AppCompatActivity {
 
     private void showNextButton() {
         btnNext.setVisibility(View.VISIBLE);
-        btnNext.setOnClickListener(v ->
-                startActivity(new Intent(this, Task4Page4Activity.class))
-        );
+        btnNext.setEnabled(true);
+        btnNext.setAlpha(1f);
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task4Page4Activity.class));
+        });
     }
 
     private void hidePopup() {
         overlay.setVisibility(View.GONE);
         popupBox.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+
+        String a = btnNewNumber != null && btnNewNumber.getText() != null ? btnNewNumber.getText().toString().trim() : "";
+        String b = btnLink != null && btnLink.getText() != null ? btnLink.getText().toString().trim() : "";
+        String c = btnContent != null && btnContent.getText() != null ? btnContent.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty() || !b.isEmpty() || !c.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcje: ").append(a).append(", ").append(b).append(", ").append(c);
+        }
+
+        return sb.toString().trim();
     }
 }

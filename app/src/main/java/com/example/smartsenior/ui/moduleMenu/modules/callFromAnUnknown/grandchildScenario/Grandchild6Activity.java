@@ -3,13 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchi
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Grandchild6Activity extends AppCompatActivity {
+public class Grandchild6Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +18,14 @@ public class Grandchild6Activity extends AppCompatActivity {
 
         // Dalej -> POUCZENIE (Grandchild7Activity)
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(Grandchild6Activity.this,
-                    Grandchild7Activity.class);
+            tts.stop();
+            Intent intent = new Intent(Grandchild6Activity.this, Grandchild7Activity.class);
             startActivity(intent);
         });
+    }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

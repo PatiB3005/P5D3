@@ -3,12 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class ShoppingTheory4Activity extends AppCompatActivity {
+public class ShoppingTheory4Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +17,19 @@ public class ShoppingTheory4Activity extends AppCompatActivity {
         MaterialButton btnBack = findViewById(R.id.btnBack);
         MaterialButton btnNext = findViewById(R.id.btnNext);
 
-        // wraca do teorii 3
-        btnBack.setOnClickListener(v -> finish());
-
-        // przechodzi do teorii 5
-        btnNext.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    ShoppingTheory4Activity.this,
-                    ShoppingTheory5Activity.class
-            );
-            startActivity(intent);
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
         });
+
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ShoppingTheory4Activity.this, ShoppingTheory5Activity.class));
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

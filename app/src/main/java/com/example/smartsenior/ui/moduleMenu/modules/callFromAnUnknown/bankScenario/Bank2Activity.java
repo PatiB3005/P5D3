@@ -2,15 +2,13 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Bank2Activity extends AppCompatActivity {
+public class Bank2Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +18,19 @@ public class Bank2Activity extends AppCompatActivity {
         TextView textAnswerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A -> kontynuujesz rozmowę -> scena 3
         textAnswerA.setOnClickListener(v -> {
-            Intent intent = new Intent(Bank2Activity.this, Bank3Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(Bank2Activity.this, Bank3Activity.class));
         });
 
-        // Czerwona słuchawka – przerwanie scenariusza
-        declineCall.setOnClickListener(v -> finish());
+        declineCall.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

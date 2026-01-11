@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class Task4Page4Activity extends AppCompatActivity {
+public class Task4Page4Activity extends BaseTTSActivity {
 
     MaterialButton btnApp, btnLink, btnContent, btnFinish;
     View overlay;
@@ -45,14 +44,18 @@ public class Task4Page4Activity extends AppCompatActivity {
 
         btnFinish.setVisibility(View.GONE);
 
-        btnApp.setOnClickListener(v -> toggle(btnApp, 1));
-        btnLink.setOnClickListener(v -> toggle(btnLink, 2));
-        btnContent.setOnClickListener(v -> toggle(btnContent, 3));
+        btnApp.setOnClickListener(v -> { tts.stop(); toggle(btnApp, 1); });
+        btnLink.setOnClickListener(v -> { tts.stop(); toggle(btnLink, 2); });
+        btnContent.setOnClickListener(v -> { tts.stop(); toggle(btnContent, 3); });
 
-        popupClose.setOnClickListener(v -> hidePopup());
+        popupClose.setOnClickListener(v -> {
+            tts.stop();
+            hidePopup();
+        });
 
         btnFinish.setOnClickListener(v -> {
-            // ZALICZENIE CZĘŚCI: Task4 ukończony
+            tts.stop();
+
             ProgressStore.markDone(this, ProgressKeys.M1_TASK4_DONE);
 
             Intent i = new Intent(this, TasksActivity.class);
@@ -121,10 +124,31 @@ public class Task4Page4Activity extends AppCompatActivity {
 
     private void showFinish() {
         btnFinish.setVisibility(View.VISIBLE);
+        btnFinish.setEnabled(true);
+        btnFinish.setAlpha(1f);
     }
 
     private void hidePopup() {
         overlay.setVisibility(View.GONE);
         popupBox.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+
+        String a = btnApp != null && btnApp.getText() != null ? btnApp.getText().toString().trim() : "";
+        String b = btnLink != null && btnLink.getText() != null ? btnLink.getText().toString().trim() : "";
+        String c = btnContent != null && btnContent.getText() != null ? btnContent.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty() || !b.isEmpty() || !c.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcje: ").append(a).append(", ").append(b).append(", ").append(c);
+        }
+
+        return sb.toString().trim();
     }
 }

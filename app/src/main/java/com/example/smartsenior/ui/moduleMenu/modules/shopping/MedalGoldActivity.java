@@ -3,13 +3,12 @@ package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.google.android.material.button.MaterialButton;
 
-public class MedalGoldActivity extends AppCompatActivity {
+public class MedalGoldActivity extends BaseTTSActivity {
 
     MaterialButton btnBackToMenu;
 
@@ -19,12 +18,14 @@ public class MedalGoldActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_gold);
 
         btnBackToMenu = findViewById(R.id.backToMenuButton);
-
         btnBackToMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(MedalGoldActivity.this, Module3Activity.class);
-            startActivity(intent);
+            tts.stop();
+            startActivity(new Intent(MedalGoldActivity.this, Module3Activity.class));
         });
-
     }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
+    }
 }

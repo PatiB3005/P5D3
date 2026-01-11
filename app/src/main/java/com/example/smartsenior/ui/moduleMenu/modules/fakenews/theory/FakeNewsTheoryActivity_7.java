@@ -1,20 +1,14 @@
 package com.example.smartsenior.ui.moduleMenu.modules.fakenews.theory;
 
-import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
-import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsResultActivity;
+import com.example.smartsenior.ui.BaseTTSActivity;
+import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class FakeNewsTheoryActivity_7 extends AppCompatActivity {
-
-    private boolean ttsOn = false;
+public class FakeNewsTheoryActivity_7 extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +18,22 @@ public class FakeNewsTheoryActivity_7 extends AppCompatActivity {
         MaterialButton btnBack = findViewById(R.id.btnBack);
         MaterialButton backToMenuButtonFake = findViewById(R.id.backToMenuButtonFake);
 
-        // WSTECZ
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
 
         backToMenuButtonFake.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(FakeNewsTheoryActivity_7.this, ModuleMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
-            finish(); // zamyka tylko 7
+            finish();
         });
+    }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

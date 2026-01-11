@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
-import com.example.smartsenior.ui.moduleMenu.modules.tasks.TasksActivity;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Task1Activity extends AppCompatActivity {
+public class Task1Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +17,19 @@ public class Task1Activity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBack);
         Button btnStart = findViewById(R.id.btnStart);
 
-        // Powrót do listy zadań
-        btnBack.setOnClickListener(v ->
-                startActivity(new Intent(this, TasksActivity.class))
-        );
+        btnBack.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, TasksActivity.class));
+        });
 
-        // Przejście do pierwszej strony zadania
-        btnStart.setOnClickListener(v ->
-                startActivity(new Intent(this, Task1Page1Activity.class)) // <- TU FORMALNA ZMIANA
-        );
+        btnStart.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task1Page1Activity.class));
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

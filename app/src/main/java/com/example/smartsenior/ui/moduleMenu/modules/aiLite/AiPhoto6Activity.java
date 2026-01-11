@@ -8,12 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class AiPhoto6Activity extends AppCompatActivity {
+public class AiPhoto6Activity extends BaseTTSActivity {
 
     Button btnFake, btnReal, btnOk;
     MaterialButton btnNext;
@@ -35,26 +34,16 @@ public class AiPhoto6Activity extends AppCompatActivity {
         titleTrue = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
 
-        // na start "Przejdź dalej" nieaktywne
         setButtonState(btnNext, false);
 
-        // ✅ tu zostawiasz logikę odpowiedzi tak jak chcesz:
-        // Jeśli poprawna ma być "AI" -> tak jak jest:
+        // poprawna odpowiedź wg Twojej logiki:
         btnFake.setOnClickListener(v -> handleAnswer(false));
         btnReal.setOnClickListener(v -> handleAnswer(true));
 
-        // Jeśli poprawna ma być "Prawdziwe", to zamiast powyższych daj:
-        // btnReal.setOnClickListener(v -> handleAnswer(true));
-        // btnFake.setOnClickListener(v -> handleAnswer(false));
-
-        // ✅ LOGIKA MEDALI po ostatnim pytaniu
         btnNext.setOnClickListener(v -> {
+            tts.stop();
 
-            // jeśli masz pole score:
             int score = ScoreManageAi.score;
-
-            // jeśli masz metodę, to użyj zamiast tego:
-            // int score = ScoreManageAi.getScore();
 
             if (score == 5) {
                 startActivity(new Intent(AiPhoto6Activity.this, AiMedalGoldActivity.class));
@@ -99,5 +88,25 @@ public class AiPhoto6Activity extends AppCompatActivity {
     private void setButtonState(MaterialButton button, boolean enabled) {
         button.setEnabled(enabled);
         button.setAlpha(enabled ? 1f : 0.4f);
+    }
+
+    @Override
+    protected String getSpeakText() {
+        String base = collectSpeakableTextFromLayout();
+        String a = (btnFake != null && btnFake.getText() != null) ? btnFake.getText().toString().trim() : "";
+        String b = (btnReal != null && btnReal.getText() != null) ? btnReal.getText().toString().trim() : "";
+
+        StringBuilder sb = new StringBuilder();
+        if (!base.isEmpty()) sb.append(base);
+
+        if (!a.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja pierwsza: ").append(a);
+        }
+        if (!b.isEmpty()) {
+            if (sb.length() > 0) sb.append(". ");
+            sb.append("Opcja druga: ").append(b);
+        }
+        return sb.toString().trim();
     }
 }

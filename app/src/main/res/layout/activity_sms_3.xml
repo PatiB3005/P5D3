@@ -8,18 +8,6 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <ImageButton
-        android:id="@+id/btnTTS"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_margin="12dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/tts_off"
-        android:padding="8dp"
-        android:src="@drawable/ic_volume_off"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"

@@ -11,18 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 
-public class ModuleMenuActivity extends AppCompatActivity {
+public class ModuleMenuActivity extends BaseTTSActivity {
 
     private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnAiLite;
     private LinearLayout btnFakeNewsModule;
@@ -35,14 +34,12 @@ public class ModuleMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
-        // Kafelki
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
         btnAiLite = findViewById(R.id.btnAiLite);
 
-        // Progresy + etykiety
         progressModule1 = findViewById(R.id.progressModule1);
         progressModule2 = findViewById(R.id.progressModule2);
         progressModule3 = findViewById(R.id.progressModule3);
@@ -53,29 +50,38 @@ public class ModuleMenuActivity extends AppCompatActivity {
         labelModule3Number = findViewById(R.id.textModule3ProgressNumber);
         labelFakeNews = findViewById(R.id.textFakeNewsProgressLabel);
 
-        btnModule1.setOnClickListener(v -> startActivity(new Intent(ModuleMenuActivity.this, Module1Activity.class)));
-
-        btnCallFromAnUnknown.setOnClickListener(v ->
-                startActivity(new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class)));
-
-        btnShoppingOnline.setOnClickListener(v ->
-                startActivity(new Intent(ModuleMenuActivity.this, Module3Activity.class)));
-
-        btnFakeNewsModule.setOnClickListener(v ->
-                startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class)));
-
-        btnAiLite.setOnClickListener(v -> {
-            Intent intent = new Intent(ModuleMenuActivity.this, AiActivity.class);
-            startActivity(intent);
+        btnModule1.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ModuleMenuActivity.this, Module1Activity.class));
         });
 
-        // Powrót do tutorialu
+        btnCallFromAnUnknown.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ModuleMenuActivity.this, CallFromAnUnknownMenuActivity.class));
+        });
+
+        btnShoppingOnline.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ModuleMenuActivity.this, Module3Activity.class));
+        });
+
+        btnFakeNewsModule.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class));
+        });
+
+        btnAiLite.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(ModuleMenuActivity.this, AiActivity.class));
+        });
+
         Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
         boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
 
         if (fromTutorial) {
             btnBackToTutorial.setVisibility(View.VISIBLE);
             btnBackToTutorial.setOnClickListener(v -> {
+                tts.stop();
                 Intent intent = new Intent(ModuleMenuActivity.this,
                         com.example.smartsenior.ui.tutorial.TutorialActivity4.class);
                 startActivity(intent);
@@ -84,16 +90,12 @@ public class ModuleMenuActivity extends AppCompatActivity {
         }
     }
 
-    // ============= POWIĘKSZANIE TEKSTU (AUTOMATYCZNIE NA CAŁYM EKRANIE) =============
     @Override
     protected void onResume() {
-        super.onResume();
-
-        // 1) Font
+        // najpierw odśwież UI (żeby TTS czytał aktualne wartości), potem super (BaseTTSActivity)
         applyFontSize(findViewById(android.R.id.content));
-
-        // 2) Progres
         refreshProgressUI();
+        super.onResume();
     }
 
     private void refreshProgressUI() {
@@ -113,7 +115,6 @@ public class ModuleMenuActivity extends AppCompatActivity {
         if (labelFakeNews != null) labelFakeNews.setText("Postęp: " + pFN + "%");
     }
 
-    // ================== POWIĘKSZANIE TEKSTU (Twoja logika) ==================
     private void applyFontSize(View root) {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isLarge = prefs.getBoolean("large_font", false);
@@ -146,5 +147,10 @@ public class ModuleMenuActivity extends AppCompatActivity {
                 scaleTextRecursively(group.getChildAt(i), titleSize, normalSize, smallSize);
             }
         }
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }

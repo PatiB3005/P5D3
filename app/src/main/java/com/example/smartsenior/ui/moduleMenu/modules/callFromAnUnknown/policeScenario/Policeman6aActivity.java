@@ -3,13 +3,11 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeSc
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class Policeman6aActivity extends AppCompatActivity {
+public class Policeman6aActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +16,16 @@ public class Policeman6aActivity extends AppCompatActivity {
 
         Button next = findViewById(R.id.btnNext);
 
-        // ▶ „Dalej” → ekran POUCZENIE (Policeman7Activity)
+        // „Dalej” → Policeman7Activity
         next.setOnClickListener(v -> {
+            tts.stop();
             Intent intent = new Intent(this, Policeman7Activity.class);
             startActivity(intent);
         });
+    }
 
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
     }
 }
