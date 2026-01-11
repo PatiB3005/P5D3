@@ -32,11 +32,9 @@ public class AiActivity extends BaseTTSActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> {
             tts.stop();
-            Intent intent = new Intent(AiActivity.this, ModuleMenuActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
+            com.example.smartsenior.ui.moduleMenu.ModuleMenuNav.go(this);
         });
+
     }
 
     @Override

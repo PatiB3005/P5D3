@@ -42,13 +42,20 @@ public class TasksActivity extends BaseTTSActivity {
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        toolbar.setNavigationOnClickListener(v -> {
-            tts.stop();
-            Intent intent = new Intent(TasksActivity.this, Module1Activity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        });
+        toolbar.setNavigationOnClickListener(v -> goBackToModule());
+    }
+
+    @Override
+    public void onBackPressed() {
+        goBackToModule();
+    }
+
+    private void goBackToModule() {
+        tts.stop();
+        Intent intent = new Intent(TasksActivity.this, Module1Activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 
     @Override

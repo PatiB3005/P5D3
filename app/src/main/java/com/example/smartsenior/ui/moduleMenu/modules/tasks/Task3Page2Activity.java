@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -46,6 +48,7 @@ public class Task3Page2Activity extends BaseTTSActivity {
         btnFinish = findViewById(R.id.btnFinish);
         btnFinish.setVisibility(View.GONE);
         btnFinish.setEnabled(false);
+        btnFinish.setAlpha(0.4f);
 
         btn1Left.setOnClickListener(v -> {
             tts.stop();
@@ -113,6 +116,9 @@ public class Task3Page2Activity extends BaseTTSActivity {
 
         btnFinish.setOnClickListener(v -> {
             tts.stop();
+
+            ProgressStore.markDone(this, ProgressKeys.M1_TASK3_DONE);
+
             startActivity(new Intent(Task3Page2Activity.this, TasksActivity.class));
             finish();
         });

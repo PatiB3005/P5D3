@@ -7,10 +7,12 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
@@ -26,29 +28,34 @@ public class ModuleMenuActivity extends BaseTTSActivity {
     private LinearLayout btnModule1, btnCallFromAnUnknown, btnShoppingOnline, btnAiLite;
     private LinearLayout btnFakeNewsModule;
 
-    private ProgressBar progressModule1, progressModule2, progressModule3, progressFakeNews;
-    private TextView labelModule1, labelModule2, labelModule3Number, labelFakeNews;
+    private ProgressBar progressModule1, progressModule2, progressModule3, progressFakeNews, progressAiLite;
+    private TextView labelModule1, labelModule2, labelModule3Number, labelFakeNews, labelAiLite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
+        // kafelki
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
         btnAiLite = findViewById(R.id.btnAiLite);
 
+        // progress
         progressModule1 = findViewById(R.id.progressModule1);
         progressModule2 = findViewById(R.id.progressModule2);
         progressModule3 = findViewById(R.id.progressModule3);
         progressFakeNews = findViewById(R.id.progressFakeNews);
+        progressAiLite = findViewById(R.id.progressAiLite);
 
+        // etykiety
         labelModule1 = findViewById(R.id.textModule1ProgressLabel);
         labelModule2 = findViewById(R.id.textModule2ProgressLabel);
         labelModule3Number = findViewById(R.id.textModule3ProgressNumber);
         labelFakeNews = findViewById(R.id.textFakeNewsProgressLabel);
+        labelAiLite = findViewById(R.id.textAiProgressLabel);
 
         btnModule1.setOnClickListener(v -> {
             tts.stop();
@@ -75,6 +82,19 @@ public class ModuleMenuActivity extends BaseTTSActivity {
             startActivity(new Intent(ModuleMenuActivity.this, AiActivity.class));
         });
 
+        // strzałka do menu głównego
+        ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
+        if (btnBackToMain != null) {
+            btnBackToMain.setOnClickListener(v -> {
+                tts.stop();
+                Intent intent = new Intent(ModuleMenuActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            });
+        }
+
+        // powrót do samouczka (jak było)
         Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
         boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
 
@@ -92,7 +112,6 @@ public class ModuleMenuActivity extends BaseTTSActivity {
 
     @Override
     protected void onResume() {
-        // najpierw odśwież UI (żeby TTS czytał aktualne wartości), potem super (BaseTTSActivity)
         applyFontSize(findViewById(android.R.id.content));
         refreshProgressUI();
         super.onResume();
@@ -103,16 +122,19 @@ public class ModuleMenuActivity extends BaseTTSActivity {
         int p2 = ProgressStore.getPercent(this, ProgressKeys.MODULE2_PARTS);
         int p3 = ProgressStore.getPercent(this, ProgressKeys.MODULE3_PARTS);
         int pFN = ProgressStore.getPercent(this, ProgressKeys.FAKENEWS_PARTS);
+        int pAI = ProgressStore.getPercent(this, ProgressKeys.AI_PARTS);
 
         if (progressModule1 != null) progressModule1.setProgress(p1);
         if (progressModule2 != null) progressModule2.setProgress(p2);
         if (progressModule3 != null) progressModule3.setProgress(p3);
         if (progressFakeNews != null) progressFakeNews.setProgress(pFN);
+        if (progressAiLite != null) progressAiLite.setProgress(pAI);
 
         if (labelModule1 != null) labelModule1.setText("Postęp: " + p1 + "%");
         if (labelModule2 != null) labelModule2.setText("Postęp: " + p2 + "%");
         if (labelModule3Number != null) labelModule3Number.setText(p3 + "%");
         if (labelFakeNews != null) labelFakeNews.setText("Postęp: " + pFN + "%");
+        if (labelAiLite != null) labelAiLite.setText("Postęp: " + pAI + "%");
     }
 
     private void applyFontSize(View root) {

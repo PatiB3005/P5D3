@@ -19,7 +19,7 @@ public class FakeNewsModuleActivity extends BaseTTSActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> {
             tts.stop();
-            finish();
+            com.example.smartsenior.ui.moduleMenu.ModuleMenuNav.go(this);
         });
 
         LinearLayout btnTheory = findViewById(R.id.btnFakeNewsTheory);

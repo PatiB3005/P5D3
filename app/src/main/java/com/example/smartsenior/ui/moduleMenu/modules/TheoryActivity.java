@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -13,7 +15,6 @@ public class TheoryActivity extends BaseTTSActivity {
     private static final int LAST_SCREEN = 7;
     private int currentScreen = 1;
 
-    // Żeby nie czytało podwójnie na starcie (onResume + showScreen)
     private boolean firstScreenAlreadyShown = false;
 
     @Override
@@ -38,14 +39,15 @@ public class TheoryActivity extends BaseTTSActivity {
 
         setupButtons();
 
-        // Kluczowe: po zmianie layoutu trzeba ponownie odpalić lektora,
-        // bo onResume się nie wykona.
         if (firstScreenAlreadyShown) {
             getWindow().getDecorView().post(this::speakIfEnabled);
         }
     }
 
     private void goToModule1() {
+        // KONIEC TEORII => zapis postępu
+        ProgressStore.markDone(this, ProgressKeys.M1_THEORY_DONE);
+
         Intent intent = new Intent(TheoryActivity.this, Module1Activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

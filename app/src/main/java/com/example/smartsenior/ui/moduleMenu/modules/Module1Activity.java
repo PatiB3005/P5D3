@@ -40,7 +40,7 @@ public class Module1Activity extends BaseTTSActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> {
             tts.stop();
-            finish();
+            com.example.smartsenior.ui.moduleMenu.ModuleMenuNav.go(this);
         });
     }
 

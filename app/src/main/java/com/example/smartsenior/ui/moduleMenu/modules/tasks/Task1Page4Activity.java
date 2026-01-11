@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.progress.ProgressKeys;
+import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -37,7 +39,11 @@ public class Task1Page4Activity extends BaseTTSActivity {
 
         btnFinish.setOnClickListener(v -> {
             tts.stop();
+
+            ProgressStore.markDone(this, ProgressKeys.M1_TASK1_DONE);
+
             startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class));
+            finish();
         });
     }
 
