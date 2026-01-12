@@ -37,12 +37,6 @@
         <activity android:name=".ui.miniGamesMenu.MiniGamesMenuActivity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame1Activity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MemoryGame.MemoryActivity" />
-
-        <!-- Mini games z origin/miniGamesMenu -->
-        <activity android:name=".ui.miniGamesMenu.miniGames.MemoryActivity" />
-        <activity android:name=".ui.miniGamesMenu.miniGames.DictionaryActivity" />
-        <activity android:name=".ui.miniGamesMenu.miniGames.SafePasswordActivity" />
-
         <activity android:name=".ui.virtualAssistant.virtualAssistantActivity" />
         <activity android:name=".ui.tutorial.TutorialActivity" />
         <activity android:name=".ui.notifications.NotificationsActivity" />

@@ -6,9 +6,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
-import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
 import com.example.smartsenior.ui.miniGamesMenu.miniGames.MemoryGame.MemoryActivity;
 import com.google.android.material.button.MaterialButton;
+import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
+
 
 public class MiniGame1Activity extends AppCompatActivity {
 
@@ -26,7 +27,9 @@ public class MiniGame1Activity extends AppCompatActivity {
             finish();
         });
 
+
         btnPlay = findViewById(R.id.btnPlay);
+
         btnPlay.setOnClickListener(v -> {
             Intent intent = new Intent(MiniGame1Activity.this, MemoryActivity.class);
             startActivity(intent);
