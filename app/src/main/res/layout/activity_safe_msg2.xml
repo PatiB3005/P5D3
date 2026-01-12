@@ -9,7 +9,7 @@
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
 
-    <!-- Scroll content -->
+    <!-- Scroll content (NIE do dołu parenta, tylko do separatora nad przyciskami) -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -17,9 +17,9 @@
         android:fillViewport="true"
         android:overScrollMode="never"
         android:clipToPadding="false"
-        android:paddingBottom="130dp"
+        android:paddingBottom="12dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

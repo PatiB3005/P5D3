@@ -1,98 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
-    android:padding="24dp">
+    android:background="#E9EEF5">
 
-    <!-- GÓRNA CZĘŚĆ (tytuły) -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Scroll -->
+    <ScrollView
+        android:id="@+id/scrollArea"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="top|center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+
+            <!-- Tytuł: 2 linie -->
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strony:"
+                android:textColor="#1A202C"
+                android:textSize="34sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginBottom="0dp" />
+
+            <TextView
+                android:id="@+id/textTitleSecondLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zakupy Online"
+                android:textColor="#1A202C"
+                android:textSize="34sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Podtytuł -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Przeanalizuj stronę"
+                android:textColor="#4A5568"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Obrazek -->
+            <ImageView
+                android:id="@+id/imageShopping"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
+                android:src="@drawable/online_shopping"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="@null"
+                android:layout_marginTop="-120dp"
+                android:layout_marginBottom="0dp" />
+
+            <!-- Opis: krótszy, o fałszywa vs prawdziwa -->
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:text="Przeanalizuj stronę i oceń, czy jest prawdziwa czy fałszywa. Zwróć uwagę na podejrzane elementy (np. linki, dane kontaktowe, sposób płatności) i wskaż, co budzi wątpliwości."
+                android:textSize="22sp"
+                android:textColor="#1A202C"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="7dp"
+                android:gravity="center"
+                android:layout_marginTop="-100dp"
+                android:layout_marginBottom="8dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- separator -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Dolny przycisk -->
+    <LinearLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:gravity="center"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moduł"
-            android:textSize="36sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Strony"
-            android:textSize="36sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/textSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ONLINE\nZAKUPY"
-            android:textSize="40sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:gravity="center" />
-    </LinearLayout>
-
-
-    <!-- ŚRODEK (OBRAZ) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.2"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imageShopping"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:src="@drawable/online_shopping"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
-    </LinearLayout>
-
-
-    <!-- DÓŁ (TEKST + PRZYCISK) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top|center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Przeanalizuj stronę i wskaż\nwszystkie zauważone\nniebezpieczeństwa"
-            android:textSize="24sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginBottom="32dp" />
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ROZPOCZNIJ"
-            android:textStyle="bold"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:backgroundTint="#D0D3E0"
-            android:textColor="#000000" />
-
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="Rozpocznij"
+            android:textAllCaps="false"
+            android:textSize="26sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/montserrat_bold"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

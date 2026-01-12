@@ -6,25 +6,27 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- SCROLL VIEW — zawiera CAŁĄ treść ekranu -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="32dp">
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
-            <!-- Tytuł -->
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
@@ -34,30 +36,33 @@
                 android:textColor="#1A202C"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginBottom="28dp" />
+                android:layout_marginBottom="4dp" />
 
-            <!-- Obrazek -->
-            <ImageView
-                android:id="@+id/theoryImage"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
-                android:src="@drawable/ic_end_options"
-                android:adjustViewBounds="true"
-                android:layout_marginBottom="36dp" />
-
-            <!-- Opis -->
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Możesz przejść do quizu, sprawdzać strony lub wrócić do modułu."
                 android:textSize="22sp"
-                android:textColor="#1A202C"
+                android:textColor="#4A5568"
                 android:gravity="center"
                 android:fontFamily="@font/montserrat_regular"
-                android:layout_marginBottom="36dp" />
+                android:lineSpacingExtra="6dp"
+                android:layout_marginBottom="0dp" />
 
-            <!-- DUŻY PRZYCISK: QUIZ -->
+            <!-- PRZYCISKI JESZCZE WYŻEJ -->
+            <ImageView
+                android:id="@+id/theoryImage"
+                android:layout_width="510dp"
+                android:layout_height="510dp"
+                android:layout_marginTop="-100dp"
+                android:layout_marginBottom="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_end_options" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnQuiz"
                 android:layout_width="match_parent"
@@ -68,10 +73,10 @@
                 android:fontFamily="@font/montserrat_bold"
                 app:backgroundTint="#2B6CB0"
                 app:cornerRadius="24dp"
+                android:layout_marginTop="-110dp"
                 android:layout_marginBottom="24dp"
-                android:letterSpacing="0.02"/>
+                android:letterSpacing="0.02" />
 
-            <!-- DUŻY PRZYCISK: MODUŁ STRONY -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPages"
                 android:layout_width="match_parent"
@@ -80,12 +85,11 @@
                 android:textSize="24sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
-                app:backgroundTint="#4A5568"
+                app:backgroundTint="#2B6CB0"
                 app:cornerRadius="24dp"
                 android:layout_marginBottom="24dp"
-                android:letterSpacing="0.02"/>
+                android:letterSpacing="0.02" />
 
-            <!-- DUŻY PRZYCISK: WYJŚCIE -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnExit"
                 android:layout_width="match_parent"
@@ -94,9 +98,9 @@
                 android:textSize="24sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
-                app:backgroundTint="#9D9FB0"
+                app:backgroundTint="#2B6CB0"
                 app:cornerRadius="24dp"
-                android:letterSpacing="0.02"/>
+                android:letterSpacing="0.02" />
 
         </LinearLayout>
 

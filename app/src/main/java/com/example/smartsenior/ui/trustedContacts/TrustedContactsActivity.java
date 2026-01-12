@@ -43,19 +43,26 @@ public class TrustedContactsActivity extends AppCompatActivity {
                 String phone = result.getData().getStringExtra("phone");
                 String photoUri = result.getData().getStringExtra("photoUri");
 
-                if (id == null) return;
+                if (id == null || id.trim().isEmpty()) return;
+
+                // Ochrona: phone w danych zawsze normalizujemy do +48...
+                String normalizedPhone = PhoneUtils.normalizeToPL(phone);
+                if (normalizedPhone == null) {
+                    Toast.makeText(this, "Nieprawidłowy numer telefonu. Nie zapisano.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 int idx = findIndexById(id);
                 if (idx >= 0) {
                     TrustedContact c = contacts.get(idx);
-                    c.name = name;
-                    c.phone = phone;
+                    c.name = (name == null ? "" : name);
+                    c.phone = normalizedPhone;
                     c.photoUri = (photoUri == null ? "" : photoUri);
                 } else {
                     TrustedContact c = new TrustedContact();
                     c.id = id;
-                    c.name = name;
-                    c.phone = phone;
+                    c.name = (name == null ? "" : name);
+                    c.phone = normalizedPhone;
                     c.photoUri = (photoUri == null ? "" : photoUri);
                     contacts.add(c);
                 }
@@ -124,7 +131,7 @@ public class TrustedContactsActivity extends AppCompatActivity {
         i.putExtra("mode", "edit");
         i.putExtra("id", c.id);
         i.putExtra("name", c.name);
-        i.putExtra("phone", c.phone);
+        i.putExtra("phone", c.phone);     // tu jest +48... ale form pokaże tylko 9 cyfr
         i.putExtra("photoUri", c.photoUri);
         formLauncher.launch(i);
     }
@@ -144,25 +151,21 @@ public class TrustedContactsActivity extends AppCompatActivity {
                 .show();
     }
 
-    // Dialer (bez permissions)
+    // Dialer (bez permissions) - zawsze tel:+48XXXXXXXXX
     private static void dialNumber(Context ctx, String phone) {
-        if (phone == null) {
-            Toast.makeText(ctx, "Brak numeru telefonu.", Toast.LENGTH_SHORT).show();
+        String normalized = PhoneUtils.normalizeToPL(phone);
+        if (normalized == null) {
+            Toast.makeText(ctx, "Nieprawidłowy numer telefonu.", Toast.LENGTH_SHORT).show();
             return;
         }
-        String cleaned = phone.replaceAll("[^0-9+]", "");
 
-        if (!cleaned.startsWith("+") && cleaned.length() == 9) {
-            cleaned = "+48" + cleaned;
-        }
-
-        if (cleaned.isEmpty()) {
-            Toast.makeText(ctx, "Brak numeru telefonu.", Toast.LENGTH_SHORT).show();
-            return;
-        }
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + cleaned));
-        ctx.startActivity(intent);
+        intent.setData(Uri.parse("tel:" + normalized));
+        try {
+            ctx.startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Nie można otworzyć telefonu.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // ===== Adapter =====
@@ -186,7 +189,7 @@ public class TrustedContactsActivity extends AppCompatActivity {
             final TextView tvInitials, tvName, tvPhone, tvMenu;
             final ImageView imgAvatar;
             final MaterialCardView chipWrap;
-            final MaterialButton btnCall; // <-- WAŻNE
+            final MaterialButton btnCall;
 
             VH(@NonNull View itemView) {
                 super(itemView);
@@ -196,7 +199,7 @@ public class TrustedContactsActivity extends AppCompatActivity {
                 tvMenu = itemView.findViewById(R.id.tvMenu);
                 imgAvatar = itemView.findViewById(R.id.imgAvatar);
                 chipWrap = itemView.findViewById(R.id.chipWrap);
-                btnCall = itemView.findViewById(R.id.btnCall); // <-- WAŻNE
+                btnCall = itemView.findViewById(R.id.btnCall);
             }
         }
 
