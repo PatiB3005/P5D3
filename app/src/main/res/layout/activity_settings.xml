@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="#EAF2FF">
 
-    <!-- Górny pasek z napisem Ustawienia -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarSettings"
         android:layout_width="match_parent"
@@ -16,20 +15,21 @@
         app:titleTextColor="@android:color/white"
         app:navigationIcon="@drawable/ic_arrow_back" />
 
-    <!-- Zawartość ekranu -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:padding="24dp">
 
-        <Button
-            android:id="@+id/btnFontSizeToggle"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchFontSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Powiększ tekst"
-            android:textAllCaps="false" />
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Duży rozmiar tekstu"
+            android:textAllCaps="false"
+            android:textColor="#4A5568"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnTtsToggle"
@@ -38,6 +38,7 @@
             android:layout_marginTop="16dp"
             android:text="Włącz lektora"
             android:textAllCaps="false" />
+
     </LinearLayout>
 
 </LinearLayout>

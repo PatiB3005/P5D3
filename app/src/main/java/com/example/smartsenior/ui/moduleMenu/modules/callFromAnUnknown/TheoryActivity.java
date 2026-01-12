@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.increaseFont.FontScaler;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
@@ -53,6 +54,9 @@ public class TheoryActivity extends BaseTTSActivity {
                 setContentView(R.layout.activity_call_from_unknown_8);
                 break;
         }
+
+        // zastosuj duży/mały font na aktualnym layoucie
+        FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
         setupButtons();
     }
