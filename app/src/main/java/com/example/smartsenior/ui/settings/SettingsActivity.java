@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.smartsenior.R;
@@ -11,7 +12,7 @@ import com.example.smartsenior.tts.TTSManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button btnFontSizeToggle;
+    private SwitchCompat switchFontSize;
     private Button btnTtsToggle;
 
     private boolean isLarge;
@@ -26,39 +27,30 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        btnFontSizeToggle = findViewById(R.id.btnFontSizeToggle);
+        switchFontSize = findViewById(R.id.switchFontSize);
         btnTtsToggle = findViewById(R.id.btnTtsToggle);
 
-        // Font – zostawiam jak miałeś (na prefsach), bo nie pokazałeś reszty logiki aplikacji.
         var prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         isLarge = prefs.getBoolean("large_font", false);
 
         // TTS – przez manager
         TTSManager tts = TTSManager.get(this);
         isTtsEnabled = tts.isEnabled();
-
-        updateFontButtonText();
         updateTtsButtonText();
 
-        btnFontSizeToggle.setOnClickListener(v -> {
-            isLarge = !isLarge;
+        // Font switch
+        switchFontSize.setChecked(isLarge);
+        switchFontSize.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            isLarge = isChecked;
             prefs.edit().putBoolean("large_font", isLarge).apply();
-            updateFontButtonText();
         });
 
+        // TTS button
         btnTtsToggle.setOnClickListener(v -> {
             isTtsEnabled = tts.toggle();
             updateTtsButtonText();
-
-            // opcjonalnie: krótkie potwierdzenie głosem po włączeniu
-            if (isTtsEnabled) {
-                tts.speak("Lektor włączony");
-            }
+            if (isTtsEnabled) tts.speak("Lektor włączony");
         });
-    }
-
-    private void updateFontButtonText() {
-        btnFontSizeToggle.setText(isLarge ? "Pomniejsz tekst" : "Powiększ tekst");
     }
 
     private void updateTtsButtonText() {
