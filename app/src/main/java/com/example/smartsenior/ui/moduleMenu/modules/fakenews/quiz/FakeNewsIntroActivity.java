@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -15,7 +17,6 @@ public class FakeNewsIntroActivity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_intro);
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         Button btnStart = findViewById(R.id.btnStartQuiz);
 
         toolbar.setNavigationOnClickListener(v -> {
@@ -23,6 +24,7 @@ public class FakeNewsIntroActivity extends BaseTTSActivity {
             finish();
         });
 
+        // Start quizu
         btnStart.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(FakeNewsIntroActivity.this, FakeNewsQuizActivity.class);

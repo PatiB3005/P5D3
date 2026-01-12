@@ -16,11 +16,11 @@ import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
-import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
-import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
 
 public class ModuleMenuActivity extends BaseTTSActivity {
@@ -36,14 +36,14 @@ public class ModuleMenuActivity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
-        // kafelki
+        // Kafelki
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
         btnAiLite = findViewById(R.id.btnAiLite);
 
-        // progress
+        // Progresy + etykiety
         progressModule1 = findViewById(R.id.progressModule1);
         progressModule2 = findViewById(R.id.progressModule2);
         progressModule3 = findViewById(R.id.progressModule3);
@@ -74,7 +74,7 @@ public class ModuleMenuActivity extends BaseTTSActivity {
 
         btnFakeNewsModule.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class));
+            startActivity(new Intent(ModuleMenuActivity.this, FakeNewsMenuActivity.class));
         });
 
         btnAiLite.setOnClickListener(v -> {
