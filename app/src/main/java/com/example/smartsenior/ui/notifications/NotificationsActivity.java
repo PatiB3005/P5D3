@@ -1,27 +1,23 @@
 package com.example.smartsenior.ui.notifications;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
 public class NotificationsActivity extends AppCompatActivity {
 
-    private TextView btnBack;
-    private MaterialButton btnAdd;
+    private MaterialButton btnMeds, btnVisits, btnShopping, btnOther, btnAdd;
 
     private final ActivityResultLauncher<String> requestNotifPermission =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {});
@@ -29,43 +25,36 @@ public class NotificationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notifications);
+        setContentView(R.layout.activity_reminders);
 
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setNavigationOnClickListener(v -> finish());
+
+        NotificationHelper.ensureChannel(this);
         askNotificationPermissionIfNeeded();
 
-        btnBack = findViewById(R.id.btnBack);
+        btnMeds = findViewById(R.id.btnMeds);
+        btnVisits = findViewById(R.id.btnVisits);
+        btnShopping = findViewById(R.id.btnShopping);
+        btnOther = findViewById(R.id.btnOther);
         btnAdd = findViewById(R.id.btnAdd);
 
-        if (btnBack != null) {
-            btnBack.setOnClickListener(v -> goToMainMenu());
-            // jeśli wolisz tylko cofnąć do poprzedniego ekranu, zamień na:
-            // btnBack.setOnClickListener(v -> finish());
-        }
+        // Kafelki -> pokazują listy zapisanych danych
+        btnMeds.setOnClickListener(v -> openCategory(ReminderType.MEDS));
+        btnVisits.setOnClickListener(v -> openCategory(ReminderType.VISIT));
+        btnShopping.setOnClickListener(v -> openCategory(ReminderType.SHOPPING));
+        btnOther.setOnClickListener(v -> openCategory(ReminderType.OTHER));
 
-        if (btnAdd != null) {
-            btnAdd.setOnClickListener(v -> openAddReminder());
-        }
-
-        // RecyclerViewy (rvSummary, rvCategories) zostają w XML;
-        // podepniesz adaptery później (albo są w innych plikach z brancha).
+        // Tylko ten przycisk dodaje nowe
+        btnAdd.setOnClickListener(v ->
+                startActivity(new Intent(this, AddReminderActivity.class))
+        );
     }
 
-    private void goToMainMenu() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-        finish();
-    }
-
-    private void openAddReminder() {
-        // Bez zależności kompilacyjnej (jeśli AddReminderActivity jeszcze nie istnieje)
-        try {
-            Intent i = new Intent();
-            i.setClassName(this, "com.example.smartsenior.ui.notifications.AddReminderActivity");
-            startActivity(i);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "Brak ekranu dodawania (AddReminderActivity)", Toast.LENGTH_SHORT).show();
-        }
+    private void openCategory(ReminderType type) {
+        Intent i = new Intent(this, CategoryItemsActivity.class);
+        i.putExtra(CategoryItemsActivity.EXTRA_TYPE, type.name());
+        startActivity(i);
     }
 
     private void askNotificationPermissionIfNeeded() {
