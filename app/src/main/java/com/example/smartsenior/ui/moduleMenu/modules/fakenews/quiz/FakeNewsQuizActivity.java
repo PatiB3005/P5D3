@@ -1,14 +1,10 @@
-package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
+package com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Button;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.ResultPopup;
@@ -37,10 +33,9 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     }
 
     private TextView headlineText;
-    private TextView feedbackText;
     private MaterialCardView cardHeadline;
-    private MaterialCardView cardYes;
-    private MaterialCardView cardNo;
+    private Button yesButton;
+    private Button noButton;
 
     private final List<QuizItem> questions = new ArrayList<>();
     private int currentIndex = 0;
@@ -56,12 +51,6 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_quiz);
-
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        toolbar.setNavigationOnClickListener(v -> {
-            tts.stop();
-            finish();
-        });
 
         // Inicjalizacja widoków
         headlineText = findViewById(R.id.headlineText);
@@ -90,14 +79,10 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     protected String getSpeakText() {
         // Czytamy bieżący nagłówek i instrukcję (najważniejsze elementy quizu)
         String h = (headlineText != null && headlineText.getText() != null) ? headlineText.getText().toString().trim() : "";
-        String f = (feedbackText != null && feedbackText.getText() != null) ? feedbackText.getText().toString().trim() : "";
 
         StringBuilder sb = new StringBuilder();
         if (!h.isEmpty()) sb.append(h);
-        if (!f.isEmpty()) {
-            if (sb.length() > 0) sb.append(". ");
-            sb.append(f);
-        }
+
         return sb.toString().trim();
     }
 

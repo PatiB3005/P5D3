@@ -145,6 +145,7 @@
         <activity android:name=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsResultActivity" />
 
 
+
         <!-- Zaufane kontakty -->
         <activity android:name=".ui.trustedContacts.TrustedContactsActivity" />
         <activity android:name=".ui.trustedContacts.TrustedContactFormActivity" />

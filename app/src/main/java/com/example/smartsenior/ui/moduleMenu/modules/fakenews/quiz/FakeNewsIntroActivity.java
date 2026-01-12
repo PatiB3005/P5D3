@@ -1,10 +1,11 @@
-package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
+package com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
@@ -19,10 +20,6 @@ public class FakeNewsIntroActivity extends BaseTTSActivity {
 
         Button btnStart = findViewById(R.id.btnStartQuiz);
 
-        toolbar.setNavigationOnClickListener(v -> {
-            tts.stop();
-            finish();
-        });
 
         // Start quizu
         btnStart.setOnClickListener(v -> {

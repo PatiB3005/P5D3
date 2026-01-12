@@ -1,4 +1,4 @@
-package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
+package com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class FakeNewsResultActivity extends BaseTTSActivity {

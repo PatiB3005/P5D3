@@ -16,12 +16,12 @@ import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
+import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
 
 public class ModuleMenuActivity extends BaseTTSActivity {
 
