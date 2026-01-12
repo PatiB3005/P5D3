@@ -2,8 +2,7 @@ package com.example.smartsenior.ui.miniGamesMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,47 +10,42 @@ import com.example.smartsenior.R;
 import com.example.smartsenior.ui.miniGamesMenu.miniGames.MiniGame1Activity;
 import com.example.smartsenior.ui.miniGamesMenu.miniGames.MiniGame2Activity;
 import com.example.smartsenior.ui.miniGamesMenu.miniGames.MiniGame3Activity;
-
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class MiniGamesMenuActivity extends AppCompatActivity {
 
-    private Button btnMiniGame1;
-    private Button btnMiniGame2;
-    private Button btnMiniGame3;
+    private LinearLayout btnMemory, btnDictionary, btnSafePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_games_menu);
 
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        // Toolbar back z XML
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
-        btnMiniGame1 = findViewById(R.id.btnMiniGame1);
-        btnMiniGame2 = findViewById(R.id.btnMiniGame2);
-        btnMiniGame3 = findViewById(R.id.btnMiniGame3);
+        // Kafelki z XML
+        btnMemory = findViewById(R.id.btnMemory);
+        btnDictionary = findViewById(R.id.btnDictionary);
+        btnSafePassword = findViewById(R.id.btnSafePassword);
 
-        btnMiniGame1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame1Activity.class);
-                startActivity(intent);
-            }
+        // Memory -> Twoja stara gra 1
+        btnMemory.setOnClickListener(v -> {
+            Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame1Activity.class);
+            startActivity(intent);
         });
 
-        btnMiniGame2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame2Activity.class);
-                startActivity(intent);
-            }
+        // Słownik -> Twoja stara gra 3
+        btnDictionary.setOnClickListener(v -> {
+            Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame3Activity.class);
+            startActivity(intent);
         });
 
-        btnMiniGame3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame3Activity.class);
-                startActivity(intent);
-            }
+        // Bezpieczne hasło -> Twoja stara gra 2
+        btnSafePassword.setOnClickListener(v -> {
+            Intent intent = new Intent(MiniGamesMenuActivity.this, MiniGame2Activity.class);
+            startActivity(intent);
         });
     }
 }
