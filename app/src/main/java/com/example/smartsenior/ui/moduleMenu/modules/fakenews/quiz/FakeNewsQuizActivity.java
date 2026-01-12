@@ -1,19 +1,17 @@
-package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
+package com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.ResultPopup;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.card.MaterialCardView;
-
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,35 +31,35 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
     }
 
     private TextView headlineText;
-    private TextView feedbackText;
-    private MaterialCardView cardHeadline;
-    private MaterialCardView cardYes;
-    private MaterialCardView cardNo;
+    private Button yesButton, noButton;
 
     private final List<QuizItem> questions = new ArrayList<>();
     private int currentIndex = 0;
     private int correctCount = 0;
     private boolean answered = false;
 
+    private ResultPopup resultPopup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_quiz);
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        toolbar.setNavigationOnClickListener(v -> finish());
-
+        // Inicjalizacja widoków
         headlineText = findViewById(R.id.headlineText);
-        feedbackText = findViewById(R.id.feedbackText);
-        cardHeadline = findViewById(R.id.cardHeadline);
-        cardYes = findViewById(R.id.cardYes);
-        cardNo = findViewById(R.id.cardNo);
+        yesButton = findViewById(R.id.yesButton);
+        noButton = findViewById(R.id.noButton);
 
+        // Inicjalizacja popup - MUSI BYĆ PO setContentView
+        resultPopup = new ResultPopup(this);
+
+        // Przygotowanie pytań i wyświetlenie pierwszego
         initQuestions();
         showCurrentQuestion();
 
-        setupOption(cardYes, true);
-        setupOption(cardNo, false);
+        // Ustawienie listenerów na przyciski
+        setupOption(yesButton, true);
+        setupOption(noButton, false);
     }
 
     private void initQuestions() {
@@ -76,7 +74,7 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
         questions.add(new QuizItem(
                 "Donald Tusk w tajemnicy spotkał się z Putinem w Dubaju – wyciekły zdjęcia",
                 false,
-                "To FAŁSZ. To typowy rosyjski fake news. „Dowody” to przerobione lub stare zdjęcia, które nie mają nic wspólnego z takim spotkaniem."
+                "To FAŁSZ. To typowy rosyjski fake news. \"Dowody\" to przerobione lub stare zdjęcia, które nie mają nic wspólnego z takim spotkaniem."
         ));
 
         questions.add(new QuizItem(
@@ -119,78 +117,41 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
     private void showCurrentQuestion() {
         QuizItem item = questions.get(currentIndex);
         headlineText.setText(item.headline);
-        feedbackText.setText("Dotknij TAK lub NIE, aby sprawdzić odpowiedź.");
         resetCardsVisual();
         answered = false;
     }
 
     private void resetCardsVisual() {
-        int defaultColor = Color.parseColor("#E5E7EB");
-        cardYes.setCardBackgroundColor(defaultColor);
-        cardYes.setStrokeWidth(0);
-        cardNo.setCardBackgroundColor(defaultColor);
-        cardNo.setStrokeWidth(0);
+        int defaultColor = Color.parseColor("#2B6CB0");
+        yesButton.setBackgroundColor(defaultColor);
+        noButton.setBackgroundColor(defaultColor);
     }
 
-    private void setupOption(MaterialCardView card, boolean answerValue) {
-        card.setOnClickListener(v -> {
+    private void setupOption(Button btn, boolean answerValue) {
+        btn.setOnClickListener(v -> {
+            // Jeśli już odpowiedziano, ignoruj kliknięcie
             if (answered) return;
             answered = true;
 
             QuizItem item = questions.get(currentIndex);
             boolean isCorrect = (item.isTrue == answerValue);
 
+            // Pokoloruj przycisk w zależności od poprawności
             if (isCorrect) {
                 correctCount++;
-                card.setCardBackgroundColor(Color.parseColor("#A7F3D0"));
-                card.setStrokeColor(Color.parseColor("#059669"));
-                card.setStrokeWidth(6);
+                btn.setBackgroundColor(Color.parseColor("#A7F3D0")); // Zielony
             } else {
-                card.setCardBackgroundColor(Color.parseColor("#FECACA"));
-                card.setStrokeColor(Color.parseColor("#DC2626"));
-                card.setStrokeWidth(6);
+                btn.setBackgroundColor(Color.parseColor("#FECACA")); // Czerwony
             }
 
-            showExplanationDialog(isCorrect, item.explanation);
-        });
-    }
+            // Sprawdź czy to ostatnie pytanie
+            boolean isLast = currentIndex == questions.size() - 1;
 
-    private void showExplanationDialog(boolean isCorrect, String explanation) {
-        String title = isCorrect ? "Dobra odpowiedź" : "Niepoprawna odpowiedź";
-        boolean isLast = (currentIndex == questions.size() - 1);
-        String buttonText = isLast ? "Zakończ quiz" : "Następne pytanie";
+            resultPopup.setOnDismissListener(() -> {
+                if (isLast) {
+                    int maxScore = questions.size();
 
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(explanation)
-                .setCancelable(false)
-                .setPositiveButton(buttonText, (dialog, which) -> {
-                    dialog.dismiss();
-                    if (isLast) {
-                        showSummaryDialog();
-                    } else {
-                        currentIndex++;
-                        showCurrentQuestion();
-                    }
-                })
-                .show();
-    }
-
-    private void showSummaryDialog() {
-        int maxScore = questions.size();
-
-        String message = "Ukończyłeś quiz.\n\n"
-                + "Poprawnych odpowiedzi: " + correctCount + " z " + maxScore + ".\n\n"
-                + "Pamiętaj: nawet jeśli coś wygląda jak „sensacyjna bomba”, warto sprawdzić źródło.";
-
-        new AlertDialog.Builder(this)
-                .setTitle("Podsumowanie")
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("Zobacz wynik", (dialog, which) -> {
-                    dialog.dismiss();
-
-                    // Progres: ukończono quiz Fake News
+                    // Zapis ukończenia quizu (jak wcześniej)
                     ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
 
                     Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
@@ -199,7 +160,47 @@ public class FakeNewsQuizActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
+                } else {
+                    currentIndex++;
+                    showCurrentQuestion();
+                }
+            });
+
+            resultPopup.show(isCorrect, item.explanation, "OK");
+        });
+    }
+
+    private void showSummaryDialog() {
+        int maxScore = questions.size();
+
+        String message = "Ukończyłeś quiz.\n\n"
+                + "Poprawnych odpowiedzi: " + correctCount + " z " + maxScore + ".\n\n"
+                + "Pamiętaj: nawet jeśli coś wygląda jak \"sensacyjna bomba\", warto sprawdzić źródło.";
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Podsumowanie")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Zobacz wynik", (dialog, which) -> {
+                    dialog.dismiss();
+
+                    // Zapisz ukończenie quizu
+                    ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
+
+                    // Przejdź do ekranu z wynikami
+                    Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
+                    intent.putExtra("score", correctCount);
+                    intent.putExtra("maxScore", maxScore);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 })
                 .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Cleanup jeśli potrzebne
     }
 }

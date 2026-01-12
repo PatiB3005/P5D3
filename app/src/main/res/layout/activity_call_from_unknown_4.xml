@@ -65,19 +65,19 @@
                 android:gravity="center"
                 android:layout_marginTop="14dp" />
 
+            <!-- OBRAZEK -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Część teoretyczna"
-                android:textColor="#4A5568"
-                android:textSize="22sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="14dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="14dp" />
+                android:text="Część teoretyczna"
+                android:textColor="#4A5568"
+                android:textSize="22sp" />
 
-            <!-- OBRAZEK -->
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="match_parent"

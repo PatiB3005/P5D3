@@ -19,7 +19,7 @@ import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
 
 public class ModuleMenuActivity extends AppCompatActivity {
@@ -62,7 +62,7 @@ public class ModuleMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(ModuleMenuActivity.this, Module3Activity.class)));
 
         btnFakeNewsModule.setOnClickListener(v ->
-                startActivity(new Intent(ModuleMenuActivity.this, FakeNewsModuleActivity.class)));
+                startActivity(new Intent(ModuleMenuActivity.this, FakeNewsMenuActivity.class)));
 
         btnAiLite.setOnClickListener(v -> {
             Intent intent = new Intent(ModuleMenuActivity.this, AiActivity.class);

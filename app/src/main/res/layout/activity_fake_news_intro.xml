@@ -1,85 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9EEF5">
+    android:background="#E9EEF5"
+    tools:context=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsIntroActivity">
 
-    <!-- Toolbar ze strzałką wstecz -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#4F46E5"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="" />
+    <!-- TTS toggle (jak w pierwszym layoucie, opcjonalnie możesz zmienić id) -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Scroll: środek ekranu -->
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="32dp"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="22dp"
+            android:paddingBottom="14dp">
 
-            <ImageView
-                android:id="@+id/imageIntroFakeNews"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/fake_news"
-                android:contentDescription="Ikona fake news"
-                android:layout_marginBottom="24dp" />
-
+            <!-- Tytuł (styl jak Bezpieczne wiadomości) -->
             <TextView
                 android:id="@+id/titleIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quiz z nagłówków"
-                android:textColor="#0F172A"
-                android:textSize="30sp"
+                android:text="Quiz z\nnagłówków"
+                android:textColor="#1A202C"
+                android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="12dp"
-                android:textAlignment="center" />
+                android:gravity="center"
+                android:layout_marginBottom="10dp" />
 
+            <!-- Podtytuł (większy, jak Część teoretyczna) -->
             <TextView
                 android:id="@+id/subTitleIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Czy potrafisz odróżnić prawdziwą wiadomość od fake newsa?"
-                android:textColor="#0F172A"
-                android:textSize="18sp"
+                android:text="Wprowadzenie do quizu"
+                android:textColor="#4A5568"
+                android:textSize="24sp"
                 android:fontFamily="@font/montserrat_regular"
-                android:layout_marginBottom="24dp"
-                android:textAlignment="center" />
+                android:gravity="center"
+                android:layout_marginBottom="18dp" />
 
+            <!-- Obrazek większy, wycentrowany -->
+            <ImageView
+                android:id="@+id/imageIntroFakeNews"
+                android:layout_width="310dp"
+                android:layout_height="310dp"
+                android:src="@drawable/fake_news"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:layout_marginBottom="18dp" />
+
+            <!-- Krótki opis (większy, jak tvHint) -->
+            <TextView
+                android:id="@+id/tvHintIntro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Czy potrafisz odróżnić prawdziwą wiadomość od fake newsa?"
+                android:textColor="#1A202C"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Zasady (trochę mniejszy tekst, pełna szerokość) -->
             <TextView
                 android:id="@+id/rulesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="• Zobaczysz nagłówki z internetu.\n\n• Zastanów się, czy brzmią wiarygodnie.\n\n• Wybierz TAK – jeśli uważasz, że informacja jest prawdziwa.\n• Wybierz NIE – jeśli podejrzewasz fake newsa.\n\nPo każdej odpowiedzi pokażemy krótkie wyjaśnienie."
-                android:textColor="#0F172A"
-                android:textSize="16sp"
+                android:textColor="#1A202C"
+                android:textSize="18sp"
                 android:fontFamily="@font/montserrat_regular"
-                android:layout_marginBottom="32dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnStartQuiz"
-                android:layout_width="200dp"
-                android:layout_height="56dp"
-                android:text="Zacznij quiz"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_bold"
-                app:backgroundTint="#4F46E5"
-                app:cornerRadius="18dp" />
+                android:gravity="center"
+                android:lineSpacingExtra="6dp"
+                android:layout_marginBottom="6dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
-</LinearLayout>
+    <!-- Dolny przycisk jak w pierwszym layoucie -->
+    <LinearLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="18dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="Zaczynamy quiz!"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:fontFamily="@font/montserrat_bold"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

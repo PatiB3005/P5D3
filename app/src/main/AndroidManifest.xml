@@ -137,16 +137,12 @@
         <activity android:name=".ui.moduleMenu.modules.shopping.quiz.ShoppingQuizSummaryActivity" />
 
         <!-- Fake news -->
-        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsModuleActivity" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsIntroActivity" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsQuizActivity" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_2" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_3" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_4" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_5" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_6" />
-        <activity android:name=".ui.moduleMenu.modules.fakenews.theory.FakeNewsTheoryActivity_7" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsIntroActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsQuizActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.FakeNewsTheoryActivity" />
+        <activity android:name=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsResultActivity" />
+
 
         <!-- Zaufane kontakty -->
         <activity android:name=".ui.trustedContacts.TrustedContactsActivity" />

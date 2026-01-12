@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="JAK SIĘ BRONIĆ?"
                 android:textColor="#1A202C"
-                android:textSize="26sp"
+                android:textSize="28sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:layout_marginTop="12dp" />
@@ -131,7 +131,7 @@
                         android:layout_weight="1"
                         android:text="Zatrzymaj się na 10 sekund."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -180,7 +180,7 @@
                         android:layout_weight="1"
                         android:text="Sprawdź, kto to napisał."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -229,7 +229,7 @@
                         android:layout_weight="1"
                         android:text="Szukaj potwierdzenia w 2 miejscach."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -278,7 +278,7 @@
                         android:layout_weight="1"
                         android:text="Uważaj na słowa „PILNE”, „WAŻNE”, „SZOK”, „TAJNE”, „WYCIEK”."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -327,7 +327,7 @@
                         android:layout_weight="1"
                         android:text="Nie klikaj w podejrzane linki."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -376,7 +376,7 @@
                         android:layout_weight="1"
                         android:text="Gdy masz wątpliwości - zapytaj kogoś zaufanego."
                         android:textColor="#1A202C"
-                        android:textSize="21sp"
+                        android:textSize="22sp"
                         android:lineSpacingExtra="6dp"
                         android:fontFamily="@font/montserrat_bold" />
                 </LinearLayout>
@@ -432,17 +432,17 @@
             android:layout_height="1dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/backToMenuButtonFake"
+            android:id="@+id/btnNext"
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="66dp"
             android:layout_weight="1"
-            android:text="Powrót do menu głównego"
-            android:textSize="18sp"
+            android:text="Koniec"
             android:textAllCaps="false"
+            android:textSize="20sp"
             android:fontFamily="@font/montserrat_bold"
-            app:cornerRadius="16dp"
-            app:backgroundTint="#9D9FB0"
-            android:layout_marginStart="8dp" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

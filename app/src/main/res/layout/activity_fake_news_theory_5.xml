@@ -84,7 +84,7 @@
                 android:layout_height="120dp"
 
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_fakenews_phone"
+                android:src="@drawable/ic_fake_news_1"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
@@ -101,7 +101,7 @@
                 android:lineSpacingExtra="7dp"
                 android:textColor="#1A202C"
                 android:fontFamily="@font/montserrat_regular"
-                android:text= "Uważaj na wiadomości, które mocno straszą albo oburzają i każą działać szybko. Podejrzane są nagłówki o „wielkich zmianach dla wszystkich” bez jasnych szczegółów i bez źródła. Niepokojące są też teksty z błędami, krzykliwymi słowami i bez informacji: kto, gdzie i kiedy to ogłosił.."
+                android:text= "Uważaj na wiadomości, które mocno straszą albo oburzają i każą działać szybko. Podejrzane są nagłówki o „wielkich zmianach dla wszystkich” bez jasnych szczegółów i bez źródła. Niepokojące są też teksty z błędami, krzykliwymi słowami i bez informacji: kto, gdzie i kiedy to ogłosił."
                 android:layout_marginBottom="14dp" />
 
             <View
