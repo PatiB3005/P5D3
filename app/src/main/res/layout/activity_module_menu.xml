@@ -145,7 +145,7 @@
                     android:id="@+id/textModule2Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="W tym module nauczysz się rozpoznawać podejrzane rozmowy telefoniczne i bezpiecznie na nie reagować..."
+                    android:text="W tym module nauczysz się rozpoznawać podejrzane rozmowy telefoniczne i bezpiecznie na nie reagować."
                     android:textColor="#FFFFFF"
                     android:fontFamily="@font/montserrat_regular"
                     android:textSize="14sp"
@@ -253,46 +253,46 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="8dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/module_placeholder_image"
-                    android:background="@drawable/rounded_image"
-                    android:clipToOutline="true" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fake_news_banner"
+                android:background="@drawable/rounded_image"
+                android:clipToOutline="true" />
 
-                <TextView
-                    android:id="@+id/textFakeNewsTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fake news i sensacyjne nagłówki"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/textFakeNewsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fake news"
+                android:fontFamily="@font/montserrat_bold"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
 
-                <TextView
-                    android:id="@+id/textFakeNewsDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="W tym module poćwiczysz rozpoznawanie fałszywych wiadomości i krzyczących nagłówków. Sprawdzisz, czy potrafisz odróżnić prawdę od fake newsa."
-                    android:textColor="#FFFFFF"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp" />
+            <TextView
+                android:id="@+id/textFakeNewsDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sprawdź swoją odporność na fake newsy. W module poznasz podstawy rozpoznawania fałszywych informacji oraz sprawdzisz w praktyce, jak radzisz sobie z nimi w codziennych sytuacjach."
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
 
-                <ProgressBar
-                    android:id="@+id/progressFakeNews"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="4dp"
-                    android:progress="0"
-                    android:max="100"
-                    android:progressDrawable="@drawable/module_progress_bar" />
+            <ProgressBar
+                android:id="@+id/progressFakeNews"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:progress="0"
+                android:max="100"
+                android:progressDrawable="@drawable/module_progress_bar" />
 
                 <TextView
                     android:id="@+id/textFakeNewsProgressLabel"

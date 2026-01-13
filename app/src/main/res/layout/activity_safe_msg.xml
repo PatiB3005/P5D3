@@ -8,7 +8,6 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <!-- TTS toggle -->
 
     <!-- Scroll: jak w Samouczku (center) -->
     <ScrollView

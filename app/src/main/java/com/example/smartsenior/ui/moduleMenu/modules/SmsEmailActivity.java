@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.ProfileManager;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
@@ -112,11 +113,21 @@ public class SmsEmailActivity extends BaseTTSActivity {
     }
 
     private void goToResultScreen() {
+        ProfileManager pm = new ProfileManager(this);
         Log.d(TAG, "FINAL SCORE=" + score);
 
-        if (score >= 8) currentScreen = SCREEN_GOLD;
-        else if (score >= 5) currentScreen = SCREEN_SILVER;
-        else if (score >= 4) currentScreen = SCREEN_BROWN;
+        if (score >= 8) {
+            currentScreen = SCREEN_GOLD;
+            pm.upgradeMedal("SMS1","GOLD");
+        }
+        else if (score >= 5) {
+            currentScreen = SCREEN_SILVER;
+            pm.upgradeMedal("SMS1","SILVER");
+        }
+        else if (score >= 4) {
+            currentScreen = SCREEN_BROWN;
+            pm.upgradeMedal("FN","BRONZE");
+        }
         else currentScreen = SCREEN_RETURN;
 
         // KONIEC QUIZU => zapis postępu (raz)

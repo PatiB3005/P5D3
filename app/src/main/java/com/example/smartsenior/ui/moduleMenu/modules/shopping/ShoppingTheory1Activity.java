@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.increaseFont.FontScaler;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -19,6 +20,9 @@ public class ShoppingTheory1Activity extends BaseTTSActivity {
             tts.stop();
             startActivity(new Intent(this, ShoppingTheory2Activity.class));
         });
+
+        // zastosuj duży/mały font na aktualnym layoucie
+        FontScaler.applyFontSize(this, findViewById(android.R.id.content));
     }
 
     @Override

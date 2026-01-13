@@ -45,7 +45,7 @@
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dlaczego ludzie w to wierzą?"
+                android:text="DLACZEGO LUDZIE W TO WIERZĄ?"
                 android:textColor="#1A202C"
                 android:textSize="28sp"
                 android:fontFamily="@font/montserrat_bold"
@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_fake_news_3"
+                android:src="@drawable/ic_fake_news_2"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
                 android:contentDescription="@null" />

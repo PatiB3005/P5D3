@@ -1,4 +1,4 @@
-package com.example.smartsenior.ui.moduleMenu.modules.fakenews;
+package com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz;
 
 public class HeadlineQuestion {
 

@@ -38,19 +38,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- MEDALE -->
+        <!-- MEDALE – etykieta -->
         <TextView
             android:id="@+id/labelMedal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Zdobyte medale"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:fontFamily="@font/montserrat_bold"
             app:layout_constraintTop_toBottomOf="@id/avatarImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
         <LinearLayout
             android:id="@+id/medalsLayout"
@@ -60,40 +61,9 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/labelMedal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittext_bg"
-                android:src="@drawable/ic_medal_bronze"
-                android:contentDescription="@string/medal1_desc" />
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittext_bg"
-                android:src="@drawable/ic_medal_silver"
-                android:contentDescription="@string/medal2_desc" />
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittext_bg"
-                android:src="@drawable/ic_medal_gold"
-                android:contentDescription="@string/medal3_desc" />
-
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittext_bg"
-                android:src="@drawable/ic_sad_emoji"
-                android:contentDescription="@string/medal3_desc" />
-        </LinearLayout>
 
         <!-- IMIĘ -->
         <TextView

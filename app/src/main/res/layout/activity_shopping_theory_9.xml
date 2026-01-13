@@ -5,20 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5">
-
-    <!-- TTS toggle -->
-    <ImageButton
-        android:id="@+id/btnTTS"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_margin="12dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="8dp"
-        android:contentDescription="@string/tts_off"
-        android:src="@drawable/ic_volume_off"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollArea"
@@ -46,7 +32,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jak sprawdzić, czy\nsklep naprawdę istnieje?"
+                android:text="Jak sprawdzić, czy sklep naprawdę istnieje?"
                 android:textColor="#1A202C"
                 android:textSize="32sp"
                 android:fontFamily="@font/montserrat_bold"
