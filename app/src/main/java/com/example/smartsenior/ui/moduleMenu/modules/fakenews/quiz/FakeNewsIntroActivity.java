@@ -18,6 +18,12 @@ public class FakeNewsIntroActivity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_intro);
 
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
+
         Button btnStart = findViewById(R.id.btnStartQuiz);
 
 

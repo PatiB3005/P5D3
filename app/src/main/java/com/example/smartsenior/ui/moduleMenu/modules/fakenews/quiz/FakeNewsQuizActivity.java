@@ -42,6 +42,7 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     private int correctCount = 0;
     private boolean answered = false;
 
+
     // żeby nie dublować odczytu: onResume już powie raz, a kolejne pytania mówimy ręcznie
     private boolean hasResumed = false;
 
@@ -51,6 +52,12 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_news_quiz);
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> {
+            tts.stop();
+            finish();
+        });
 
         // Inicjalizacja widoków
         headlineText = findViewById(R.id.headlineText);
