@@ -21,6 +21,7 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Rozmiar tekstu -->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchFontSize"
             android:layout_width="match_parent"
@@ -31,13 +32,17 @@
             android:textColor="#4A5568"
             android:textSize="24sp" />
 
-        <Button
+        <!-- TTS – zamiast przycisku -->
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btnTtsToggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Włącz lektora"
-            android:textAllCaps="false" />
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Lektor (czytanie na głos)"
+            android:textAllCaps="false"
+            android:textColor="#4A5568"
+            android:textSize="24sp" />
 
     </LinearLayout>
 

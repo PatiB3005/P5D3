@@ -46,7 +46,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jak rozpoznać\nfałszywe zdjęcia produktów"
+                android:text="Jak rozpoznać fałszywe zdjęcia produktów"
                 android:textColor="#1A202C"
                 android:textSize="32sp"
                 android:fontFamily="@font/montserrat_bold"

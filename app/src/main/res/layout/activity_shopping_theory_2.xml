@@ -46,7 +46,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jak rozpoznać\nbezpieczną stronę?"
+                android:text="Jak rozpoznać bezpieczną stronę?"
                 android:textColor="#1A202C"
                 android:textSize="34sp"
                 android:fontFamily="@font/montserrat_bold"

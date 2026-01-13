@@ -46,7 +46,7 @@
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Uważaj na\nzbyt niskie ceny"
+                android:text="Uważaj na zbyt niskie ceny"
                 android:textColor="#1A202C"
                 android:textSize="34sp"
                 android:fontFamily="@font/montserrat_bold"

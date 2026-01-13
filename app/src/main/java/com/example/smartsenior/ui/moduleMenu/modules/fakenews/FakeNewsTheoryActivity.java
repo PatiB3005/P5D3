@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.increaseFont.FontScaler;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 
@@ -44,6 +45,9 @@ public class FakeNewsTheoryActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_fake_news_theory_7);
                 break;
         }
+
+        // zastosuj duży/mały font na aktualnym layoucie
+        FontScaler.applyFontSize(this, findViewById(android.R.id.content));
         setupButtons();
     }
 

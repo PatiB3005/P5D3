@@ -48,7 +48,7 @@
                 android:id="@+id/titleShoppingOnline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zakupy\nOnline"
+                android:text="Zakupy Online"
                 android:textColor="#1A202C"
                 android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
