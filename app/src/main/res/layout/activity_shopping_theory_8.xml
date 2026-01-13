@@ -6,21 +6,40 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- TTS toggle -->
+    <ImageButton
+        android:id="@+id/btnTTS"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:contentDescription="@string/tts_off"
+        android:src="@drawable/ic_volume_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Scroll -->
     <ScrollView
+        android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
             <!-- Tytuł -->
             <TextView
@@ -30,42 +49,80 @@
                 android:text="Jak rozpoznać\nfałszywe zdjęcia produktów"
                 android:textColor="#1A202C"
                 android:textSize="32sp"
-                android:gravity="center"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="20dp"/>
+                android:gravity="center"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- Podtytuł -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Część teoretyczna"
+                android:textColor="#4A5568"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginBottom="0dp" />
 
             <!-- Obrazek -->
             <ImageView
                 android:id="@+id/theoryImage"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
+                android:layout_width="510dp"
+                android:layout_height="510dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="-100dp"
                 android:src="@drawable/ic_fake_photos_warning"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:layout_marginBottom="20dp"/>
+                android:padding="4dp"
+                android:contentDescription="@null" />
 
-            <!-- Tekst (uprościliśmy dla seniorów) -->
+            <!-- Treść -->
             <TextView
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="W Internecie często pojawiają się fałszywe zdjęcia produktów. Mogą wyglądać ładnie, ale nie pokazują prawdy.\n\n• Bardzo „piękne” zdjęcia mogą pochodzić ze stron producentów.\n• Jeśli nie ma zdjęć pokazujących produkt w rzeczywistości — to ryzyko.\n• Gdy zdjęcia wyglądają dokładnie tak samo w wielu sklepach — mogą być skopiowane.\n• Mocne filtry mogą ukrywać wady produktu.\n• Wybieraj sklepy, które mają prawdziwe zdjęcia zrobione przez sprzedawcę lub klientów."
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
                 android:textSize="22sp"
+                android:lineSpacingExtra="7dp"
                 android:textColor="#1A202C"
                 android:fontFamily="@font/montserrat_regular"
-                android:lineSpacingExtra="6dp"
-                android:layout_marginBottom="20dp"/>
+                android:gravity="start"
+                android:textAlignment="viewStart"
+                android:layout_marginTop="-100dp"
+                android:layout_marginBottom="2dp"
+                android:text="W Internecie często pojawiają się fałszywe zdjęcia produktów. Mogą wyglądać ładnie, ale nie pokazują prawdy.\n\n• Bardzo „piękne” zdjęcia mogą pochodzić ze stron producentów.\n• Jeśli nie ma zdjęć pokazujących produkt w rzeczywistości — to ryzyko.\n• Gdy zdjęcia wyglądają dokładnie tak samo w wielu sklepach — mogą być skopiowane.\n• Mocne filtry mogą ukrywać wady produktu.\n• Wybieraj sklepy, które mają prawdziwe zdjęcia zrobione przez sprzedawcę lub klientów." />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Przyciski -->
+    <!-- separator -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Bottom buttons -->
     <LinearLayout
-        android:id="@+id/buttonsContainer"
+        android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:orientation="horizontal"
-        android:padding="20dp"
         android:gravity="center"
+        android:baselineAligned="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -73,29 +130,32 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
             android:layout_width="0dp"
-            android:layout_height="52dp"
+            android:layout_height="66dp"
             android:layout_weight="1"
             android:text="Wstecz"
-            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
             android:textSize="20sp"
             android:fontFamily="@font/montserrat_bold"
-            app:backgroundTint="#9D9FB0"
-            app:cornerRadius="16dp"
-            android:layout_marginEnd="12dp"/>
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="22dp" />
+
+        <Space
+            android:layout_width="14dp"
+            android:layout_height="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="0dp"
-            android:layout_height="52dp"
+            android:layout_height="66dp"
             android:layout_weight="1"
             android:text="Dalej"
-            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
             android:textSize="20sp"
             android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="16dp"
-            android:layout_marginStart="12dp"/>
-
+            app:cornerRadius="22dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
     tools:context=".ui.moduleMenu.modules.fakenews.quiz.FakeNewsQuizActivity">
 
     <!-- Górny pasek -->
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="56dp"

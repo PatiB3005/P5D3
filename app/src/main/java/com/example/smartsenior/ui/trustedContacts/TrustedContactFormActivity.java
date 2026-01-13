@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +29,9 @@ public class TrustedContactFormActivity extends AppCompatActivity {
     private ImageView imgAvatar;
     private MaterialButton btnPickPhoto;
     private com.google.android.material.textfield.TextInputEditText etName, etPhone;
+
+    private com.google.android.material.textfield.TextInputLayout tilPhone;
+
 
     private final ActivityResultLauncher<String[]> pickPhotoLauncher =
             registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
@@ -55,6 +61,10 @@ public class TrustedContactFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trusted_contact_form);
+        tilPhone = findViewById(R.id.tilPhone);
+        if (tilPhone != null) {
+            tilPhone.setPrefixText("+48 ");
+        }
 
         TextView btnBack = findViewById(R.id.btnBack);
         tvTitle = findViewById(R.id.tvTitle);
@@ -69,13 +79,21 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
         btnCancel.setOnClickListener(v -> finish());
 
+        // Telefon: tylko cyfry i max 9 (bez +48)
+        etPhone.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+        etPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
+        etPhone.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(9) });
+
         String mode = getIntent().getStringExtra("mode");
         id = getIntent().getStringExtra("id");
 
         if ("edit".equals(mode)) {
             tvTitle.setText("Edytuj kontakt");
             etName.setText(getIntent().getStringExtra("name"));
-            etPhone.setText(getIntent().getStringExtra("phone"));
+
+            // w polu pokazujemy tylko 9 cyfr, nawet jeśli w danych jest +48...
+            String incomingPhone = getIntent().getStringExtra("phone");
+            etPhone.setText(PhoneUtils.national9FromAny(incomingPhone));
 
             String p = getIntent().getStringExtra("photoUri");
             if (p != null) photoUri = p;
@@ -114,21 +132,29 @@ public class TrustedContactFormActivity extends AppCompatActivity {
 
         btnSave.setOnClickListener(v -> {
             String name = etName.getText() == null ? "" : etName.getText().toString().trim();
-            String phone = etPhone.getText() == null ? "" : etPhone.getText().toString().trim();
+            String phone9 = etPhone.getText() == null ? "" : etPhone.getText().toString().trim();
 
             if (name.isEmpty()) {
                 Toast.makeText(this, "Podaj nazwę kontaktu.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (phone.isEmpty()) {
-                Toast.makeText(this, "Podaj numer telefonu.", Toast.LENGTH_SHORT).show();
+
+            if (phone9.isEmpty()) {
+                Toast.makeText(this, "Podaj 9 cyfr numeru telefonu.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // zapisujemy zawsze jako +48XXXXXXXXX
+            String fullPhone = PhoneUtils.normalizeToPL(phone9);
+            if (fullPhone == null) {
+                Toast.makeText(this, "Numer musi mieć dokładnie 9 cyfr.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             Intent out = new Intent();
-            out.putExtra("id", id);
+            out.putExtra("id", id == null ? "" : id);
             out.putExtra("name", name);
-            out.putExtra("phone", phone);
+            out.putExtra("phone", fullPhone);
             out.putExtra("photoUri", photoUri == null ? "" : photoUri);
             setResult(RESULT_OK, out);
             finish();

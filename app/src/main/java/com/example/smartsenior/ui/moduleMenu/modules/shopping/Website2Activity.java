@@ -1,6 +1,9 @@
 package com.example.smartsenior.ui.moduleMenu.modules.shopping;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +17,17 @@ import com.google.android.material.button.MaterialButton;
 
 public class Website2Activity extends BaseTTSActivity {
 
-    Button btnFake, btnReal, btnOk;
-    MaterialButton btnNext;
-    LinearLayout popupOverlay;
-    ScrollView scrollView;
-    TextView titleFalse, titleTrue;
+    private Button btnFake, btnReal, btnOk;
+    private MaterialButton btnNext;
+
+    private LinearLayout popupOverlay;
+    private ScrollView scrollView;
+    private TextView titleFalse, titleTrue;
+
+    // Kolory “na sztywno” (bez colors.xml)
+    private static final int BLUE  = Color.parseColor("#2B6CB0");
+    private static final int GREEN = Color.parseColor("#12B76A");
+    private static final int RED   = Color.parseColor("#D92D20");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +37,22 @@ public class Website2Activity extends BaseTTSActivity {
         btnFake = findViewById(R.id.btnFake);
         btnReal = findViewById(R.id.btnReal);
         btnNext = findViewById(R.id.btnNext);
-        btnOk = findViewById(R.id.btnOk);
+        btnOk   = findViewById(R.id.btnOk);
+
         popupOverlay = findViewById(R.id.popupOverlay);
         titleFalse = findViewById(R.id.titleFalse);
-        titleTrue = findViewById(R.id.titleTrue);
+        titleTrue  = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
+
+        // Stan początkowy: oba niebieskie
+        setTint(btnFake, BLUE);
+        setTint(btnReal, BLUE);
+        btnFake.setAlpha(1f);
+        btnReal.setAlpha(1f);
 
         setButtonState(btnNext, false);
 
+        // U Ciebie: FAŁSZYWA = poprawna (true)
         btnFake.setOnClickListener(v -> handleAnswer(true));
         btnReal.setOnClickListener(v -> handleAnswer(false));
 
@@ -50,15 +67,31 @@ public class Website2Activity extends BaseTTSActivity {
     private void handleAnswer(boolean isCorrect) {
         tts.stop();
 
+        // blokujemy ponowne klikanie
         btnFake.setClickable(false);
         btnReal.setClickable(false);
+
+        // odpalamy Next
         setButtonState(btnNext, true);
+        btnNext.setVisibility(View.VISIBLE);
 
-        btnFake.setAlpha(isCorrect ? 1f : 0.3f);
-        btnReal.setAlpha(isCorrect ? 0.3f : 1f);
+        // Kolorujemy i przygaszamy niekliknięty
+        if (isCorrect) {
+            // kliknięto FAŁSZYWA - dobrze
+            setTint(btnFake, GREEN);
+            setTint(btnReal, BLUE);
+            btnFake.setAlpha(1f);
+            btnReal.setAlpha(0.35f);
+            ScoreManager.addPoint();
+        } else {
+            // kliknięto PRAWDZIWA - źle
+            setTint(btnReal, RED);
+            setTint(btnFake, BLUE);
+            btnReal.setAlpha(1f);
+            btnFake.setAlpha(0.35f);
+        }
 
-        if (isCorrect) ScoreManager.addPoint();
-
+        // Popup
         popupOverlay.setVisibility(View.VISIBLE);
         if (isCorrect) {
             titleTrue.setVisibility(View.VISIBLE);
@@ -68,13 +101,22 @@ public class Website2Activity extends BaseTTSActivity {
             titleTrue.setVisibility(View.GONE);
         }
 
-        btnNext.setVisibility(View.VISIBLE);
+        // przewijanie do Next
         scrollView.post(() -> scrollView.smoothScrollTo(0, btnNext.getBottom()));
     }
 
     private void setButtonState(MaterialButton button, boolean enabled) {
+        if (button == null) return;
         button.setEnabled(enabled);
         button.setAlpha(enabled ? 1f : 0.4f);
+    }
+
+    private void setTint(View button, int color) {
+        if (button == null) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            button.setBackgroundTintList(ColorStateList.valueOf(color));
+        }
+        // na starszych Androidach po prostu nie tintuje – ale appka działa.
     }
 
     @Override
@@ -84,7 +126,7 @@ public class Website2Activity extends BaseTTSActivity {
         String b = (btnReal != null && btnReal.getText() != null) ? btnReal.getText().toString().trim() : "";
 
         StringBuilder sb = new StringBuilder();
-        if (!base.isEmpty()) sb.append(base);
+        if (base != null && !base.trim().isEmpty()) sb.append(base.trim());
 
         if (!a.isEmpty()) {
             if (sb.length() > 0) sb.append(". ");

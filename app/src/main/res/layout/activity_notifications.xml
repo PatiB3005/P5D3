@@ -4,25 +4,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor">
+    android:background="#E9EEF5">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="#2563EB"
-        app:navigationIcon="@drawable/ic_arrow_back_black"
-        app:title=""
-        app:layout_constraintTop_toTopOf="parent"
+    <!-- Back -->
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="‹"
+        android:textSize="34sp"
+        android:textColor="#1A202C"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Przypomnienia"
+        android:textSize="28sp"
+        android:textColor="#1A202C"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintEnd_toStartOf="@id/btnAdd" />
+
+    <!-- Add -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAdd"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:text="+"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#2B6CB0"
+        app:cornerRadius="18dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Content scroll -->
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:background="@color/backgroundColor"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -31,26 +70,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:background="@color/backgroundColor">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="16dp">
 
+            <!-- Tiles grid (2 kolumny) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="10dp"/>
+
+            <!-- Section title -->
             <TextView
+                android:id="@+id/tvSectionLists"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Przypomnienia"
-                android:textColor="@color/textColor"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp"/>
+                android:text="Moje listy"
+                android:textSize="18sp"
+                android:textColor="#4A5568"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Lists card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tu będzie wszystko związane z przypomnieniami"
-                android:textColor="@color/textColor"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:layout_marginHorizontal="32dp" />
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>

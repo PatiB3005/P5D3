@@ -6,22 +6,28 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- Scroll (nie nachodzi na przycisk) -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
             <!-- TYTUŁ -->
             <TextView
@@ -32,121 +38,208 @@
                 android:textColor="#1A202C"
                 android:textSize="30sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="32dp"/>
+                android:gravity="center"
+                android:layout_marginBottom="18dp"/>
 
-            <!-- OBRAZEK -->
-            <ImageView
-                android:id="@+id/quizImage"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:src="@drawable/ic_quiz_page4"
-                android:layout_marginBottom="32dp"/>
-
-            <!-- PYTANIE 7 -->
-            <TextView
-                android:id="@+id/question1"
+            <!-- BLOK: PYTANIE 7 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="7. Trafiasz na sklep z samymi pozytywnymi opiniami, ale wszystkie napisano podobnym stylem. Co to oznacza?"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="#1A202C"
-                android:layout_marginBottom="12dp"/>
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="22dp"
+                android:orientation="vertical">
 
-            <RadioGroup
-                android:id="@+id/groupQ1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/q1_a"
+                <TextView
+                    android:id="@+id/question1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="sklep dopiero zaczyna i szybko zdobywa popularność"
-                    android:textSize="20sp"/>
+                    android:text="7. Trafiasz na sklep z samymi pozytywnymi opiniami, ale wszystkie napisano podobnym stylem. Co to oznacza?"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:layout_marginBottom="12dp"/>
 
-                <RadioButton
-                    android:id="@+id/q1_b"
+                <RadioGroup
+                    android:id="@+id/groupQ1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="opinie mogą być sztucznie przygotowane"
-                    android:textSize="20sp"/>
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/q1_c"
+                    <RadioButton
+                        android:id="@+id/q1_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sklep dopiero zaczyna i szybko zdobywa popularność"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp" />
+
+                    <RadioButton
+                        android:id="@+id/q1_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Opinie mogą być sztucznie przygotowane"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                    <RadioButton
+                        android:id="@+id/q1_c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sklep miał promocję i wiele osób wystawiło opinie naraz"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/feedbackQ1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="sklep miał promocję i wiele osób wystawiło opinie naraz"
-                    android:textSize="20sp"/>
-            </RadioGroup>
+                    android:textSize="19sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/feedbackQ1"
+            <!-- BLOK: PYTANIE 8 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:textColor="#1A202C"
-                android:visibility="gone"
-                android:layout_marginBottom="24dp"/>
+                android:background="@drawable/blue_box_radius"
+                android:padding="18dp"
+                android:layout_marginBottom="6dp"
+                android:orientation="vertical">
 
-            <!-- PYTANIE 8 -->
-            <TextView
-                android:id="@+id/question2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="8. Co jest najbardziej podejrzane podczas zakupu przecenionego produktu?"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="#1A202C"
-                android:layout_marginBottom="12dp"/>
-
-            <RadioGroup
-                android:id="@+id/groupQ2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/q2_a"
+                <TextView
+                    android:id="@+id/question2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="sklep udostępnia tylko jedną metodę płatności – zwykły przelew"
-                    android:textSize="20sp"/>
+                    android:text="8. Co jest najbardziej podejrzane podczas zakupu przecenionego produktu?"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:layout_marginBottom="12dp"/>
 
-                <RadioButton
-                    android:id="@+id/q2_b"
+                <RadioGroup
+                    android:id="@+id/groupQ2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="regulamin sklepu ma drobne literówki"
-                    android:textSize="20sp"/>
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/q2_c"
+                    <RadioButton
+                        android:id="@+id/q2_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sklep udostępnia tylko jedną metodę płatności – zwykły przelew"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp" />
+
+                    <RadioButton
+                        android:id="@+id/q2_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Regulamin sklepu ma drobne literówki"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                    <RadioButton
+                        android:id="@+id/q2_c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Opis produktu jest krótki i mało szczegółowy"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#1A202C"
+                        android:button="@null"
+                        android:background="@drawable/radio_option_bg"
+                        android:padding="14dp"
+                        android:minHeight="56dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginTop="10dp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/feedbackQ2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="opis produktu jest krótki i mało szczegółowy"
-                    android:textSize="20sp"/>
-            </RadioGroup>
+                    android:textSize="19sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="#1A202C"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/feedbackQ2"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:textColor="#1A202C"
-                android:visibility="gone"
-                android:layout_marginBottom="24dp"/>
+                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <!-- separator -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- PRZYCISK DALEJ -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

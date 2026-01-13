@@ -8,20 +8,26 @@
 
     <!-- Scroll -->
     <ScrollView
+        android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomContainer"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="28dp">
+            android:gravity="center"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
             <!-- Tytuł -->
             <TextView
@@ -29,43 +35,78 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quiz: Zakupy Online"
-                android:textAlignment="center"
-                android:textSize="34sp"
                 android:textColor="#1A202C"
+                android:textSize="34sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="22dp"/>
+                android:gravity="center"
+                android:layout_marginBottom="4dp" />
 
-            <!-- Obrazek -->
+            <!-- Podtytuł -->
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sprawdź swoją wiedzę"
+                android:textColor="#4A5568"
+                android:textSize="22sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Obrazek (500dp) - podniesiony ~100px -->
             <ImageView
                 android:id="@+id/quizIntroImage"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
+                android:layout_width="500dp"
+                android:layout_height="500dp"
                 android:src="@drawable/ic_quiz_intro"
-                android:layout_marginBottom="26dp"
-                android:adjustViewBounds="true"/>
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="@null"
+                android:layout_marginTop="-120dp"
+                android:layout_marginBottom="0dp" />
 
-            <!-- Opis -->
+            <!-- Opis - podniesiony ~100px -->
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sprawdź, jak dobrze potrafisz rozpoznać bezpieczne i niebezpieczne sklepy internetowe. Wybierz poprawną odpowiedź i przejdź przez wszystkie pytania."
-                android:textSize="22sp"
-                android:textColor="#1A202C"
-                android:lineSpacingExtra="4dp"
-                android:gravity="center"
+                android:layout_marginTop="-100dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/blue_box_radius"
                 android:fontFamily="@font/montserrat_regular"
-                android:layout_marginBottom="28dp"/>
+                android:gravity="center"
+                android:lineSpacingExtra="7dp"
+                android:padding="18dp"
+                android:text="Sprawdź, jak dobrze potrafisz rozpoznać bezpieczne i niebezpieczne sklepy internetowe. Wybierz poprawną odpowiedź i przejdź przez wszystkie pytania."
+                android:textColor="#1A202C"
+                android:textSize="22sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <!-- separator -->
+    <View
+        android:id="@+id/bottomDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D9E2EF"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Dolny przycisk -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="22dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +115,14 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStartQuiz"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="74dp"
             android:text="Rozpocznij quiz"
-            android:textSize="24sp"
+            android:textAllCaps="false"
+            android:textSize="26sp"
             android:textColor="#FFFFFF"
             android:fontFamily="@font/montserrat_bold"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="22dp"/>
+            app:cornerRadius="24dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

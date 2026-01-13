@@ -2,9 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Uprawnienia muszą być TU: bezpośrednio pod <manifest> -->
+    <!-- Uprawnienia: bezpośrednio pod <manifest> -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- Żeby SEND_SMS nie wymuszało telefonu (tablet też może zainstalować) -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -37,15 +45,25 @@
         <activity android:name=".ui.miniGamesMenu.MiniGamesMenuActivity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame1Activity" />
         <activity android:name=".ui.miniGamesMenu.miniGames.MemoryGame.MemoryActivity" />
-
-        <!-- Mini games z origin/miniGamesMenu -->
-        <activity android:name=".ui.miniGamesMenu.miniGames.MemoryActivity" />
-        <activity android:name=".ui.miniGamesMenu.miniGames.DictionaryActivity" />
-        <activity android:name=".ui.miniGamesMenu.miniGames.SafePasswordActivity" />
-
         <activity android:name=".ui.virtualAssistant.virtualAssistantActivity" />
         <activity android:name=".ui.tutorial.TutorialActivity" />
+
+        <!-- POWIADOMIENIA / PRZYPOMNIENIA -->
         <activity android:name=".ui.notifications.NotificationsActivity" />
+        <activity android:name=".ui.notifications.AddReminderActivity" />
+
+        <receiver
+            android:name=".ui.notifications.ReminderReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".ui.notifications.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".ui.settings.SettingsActivity" />
 
         <!-- Samouczek -->
@@ -79,6 +97,7 @@
         <!-- Moduł: Telefon od podejrzanego nieznajomego -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.TheoryActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity" />
+
         <!-- Scenariusz: Telefon na policjanta -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman1Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman2Activity" />
@@ -114,6 +133,8 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild7Activity" />
 
         <activity android:name=".ui.moduleMenu.modules.Module3Activity" />
+
+        <!-- Zakupy -->
         <activity android:name=".ui.moduleMenu.modules.shopping.WebsiteActivity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.Website2Activity" />
         <activity android:name=".ui.moduleMenu.modules.shopping.Website3Activity" />
@@ -173,6 +194,8 @@
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalGoldActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalSilverActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPracticeMoreActivity" />
+        <activity android:name=".ui.notifications.CategoryItemsActivity" />
+        <activity android:name=".ui.notifications.ShoppingListDetailActivity" />
 
         <!-- Mini Game 2 -->
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame2Activity" />
@@ -183,5 +206,4 @@
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame32Activity" />
 
     </application>
-
 </manifest>

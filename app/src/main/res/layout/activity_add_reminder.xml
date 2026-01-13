@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEF5"
+    tools:context=".ui.notifications.AddReminderActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#2B6CB0"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nowe przypomnienie"
+        android:textColor="#1A202C"
+        android:textSize="40sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- Kategoria -->
+            <LinearLayout
+                android:id="@+id/sectionType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kategoria"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvTypeChosen"
+                    android:layout_width="match_parent"
+                    android:layout_height="74dp"
+                    android:background="#F3F6FB"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:gravity="center_vertical"
+                    android:text="Wybierz kategorię"
+                    android:textColor="#1A202C"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:drawableEnd="@android:drawable/arrow_down_float"
+                    android:drawablePadding="12dp"/>
+            </LinearLayout>
+
+            <!-- Nazwa (dla leków/wizyty/inne) -->
+            <LinearLayout
+                android:id="@+id/sectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nazwa"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp"
+                    android:background="#F3F6FB"
+                    android:padding="18dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:hint="np. Tabletka po śniadaniu"
+                    android:inputType="textCapSentences"/>
+            </LinearLayout>
+
+            <!-- Data/godzina -->
+            <LinearLayout
+                android:id="@+id/sectionDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kiedy?"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPickDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="92dp"
+                    android:text="Wybierz datę i godzinę"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_vertical|start"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
+                    app:backgroundTint="#2B6CB0"
+                    app:cornerRadius="30dp"
+                    app:icon="@android:drawable/ic_menu_my_calendar"
+                    app:iconGravity="textStart"
+                    app:iconPadding="18dp"
+                    app:iconSize="34dp"/>
+
+                <TextView
+                    android:id="@+id/tvPicked"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nie wybrano"
+                    android:textColor="#1A202C"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:layout_marginTop="14dp"/>
+            </LinearLayout>
+
+            <!-- Powtarzanie (tylko leki) -->
+            <LinearLayout
+                android:id="@+id/sectionRepeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Powtarzaj (godziny)"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etRepeatMinutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp"
+                    android:background="#F3F6FB"
+                    android:padding="18dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:hint="np. 4"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+
+            <!-- CHECKLISTA ZAKUPÓW -->
+            <LinearLayout
+                android:id="@+id/sectionShopping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Produkty do kupienia"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="10dp"/>
+
+                <EditText
+                    android:id="@+id/etShoppingItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:background="#F3F6FB"
+                    android:padding="18dp"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:hint="np. Chleb"
+                    android:inputType="textCapSentences"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Dodaj produkt"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    app:backgroundTint="#2B6CB0"
+                    app:cornerRadius="28dp"
+                    app:icon="@android:drawable/ic_input_add"
+                    app:iconGravity="textStart"
+                    app:iconPadding="18dp"
+                    app:iconSize="34dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(Przytrzymaj produkt, aby usunąć)"
+                    android:textColor="#4A5568"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginTop="10dp"/>
+
+                <ListView
+                    android:id="@+id/listShopping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:divider="#D7DEE8"
+                    android:dividerHeight="1dp"
+                    android:padding="6dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Dół -->
+    <LinearLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:text="Zapisz"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:onClick="onSaveClicked"
+            app:backgroundTint="#2B6CB0"
+            app:cornerRadius="36dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
