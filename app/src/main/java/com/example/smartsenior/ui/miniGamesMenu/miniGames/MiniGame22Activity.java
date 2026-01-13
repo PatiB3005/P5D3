@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
-
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,13 +35,12 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
     private View spaceBackEvaluate, spaceRepeatFinish;
 
     // Data
-    private final List<TileItem> availableTiles = new ArrayList<>(); // dół (dynamiczne)
-    private final List<TileItem> selectedTiles = new ArrayList<>();  // żółte pole (kolejność dodania)
+    private final List<TileItem> availableTiles = new ArrayList<>();
+    private final List<TileItem> selectedTiles = new ArrayList<>();
     private TileAdapter adapter;
 
     private final Random rng = new Random();
 
-    // --- PULE DO LOSOWANIA ---
     private static final String[] WORDS = {
             "Kawa","Las","Rower","Kot","Wiosna","Lato","Jesien","Zima",
             "Kubek","Koc","Lampa","Pilot","Mapa","Parasol","Gazeta","Notes",
@@ -59,8 +56,6 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
 
     private static final String[] SYMBOLS = { "!", "?", "_", "-", "@", "#", "*" };
     private static final String[] SEPARATORS = { "_", "-" };
-
-    // edukacyjne “złe” (opcjonalnie)
     private static final String[] BAD = { "123", "abcd", "haslo", "qwerty" };
 
     @Override
@@ -68,7 +63,6 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_game2_2);
 
-        // bind
         rvTiles = findViewById(R.id.rvTiles);
         chipsContainer = findViewById(R.id.passwordChipsContainer);
         progressStrength = findViewById(R.id.progressStrength);
@@ -82,22 +76,13 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         spaceBackEvaluate = findViewById(R.id.spaceBackEvaluate);
         spaceRepeatFinish = findViewById(R.id.spaceRepeatFinish);
 
-        // recycler
         rvTiles.setLayoutManager(new GridLayoutManager(this, 4));
         adapter = new TileAdapter(availableTiles, this);
         rvTiles.setAdapter(adapter);
 
-        // start
         resetGame();
 
-        // listeners
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MiniGamesMenuActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
-        });
-
+        btnBack.setOnClickListener(v -> goToMiniGamesMenu());
 
         btnEvaluate.setOnClickListener(v -> {
             if (selectedTiles.isEmpty()) return;
@@ -107,21 +92,20 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
             applyStrengthToUi(result);
             showResultDialog(result);
 
-            // po ocenie zamieniamy przyciski
             showResultModeButtons();
         });
 
         btnRepeat.setOnClickListener(v -> resetGame());
 
-        btnFinish.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MiniGamesMenuActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
-        });
+        btnFinish.setOnClickListener(v -> goToMiniGamesMenu());
     }
 
-    // ============ TRYBY DOLNEGO PASKA ============
+    private void goToMiniGamesMenu() {
+        Intent intent = new Intent(this, MiniGamesMenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
+    }
 
     private void showEvaluateModeButtons() {
         btnBack.setVisibility(View.VISIBLE);
@@ -147,56 +131,47 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         return btnRepeat.getVisibility() == View.VISIBLE;
     }
 
-    // ============ LOSOWANIE KAFELKÓW ============
-
     private void setupTilesRandom() {
         availableTiles.clear();
 
-        final int TOTAL = 16;     // siatka 4x4
+        final int TOTAL = 16;
         final int WORD_COUNT = 10;
         final int NUM_COUNT = 3;
-        final int SYM_COUNT = 2;  // żeby zawsze dało się mieć znak specjalny
-        final int BAD_COUNT = 1;  // możesz ustawić 0 jeśli nie chcesz
+        final int SYM_COUNT = 2;
+        final int BAD_COUNT = 1;
 
         HashSet<String> usedWords = new HashSet<>();
         HashSet<String> usedNums = new HashSet<>();
         HashSet<String> usedSyms = new HashSet<>();
         HashSet<String> usedBad = new HashSet<>();
 
-        // słowa
         for (int i = 0; i < WORD_COUNT; i++) {
             String w = pickUnique(WORDS, usedWords);
             availableTiles.add(new TileItem(w, TileItem.Type.WORD, availableTiles.size()));
         }
 
-        // liczby
         for (int i = 0; i < NUM_COUNT; i++) {
             String n = pickUnique(NUMBERS, usedNums);
             availableTiles.add(new TileItem(n, TileItem.Type.NUMBER, availableTiles.size()));
         }
 
-        // symbole
         for (int i = 0; i < SYM_COUNT; i++) {
             String s = pickUnique(SYMBOLS, usedSyms);
             availableTiles.add(new TileItem(s, TileItem.Type.SYMBOL, availableTiles.size()));
         }
 
-        // złe (opcjonalnie)
         for (int i = 0; i < BAD_COUNT; i++) {
             String b = pickUnique(BAD, usedBad);
             availableTiles.add(new TileItem(b, TileItem.Type.BAD, availableTiles.size()));
         }
 
-        // dopełnij (separatorami albo dodatkowymi słowami)
         while (availableTiles.size() < TOTAL) {
             String extra = pickUnique(SEPARATORS, usedSyms);
             availableTiles.add(new TileItem(extra, TileItem.Type.SEPARATOR, availableTiles.size()));
         }
 
-        // losowa kolejność na dole
         Collections.shuffle(availableTiles, rng);
 
-        // po shuffle ustawiamy originalIndex = aktualna pozycja (żeby wracało “na miejsce”)
         for (int i = 0; i < availableTiles.size(); i++) {
             TileItem old = availableTiles.get(i);
             availableTiles.set(i, new TileItem(old.text, old.type, i));
@@ -214,17 +189,13 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         return pool[rng.nextInt(pool.length)];
     }
 
-    // ============ MECHANIKA: dół <-> żółte ============
-
     @Override
     public void onTileClick(TileItem item) {
-        if (isResultMode()) return; // po ocenie blokujemy edycję
+        if (isResultMode()) return;
 
-        // usuń z dołu
         int pos = adapter.indexOf(item);
         if (pos >= 0) adapter.removeAt(pos);
 
-        // dodaj do żółtego
         selectedTiles.add(item);
         addChipView(item);
 
@@ -238,7 +209,7 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
 
         chip.setTag(item);
         chip.setOnClickListener(v -> {
-            if (isResultMode()) return; // po ocenie blokujemy edycję
+            if (isResultMode()) return;
             removeChipAndReturnTile((TileItem) v.getTag(), v);
         });
 
@@ -262,27 +233,13 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         return availableTiles.size();
     }
 
-    private void undoLastPart() {
-        if (selectedTiles.isEmpty() || isResultMode()) return;
-
-        TileItem last = selectedTiles.get(selectedTiles.size() - 1);
-        selectedTiles.remove(selectedTiles.size() - 1);
-
-        int childCount = chipsContainer.getChildCount();
-        if (childCount > 0) chipsContainer.removeViewAt(childCount - 1);
-
-        int insertPos = findInsertPositionByOriginalIndex(last.originalIndex);
-        adapter.insertAt(insertPos, last);
-
-        recalcAndUpdateUi();
-    }
-
-    // ============ LICZENIE MOCY “NA ŻYWO” ============
-
     private void recalcAndUpdateUi() {
         boolean hasAny = !selectedTiles.isEmpty();
 
-        btnBack.setEnabled(hasAny);
+        // ✅ Wstecz ZAWSZE działa
+        btnBack.setEnabled(true);
+
+        // ✅ Oceń tylko gdy coś ułożono
         btnEvaluate.setEnabled(hasAny);
 
         if (!hasAny) {
@@ -340,26 +297,20 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
                 .show();
     }
 
-    // ============ RESET GRY ============
-
     private void resetGame() {
-        // tryb edycji
         showEvaluateModeButtons();
 
-        // wyczyść żółte pole
         chipsContainer.removeAllViews();
         selectedTiles.clear();
 
-        // wylosuj nowy zestaw kafelków
         setupTilesRandom();
         if (adapter != null) adapter.notifyDataSetChanged();
 
-        // pasek 0%
         progressStrength.setProgress(0);
         tvStrength.setText("Moc hasła: 0%");
 
-        // przyciski wyłączone dopóki nic nie dodasz
-        btnBack.setEnabled(false);
+        // ✅ Wstecz zawsze aktywny, Oceń dopiero po dodaniu kafelków
+        btnBack.setEnabled(true);
         btnEvaluate.setEnabled(false);
     }
 }
