@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class TrustedContactFormActivity extends AppCompatActivity {
 
@@ -28,20 +30,17 @@ public class TrustedContactFormActivity extends AppCompatActivity {
     private TextView tvTitle, tvInitials;
     private ImageView imgAvatar;
     private MaterialButton btnPickPhoto;
-    private com.google.android.material.textfield.TextInputEditText etName, etPhone;
 
-    private com.google.android.material.textfield.TextInputLayout tilPhone;
-
+    private TextInputEditText etName, etPhone;
+    private TextInputLayout tilName, tilPhone;
 
     private final ActivityResultLauncher<String[]> pickPhotoLauncher =
             registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
                 if (uri == null) return;
 
-                // zapamiętaj dostęp do URI na stałe
                 try {
                     getContentResolver().takePersistableUriPermission(
-                            uri,
-                            Intent.FLAG_GRANT_READ_URI_PERMISSION
+                            uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
                     );
                 } catch (Exception ignored) {}
 
@@ -60,19 +59,22 @@ public class TrustedContactFormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTheme(com.google.android.material.R.style.Theme_MaterialComponents_Light_NoActionBar);
         setContentView(R.layout.activity_trusted_contact_form);
-        tilPhone = findViewById(R.id.tilPhone);
-        if (tilPhone != null) {
-            tilPhone.setPrefixText("+48 ");
-        }
 
         TextView btnBack = findViewById(R.id.btnBack);
         tvTitle = findViewById(R.id.tvTitle);
         tvInitials = findViewById(R.id.tvInitials);
         imgAvatar = findViewById(R.id.imgAvatar);
         btnPickPhoto = findViewById(R.id.btnPickPhoto);
+
+        tilName = findViewById(R.id.tilName);
+        tilPhone = findViewById(R.id.tilPhone);
+
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
+
         MaterialButton btnSave = findViewById(R.id.btnSave);
         MaterialButton btnCancel = findViewById(R.id.btnCancel);
 
@@ -84,6 +86,7 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         etPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
         etPhone.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(9) });
 
+        // Ustaw title / dane w trybie edycji
         String mode = getIntent().getStringExtra("mode");
         id = getIntent().getStringExtra("id");
 
@@ -91,7 +94,6 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             tvTitle.setText("Edytuj kontakt");
             etName.setText(getIntent().getStringExtra("name"));
 
-            // w polu pokazujemy tylko 9 cyfr, nawet jeśli w danych jest +48...
             String incomingPhone = getIntent().getStringExtra("phone");
             etPhone.setText(PhoneUtils.national9FromAny(incomingPhone));
 
@@ -110,10 +112,8 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             tvTitle.setText("Dodaj kontakt");
         }
 
-        // przycisk: dodaj / zmień zdjęcie
         btnPickPhoto.setOnClickListener(v -> pickPhotoLauncher.launch(new String[]{"image/*"}));
 
-        // długie przytrzymanie avatara = usuń zdjęcie (senior-friendly)
         imgAvatar.setOnLongClickListener(v -> {
             if (photoUri == null || photoUri.isEmpty()) return true;
             photoUri = "";
@@ -123,7 +123,7 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             return true;
         });
 
-        // inicjał podgląd na żywo
+        // inicjał na żywo
         etName.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) { updateInitialsPreview(); }
@@ -144,7 +144,6 @@ public class TrustedContactFormActivity extends AppCompatActivity {
                 return;
             }
 
-            // zapisujemy zawsze jako +48XXXXXXXXX
             String fullPhone = PhoneUtils.normalizeToPL(phone9);
             if (fullPhone == null) {
                 Toast.makeText(this, "Numer musi mieć dokładnie 9 cyfr.", Toast.LENGTH_SHORT).show();
@@ -160,7 +159,6 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             finish();
         });
 
-        // NA KONIEC – ustaw UI poprawnie
         refreshPhotoUi();
     }
 
@@ -180,7 +178,6 @@ public class TrustedContactFormActivity extends AppCompatActivity {
     }
 
     private void updateInitialsPreview() {
-        // jeśli jest zdjęcie -> inicjał nieważny
         if (photoUri != null && !photoUri.isEmpty()) return;
 
         String name = etName.getText() == null ? "" : etName.getText().toString().trim();

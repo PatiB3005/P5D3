@@ -3,32 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/backgroundColor"
-        android:gravity="center">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tutorialTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Samouczek"
             android:textColor="@color/textColor"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tutorialText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tu będzie wszystko związane z samouczkiem"
             android:textColor="@color/textColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:gravity="center"
-            android:layout_marginHorizontal="32dp" />
-
+            android:lineSpacingExtra="6dp"/>
     </LinearLayout>
+
 </ScrollView>

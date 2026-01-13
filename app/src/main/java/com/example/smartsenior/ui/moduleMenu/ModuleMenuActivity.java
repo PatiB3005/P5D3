@@ -132,7 +132,7 @@ public class ModuleMenuActivity extends BaseTTSActivity {
 
         if (labelModule1 != null) labelModule1.setText("Postęp: " + p1 + "%");
         if (labelModule2 != null) labelModule2.setText("Postęp: " + p2 + "%");
-        if (labelModule3Number != null) labelModule3Number.setText(p3 + "%");
+        if (labelModule3Number != null) labelModule3Number.setText("Postęp: " + p3 + "%");
         if (labelFakeNews != null) labelFakeNews.setText("Postęp: " + pFN + "%");
         if (labelAiLite != null) labelAiLite.setText("Postęp: " + pAI + "%");
     }

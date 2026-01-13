@@ -21,15 +21,22 @@
                 android:id="@+id/button_back_to_tutorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⟵ Wróć do samouczka"
+                android:text="Wróć do samouczka"
                 android:textSize="16sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#2B6CB0"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginBottom="20dp"
+
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="72dp"
+
                 android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/textModulesHeader"
@@ -186,25 +193,9 @@
                     android:background="@drawable/rounded_image"
                     android:clipToOutline="true" />
 
-                <ProgressBar
-                    android:id="@+id/progressModule3"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="4dp"
-                    android:progress="0"
-                    android:max="100"
-                    android:progressDrawable="@drawable/module_progress_bar" />
 
-                <TextView
-                    android:id="@+id/textModule3ProgressNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="0%"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+
+
 
                 <TextView
                     android:id="@+id/textModule3Title"
@@ -227,8 +218,30 @@
                     android:textSize="14sp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp" />
-            </LinearLayout>
 
+                <ProgressBar
+                    android:id="@+id/progressModule3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:progress="0"
+                    android:max="100"
+                    android:progressDrawable="@drawable/module_progress_bar" />
+
+                <TextView
+                    android:id="@+id/textModule3ProgressNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Postęp: 0%"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
             <!-- Fake News -->
             <LinearLayout
                 android:id="@+id/btnFakeNewsModule"

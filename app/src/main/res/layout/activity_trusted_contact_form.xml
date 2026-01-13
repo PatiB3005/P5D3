@@ -68,7 +68,7 @@
                     android:id="@+id/tvInitials"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="A"
+                    android:text="?"
                     android:textSize="42sp"
                     android:textColor="#2B6CB0"
                     android:fontFamily="@font/montserrat_bold"
@@ -81,12 +81,12 @@
             android:id="@+id/btnPickPhoto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="64dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
+            android:minHeight="74dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="Dodaj zdjęcie (opcjonalnie)"
             android:textAllCaps="false"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             android:maxLines="2"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Name (POPRAWIONE) -->
+        <!-- Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
             android:layout_width="0dp"
@@ -106,8 +106,12 @@
             android:layout_marginTop="18dp"
             android:hint="Imię / Nazwa kontaktu"
             app:hintEnabled="true"
+            app:expandedHintEnabled="false"
+            app:hintTextColor="#2B6CB0"
+            app:hintTextAppearance="@style/HintLargeBlue"
             app:boxBackgroundMode="filled"
             app:boxBackgroundColor="#FFFFFF"
+            app:boxStrokeColor="#2B6CB0"
             app:boxCornerRadiusTopStart="18dp"
             app:boxCornerRadiusTopEnd="18dp"
             app:boxCornerRadiusBottomStart="18dp"
@@ -121,16 +125,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@null"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:fontFamily="@font/montserrat_regular"
-                android:minHeight="72dp"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="28dp"
-                android:paddingBottom="16dp" />
+                android:minHeight="82dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="20dp"
+                android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Phone (POPRAWIONE) -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
             android:layout_width="0dp"
@@ -138,12 +142,19 @@
             android:layout_marginTop="18dp"
             android:hint="Numer telefonu"
             app:hintEnabled="true"
+            app:expandedHintEnabled="false"
+            app:hintTextColor="#2B6CB0"
+            app:hintTextAppearance="@style/HintLargeBlue"
             app:boxBackgroundMode="filled"
             app:boxBackgroundColor="#FFFFFF"
+            app:boxStrokeColor="#2B6CB0"
             app:boxCornerRadiusTopStart="18dp"
             app:boxCornerRadiusTopEnd="18dp"
             app:boxCornerRadiusBottomStart="18dp"
             app:boxCornerRadiusBottomEnd="18dp"
+            app:prefixText="+48 "
+            app:prefixTextColor="#000000"
+            app:prefixTextAppearance="@style/PrefixSameAsInput"
             app:layout_constraintTop_toBottomOf="@id/tilName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -154,22 +165,24 @@
                 android:layout_height="wrap_content"
                 android:hint="@null"
                 android:inputType="phone"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:fontFamily="@font/montserrat_regular"
-                android:minHeight="72dp"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:paddingTop="28dp"
-                android:paddingBottom="16dp" />
+                android:minHeight="82dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="20dp"
+                android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Save -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="80dp"
             android:text="Zapisz"
             android:textAllCaps="false"
-            android:textSize="22sp"
+            android:textSize="26sp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
@@ -179,13 +192,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Cancel -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="80dp"
             android:text="Anuluj"
             android:textAllCaps="false"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#1A202C"
             app:backgroundTint="#CBD5E0"

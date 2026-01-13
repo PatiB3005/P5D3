@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,33 +7,36 @@
     android:background="#E9EEF5"
     tools:context=".ui.notifications.AddReminderActivity">
 
+    <!-- TOP BAR -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="64dp"
         android:background="#2B6CB0"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title=""
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- TITLE -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nowe przypomnienie"
         android:textColor="#1A202C"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         app:layout_constraintTop_toBottomOf="@id/topAppBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- SCROLL CONTENT -->
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="0dp"
@@ -50,7 +52,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <!-- Kategoria -->
             <LinearLayout
@@ -69,7 +74,7 @@
                     android:textColor="#4A5568"
                     android:textSize="18sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:id="@+id/tvTypeChosen"
@@ -89,10 +94,10 @@
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
                     android:drawableEnd="@android:drawable/arrow_down_float"
-                    android:drawablePadding="12dp"/>
+                    android:drawablePadding="12dp" />
             </LinearLayout>
 
-            <!-- Nazwa (dla leków/wizyty/inne) -->
+            <!-- Nazwa -->
             <LinearLayout
                 android:id="@+id/sectionTitle"
                 android:layout_width="match_parent"
@@ -110,7 +115,7 @@
                     android:textColor="#4A5568"
                     android:textSize="18sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp" />
 
                 <EditText
                     android:id="@+id/etTitle"
@@ -121,7 +126,11 @@
                     android:textSize="22sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="np. Tabletka po śniadaniu"
-                    android:inputType="textCapSentences"/>
+                    android:textColor="#1A202C"
+                    android:textColorHint="#718096"
+                    android:inputType="textCapSentences"
+                    android:importantForAutofill="no"
+                    android:autofillHints="" />
             </LinearLayout>
 
             <!-- Data/godzina -->
@@ -142,12 +151,12 @@
                     android:textColor="#4A5568"
                     android:textSize="18sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="12dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPickDateTime"
                     android:layout_width="match_parent"
-                    android:layout_height="92dp"
+                    android:layout_height="84dp"
                     android:text="Wybierz datę i godzinę"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
@@ -157,11 +166,11 @@
                     android:paddingStart="22dp"
                     android:paddingEnd="22dp"
                     app:backgroundTint="#2B6CB0"
-                    app:cornerRadius="30dp"
+                    app:cornerRadius="28dp"
                     app:icon="@android:drawable/ic_menu_my_calendar"
                     app:iconGravity="textStart"
                     app:iconPadding="18dp"
-                    app:iconSize="34dp"/>
+                    app:iconSize="32dp" />
 
                 <TextView
                     android:id="@+id/tvPicked"
@@ -169,10 +178,10 @@
                     android:layout_height="wrap_content"
                     android:text="Nie wybrano"
                     android:textColor="#1A202C"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
-                    android:layout_marginTop="14dp"/>
+                    android:layout_marginTop="14dp" />
             </LinearLayout>
 
             <!-- Powtarzanie (tylko leki) -->
@@ -193,7 +202,7 @@
                     android:textColor="#4A5568"
                     android:textSize="18sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp" />
 
                 <EditText
                     android:id="@+id/etRepeatMinutes"
@@ -204,9 +213,12 @@
                     android:textSize="22sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="np. 4"
-                    android:inputType="number"/>
+                    android:textColor="#1A202C"
+                    android:textColorHint="#718096"
+                    android:inputType="number"
+                    android:importantForAutofill="no"
+                    android:autofillHints="" />
             </LinearLayout>
-
 
             <!-- CHECKLISTA ZAKUPÓW -->
             <LinearLayout
@@ -226,7 +238,7 @@
                     android:textColor="#4A5568"
                     android:textSize="18sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
 
                 <EditText
                     android:id="@+id/etShoppingItem"
@@ -237,12 +249,16 @@
                     android:textSize="22sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="np. Chleb"
-                    android:inputType="textCapSentences"/>
+                    android:textColor="#1A202C"
+                    android:textColorHint="#718096"
+                    android:inputType="textCapSentences"
+                    android:importantForAutofill="no"
+                    android:autofillHints="" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAddItem"
                     android:layout_width="match_parent"
-                    android:layout_height="84dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="12dp"
                     android:text="Dodaj produkt"
                     android:textAllCaps="false"
@@ -250,11 +266,11 @@
                     android:textSize="24sp"
                     android:fontFamily="@font/montserrat_bold"
                     app:backgroundTint="#2B6CB0"
-                    app:cornerRadius="28dp"
+                    app:cornerRadius="26dp"
                     app:icon="@android:drawable/ic_input_add"
                     app:iconGravity="textStart"
                     app:iconPadding="18dp"
-                    app:iconSize="34dp"/>
+                    app:iconSize="32dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -263,7 +279,7 @@
                     android:textColor="#4A5568"
                     android:textSize="16sp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp" />
 
                 <ListView
                     android:id="@+id/listShopping"
@@ -272,21 +288,21 @@
                     android:layout_marginTop="10dp"
                     android:divider="#D7DEE8"
                     android:dividerHeight="1dp"
-                    android:padding="6dp"/>
+                    android:padding="6dp" />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Dół -->
+    <!-- BOTTOM SAVE -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
-        android:paddingTop="14dp"
-        android:paddingBottom="18dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -294,16 +310,16 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="92dp"
             android:text="Zapisz"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:onClick="onSaveClicked"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="36dp"/>
+            app:cornerRadius="30dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
