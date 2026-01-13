@@ -3,10 +3,13 @@ package com.example.smartsenior.data;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.smartsenior.R;
 import com.google.android.material.button.MaterialButton;
@@ -68,12 +71,20 @@ public class ResultPopup {
         explanationView.setTextSize(16);
         explanationView.setTextColor(Color.parseColor("#374151"));
         explanationView.setGravity(Gravity.CENTER);
+        explanationView.setFontFeatureSettings("montserrat_regular");
         explanationView.setPadding(
                 dpToPx(16),
                 dpToPx(8),
                 dpToPx(16),
                 dpToPx(8)
         );
+        explanationView.setTypeface(
+                ResourcesCompat.getFont(context, R.font.montserrat_regular),
+                Typeface.NORMAL
+        );
+// jeśli chcesz większe zageszczenie linii:
+        explanationView.setLineSpacing(dpToPx(2), 1.1f);
+
         popupList.addView(explanationView);
 
         // Ustaw tekst przycisku

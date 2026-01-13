@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz.FakeNewsIntroActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.quiz.FakeNewsQuizActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -31,7 +32,7 @@ public class FakeNewsMenuActivity extends BaseTTSActivity {
         LinearLayout btnQuiz = findViewById(R.id.btnQuiz);
         btnQuiz.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, FakeNewsQuizActivity.class));
+            startActivity(new Intent(this, FakeNewsIntroActivity.class));
         });
     }
 

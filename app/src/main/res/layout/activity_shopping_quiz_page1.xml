@@ -61,7 +61,7 @@
                     android:textColor="#1A202C"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- ŁADNE ODPOWIEDZI (kafelki) -->
+                <!-- Odpowiedzi -->
                 <RadioGroup
                     android:id="@+id/groupQ1"
                     android:layout_width="match_parent"
@@ -114,7 +114,6 @@
                         android:gravity="center_vertical"
                         android:lineSpacingExtra="2dp"
                         android:layout_marginTop="10dp" />
-
                 </RadioGroup>
 
                 <TextView
@@ -147,7 +146,6 @@
                     android:textColor="#1A202C"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- ŁADNE ODPOWIEDZI (kafelki) -->
                 <RadioGroup
                     android:id="@+id/groupQ2"
                     android:layout_width="match_parent"
@@ -200,7 +198,6 @@
                         android:gravity="center_vertical"
                         android:lineSpacingExtra="2dp"
                         android:layout_marginTop="10dp" />
-
                 </RadioGroup>
 
                 <TextView
@@ -231,17 +228,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- PRZYCISK DALEJ -->
+    <!-- przyciski na dole -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
-        android:paddingTop="14dp"
-        android:paddingBottom="18dp"
-        android:gravity="center"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -249,14 +243,20 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="64dp"
             android:text="Dalej"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
             android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="20dp"
-            android:enabled="false"/>
+            app:cornerRadius="24dp"/>
     </LinearLayout>
+
+    <!-- POPUP z view_result_popup.xml -->
+    <include
+        layout="@layout/view_result_popup"
+        android:id="@+id/popupOverlay"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

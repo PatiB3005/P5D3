@@ -9,16 +9,16 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.ResultPopup;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class AiPhoto6Activity extends BaseTTSActivity {
 
-    Button btnFake, btnReal, btnOk;
-    MaterialButton btnNext;
-    LinearLayout popupOverlay;
-    ScrollView scrollView;
-    TextView titleFalse, titleTrue;
+    private Button btnFake, btnReal;
+    private MaterialButton btnNext;
+    private ScrollView scrollView;
+    private ResultPopup resultPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,61 +28,57 @@ public class AiPhoto6Activity extends BaseTTSActivity {
         btnFake = findViewById(R.id.btnFake);
         btnReal = findViewById(R.id.btnReal);
         btnNext = findViewById(R.id.btnNext);
-        btnOk = findViewById(R.id.btnOk);
-        popupOverlay = findViewById(R.id.popupOverlay);
-        titleFalse = findViewById(R.id.titleFalse);
-        titleTrue = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
+
+        resultPopup = new ResultPopup(this);
 
         setButtonState(btnNext, false);
 
-        // poprawna odpowiedź wg Twojej logiki:
-        btnFake.setOnClickListener(v -> handleAnswer(false));
+        // poprawna jest "Prawdziwe" (btnReal)
         btnReal.setOnClickListener(v -> handleAnswer(true));
+        btnFake.setOnClickListener(v -> handleAnswer(false));
 
+        // przycisk Next może być ukryty / nieużywany, bo przejście robimy po popupie
         btnNext.setOnClickListener(v -> {
-            tts.stop();
-
-            int score = ScoreManageAi.score;
-
-            if (score == 5) {
-                startActivity(new Intent(AiPhoto6Activity.this, AiMedalGoldActivity.class));
-            } else if (score == 4) {
-                startActivity(new Intent(AiPhoto6Activity.this, AiMedalSilverActivity.class));
-            } else if (score == 3) {
-                startActivity(new Intent(AiPhoto6Activity.this, AiMedalBronzeActivity.class));
-            } else {
-                startActivity(new Intent(AiPhoto6Activity.this, AiPracticeMoreActivity.class));
-            }
+            // opcjonalnie: dodatkowe przejście, ale główne będzie w onDismiss
         });
-
-        btnOk.setOnClickListener(v -> popupOverlay.setVisibility(View.GONE));
     }
 
     private void handleAnswer(boolean isCorrect) {
         btnFake.setClickable(false);
         btnReal.setClickable(false);
-
         setButtonState(btnNext, true);
         btnNext.setVisibility(View.VISIBLE);
 
-        btnFake.setAlpha(isCorrect ? 1f : 0.3f);
-        btnReal.setAlpha(isCorrect ? 0.3f : 1f);
+        btnFake.setAlpha(isCorrect ? 0.3f : 1f);
+        btnReal.setAlpha(isCorrect ? 1f : 0.3f);
 
         if (isCorrect) {
             ScoreManageAi.addPoint();
         }
 
-        popupOverlay.setVisibility(View.VISIBLE);
-        if (isCorrect) {
-            titleTrue.setVisibility(View.VISIBLE);
-            titleFalse.setVisibility(View.GONE);
-        } else {
-            titleFalse.setVisibility(View.VISIBLE);
-            titleTrue.setVisibility(View.GONE);
-        }
+        String explanation =
+                "To zdjęcie jest prawdziwe. "
+                        + "Naturalna nieidealność pączków – każdy ma odrobinę inny kształt, inną ilość lukru i inną szerokość jasnej obwódki. "
+                        + "AI często tworzy rzeczy zbyt równe albo z powtarzalnym wzorem. "
+                        + "Lukier zachowuje się realistycznie – widać nierówne zacieki, prześwity i różną grubość warstwy; tam, gdzie jest cień, lukier wygląda inaczej. "
+                        + "To fizycznie złożone i trudniejsze do wiarygodnego odwzorowania dla modeli AI. "
+                        + "Nieregularne rozmieszczenie posypki – drobinki są rozmieszczone chaotycznie, a nie w równym, sekwencyjnym wzorze. "
+                        + "Spójne światło i cienie – kierunek światła jest konsekwentny na wszystkich pączkach i na talerzu, a cienie kontaktowe w miejscach styku z tacą wyglądają naturalnie.";
 
-        scrollView.post(() -> scrollView.smoothScrollTo(0, btnNext.getBottom()));
+
+        resultPopup.setOnDismissListener(() -> {
+            int score = ScoreManageAi.getScore();   // dopasuj do swojej implementacji
+            int maxScore = 6;                       // jeśli masz 6 ekranów
+
+            Intent intent = new Intent(this, AiResultActivity.class);
+            intent.putExtra("score", score);
+            intent.putExtra("maxScore", maxScore);
+            startActivity(intent);
+            finish();
+        });
+
+        resultPopup.show(isCorrect, explanation, "Zobacz wynik");
     }
 
     private void setButtonState(MaterialButton button, boolean enabled) {
@@ -93,19 +89,23 @@ public class AiPhoto6Activity extends BaseTTSActivity {
     @Override
     protected String getSpeakText() {
         String base = collectSpeakableTextFromLayout();
-        String a = (btnFake != null && btnFake.getText() != null) ? btnFake.getText().toString().trim() : "";
-        String b = (btnReal != null && btnReal.getText() != null) ? btnReal.getText().toString().trim() : "";
+
+        String a = (btnFake != null && btnFake.getText() != null)
+                ? btnFake.getText().toString().trim()
+                : "";
+        String b = (btnReal != null && btnReal.getText() != null)
+                ? btnReal.getText().toString().trim()
+                : "";
 
         StringBuilder sb = new StringBuilder();
         if (!base.isEmpty()) sb.append(base);
-
         if (!a.isEmpty()) {
-            if (sb.length() > 0) sb.append(". ");
-            sb.append("Opcja pierwsza: ").append(a);
+            if (sb.length() == 0) sb.append(".");
+            sb.append(" Opcja pierwsza ").append(a);
         }
         if (!b.isEmpty()) {
-            if (sb.length() > 0) sb.append(". ");
-            sb.append("Opcja druga: ").append(b);
+            if (sb.length() == 0) sb.append(".");
+            sb.append(" Opcja druga ").append(b);
         }
         return sb.toString().trim();
     }

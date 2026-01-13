@@ -6,9 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5"
-    tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
+    tools:context=".ui.moduleMenu.modules.aiLite.AiResultActivity">
 
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="#4F46E5"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Scroll treści -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -17,7 +28,7 @@
         android:overScrollMode="never"
         android:clipToPadding="false"
         android:paddingBottom="24dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -32,11 +43,12 @@
             android:paddingTop="22dp"
             android:paddingBottom="24dp">
 
+            <!-- Header -->
             <TextView
-                android:id="@+id/titleSafeMessages"
+                android:id="@+id/titleAiLite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bezpieczne\nwiadomości"
+                android:text="AI Lite\nrozpoznawanie zdjęć"
                 android:textColor="#1A202C"
                 android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
@@ -60,17 +72,18 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="18dp" />
 
-            <!-- Medal bez białej ramki -->
+            <!-- Medal -->
             <ImageView
                 android:id="@+id/finishMedal"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:src="@drawable/ic_medal_silver"
+                android:src="@drawable/ic_medal_gold"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:layout_marginBottom="16dp" />
 
+            <!-- Karta wynikowa -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/congratsCard"
                 android:layout_width="match_parent"
@@ -94,12 +107,12 @@
                     android:paddingBottom="18dp">
 
                     <TextView
-                        android:id="@+id/congratsTitle"
+                        android:id="@+id/resultText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="GRATULACJE!"
+                        android:text="BRAWO!"
                         android:textColor="#1A202C"
-                        android:textSize="26sp"
+                        android:textSize="24sp"
                         android:fontFamily="@font/montserrat_bold"
                         android:gravity="center"
                         android:textAlignment="center"
@@ -107,10 +120,10 @@
                         android:layout_marginBottom="10dp" />
 
                     <TextView
-                        android:id="@+id/congratsText"
+                        android:id="@+id/resultScore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ukończyłeś moduł „Bezpieczne wiadomości”.\n\nMożesz wrócić do menu głównego, aby kontynuować naukę, lub powtórzyć test, aby poprawić wynik."
+                        android:text="Twój wynik: 0/0"
                         android:textColor="#1A202C"
                         android:textSize="20sp"
                         android:fontFamily="@font/montserrat_regular"
@@ -121,6 +134,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Przyciski -->
             <LinearLayout
                 android:id="@+id/bottomButtons"
                 android:layout_width="match_parent"
@@ -175,7 +189,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="6dp" />
-
         </LinearLayout>
     </ScrollView>
 

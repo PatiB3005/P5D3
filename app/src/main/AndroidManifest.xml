@@ -190,12 +190,14 @@
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto4Activity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto5Activity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto6Activity" />
+        <activity android:name=".ui.moduleMenu.modules.aiLite.AiResultActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalBronzeActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalGoldActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalSilverActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPracticeMoreActivity" />
         <activity android:name=".ui.notifications.CategoryItemsActivity" />
         <activity android:name=".ui.notifications.ShoppingListDetailActivity" />
+
 
         <!-- Mini Game 2 -->
         <activity android:name=".ui.miniGamesMenu.miniGames.MiniGame2Activity" />
