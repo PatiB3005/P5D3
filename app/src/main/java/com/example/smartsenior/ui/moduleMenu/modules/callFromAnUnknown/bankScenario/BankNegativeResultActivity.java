@@ -2,32 +2,27 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.bankScen
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild5Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity;
 
-public class Bank2Activity extends BaseTTSActivity {
+public class BankNegativeResultActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bank_2);
+        setContentView(R.layout.activity_bank_negative_result);
 
-        TextView textAnswerA = findViewById(R.id.textAnswerA);
-        LinearLayout declineCall = findViewById(R.id.declineCall);
+        Button next = findViewById(R.id.btnNext);
 
-        textAnswerA.setOnClickListener(v -> {
+        // Dalej -> to samo POUCZENIE co po negatywnym wyniku
+        next.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(Bank2Activity.this, Bank3Activity.class));
-        });
-
-        declineCall.setOnClickListener(v -> {
-            tts.stop();
-            Intent intent = new Intent(Bank2Activity.this, BankPositiveResultActivity.class);
+            Intent intent = new Intent(BankNegativeResultActivity.this, Bank8Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

@@ -1,0 +1,31 @@
+package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.policeScenario;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
+import com.example.smartsenior.R;
+import com.example.smartsenior.ui.BaseTTSActivity;
+
+public class Policeman6bActivity extends BaseTTSActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_policeman_6b);
+
+        Button next = findViewById(R.id.btnNext);
+
+        // „Dalej” → Policeman7Activity
+        next.setOnClickListener(v -> {
+            tts.stop();
+            Intent intent = new Intent(this, Policeman7Activity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected String getSpeakText() {
+        return collectSpeakableTextFromLayout();
+    }
+}

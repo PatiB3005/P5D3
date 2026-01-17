@@ -48,7 +48,7 @@ public class Policeman1Activity extends AppCompatActivity {
             stopRingtone();
             stopVibration();
 
-            Intent intent = new Intent(Policeman1Activity.this, ModuleMenuActivity.class);
+            Intent intent = new Intent(Policeman1Activity.this, Policeman6bActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
