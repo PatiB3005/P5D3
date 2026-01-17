@@ -22,6 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- TTS toggle (prawy górny róg) -->
+
     <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollContent"
