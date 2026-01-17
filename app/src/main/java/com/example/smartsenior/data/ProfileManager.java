@@ -12,10 +12,11 @@ import java.util.List;
 
 public class ProfileManager {
 
-    private static final String PREF_NAME     = "user_profile";
-    private static final String KEY_NAME      = "user_name";
-    private static final String KEY_PROGRESS  = "user_progress";
-    private static final String KEY_MEDALS    = "user_medals_map"; // taskId -> type
+    private static final String PREF_NAME = "user_profile";
+    private static final String KEY_NAME = "user_name";
+    private static final String KEY_SURNAME = "user_surname";
+    private static final String KEY_AGE = "user_age";
+    private static final String KEY_MEDALS = "user_medals_map";
 
     private SharedPreferences prefs;
 
@@ -23,37 +24,31 @@ public class ProfileManager {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    // --------- Dane profilu (jak wcześniej) ---------
-
-    public void saveProfile(String name, int progress) {
+    public void saveProfile(String name, String surname, String age) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(KEY_NAME, name);
-        editor.putInt(KEY_PROGRESS, progress);
+        editor.putString(KEY_SURNAME, surname);
+        editor.putString(KEY_AGE, age);
         editor.apply();
     }
 
     public String getName() {
-        return prefs.getString(KEY_NAME, "Brak imienia");
+        return prefs.getString(KEY_NAME, "");
     }
 
-    public int getProgress() {
-        return prefs.getInt(KEY_PROGRESS, 0);
+    public String getSurname() {
+        return prefs.getString(KEY_SURNAME, "");
     }
 
-    // --------- Medale: mapa taskId -> medalType ---------
+    public String getAge() {
+        return prefs.getString(KEY_AGE, "");
+    }
 
-    /**
-     * Ustawia / ulepsza medal za konkretne zadanie.
-     * @param taskId np. "SMS_1"
-     * @param newType "BRONZE", "SILVER" lub "GOLD"
-     * @return true jeśli medal się zmienił (nowy lub ulepszony), false jeśli nic nie zrobiono.
-     */
     public boolean upgradeMedal(String taskId, String newType) {
         JSONObject map = getMedalsMapJson();
 
         String current = map.optString(taskId, null);
 
-        // Brak medalu – zapisujemy pierwszy.
         if (current == null) {
             try {
                 map.put(taskId, newType);
@@ -65,7 +60,6 @@ public class ProfileManager {
             }
         }
 
-        // Jest medal – sprawdź, czy nowy jest lepszy.
         if (isBetter(newType, current)) {
             try {
                 map.put(taskId, newType);
@@ -76,11 +70,9 @@ public class ProfileManager {
             }
         }
 
-        // Nowy nie jest lepszy – nie zmieniamy nic.
         return false;
     }
 
-    /** Zwraca listę typów medali (bez taskId), np. ["BRONZE", "SILVER", "GOLD"]. */
     public List<String> getMedalsList() {
         JSONObject map = getMedalsMapJson();
         List<String> list = new ArrayList<>();
@@ -100,8 +92,6 @@ public class ProfileManager {
         return !getMedalsList().isEmpty();
     }
 
-    // --------- Pomocnicze: zapis / odczyt mapy jako JSON ---------
-
     private JSONObject getMedalsMapJson() {
         String json = prefs.getString(KEY_MEDALS, null);
         if (json == null || json.isEmpty()) {
@@ -118,8 +108,6 @@ public class ProfileManager {
     private void saveMedalsMapJson(JSONObject map) {
         prefs.edit().putString(KEY_MEDALS, map.toString()).apply();
     }
-
-    // --------- Porównanie jakości medali ---------
 
     private boolean isBetter(String newType, String oldType) {
         return getRank(newType) > getRank(oldType);
