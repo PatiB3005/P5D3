@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartsenior.R;
+import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
+
 
 public class Policeman1Activity extends AppCompatActivity {
 
@@ -45,6 +47,10 @@ public class Policeman1Activity extends AppCompatActivity {
         declineCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
+
+            Intent intent = new Intent(Policeman1Activity.this, ModuleMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }

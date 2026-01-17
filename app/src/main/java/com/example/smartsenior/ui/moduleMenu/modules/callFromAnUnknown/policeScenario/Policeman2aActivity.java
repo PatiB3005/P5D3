@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
+import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 
 public class Policeman2aActivity extends BaseTTSActivity {
 
@@ -28,6 +29,10 @@ public class Policeman2aActivity extends BaseTTSActivity {
         // Czerwona słuchawka → koniec scenariusza
         declineCall.setOnClickListener(v -> {
             tts.stop();
+
+            Intent intent = new Intent(Policeman2aActivity.this, ModuleMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }
