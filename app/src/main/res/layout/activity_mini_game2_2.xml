@@ -54,7 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
-    <!-- Pasek na start ma byc w 100% szary -> progress=0 -->
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressStrength"
         android:layout_width="0dp"
@@ -86,7 +85,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressStrength" />
 
-    <!-- ŻÓŁTE POLE: na starcie puste (brak include!) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/passwordBox"
         android:layout_width="0dp"
@@ -159,8 +157,6 @@
             app:spanCount="4" />
     </androidx.cardview.widget.CardView>
 
-    <!-- Dolny pasek z przyciskami -->
-    <!-- Dolne przyciski (styl jak u Ciebie) -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
@@ -195,7 +191,7 @@
             android:layout_width="14dp"
             android:layout_height="1dp" />
 
-        <!-- Oceń (zamiast Dalej) -->
+        <!-- Oceń -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEvaluate"
             android:layout_width="0dp"
@@ -209,7 +205,7 @@
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="22dp" />
 
-        <!-- Powtórz (ukryty na start) -->
+        <!-- Powtórz -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRepeat"
             android:layout_width="0dp"
@@ -230,7 +226,7 @@
             android:layout_height="1dp"
             android:visibility="gone" />
 
-        <!-- Zakończ (ukryty na start) -->
+        <!-- Zakończ -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinish"
             android:layout_width="0dp"

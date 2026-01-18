@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-
     <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollArea"
@@ -53,7 +52,7 @@
                 android:gravity="center"
                 android:layout_marginBottom="0dp" />
 
-            <!-- Obrazek (ten sam drawable, tylko rozmiar/odstępy jak wzorzec) -->
+            <!-- Obrazek -->
             <ImageView
                 android:id="@+id/theoryImage"
                 android:layout_width="510dp"
@@ -66,7 +65,7 @@
                 android:padding="4dp"
                 android:contentDescription="@null" />
 
-            <!-- Treść (ten sam tekst, tylko styl jak wzorzec) -->
+            <!-- Treść -->
             <TextView
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
@@ -84,6 +83,7 @@
                 android:layout_marginBottom="2dp"
                 android:text="Zanim kupisz — sprawdź, co mówią inni klienci:\n\n• Szukaj opinii na znanych stronach, np. Google, Opineo lub Ceneo.\n• Zwróć uwagę na negatywne komentarze – często mówią prawdę.\n• Uważaj na sklepy, które nie mają żadnych opinii.\n• Fałszywe opinie często są bardzo krótkie i powtarzają się." />
 
+            <!-- Przestrzeń między treścią a przyciskami -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
@@ -99,6 +99,17 @@
         app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Custom Scroll Thumb -->
+    <View
+        android:id="@+id/customScrollThumb"
+        android:layout_width="20dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:background="#2B6CB0"
+        android:layout_marginEnd="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"/>
 
     <!-- Bottom buttons -->
     <LinearLayout

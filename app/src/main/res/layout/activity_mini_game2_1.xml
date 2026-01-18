@@ -8,7 +8,6 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <!-- Scroll: jak w Samouczku (center) -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -25,10 +24,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="22dp"
-            android:paddingBottom="14dp">
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <!-- Tytuł -->
             <TextView
@@ -40,7 +39,7 @@
                 android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/titlev2Game2"
@@ -51,20 +50,20 @@
                 android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="8dp"/>
 
             <!-- Opis -->
             <TextView
                 android:id="@+id/tvHint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="W tej grze masz możliwość przećwiczenia swoich umiejętności i wiedzy na temat tworzenia silnych i bezpiecznych haseł"
+                android:text="W tej grze masz możliwość przećwiczenia swoich umiejętności i wiedzy na temat tworzenia silnych i bezpiecznych haseł. Przypomnij osobie jakich słów czy kombinacji liczbowych nie warto stosować w swoich hasłach."
                 android:textColor="#1A202C"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:lineSpacingExtra="8dp"
-                android:layout_marginBottom="6dp"/>
+                android:layout_marginBottom="4dp"/>
 
             <!-- Obrazek  -->
             <ImageView
