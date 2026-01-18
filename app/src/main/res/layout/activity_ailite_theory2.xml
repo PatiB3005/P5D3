@@ -8,21 +8,23 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.aiLite.AiTheoryActivity">
 
-    <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingEnd="26dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:paddingStart="24dp"
@@ -52,19 +54,34 @@
                 android:gravity="center"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Obrazek -->
-            <ImageView
-                android:id="@+id/headerImage"
+            <FrameLayout
+                android:id="@+id/imageContainer"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:src="@drawable/kon"
-                android:scaleType="centerCrop"
-                android:background="@drawable/rounded_image"
-                android:clipToOutline="true"
-                android:contentDescription="@null"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp">
 
-            <!-- Tekst 1 -->
+                <ImageView
+                    android:id="@+id/headerImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/kon"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/rounded_image"
+                    android:clipToOutline="true"
+                    android:contentDescription="@null" />
+
+                <ImageButton
+                    android:id="@+id/btnZoom"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_zoom_in_24"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="Powiększ zdjęcie" />
+            </FrameLayout>
+
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -79,9 +96,8 @@
                 android:textAlignment="viewStart"
                 android:layout_marginBottom="14dp"
                 android:text="Nie pozorne zdjęcia ukazujące jakieś sentymentalne, wesołe albo wręcz przeciwnie,
-        przygnebiające i  wywołujące współczucie chwilę, wydają się niesamowicie nie pozorne."/>
+przygnebiające i wywołujące współczucie chwilę, wydają się niesamowicie nie pozorne." />
 
-            <!-- Tekst 2 -->
             <TextView
                 android:id="@+id/contentText2"
                 android:layout_width="match_parent"
@@ -95,9 +111,9 @@
                 android:gravity="start"
                 android:textAlignment="viewStart"
                 android:layout_marginBottom="10dp"
-                android:text=" „Zrobiłam wielkiego konia z  chałki, ale nikt mi nie pogratulował, bo dzisiejszy
-        Internet nie docenia już takich treści” lub „Kiedyś  ludzie były bardziej uśmiechnięci, nie to co teraz”.
-Brzmi znajomo?  Ludzie chętnie reagują na takie  posty likując je i komentując, lecz to niebezpieczne i pochopna decyzja. "/>
+                android:text="„Zrobiłam wielkiego konia z chałki, ale nikt mi nie pogratulował, bo dzisiejszy
+Internet nie docenia już takich treści” lub „Kiedyś ludzie były bardziej uśmiechnięci, nie to co teraz”.
+Brzmi znajomo? Ludzie chętnie reagują na takie posty likując je i komentując, lecz to niebezpieczne i pochopna decyzja." />
 
             <View
                 android:layout_width="match_parent"
@@ -106,8 +122,28 @@ Brzmi znajomo?  Ludzie chętnie reagują na takie  posty likując je i komentuj�
         </LinearLayout>
     </ScrollView>
 
-    <!-- separator -->
     <View
+        android:id="@+id/customScrollTrack"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:background="#D9E2EF"
+        app:layout_constraintTop_toTopOf="@id/scrollArea"
+        app:layout_constraintBottom_toBottomOf="@id/scrollArea"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/customScrollThumb"
+        android:layout_width="6dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="12dp"
+        android:background="#2B6CB0"
+        app:layout_constraintTop_toTopOf="@id/customScrollTrack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <View
+        android:id="@+id/bottomDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#D9E2EF"
@@ -115,7 +151,6 @@ Brzmi znajomo?  Ludzie chętnie reagują na takie  posty likując je i komentuj�
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"

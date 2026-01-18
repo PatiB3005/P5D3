@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
+        android:scrollbars="none"
         android:clipToPadding="false"
         android:paddingEnd="26dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +43,7 @@
                 android:gravity="center"
                 android:layout_marginTop="8dp" />
 
-            <!-- CHARAKTERYSTYKA -->
+            <!-- Podtytuł -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -66,7 +67,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="14dp" />
 
-            <!-- OBRAZEK (poprawione: nie match_parent) -->
+            <!-- Obrazek -->
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="250dp"
@@ -106,7 +107,7 @@
         android:layout_marginEnd="12dp"
         android:background="#D9E2EF"
         app:layout_constraintTop_toTopOf="@id/scrollContent"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintBottom_toBottomOf="@id/scrollContent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- THUMB -->
@@ -117,10 +118,12 @@
         android:layout_marginEnd="12dp"
         android:background="#2B6CB0"
         app:layout_constraintTop_toTopOf="@id/customScrollTrack"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <!-- separator -->
     <View
+        android:id="@+id/bottomDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#D9E2EF"

@@ -378,7 +378,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- TRACK (ciemno-niebieski pasek "tor") -->
+    <!-- TRACK -->
     <View
         android:id="@+id/customScrollTrack"
         android:layout_width="6dp"
@@ -386,10 +386,10 @@
         android:layout_marginEnd="12dp"
         android:background="#D9E2EF"
         app:layout_constraintTop_toTopOf="@id/scrollContent"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
+        app:layout_constraintBottom_toBottomOf="@id/scrollContent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- THUMB (niebieski "suwak") -->
+    <!-- THUMB -->
     <View
         android:id="@+id/customScrollThumb"
         android:layout_width="6dp"
@@ -397,7 +397,8 @@
         android:layout_marginEnd="12dp"
         android:background="#2B6CB0"
         app:layout_constraintTop_toTopOf="@id/customScrollTrack"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <!-- separator -->
     <View
