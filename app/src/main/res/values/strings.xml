@@ -22,4 +22,7 @@
     <!-- TTS -->
     <string name="tts_on">Lektor: włączony</string>
     <string name="tts_off">Lektor: wyłączony</string>
+
+    <string name="close">Zamknij</string>
+    <string name="zoom_image">Powiększ zdjęcie</string>
 </resources>

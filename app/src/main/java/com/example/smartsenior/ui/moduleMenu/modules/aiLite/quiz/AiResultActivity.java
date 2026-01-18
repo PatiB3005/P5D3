@@ -1,17 +1,15 @@
-package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
+package com.example.smartsenior.ui.moduleMenu.modules.aiLite.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.data.ProfileManager;
 import com.example.smartsenior.ui.BaseTTSActivity;
-import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiLiteMenuActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
@@ -31,9 +29,8 @@ public class AiResultActivity extends BaseTTSActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> {
             tts.stop();
-            finish();
+            startActivity(new Intent(AiResultActivity.this, AiLiteMenuActivity.class));
         });
-
 
         finishMedal = findViewById(R.id.finishMedal);
         resultText = findViewById(R.id.resultText);
@@ -47,17 +44,18 @@ public class AiResultActivity extends BaseTTSActivity {
 
         setupResult(score, maxScore);
 
-        retryButton.setOnClickListener(v -> {
+        backToMenuButton.setOnClickListener(v -> {
             tts.stop();
-            // Ponowny test – wracamy do zdjęć startowych
-            startActivity(new Intent(AiResultActivity.this, AiPhotoActivity.class));
+            Intent intent = new Intent(AiResultActivity.this, AiLiteMenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             finish();
         });
 
-        backToMenuButton.setOnClickListener(v -> {
+        retryButton.setOnClickListener(v -> {
             tts.stop();
-            // Powrót do menu modułu AI Lite
-            startActivity(new Intent(AiResultActivity.this, AiActivity.class));
+            Intent intent = new Intent(AiResultActivity.this, AiIntroActivity.class);
+            startActivity(intent);
             finish();
         });
     }
@@ -68,24 +66,40 @@ public class AiResultActivity extends BaseTTSActivity {
         float percent = score * 100f / maxScore;
         ProfileManager pm = new ProfileManager(this);
 
-        // Po wyniku cały quiz AI uznajemy za zaliczony
         ProgressStore.markDone(this, ProgressKeys.AI_QUIZ_DONE);
 
+        String medalType;
+        String message;
+
         if (percent >= 80f) {
+            medalType = "GOLD";
             finishMedal.setImageResource(R.drawable.ic_medal_gold);
-            resultText.setText("BRAWO! Świetnie rozpoznajesz, kiedy obraz może być wygenerowany przez AI.");
-            pm.upgradeMedal("AI", "GOLD");
+            message = "BRAWO! Świetnie rozpoznajesz, kiedy obraz może być wygenerowany przez AI.";
         } else if (percent >= 60f) {
+            medalType = "SILVER";
             finishMedal.setImageResource(R.drawable.ic_medal_silver);
-            resultText.setText("Bardzo dobrze! Czasem dasz się zaskoczyć, ale zwykle trafnie oceniasz obrazy.");
-            pm.upgradeMedal("AI", "SILVER");
+            message = "Bardzo dobrze! Czasem dasz się zaskoczyć, ale zwykle trafnie oceniasz obrazy.";
         } else if (percent >= 40f) {
+            medalType = "BRONZE";
             finishMedal.setImageResource(R.drawable.ic_medal_bronze);
-            resultText.setText("Całkiem nieźle, warto jeszcze poćwiczyć rozpoznawanie obrazów generowanych przez AI.");
-            pm.upgradeMedal("AI", "BRONZE");
+            message = "Całkiem nieźle, warto jeszcze poćwiczyć rozpoznawanie obrazów generowanych przez AI.";
         } else {
+            medalType = null;
             finishMedal.setImageResource(R.drawable.ic_sad_emoji);
-            resultText.setText("Tym razem się nie udało. Spróbuj jeszcze raz i uważnie przyglądaj się szczegółom zdjęć.");
+            message = "Tym razem się nie udało. Spróbuj jeszcze raz i uważnie przyglądaj się szczegółom zdjęć.";
+        }
+
+        resultText.setText(message);
+
+        // Zapisz medal z pełnymi informacjami
+        if (medalType != null) {
+            pm.upgradeMedal(
+                    "ai_quiz",           // ID zadania (unikalny identyfikator)
+                    medalType,           // GOLD, SILVER, BRONZE
+                    "AI Quiz",           // Nazwa modułu (wyświetlana w profilu)
+                    score,               // Osiągnięty wynik
+                    maxScore             // Maksymalny możliwy wynik
+            );
         }
     }
 

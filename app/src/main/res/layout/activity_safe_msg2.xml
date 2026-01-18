@@ -8,8 +8,15 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
+    <!-- ✅ tor zaczyna się pod górnym paskiem -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="56dp" />
 
-    <!-- Scroll content (NIE do dołu parenta, tylko do separatora nad przyciskami) -->
+    <!-- Scroll content -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -18,7 +25,8 @@
         android:overScrollMode="never"
         android:clipToPadding="false"
         android:paddingBottom="12dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/topGuide"
         app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -33,7 +41,6 @@
             android:paddingTop="20dp"
             android:paddingBottom="18dp">
 
-            <!-- Header subtitle -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -45,7 +52,6 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp" />
 
-            <!-- Header title -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
@@ -58,7 +64,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="14dp" />
 
-            <!-- OBRAZEK -->
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="match_parent"
@@ -70,7 +75,6 @@
                 android:scaleType="fitCenter"
                 android:padding="4dp" />
 
-            <!-- Blok 1 -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -84,7 +88,6 @@
                 android:text="Oszustwa poprzez różnego rodzaju wiadomości to coraz częstszy sposób wyłudzania danych i pieniędzy. Przestępcy podszywają się pod banki, firmy kurierskie lub instytucje publiczne, wysyłając fałszywe SMS-y, e-maile lub wiadomości z linkami do podrobionych stron."
                 android:layout_marginBottom="14dp" />
 
-            <!-- Blok 2 -->
             <TextView
                 android:id="@+id/contentText2"
                 android:layout_width="match_parent"
@@ -103,6 +106,20 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <!-- ✅ gruby pasek: start pod topGuide, koniec nad przyciskami; bias=0 żeby startował u góry -->
+    <View
+        android:id="@+id/customScrollThumb"
+        android:layout_width="12dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="6dp"
+        android:alpha="0.85"
+        android:background="#2B6CB0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topGuide"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
+        app:layout_constraintVertical_bias="0" />
 
     <!-- separator nad przyciskami -->
     <View

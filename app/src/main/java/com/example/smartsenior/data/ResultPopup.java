@@ -8,9 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.smartsenior.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -33,7 +31,7 @@ public class ResultPopup {
         overlay = activity.findViewById(R.id.popupOverlay);
         if (overlay == null) {
             throw new IllegalStateException(
-                    "popupOverlay == null – sprawdź czy activity_fake_news_quiz.xml zawiera " +
+                    "popupOverlay == null – sprawdź czy layout zawiera " +
                             "<include layout=\"@layout/view_result_popup\" android:id=\"@+id/popupOverlay\" />"
             );
         }
@@ -45,7 +43,6 @@ public class ResultPopup {
         overlay.setOnClickListener(v -> hideInternal());
         btnOk.setOnClickListener(v -> hideInternal());
 
-        // Ukryj popup na start
         overlay.setVisibility(View.GONE);
     }
 
@@ -53,48 +50,59 @@ public class ResultPopup {
         this.onDismissListener = listener;
     }
 
-
     public void show(boolean isCorrect, String explanation, String buttonText) {
-        // Ustaw tytuł i kolor w zależności od poprawności odpowiedzi
         if (isCorrect) {
             titleText.setText("Poprawna odpowiedź!");
         } else {
             titleText.setText("Niepoprawna odpowiedź");
         }
 
-        // Wyczyść poprzednie elementy z listy
         popupList.removeAllViews();
 
-        // Dodaj wyjaśnienie
         TextView explanationView = new TextView(context);
         explanationView.setText(explanation);
         explanationView.setTextSize(16);
         explanationView.setTextColor(Color.parseColor("#374151"));
         explanationView.setGravity(Gravity.CENTER);
-        explanationView.setFontFeatureSettings("montserrat_regular");
-        explanationView.setPadding(
-                dpToPx(16),
-                dpToPx(8),
-                dpToPx(16),
-                dpToPx(8)
-        );
+        explanationView.setPadding(dpToPx(16), dpToPx(8), dpToPx(16), dpToPx(8));
         explanationView.setTypeface(
                 ResourcesCompat.getFont(context, R.font.montserrat_regular),
                 Typeface.NORMAL
         );
-// jeśli chcesz większe zageszczenie linii:
         explanationView.setLineSpacing(dpToPx(2), 1.1f);
 
         popupList.addView(explanationView);
 
-        // Ustaw tekst przycisku
-        if (buttonText != null && !buttonText.isEmpty()) {
-            btnOk.setText(buttonText);
-        } else {
-            btnOk.setText("OK");
-        }
+        btnOk.setText(buttonText != null && !buttonText.isEmpty() ? buttonText : "OK");
 
-        // Pokaż overlay z animacją fade in
+        showOverlay();
+    }
+
+    public void showInfo(String title, String message, String buttonText) {
+        titleText.setText(title);
+
+        popupList.removeAllViews();
+
+        TextView messageView = new TextView(context);
+        messageView.setText(message);
+        messageView.setTextSize(16);
+        messageView.setTextColor(Color.parseColor("#374151"));
+        messageView.setGravity(Gravity.CENTER);
+        messageView.setPadding(dpToPx(16), dpToPx(8), dpToPx(16), dpToPx(8));
+        messageView.setTypeface(
+                ResourcesCompat.getFont(context, R.font.montserrat_regular),
+                Typeface.NORMAL
+        );
+        messageView.setLineSpacing(dpToPx(2), 1.1f);
+
+        popupList.addView(messageView);
+
+        btnOk.setText(buttonText != null && !buttonText.isEmpty() ? buttonText : "OK");
+
+        showOverlay();
+    }
+
+    private void showOverlay() {
         overlay.setAlpha(0f);
         overlay.setVisibility(View.VISIBLE);
         overlay.animate()
@@ -103,11 +111,8 @@ public class ResultPopup {
                 .start();
     }
 
-    /**
-     * Ukrywa popup i wywołuje listener
-     */
+
     private void hideInternal() {
-        // Animacja fade out
         overlay.animate()
                 .alpha(0f)
                 .setDuration(200)
@@ -115,22 +120,17 @@ public class ResultPopup {
                     overlay.setVisibility(View.GONE);
                     if (onDismissListener != null) {
                         onDismissListener.onDismiss();
-                        onDismissListener = null; // Reset listenera
+                        onDismissListener = null;
                     }
                 })
                 .start();
     }
 
-    /**
-     * Publiczna metoda do ukrywania popupu
-     */
+
     public void hide() {
         hideInternal();
     }
 
-    /**
-     * Konwertuje dp na piksele
-     */
     private int dpToPx(int dp) {
         float density = context.getResources().getDisplayMetrics().density;
         return Math.round(dp * density);

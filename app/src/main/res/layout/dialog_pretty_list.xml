@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_white_round"
+    android:padding="18dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wybierz"
+        android:textColor="#111111"
+        android:textSize="22sp"
+        android:fontFamily="@font/montserrat_regular"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:divider="#14000000"
+        android:dividerHeight="1dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="14dp"
+        android:text="Anuluj"
+        android:textAllCaps="false"
+        android:textColor="#2B6CB0"
+        android:textSize="18sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:background="@android:color/transparent"/>
+</LinearLayout>

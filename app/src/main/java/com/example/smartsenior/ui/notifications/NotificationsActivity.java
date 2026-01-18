@@ -39,13 +39,13 @@ public class NotificationsActivity extends AppCompatActivity {
         btnOther = findViewById(R.id.btnOther);
         btnAdd = findViewById(R.id.btnAdd);
 
-        // List
+        // Kafelki -> pokazują listy zapisanych danych
         btnMeds.setOnClickListener(v -> openCategory(ReminderType.MEDS));
         btnVisits.setOnClickListener(v -> openCategory(ReminderType.VISIT));
         btnShopping.setOnClickListener(v -> openCategory(ReminderType.SHOPPING));
         btnOther.setOnClickListener(v -> openCategory(ReminderType.OTHER));
 
-        // Add new
+        // Tylko ten przycisk dodaje nowe
         btnAdd.setOnClickListener(v ->
                 startActivity(new Intent(this, AddReminderActivity.class))
         );

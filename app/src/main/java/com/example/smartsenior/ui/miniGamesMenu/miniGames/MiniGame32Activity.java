@@ -24,9 +24,13 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class MiniGame32Activity extends AppCompatActivity {
+
+    private static final int ROUND_SIZE = 4;     // zawsze 4 pytania
+    private static final int EXTRA_DECOYS = 1;   // ile dodatkowych “zmyłek” w puli (np. http)
 
     private HorizontalScrollView topScroll;
     private LinearLayout topChipsContainer;
@@ -38,26 +42,27 @@ public class MiniGame32Activity extends AppCompatActivity {
     private TextView tvCurrentScore;
 
     // wiersze definicji
-    private final ViewGroup[] answerHosts = new ViewGroup[4]; // FrameLayout answerHost
-    private final View[] placeholders = new View[4];          // ciemne placeholdery
-    private final TextView[] defTexts = new TextView[4];
+    private final ViewGroup[] answerHosts = new ViewGroup[ROUND_SIZE];
+    private final View[] placeholders = new View[ROUND_SIZE];
+    private final TextView[] defTexts = new TextView[ROUND_SIZE];
 
     private boolean evaluated = false;
 
-    private final String[] correct = new String[]{
-            "https",
-            "AI",
-            "Metoda na wnuczka/policjanta",
-            "Fake News"
-    };
+    // --- NOWE: baza pytań + wylosowana runda ---
+    private static class Question {
+        final String answer;      // słowo do dopasowania (na chipie)
+        final String definition;  // opis
 
-    private final String[] definitions = new String[]{
-            "- zaczyna się od tego każdy bezpieczny adres strony internetowej.",
-            "- program komputerowy, mogący generować różne treści, np. zdjęcia, teksty.",
-            "- oszustwo, w którym przestępca podaje się za osobę bliską lub pracownika ważnej instytucji.",
-            "- fałszywe informacje mające na celu wprowadzić zamęt i dezinformację."
-    };
+        Question(String answer, String definition) {
+            this.answer = answer;
+            this.definition = definition;
+        }
+    }
 
+    private final List<Question> questionBank = new ArrayList<>();
+    private final List<Question> roundQuestions = new ArrayList<>(); // wylosowane 4 na rundę
+
+    // pula chipów (odpowiedzi + zmyłki)
     private final List<String> pool = new ArrayList<>();
 
     @Override
@@ -84,7 +89,7 @@ public class MiniGame32Activity extends AppCompatActivity {
         // definicje/sloty
         LinearLayout defsContainer = findViewById(R.id.definitionsContainer);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < ROUND_SIZE; i++) {
             View row = defsContainer.getChildAt(i);
 
             ViewGroup host = row.findViewById(R.id.answerHost);
@@ -96,8 +101,10 @@ public class MiniGame32Activity extends AppCompatActivity {
             defTexts[i] = tvDef;
 
             host.setOnDragListener(this::onHostDrag);
-            tvDef.setText(definitions[i]);
         }
+
+        // baza pytań
+        buildQuestionBank();
 
         // back
         btnBack.setOnClickListener(v -> {
@@ -114,6 +121,71 @@ public class MiniGame32Activity extends AppCompatActivity {
         startNewRound();
     }
 
+    private void buildQuestionBank() {
+        // Możesz tu dopisywać ile chcesz.
+        // Ważne: "answer" musi być dokładnie takie, jak chcesz mieć na chipie.
+
+        questionBank.clear();
+
+        questionBank.add(new Question(
+                "https",
+                "- zaczyna się od tego każdy bezpieczny adres strony internetowej."
+        ));
+
+        questionBank.add(new Question(
+                "AI",
+                "- program komputerowy, mogący generować różne treści, np. zdjęcia, teksty."
+        ));
+
+        questionBank.add(new Question(
+                "Metoda na wnuczka/policjanta",
+                "- oszustwo, w którym przestępca podaje się za osobę bliską lub pracownika ważnej instytucji."
+        ));
+
+        questionBank.add(new Question(
+                "Fake News",
+                "- fałszywe informacje mające na celu wprowadzić zamęt i dezinformację."
+        ));
+
+        // --- dodatkowe przykłady (DOPISUJ) ---
+        questionBank.add(new Question(
+                "Phishing",
+                "- próba wyłudzenia danych (np. hasła) przez podszywanie się pod zaufaną instytucję."
+        ));
+
+        questionBank.add(new Question(
+                "Silne hasło",
+                "- hasło długie, trudne do odgadnięcia, z różnymi typami znaków."
+        ));
+
+        questionBank.add(new Question(
+                "Dwuskładnikowe logowanie (2FA)",
+                "- dodatkowy krok przy logowaniu, np. kod SMS lub aplikacja."
+        ));
+
+        questionBank.add(new Question(
+                "Aktualizacja",
+                "- instalowanie poprawek systemu/aplikacji, aby zwiększyć bezpieczeństwo."
+        ));
+
+        questionBank.add(new Question(
+                "Antywirus",
+                "- program, który pomaga wykrywać i usuwać złośliwe oprogramowanie."
+        ));
+
+        questionBank.add(new Question(
+                "Spam",
+                "- niechciane wiadomości, często reklamowe lub podejrzane."
+        ));
+
+        questionBank.add(new Question(
+                "Link",
+                "- odnośnik, który przenosi do innej strony lub zasobu w internecie."
+        ));
+
+        // Zmyłki NIE muszą być w banku pytań — lepiej trzymać je osobno.
+    }
+
     private void updateHighScoreUi() {
         int best = HighScoreStore.getHighScore(this, ScoreKeys.MG3_DEFS_HIGH_SCORE);
         tvHighScore.setText("Rekord: " + best + "/4");
@@ -121,27 +193,61 @@ public class MiniGame32Activity extends AppCompatActivity {
 
     private void startNewRound() {
         evaluated = false;
-
-        // reset aktualnego wyniku w UI
         tvCurrentScore.setText("Wynik: -/4");
 
         // czyść hosty i przywróć placeholdery
         for (int i = 0; i < answerHosts.length; i++) {
             ViewGroup host = answerHosts[i];
             host.removeAllViews();
-            host.addView(placeholders[i]); // z powrotem ciemny placeholder
+            host.addView(placeholders[i]);
         }
 
         topChipsContainer.removeAllViews();
 
+        // --- losuj 4 pytania ---
+        roundQuestions.clear();
+        List<Question> copy = new ArrayList<>(questionBank);
+        Collections.shuffle(copy);
+
+        // zabezpieczenie: jeśli kiedyś będziesz miał mniej niż 4 w banku
+        int take = Math.min(ROUND_SIZE, copy.size());
+        for (int i = 0; i < take; i++) roundQuestions.add(copy.get(i));
+
+        // ustaw definicje w UI (4 wiersze)
+        for (int i = 0; i < ROUND_SIZE; i++) {
+            if (i < roundQuestions.size()) {
+                defTexts[i].setText(roundQuestions.get(i).definition);
+            } else {
+                defTexts[i].setText("- (brak pytania w bazie)");
+            }
+        }
+
+        // --- buduj pulę chipów: 4 poprawne + zmyłki ---
         pool.clear();
-        Collections.addAll(pool,
-                "AI",
-                "Metoda na wnuczka/policjanta",
-                "Fake News",
-                "https",
-                "http"
-        );
+        HashSet<String> used = new HashSet<>();
+
+        for (Question q : roundQuestions) {
+            pool.add(q.answer);
+            used.add(q.answer);
+        }
+
+        // zmyłki (możesz dopisywać)
+        String[] decoys = new String[]{"http", "WWW", "SMS", "1234", "Admin"};
+
+        int added = 0;
+        List<String> decoyList = new ArrayList<>();
+        Collections.addAll(decoyList, decoys);
+        Collections.shuffle(decoyList);
+
+        for (String d : decoyList) {
+            if (added >= EXTRA_DECOYS) break;
+            if (!used.contains(d)) {
+                pool.add(d);
+                used.add(d);
+                added++;
+            }
+        }
+
         Collections.shuffle(pool);
 
         for (String word : pool) {
@@ -157,7 +263,6 @@ public class MiniGame32Activity extends AppCompatActivity {
         chip.setTag(word);
         resetChipColor(chip);
 
-        // klik na chipie w definicji -> wraca na górę i placeholder wraca
         chip.setOnClickListener(v -> {
             if (evaluated) return;
 
@@ -221,7 +326,6 @@ public class MiniGame32Activity extends AppCompatActivity {
                     topChipsContainer.addView(existingChip);
                     resetChipColor(existingChip);
 
-                    // ważne: po powrocie na górę ustaw LayoutParams dla LinearLayout
                     LinearLayout.LayoutParams topLp = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -288,13 +392,17 @@ public class MiniGame32Activity extends AppCompatActivity {
 
         int good = 0;
 
-        for (int i = 0; i < answerHosts.length; i++) {
+        for (int i = 0; i < ROUND_SIZE; i++) {
             ViewGroup host = answerHosts[i];
             View chip = findChipInHost(host);
             if (chip == null) continue;
 
             String word = (String) chip.getTag();
-            if (correct[i].equals(word)) {
+
+            // poprawna odpowiedź dla i-tego pytania w rundzie
+            String correctAnswer = (i < roundQuestions.size()) ? roundQuestions.get(i).answer : null;
+
+            if (correctAnswer != null && correctAnswer.equals(word)) {
                 setChipGreen(chip);
                 good++;
             } else {
@@ -302,10 +410,8 @@ public class MiniGame32Activity extends AppCompatActivity {
             }
         }
 
-        // aktualny wynik w UI (pod rekordem)
         tvCurrentScore.setText("Wynik: " + good + "/4");
 
-        // zapis rekordu (większe = lepsze)
         boolean newRecord = HighScoreStore.submitHighScore(this, ScoreKeys.MG3_DEFS_HIGH_SCORE, good);
         updateHighScoreUi();
 
@@ -344,3 +450,4 @@ public class MiniGame32Activity extends AppCompatActivity {
         }
     }
 }
+

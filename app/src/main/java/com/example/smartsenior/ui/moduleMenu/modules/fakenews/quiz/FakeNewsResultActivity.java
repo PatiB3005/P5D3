@@ -62,27 +62,36 @@ public class FakeNewsResultActivity extends BaseTTSActivity {
 
     private void setupResult(int score, int maxScore) {
         resultScore.setText("Twój wynik: " + score + "/" + maxScore);
-
-        float percent = score * 100f / maxScore;
-
+        float percent = (score * 100f) / maxScore;
         ProfileManager pm = new ProfileManager(this);
+
+        String medalType = null;
+        String message = "";
+
         if (percent >= 80f) {
+            medalType = "GOLD";
             finishMedal.setImageResource(R.drawable.ic_medal_gold);
-            resultText.setText("GRATULACJE! Świetnie rozpoznajesz fake newsy!");
-            pm.upgradeMedal("FN","GOLD");
+            message = "GRATULACJE! Świetnie rozpoznajesz fake newsy!";
         } else if (percent >= 60f) {
+            medalType = "SILVER";
             finishMedal.setImageResource(R.drawable.ic_medal_silver);
-            resultText.setText("Bardzo dobrze! Czasem dasz się nabrać, ale jesteś czujny.");
-            pm.upgradeMedal("FN","SILVER");
+            message = "Bardzo dobrze! Czasem dasz się nabra, ale jesteś czujny.";
         } else if (percent >= 40f) {
+            medalType = "BRONZE";
             finishMedal.setImageResource(R.drawable.ic_medal_bronze);
-            resultText.setText("Całkiem nieźle, warto jeszcze poćwiczyć rozpoznawanie fałszywych treści.");
-            pm.upgradeMedal("FN","BRONZE");
+            message = "Całkiem nieźle, warto jeszcze poćwiczyć rozpoznawanie fałszywych treści.";
         } else {
             finishMedal.setImageResource(R.drawable.ic_sad_emoji);
-            resultText.setText("Tym razem się nie udało. Spróbuj jeszcze raz i uważnie czytaj nagłówki oraz komentarze.");
+            message = "Tym razem się nie udało. Spróbuj jeszcze raz i uważaj czytaj nagłówki oraz komentarze.";
+        }
+
+        resultText.setText(message);
+
+        if (medalType != null) {
+            pm.upgradeMedal("fakenews", medalType, "Fake News Quiz", score, maxScore);
         }
     }
+
 
     @Override
     protected String getSpeakText() {

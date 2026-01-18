@@ -34,7 +34,7 @@ public class AddReminderActivity extends AppCompatActivity {
     private TextView tvPicked;
 
     private LinearLayout sectionRepeat;
-    private EditText etRepeat; // hours
+    private EditText etRepeat; // GODZINY
 
     private LinearLayout sectionShopping;
     private EditText etShoppingItem;
@@ -76,7 +76,7 @@ public class AddReminderActivity extends AppCompatActivity {
         btnAddItem = findViewById(R.id.btnAddItem);
         listShopping = findViewById(R.id.listShopping);
 
-        // Big letters
+        // większa czcionka dla produktów (musisz mieć item_shopping_row.xml)
         shoppingAdapter = new ArrayAdapter<>(this, R.layout.item_shopping_row, R.id.tvItem, shoppingItems);
         listShopping.setAdapter(shoppingAdapter);
 
@@ -166,7 +166,7 @@ public class AddReminderActivity extends AppCompatActivity {
     public void onSaveClicked(View v) {
         if (chosenType == null) { showError("Wybierz kategorię."); return; }
 
-        // checklist
+        // ✅ ZAKUPY: zapis do ShoppingListStore (żeby działała zakładka + checklist)
         if (chosenType == ReminderType.SHOPPING) {
             if (shoppingItems.isEmpty()) { showError("Dodaj przynajmniej 1 produkt."); return; }
 
@@ -193,7 +193,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
         int repeatMinutes = 0;
 
-
+        // ✅ repeat tylko dla leków, cyfry 0..∞, 0=brak
         if (sectionRepeat.getVisibility() == View.VISIBLE) {
             ReminderValidator.RepeatResult rr =
                     ReminderValidator.validateRepeatHours(etRepeat.getText() == null ? "" : etRepeat.getText().toString());

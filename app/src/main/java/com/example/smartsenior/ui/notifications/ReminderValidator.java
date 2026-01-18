@@ -17,6 +17,7 @@ public class ReminderValidator {
     public static String validateFutureTime(Long pickedMillis) {
         if (pickedMillis == null) return "Wybierz datę i godzinę.";
         long now = System.currentTimeMillis();
+        // min. 1 minuta do przodu (żeby nie „wpadło” od razu)
         if (pickedMillis < now + 60_000L) return "Wybierz przyszłą datę i godzinę.";
         return null;
     }
@@ -26,6 +27,7 @@ public class ReminderValidator {
         String s = (repeatHoursStr == null) ? "" : repeatHoursStr.trim();
         if (s.isEmpty()) return new RepeatResult(0, null);
 
+        // tylko cyfry
         if (!s.matches("^\\d+$")) return new RepeatResult(0, "Powtarzanie: wpisz tylko cyfry (0 lub więcej).");
 
         try {

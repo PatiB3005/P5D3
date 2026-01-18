@@ -22,12 +22,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
     private static final int INTRO_SCREEN = 1;
     private static final int FIRST_QUESTION_SCREEN = 2;
     private static final int LAST_QUESTION_SCREEN = 9;
-    private static final int RESULT_SCREEN = 100;
+    private static final int RESULT_SCREEN = 100; // wspólny ekran wyniku
 
     private int currentScreen = INTRO_SCREEN;
     private int score = 0;
     private boolean firstScreenAlreadyShown = false;
-    private boolean progressMarked = false;
+    private boolean progressMarked = false; // żeby nie zapisywać wielokrotnie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class SmsEmailActivity extends BaseTTSActivity {
             case 9:  setContentView(R.layout.activity_sms_9);         break;
             case RESULT_SCREEN:
                 setContentView(R.layout.activity_sms_result);
-                setupResultUi();
-                return;
+                setupResultUi(); // konfiguracja toolbara, przycisków i tekstu wyniku
+                return;          // nie ustawiamy tu przycisków TAK/NIE
         }
 
         setupButtons();
@@ -113,6 +113,7 @@ public class SmsEmailActivity extends BaseTTSActivity {
     private void goToResultScreen() {
         Log.d(TAG, "FINAL SCORE=" + score);
 
+        // zapis postępu tylko raz
         if (!progressMarked) {
             ProgressStore.markDone(this, ProgressKeys.M1_SMSEMAIL_DONE);
             progressMarked = true;
@@ -122,8 +123,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
         showScreen(currentScreen);
     }
 
-    // Result screen
+    /**
+     * Konfiguracja ekranu wyniku – ten sam design co FakeNewsResultActivity,
+     * ale w tym samym Activity.
+     */
     private void setupResultUi() {
+        // Toolbar
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         if (toolbar != null) {
             toolbar.setNavigationOnClickListener(v -> {
@@ -183,7 +188,7 @@ public class SmsEmailActivity extends BaseTTSActivity {
             });
         }
 
-        // TTS result
+        // TTS treści wyniku
         getWindow().getDecorView().post(this::speakIfEnabled);
     }
 
@@ -220,7 +225,7 @@ public class SmsEmailActivity extends BaseTTSActivity {
             });
         }
 
-
+        // przyciski retry/back na ekranach starych wyników, jeśli jeszcze są używane
         View retryTestButton = findViewById(R.id.retryTestButton);
         if (retryTestButton != null && currentScreen != RESULT_SCREEN) {
             retryTestButton.setOnClickListener(v -> {

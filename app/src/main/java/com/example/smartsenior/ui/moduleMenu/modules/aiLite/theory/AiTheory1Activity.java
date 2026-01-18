@@ -1,4 +1,4 @@
-package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
+package com.example.smartsenior.ui.moduleMenu.modules.aiLite.theory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,24 +8,18 @@ import com.example.smartsenior.data.increaseFont.FontScaler;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class AiTheory4Activity extends BaseTTSActivity {
+public class AiTheory1Activity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ailite_theory4);
+        setContentView(R.layout.activity_ailite_theory1);
 
-        MaterialButton btnBack = findViewById(R.id.btnBack);
-        MaterialButton btnNext = findViewById(R.id.btnNext);
+        MaterialButton next = findViewById(R.id.btnNext);
 
-        btnBack.setOnClickListener(v -> {
+        next.setOnClickListener(v -> {
             tts.stop();
-            finish();
-        });
-
-        btnNext.setOnClickListener(v -> {
-            tts.stop();
-            startActivity(new Intent(AiTheory4Activity.this, AiTheory5Activity.class));
+            startActivity(new Intent(this, AiTheory2Activity.class));
         });
 
         // zastosuj duży/mały font na aktualnym layoucie

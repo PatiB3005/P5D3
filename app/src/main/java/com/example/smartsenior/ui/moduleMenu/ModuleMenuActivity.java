@@ -21,7 +21,7 @@ import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module3Activity;
 import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.CallFromAnUnknownMenuActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.fakenews.FakeNewsMenuActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiLiteMenuActivity;
 
 public class ModuleMenuActivity extends BaseTTSActivity {
 
@@ -79,7 +79,7 @@ public class ModuleMenuActivity extends BaseTTSActivity {
 
         btnAiLite.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(ModuleMenuActivity.this, AiActivity.class));
+            startActivity(new Intent(ModuleMenuActivity.this, AiLiteMenuActivity.class));
         });
 
         // backButton

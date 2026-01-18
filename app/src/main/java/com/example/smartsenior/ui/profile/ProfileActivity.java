@@ -76,11 +76,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void saveProfileData() {
         String name = inputName.getText().toString();
-        profileManager.saveProfile(name, 0);
+        profileManager.saveProfile(name, 0); // progress możesz obsłużyć po swojemu
     }
 
     private void loadProfileData() {
         inputName.setText(profileManager.getName());
+        // analogicznie nazwisko/wiek jeśli je zapisujesz
     }
 
     // --------- MEDALE ---------
@@ -90,12 +91,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (medals.isEmpty()) {
             medalsLayout.setVisibility(View.GONE);
-            labelMedal.setVisibility(View.GONE);
+            labelMedal.setVisibility(View.GONE);   // ukryj napis, gdy brak medali
             return;
         }
 
         medalsLayout.setVisibility(View.VISIBLE);
-        labelMedal.setVisibility(View.VISIBLE);
+        labelMedal.setVisibility(View.VISIBLE);    // pokaż napis, gdy są medale
         medalsLayout.removeAllViews();
 
         float density = getResources().getDisplayMetrics().density;
@@ -121,7 +122,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             iv.setImageResource(resId);
-            iv.setBackgroundResource(R.drawable.edittext_bg);
+            iv.setBackgroundResource(R.drawable.edittext_bg); // takie samo tło jak w XML
 
             LinearLayout.LayoutParams lp =
                     new LinearLayout.LayoutParams(size, size);
@@ -136,6 +137,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Po powrocie z modułów medale mogą się zmienić (ulepszyć)
         updateMedals();
     }
 }

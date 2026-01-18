@@ -68,7 +68,7 @@
                     android:id="@+id/aiPhotoImage"
                     android:layout_width="match_parent"
                     android:layout_height="520dp"
-                    android:src="@drawable/sukienka2"
+                    android:src="@drawable/paczki"
                     android:scaleType="centerCrop" />
 
             </com.google.android.material.card.MaterialCardView>

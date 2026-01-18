@@ -52,37 +52,43 @@ public class PasswordEvaluator {
         }
 
         int score = 0;
-        List<String> reasons = new ArrayList<>();
 
-        // --- Punkty za długość (bardziej premiujemy 12+) ---
+        // Będziemy zbierać “kary” (konkretne wykrycia)
+        List<String> penaltyReasons = new ArrayList<>();
+        String foundBad = null; // zapamiętany popularny wzór (np. "haslo", "1234")
+
+        // --- Punkty za długość ---
         if (len >= 16) score += 4;
         else if (len >= 12) score += 3;
         else if (len >= 8) score += 1;
 
         // --- Punkty za kategorie ---
         if (hasLower) score += 1;
-        if (hasUpper) score += 2;   // ważne wg Twojej reguły
+        if (hasUpper) score += 2;
         if (hasDigit) score += 1;
-        if (hasSymbol) score += 2;  // ważne wg Twojej reguły
+        if (hasSymbol) score += 2;
 
         // --- Kary ---
         String lower = password.toLowerCase();
         for (String bad : BAD_FRAGMENTS) {
             if (lower.contains(bad)) {
+                foundBad = bad;
                 score -= 3;
-                reasons.add("Zawiera popularny wzór: \"" + bad + "\".");
+                penaltyReasons.add("Zawiera popularny wzór: \"" + bad + "\".");
                 break;
             }
         }
 
-        if (YEAR_PATTERN.matcher(password).find()) {
+        boolean looksLikeYear = YEAR_PATTERN.matcher(password).find();
+        if (looksLikeYear) {
             score -= 2;
-            reasons.add("Wygląda jak rok — to łatwe do odgadnięcia.");
+            penaltyReasons.add("Wygląda jak rok — to łatwe do odgadnięcia.");
         }
 
-        if (WORD_PLUS_4_DIGITS.matcher(password).matches()) {
+        boolean wordPlus4Digits = WORD_PLUS_4_DIGITS.matcher(password).matches();
+        if (wordPlus4Digits) {
             score -= 2;
-            reasons.add("To wygląda jak \"słowo + 4 cyfry\" (częsty schemat).");
+            penaltyReasons.add("To wygląda jak \"słowo + 4 cyfry\" (częsty schemat).");
         }
 
         // clamp 0..10
@@ -92,15 +98,16 @@ public class PasswordEvaluator {
         // --- Twarda kwalifikacja poziomu ---
         StrengthLevel level;
         if (isStrongRule(len, hasUpper, hasSymbol)) {
-            level = StrengthLevel.GOOD; // silne dopiero gdy spełni 12 + symbol + duża litera
+            level = StrengthLevel.GOOD;
         } else if (score >= 4) {
             level = StrengthLevel.MEDIUM;
         } else {
             level = StrengthLevel.WEAK;
         }
 
-        // --- Powody (krótkie i czytelne) ---
+        // --- Powody (max 3) ---
         List<String> baseReasons = new ArrayList<>();
+
         if (len < 12) baseReasons.add("Za krótkie: celuj w min. 12 znaków.");
         else baseReasons.add("Dobra długość (12+).");
 
@@ -110,22 +117,31 @@ public class PasswordEvaluator {
         if (!hasSymbol) baseReasons.add("Brakuje znaku specjalnego (np. !, _, @).");
         else baseReasons.add("Jest znak specjalny.");
 
-        // dokładamy ewentualne kary (jeśli są)
-        baseReasons.addAll(reasons);
+        // dokładamy ewentualne kary
+        baseReasons.addAll(penaltyReasons);
 
-        // max 3 powody
+        // unikamy duplikatów i ucinamy do 3
         List<String> finalReasons = new ArrayList<>();
         for (String r : baseReasons) {
             if (!finalReasons.contains(r)) finalReasons.add(r);
             if (finalReasons.size() == 3) break;
         }
 
-        // --- Sugestia: jedna konkretna ---
+        // --- Sugestia: jedna konkretna (priorytet: popularny wzór) ---
         String suggestion = null;
-        if (len < 12) suggestion = "Dodaj więcej kafelków, aby mieć min. 12 znaków.";
-        else if (!hasSymbol) suggestion = "Dodaj znak specjalny, np. ! albo _.";
-        else if (!hasUpper) suggestion = "Dodaj wielką literę (np. zmień jedno słowo na zaczynające się z dużej).";
-        else if (YEAR_PATTERN.matcher(password).find()) suggestion = "Zamień rok na inną liczbę (np. 7 lub 58).";
+        if (foundBad != null) {
+            suggestion = "Unikaj popularnych słów/wzorów typu \"" + foundBad + "\" — takie hasła są łatwe do odgadnięcia.";
+        } else if (len < 12) {
+            suggestion = "Dodaj więcej kafelków, aby mieć min. 12 znaków.";
+        } else if (!hasSymbol) {
+            suggestion = "Dodaj znak specjalny, np. ! albo _.";
+        } else if (!hasUpper) {
+            suggestion = "Dodaj wielką literę (np. zmień jedno słowo na zaczynające się z dużej).";
+        } else if (looksLikeYear) {
+            suggestion = "Zamień rok na inną liczbę (np. 7 lub 58).";
+        } else if (wordPlus4Digits) {
+            suggestion = "Unikaj schematu \"słowo + 4 cyfry\" — dodaj znak specjalny lub zmień układ.";
+        }
 
         return new EvaluationResult(password, score, level, finalReasons, suggestion);
     }

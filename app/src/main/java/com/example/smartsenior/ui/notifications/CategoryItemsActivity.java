@@ -38,6 +38,7 @@ public class CategoryItemsActivity extends AppCompatActivity {
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
         topAppBar.setNavigationOnClickListener(v -> finish());
 
+        // ✅ toolbar ma być bez tytułu – tylko strzałka
         topAppBar.setTitle("");
 
         tvScreenTitle = findViewById(R.id.tvScreenTitle);
@@ -49,10 +50,10 @@ public class CategoryItemsActivity extends AppCompatActivity {
             try { type = ReminderType.valueOf(typeName); } catch (Exception ignored) {}
         }
 
-        // title
+        // ✅ duży tytuł na ekranie
         tvScreenTitle.setText(type.label);
 
-        // Long click: delete
+        // Long click: usuń
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
             if (type == ReminderType.SHOPPING) {
                 ArrayList<ShoppingList> lists = ShoppingListStore.load(this);
@@ -140,6 +141,7 @@ public class CategoryItemsActivity extends AppCompatActivity {
             for (Reminder r : list) {
                 String whenStr = fmt.format(new Date(r.timeMillis));
 
+                // ✅ powtarzanie pokazujemy w godzinach (a nie minutach)
                 String rep = "";
                 if (r.repeatMinutes > 0 && r.type == ReminderType.MEDS) {
                     int h = Math.max(1, r.repeatMinutes / 60);

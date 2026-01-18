@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Tytuł pod paskiem (tu ustawisz: Leki / Inne wydarzenia / Lista zakupów) -->
+    <!-- Tytuł pod paskiem (Leki / Wizyta / Lista zakupów / Inne) -->
     <TextView
         android:id="@+id/tvScreenTitle"
         android:layout_width="0dp"
@@ -36,6 +36,164 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/emptyCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="18dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="26dp"
+        app:cardElevation="0dp"
+        app:strokeColor="#D7DEE8"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toBottomOf="@id/tvScreenTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:padding="26dp">
+
+            <!-- Tytuł -->
+        <TextView
+            android:id="@+id/tvEmptyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brak leków"
+            android:textColor="#1A202C"
+            android:textSize="30sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:layout_marginBottom="6dp"/>
+
+
+        <!-- Opis -->
+            <TextView
+                android:id="@+id/tvEmptyDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Na razie jest pusto. Dodaj nowe przypomnienie na ekranie głównym."
+                android:textColor="#1A202C"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start"
+                android:lineSpacingExtra="4dp" />
+
+            <!-- Kroki (ładnie wyrównane) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <!-- KROK 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:text="1."
+                        android:textColor="#2B6CB0"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/tvStep1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Wróć strzałką"
+                        android:textColor="#1A202C"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- KROK 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:text="2."
+                        android:textColor="#2B6CB0"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/tvStep2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Kliknij „Dodaj przypomnienie”"
+                        android:textColor="#1A202C"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+                <!-- KROK 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:text="3."
+                        android:textColor="#2B6CB0"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/tvStep3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Zapisz"
+                        android:textColor="#1A202C"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Zostawione dla kompatybilności z obecną Javą -->
+            <TextView
+                android:id="@+id/tvEmptySteps"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
     <ListView
         android:id="@+id/listItems"
         android:layout_width="0dp"
@@ -43,8 +201,8 @@
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="18dp"
-        android:divider="#D7DEE8"
-        android:dividerHeight="1dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="30dp"
         android:padding="6dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/tvScreenTitle"

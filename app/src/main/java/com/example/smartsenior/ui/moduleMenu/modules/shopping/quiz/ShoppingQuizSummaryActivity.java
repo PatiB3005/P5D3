@@ -41,6 +41,7 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
         retryButton = findViewById(R.id.btnRetry);
         backToMenuButton = findViewById(R.id.btnFinish);
 
+        // U Ciebie z quizu przychodzą: QUIZ_RESULT i stałe maxScore = 8
         int score = getIntent().getIntExtra("QUIZ_RESULT", 0);
         int maxScore = 8;
 
@@ -70,25 +71,25 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
         ProfileManager pm = new ProfileManager(this);
 
         if (percent >= 80f) {
-            // ZO1 – gold medal
+            // ZO1 – złoty medal
             finishMedal.setImageResource(R.drawable.ic_medal_gold);
             resultText.setText("GRATULACJE!");
             summaryMessage.setText("Świetnie rozpoznajesz fałszywe sklepy.");
             pm.upgradeMedal("ZO", "GOLD");
         } else if (percent >= 60f) {
-            // ZO2 – silver medal
+            // ZO2 – srebrny medal
             finishMedal.setImageResource(R.drawable.ic_medal_silver);
             resultText.setText("Bardzo dobrze!");
             summaryMessage.setText("Masz dobrą intuicję, ale warto zachować czujność.");
             pm.upgradeMedal("ZO", "SILVER");
         } else if (percent >= 40f) {
-            // ZO3 – brown medal
+            // ZO3 – brązowy medal
             finishMedal.setImageResource(R.drawable.ic_medal_bronze);
             resultText.setText("Całkiem nieźle!");
             summaryMessage.setText("Warto jeszcze poćwiczyć bezpieczne zakupy.");
             pm.upgradeMedal("ZO", "BRONZE");
         } else {
-            // bad score
+            // brak medalu – smutna buźka
             finishMedal.setImageResource(R.drawable.ic_sad_emoji);
             resultText.setText("Tym razem się nie udało.");
             summaryMessage.setText("Spróbuj jeszcze raz i uważnie analizuj sklepy.");
