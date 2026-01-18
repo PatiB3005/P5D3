@@ -1,4 +1,4 @@
-package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
+package com.example.smartsenior.ui.moduleMenu.modules.aiLite.theory;
 
 import android.content.Intent;
 import android.os.Bundle;

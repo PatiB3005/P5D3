@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5"
-    tools:context=".ui.moduleMenu.modules.aiLite.AiResultActivity">
+    tools:context=".ui.moduleMenu.modules.aiLite.quiz.AiResultActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
@@ -48,7 +48,7 @@
                 android:id="@+id/titleAiLite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AI Lite\nrozpoznawanie zdjęć"
+                android:text="AI Lite\nRozpoznawanie zdjęć"
                 android:textColor="#1A202C"
                 android:textSize="36sp"
                 android:fontFamily="@font/montserrat_bold"

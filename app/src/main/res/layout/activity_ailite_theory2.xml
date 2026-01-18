@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5"
-    tools:context=".ui.moduleMenu.modules.aiLite.AiTheoryActivity">
+    tools:context=".ui.moduleMenu.modules.aiLite.theory.AiTheory1Activity">
 
     <!-- Scroll -->
     <ScrollView

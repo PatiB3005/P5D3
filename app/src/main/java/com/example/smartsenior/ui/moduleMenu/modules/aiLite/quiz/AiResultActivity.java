@@ -1,8 +1,7 @@
-package com.example.smartsenior.ui.moduleMenu.modules.aiLite;
+package com.example.smartsenior.ui.moduleMenu.modules.aiLite.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.data.ProfileManager;
 import com.example.smartsenior.ui.BaseTTSActivity;
-import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.AiLiteMenuActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 
@@ -31,7 +30,7 @@ public class AiResultActivity extends BaseTTSActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> {
             tts.stop();
-            finish();
+            startActivity(new Intent(AiResultActivity.this, AiLiteMenuActivity.class));
         });
 
 
@@ -47,19 +46,23 @@ public class AiResultActivity extends BaseTTSActivity {
 
         setupResult(score, maxScore);
 
-        retryButton.setOnClickListener(v -> {
+        // Twój kod z pliku [file:5] jest OK, tylko zmień w backToMenuButton:
+        backToMenuButton.setOnClickListener(v -> {
             tts.stop();
-            // Ponowny test – wracamy do zdjęć startowych
-            startActivity(new Intent(AiResultActivity.this, AiPhotoActivity.class));
+            Intent intent = new Intent(AiResultActivity.this, AiLiteMenuActivity.class);  // Lub AiIntroActivity
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             finish();
         });
 
-        backToMenuButton.setOnClickListener(v -> {
+// W retryButton:
+        retryButton.setOnClickListener(v -> {
             tts.stop();
-            // Powrót do menu modułu AI Lite
-            startActivity(new Intent(AiResultActivity.this, AiActivity.class));
+            Intent intent = new Intent(AiResultActivity.this, AiIntroActivity.class);  // NOWE Quiz!
+            startActivity(intent);
             finish();
         });
+
     }
 
     private void setupResult(int score, int maxScore) {

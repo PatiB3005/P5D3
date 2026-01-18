@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8F0FA"
-    tools:context=".ui.moduleMenu.modules.aiLite.AiActivity">
+    tools:context=".ui.moduleMenu.modules.aiLite.AiLiteMenuActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"

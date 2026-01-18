@@ -6,27 +6,29 @@ import android.widget.LinearLayout;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
-import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.quiz.AiIntroActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.aiLite.theory.AiTheory1Activity;
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class AiActivity extends BaseTTSActivity {
+public class AiLiteMenuActivity extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ailite_1);
+        setContentView(R.layout.activity_ailite_menu);
 
         LinearLayout aiteoria = findViewById(R.id.btnAiTeoria);
         LinearLayout aiphoto = findViewById(R.id.btnAiPhoto);
 
         aiteoria.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, AiTheoryActivity.class));
+            startActivity(new Intent(this, AiTheory1Activity.class));
         });
 
         aiphoto.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, AiPhotoActivity.class));
+//            startActivity(new Intent(this, AiPhoto1Activity.class));
+            startActivity(new Intent(this, AiIntroActivity.class));
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
