@@ -54,27 +54,24 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="18dp"/>
 
+            <!-- Karta na obraz -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/photoCard"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                android:clipToOutline="true">
+                app:strokeWidth="0dp">
 
                 <ImageView
                     android:id="@+id/aiPhotoImage"
-                    android:layout_width="420dp"
+                    android:layout_width="match_parent"
                     android:layout_height="520dp"
-                    android:src="@drawable/banan"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true" />
+                    android:src="@drawable/sukienka2"
+                    android:scaleType="centerCrop" />
 
             </com.google.android.material.card.MaterialCardView>
-
 
         </LinearLayout>
     </ScrollView>

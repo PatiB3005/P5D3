@@ -26,11 +26,14 @@
             android:id="@+id/switchFontSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edittext_bg"
+            android:padding="16dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Duży rozmiar tekstu"
+            android:text="Większy tekst"
             android:textAllCaps="false"
             android:textColor="#4A5568"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:trackTint="#334A5568" />
 
         <!-- TTS – zamiast przycisku -->
         <androidx.appcompat.widget.SwitchCompat
@@ -38,11 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_bg"
+            android:padding="16dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Lektor (czytanie na głos)"
+            android:text="Czytanie na głos"
             android:textAllCaps="false"
             android:textColor="#4A5568"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:trackTint="#334A5568" />
 
     </LinearLayout>
 
