@@ -23,8 +23,7 @@ public class ShoppingQuizPage1Activity extends BaseTTSActivity {
     private boolean q1Answered = false;
     private boolean q2Answered = false;
 
-    // elementy popupu
-    private FrameLayout popupOverlay;      // include id=popupOverlay
+    private FrameLayout popupOverlay;
     private TextView titleText;
     private LinearLayout popupList;
     private MaterialButton btnOk;
@@ -39,7 +38,6 @@ public class ShoppingQuizPage1Activity extends BaseTTSActivity {
         btnNext = findViewById(R.id.btnNext);
         btnNext.setEnabled(false);
 
-        // inicjalizacja popupu
         popupOverlay = findViewById(R.id.popupOverlay);
         titleText = popupOverlay.findViewById(R.id.titleText);
         popupList = popupOverlay.findViewById(R.id.popupList);
@@ -106,9 +104,9 @@ public class ShoppingQuizPage1Activity extends BaseTTSActivity {
     }
 
     private void showPopup(boolean isCorrect, String explanation) {
-        // tytuł
+        // title
         titleText.setText(isCorrect ? "Poprawna odpowiedź" : "Niepoprawna odpowiedź");
-        // czyścimy treść
+        // remove all
         popupList.removeAllViews();
 
         TextView tv = new TextView(this);

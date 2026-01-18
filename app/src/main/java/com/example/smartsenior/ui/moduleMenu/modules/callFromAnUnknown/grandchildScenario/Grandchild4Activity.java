@@ -18,14 +18,14 @@ public class Grandchild4Activity extends BaseTTSActivity {
         TextView answerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A -> przygotowujesz pieniądze -> scena 5
+        // A -> scene 5
         answerA.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild4Activity.this, Grandchild5Activity.class);
             startActivity(intent);
         });
 
-        // Czerwona słuchawka – przerwanie
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild4Activity.this, Grandchild6PositiveActivity.class);

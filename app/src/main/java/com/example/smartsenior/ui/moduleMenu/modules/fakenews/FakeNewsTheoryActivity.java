@@ -46,7 +46,6 @@ public class FakeNewsTheoryActivity extends AppCompatActivity {
                 break;
         }
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
         setupButtons();
     }

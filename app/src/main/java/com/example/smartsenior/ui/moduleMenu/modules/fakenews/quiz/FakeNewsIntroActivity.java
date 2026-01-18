@@ -27,7 +27,7 @@ public class FakeNewsIntroActivity extends BaseTTSActivity {
         Button btnStart = findViewById(R.id.btnStartQuiz);
 
 
-        // Start quizu
+        // Quiz starts
         btnStart.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(FakeNewsIntroActivity.this, FakeNewsQuizActivity.class);

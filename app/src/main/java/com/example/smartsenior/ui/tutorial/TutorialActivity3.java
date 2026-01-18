@@ -19,19 +19,15 @@ public class TutorialActivity3 extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_3);
 
-        // Inicjalizacja przycisku TTS, jeśli jest w layoucie
         setupTtsToggleIfPresent();
 
         Button showModulesButton = findViewById(R.id.button_pokaz_moduly);
         showModulesButton.setOnClickListener(v -> {
-            // Zapisz postęp, że użytkownik ukończył ekran 3
             SharedPreferences prefs = getSharedPreferences("tutorial_progress", MODE_PRIVATE);
             prefs.edit().putInt("last_completed", 3).apply();
 
-            // Zatrzymaj lektora przed zmianą ekranu
             tts.stop();
 
-            // Przejdź do menu modułów
             Intent intent = new Intent(TutorialActivity3.this, ModuleMenuActivity.class);
             intent.putExtra("from_tutorial", true);
             startActivity(intent);

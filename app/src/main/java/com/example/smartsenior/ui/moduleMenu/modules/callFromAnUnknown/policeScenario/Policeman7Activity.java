@@ -20,7 +20,7 @@ public class Policeman7Activity extends BaseTTSActivity {
         Button finish = findViewById(R.id.btnFinish);
 
         finish.setOnClickListener(v -> {
-            // zapis progresu – scenariusz policjant ukończony
+            // Progress
             ProgressStore.markDone(this, ProgressKeys.M2_POLICEMAN_DONE);
 
             tts.stop();

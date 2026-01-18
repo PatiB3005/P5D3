@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         var prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         isLarge = prefs.getBoolean("large_font", false);
 
-        // TTS – wspólny manager
+        // TTS
         TTSManager tts = TTSManager.get(this);
         isTtsEnabled = tts.isEnabled();
 
@@ -43,24 +43,19 @@ public class SettingsActivity extends AppCompatActivity {
             prefs.edit().putBoolean("large_font", isLarge).apply();
         });
 
-        // TTS – switch ZAMIANA buttona
+        // TTS – switch buttona
         switchTts.setChecked(isTtsEnabled);
         switchTts.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // jeśli masz tylko toggle() w TTSManager:
             if (isChecked != isTtsEnabled) {
                 isTtsEnabled = tts.toggle();
             } else {
                 isTtsEnabled = isChecked;
             }
 
-            // jeśli masz metody set/enable/disable, możesz zamiast tego zrobić np.:
-            // isTtsEnabled = isChecked;
-            // tts.setEnabled(isChecked);
 
             if (isTtsEnabled && isChecked) {
                 tts.speak("Lektor włączony");
             } else if (!isTtsEnabled && !isChecked) {
-                // opcjonalnie: tts.stop();
             }
         });
     }

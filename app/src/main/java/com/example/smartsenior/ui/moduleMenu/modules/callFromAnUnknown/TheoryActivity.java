@@ -55,7 +55,7 @@ public class TheoryActivity extends BaseTTSActivity {
                 break;
         }
 
-        // zastosuj duży/mały font na aktualnym layoucie
+        // Font
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
         setupButtons();

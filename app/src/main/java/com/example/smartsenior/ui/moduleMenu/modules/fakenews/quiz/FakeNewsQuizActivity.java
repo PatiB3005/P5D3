@@ -43,7 +43,6 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     private boolean answered = false;
 
 
-    // żeby nie dublować odczytu: onResume już powie raz, a kolejne pytania mówimy ręcznie
     private boolean hasResumed = false;
 
     private ResultPopup resultPopup;
@@ -64,14 +63,14 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
         yesButton = findViewById(R.id.yesButton);
         noButton = findViewById(R.id.noButton);
 
-        // Inicjalizacja popup - MUSI BYĆ PO setContentView
+        // Popup initialization
         resultPopup = new ResultPopup(this);
 
-        // Przygotowanie pytań i wyświetlenie pierwszego
+        // Preparing questions and displaying the first one
         initQuestions();
         showCurrentQuestion();
 
-        // Ustawienie listenerów na przyciski
+        // Setting the listeners to buttons
         setupOption(yesButton, true);
         setupOption(noButton, false);
     }
@@ -84,7 +83,6 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
 
     @Override
     protected String getSpeakText() {
-        // Czytamy bieżący nagłówek i instrukcję (najważniejsze elementy quizu)
         String h = (headlineText != null && headlineText.getText() != null) ? headlineText.getText().toString().trim() : "";
 
         StringBuilder sb = new StringBuilder();
@@ -151,7 +149,6 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
         resetCardsVisual();
         answered = false;
 
-        // Zmiana pytania nie powoduje onResume, więc czytamy ręcznie (po pierwszym wejściu).
         if (hasResumed && tts.isEnabled()) {
             tts.stop();
             tts.speak(getSpeakText());
@@ -166,17 +163,14 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
 
     private void setupOption(Button btn, boolean answerValue) {
         btn.setOnClickListener(v -> {
-            // Jeśli już odpowiedziano, ignoruj kliknięcie
             if (answered) return;
             answered = true;
 
-            // przerywamy lektora, żeby nie nakładał się na interakcję
             tts.stop();
 
             QuizItem item = questions.get(currentIndex);
             boolean isCorrect = (item.isTrue == answerValue);
 
-            // Pokoloruj przycisk w zależności od poprawności
             if (isCorrect) {
                 correctCount++;
                 btn.setBackgroundColor(Color.parseColor("#A7F3D0")); // Zielony
@@ -184,14 +178,12 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
                 btn.setBackgroundColor(Color.parseColor("#FECACA")); // Czerwony
             }
 
-            // Sprawdź czy to ostatnie pytanie
             boolean isLast = currentIndex == questions.size() - 1;
 
             resultPopup.setOnDismissListener(() -> {
                 if (isLast) {
                     int maxScore = questions.size();
 
-                    // Zapis ukończenia quizu (jak wcześniej)
                     ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
 
                     Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
@@ -224,11 +216,11 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
                 .setPositiveButton("Zobacz wynik", (dialog, which) -> {
                     dialog.dismiss();
 
-                    // Zapisz ukończenie quizu
+                    // Quiz end
                     ProgressStore.markDone(this, ProgressKeys.FN_QUIZ_DONE);
 
                     tts.stop();
-                    // Przejdź do ekranu z wynikami
+                    // Score
                     Intent intent = new Intent(FakeNewsQuizActivity.this, FakeNewsResultActivity.class);
                     intent.putExtra("score", correctCount);
                     intent.putExtra("maxScore", maxScore);
@@ -242,6 +234,5 @@ public class FakeNewsQuizActivity extends BaseTTSActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Cleanup jeśli potrzebne
     }
 }

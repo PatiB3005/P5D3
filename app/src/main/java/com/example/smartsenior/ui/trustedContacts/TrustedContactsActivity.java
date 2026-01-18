@@ -45,7 +45,6 @@ public class TrustedContactsActivity extends AppCompatActivity {
 
                 if (id == null || id.trim().isEmpty()) return;
 
-                // Ochrona: phone w danych zawsze normalizujemy do +48...
                 String normalizedPhone = PhoneUtils.normalizeToPL(phone);
                 if (normalizedPhone == null) {
                     Toast.makeText(this, "Nieprawidłowy numer telefonu. Nie zapisano.", Toast.LENGTH_SHORT).show();
@@ -151,7 +150,6 @@ public class TrustedContactsActivity extends AppCompatActivity {
                 .show();
     }
 
-    // Dialer (bez permissions) - zawsze tel:+48XXXXXXXXX
     private static void dialNumber(Context ctx, String phone) {
         String normalized = PhoneUtils.normalizeToPL(phone);
         if (normalized == null) {
@@ -221,12 +219,12 @@ public class TrustedContactsActivity extends AppCompatActivity {
             holder.tvName.setText(name);
             holder.tvPhone.setText(phone);
 
-            // inicjał
+            // initials
             String initials = "?";
             if (!name.trim().isEmpty()) initials = name.trim().substring(0, 1).toUpperCase();
             holder.tvInitials.setText(initials);
 
-            // zdjęcie (bez crashy)
+            // photos
             if (item.photoUri != null && !item.photoUri.isEmpty()) {
                 try {
                     Uri u = Uri.parse(item.photoUri);
@@ -247,13 +245,11 @@ public class TrustedContactsActivity extends AppCompatActivity {
                 holder.tvInitials.setVisibility(View.VISIBLE);
             }
 
-            // DUŻY PRZYCISK: ZADZWOŃ
+            // Big button: call
             holder.btnCall.setOnClickListener(v -> cb.onCall(item));
 
-            // klik w numer też dzwoni
             holder.tvPhone.setOnClickListener(v -> cb.onCall(item));
 
-            // klik w wiersz = edycja
             holder.itemView.setOnClickListener(v -> cb.onEdit(item));
 
             // menu ⋮

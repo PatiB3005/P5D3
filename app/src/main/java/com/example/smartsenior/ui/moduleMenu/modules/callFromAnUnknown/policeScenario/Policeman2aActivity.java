@@ -19,14 +19,14 @@ public class Policeman2aActivity extends BaseTTSActivity {
         TextView answerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A → Policeman3Activity
+        // A → Scene 3
         answerA.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(this, Policeman3Activity.class);
             startActivity(intent);
         });
 
-        // Czerwona słuchawka → koniec scenariusza
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
 

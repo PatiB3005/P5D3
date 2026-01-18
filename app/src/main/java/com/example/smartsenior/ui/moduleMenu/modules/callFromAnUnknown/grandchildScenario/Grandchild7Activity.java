@@ -22,7 +22,7 @@ public class Grandchild7Activity extends BaseTTSActivity {
         Button finishButton = findViewById(R.id.btnFinish);
 
         finishButton.setOnClickListener(v -> {
-            // zapis progresu – scenariusz wnuczek ukończony
+            // Progress
             ProgressStore.markDone(this, ProgressKeys.M2_GRANDCHILD_DONE);
 
             tts.stop();

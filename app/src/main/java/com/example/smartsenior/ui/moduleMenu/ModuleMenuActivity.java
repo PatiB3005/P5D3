@@ -36,21 +36,21 @@ public class ModuleMenuActivity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_menu);
 
-        // Kafelki
+        // modules
         btnModule1 = findViewById(R.id.btnSafeMessages);
         btnCallFromAnUnknown = findViewById(R.id.btnCallFromAnUnknown);
         btnShoppingOnline = findViewById(R.id.btnShoppingOnline);
         btnFakeNewsModule = findViewById(R.id.btnFakeNewsModule);
         btnAiLite = findViewById(R.id.btnAiLite);
 
-        // Progresy + etykiety
+        // Progress Module
         progressModule1 = findViewById(R.id.progressModule1);
         progressModule2 = findViewById(R.id.progressModule2);
         progressModule3 = findViewById(R.id.progressModule3);
         progressFakeNews = findViewById(R.id.progressFakeNews);
         progressAiLite = findViewById(R.id.progressAiLite);
 
-        // etykiety
+        // labels
         labelModule1 = findViewById(R.id.textModule1ProgressLabel);
         labelModule2 = findViewById(R.id.textModule2ProgressLabel);
         labelModule3Number = findViewById(R.id.textModule3ProgressNumber);
@@ -82,7 +82,7 @@ public class ModuleMenuActivity extends BaseTTSActivity {
             startActivity(new Intent(ModuleMenuActivity.this, AiActivity.class));
         });
 
-        // strzałka do menu głównego
+        // backButton
         ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
         if (btnBackToMain != null) {
             btnBackToMain.setOnClickListener(v -> {
@@ -94,7 +94,6 @@ public class ModuleMenuActivity extends BaseTTSActivity {
             });
         }
 
-        // powrót do samouczka (jak było)
         Button btnBackToTutorial = findViewById(R.id.button_back_to_tutorial);
         boolean fromTutorial = getIntent().getBooleanExtra("from_tutorial", false);
 

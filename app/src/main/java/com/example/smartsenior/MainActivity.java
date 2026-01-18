@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (tripleTap.onTouch(this, ev)) {
-            // nie "połykamy" eventu, żeby normalne klikanie dalej działało
         }
         return super.dispatchTouchEvent(ev);
     }

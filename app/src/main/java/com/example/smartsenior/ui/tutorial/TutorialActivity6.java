@@ -26,11 +26,10 @@ public class TutorialActivity6 extends BaseTTSActivity {
                     .apply();
 
             tts.stop();
-            // Przejście do menu głównego (MainActivity)
             Intent intent = new Intent(TutorialActivity6.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish(); // zamyka samouczek
+            finish();
         });
     }
 

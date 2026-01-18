@@ -30,11 +30,9 @@ public class Policeman1Activity extends AppCompatActivity {
         LinearLayout answerCall = findViewById(R.id.answerCall);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // Start dźwięku i wibracji po wejściu na ekran
         startRingtoneSafely();
         startVibrationSafely();
 
-        // Zielona słuchawka -> przejście do sceny 2
         answerCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
@@ -43,7 +41,7 @@ public class Policeman1Activity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // "Koniec" -> zatrzymanie wszystkiego i wyjście
+      // Rozłacz
         declineCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
@@ -107,7 +105,6 @@ public class Policeman1Activity extends AppCompatActivity {
         }
     }
 
-    // Bezpieczeństwo – zatrzymujemy dźwięk/wibracje, gdy użytkownik opuści ekran
     @Override
     protected void onPause() {
         super.onPause();

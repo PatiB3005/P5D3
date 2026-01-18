@@ -126,7 +126,7 @@ public class Task2Page1Activity extends BaseTTSActivity {
 
     @Override
     protected String getSpeakText() {
-        // collectSpeakableTextFromLayout() może pomijać przyciski, więc dopinamy etykiety opcji:
+
         String base = collectSpeakableTextFromLayout();
 
         String o1 = btnQ1True != null && btnQ1True.getText() != null ? btnQ1True.getText().toString().trim() : "";

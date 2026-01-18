@@ -81,12 +81,12 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
         btnCancel.setOnClickListener(v -> finish());
 
-        // Telefon: tylko cyfry i max 9 (bez +48)
+        // Telefon
         etPhone.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         etPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
         etPhone.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(9) });
 
-        // Ustaw title / dane w trybie edycji
+        // Set title
         String mode = getIntent().getStringExtra("mode");
         id = getIntent().getStringExtra("id");
 
@@ -123,7 +123,6 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             return true;
         });
 
-        // inicjał na żywo
         etName.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) { updateInitialsPreview(); }

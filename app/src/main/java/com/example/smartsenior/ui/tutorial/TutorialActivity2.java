@@ -16,7 +16,6 @@ public class TutorialActivity2 extends BaseTTSActivity {
 
         setupTtsToggleIfPresent();
 
-        // Przycisk "Dalej ➜"
         Button nextButton = findViewById(R.id.button_dalej);
         nextButton.setOnClickListener(v -> {
             tts.stop();

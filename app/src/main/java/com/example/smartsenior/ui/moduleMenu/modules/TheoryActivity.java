@@ -38,7 +38,6 @@ public class TheoryActivity extends BaseTTSActivity {
             case 7: setContentView(R.layout.activity_safe_msg7); break;
         }
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
         setupButtons();
@@ -49,7 +48,6 @@ public class TheoryActivity extends BaseTTSActivity {
     }
 
     private void goToModule1() {
-        // KONIEC TEORII => zapis postępu
         ProgressStore.markDone(this, ProgressKeys.M1_THEORY_DONE);
 
         Intent intent = new Intent(TheoryActivity.this, Module1Activity.class);

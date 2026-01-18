@@ -23,17 +23,15 @@ public class ReminderReceiver extends BroadcastReceiver {
         Reminder reminder = ReminderStore.findById(context, id);
         if (reminder == null) return;
 
-        // Zakupy: brak alarmów / brak notyfikacji
         if (reminder.type == ReminderType.SHOPPING) return;
 
-        // Android 13+: jeśli brak pozwolenia na notyfikacje, nie próbujemy notify()
+
         if (Build.VERSION.SDK_INT >= 33) {
             boolean granted = ContextCompat.checkSelfPermission(
                     context, Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED;
 
             if (!granted) {
-                // i tak ustaw ewentualne powtórzenie, ale bez wyświetlania notyfikacji
                 handleRepeatIfNeeded(context, reminder);
                 return;
             }
@@ -64,12 +62,10 @@ public class ReminderReceiver extends BroadcastReceiver {
 
         NotificationManagerCompat.from(context).notify(id, b.build());
 
-        // ✅ nie usuwamy wpisu z bazy, żeby był widoczny w zakładce
         handleRepeatIfNeeded(context, reminder);
     }
 
     private void handleRepeatIfNeeded(Context context, Reminder reminder) {
-        // Powtarzanie tylko dla leków
         if (reminder.type == ReminderType.MEDS && reminder.repeatMinutes > 0) {
             long nextTime = System.currentTimeMillis() + (reminder.repeatMinutes * 60_000L);
 
@@ -85,6 +81,5 @@ public class ReminderReceiver extends BroadcastReceiver {
             ReminderStore.update(context, updated);
             ReminderScheduler.schedule(context, updated);
         }
-        // dla VISIT/OTHER nic nie robimy (zostają jako jednorazowe w bazie)
     }
 }

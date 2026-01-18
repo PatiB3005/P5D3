@@ -28,7 +28,6 @@ public class ShoppingTheory2Activity extends BaseTTSActivity {
             startActivity(new Intent(ShoppingTheory2Activity.this, ShoppingTheory3Activity.class));
         });
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
     }
 

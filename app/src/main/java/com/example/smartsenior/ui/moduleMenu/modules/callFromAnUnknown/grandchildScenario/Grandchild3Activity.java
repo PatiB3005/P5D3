@@ -19,21 +19,21 @@ public class Grandchild3Activity extends BaseTTSActivity {
         TextView answerB = findViewById(R.id.textAnswerB);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A -> idziesz za "wnuczkiem" -> dalszy scam (scena 4)
+        // A ->scene 4
         answerA.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild3Activity.this, Grandchild4Activity.class);
             startActivity(intent);
         });
 
-        // B -> dzwonisz do rodziny/policji -> POZYTYWNE podsumowanie
+        // B -> Result
         answerB.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild3Activity.this, Grandchild6PositiveActivity.class);
             startActivity(intent);
         });
 
-        // Czerwona słuchawka – zakończenie bez podsumowania
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild3Activity.this, Grandchild6PositiveActivity.class);

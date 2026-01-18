@@ -45,7 +45,6 @@ public class Website6Activity extends BaseTTSActivity {
         titleTrue  = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
 
-        // Start: oba niebieskie
         setTint(btnFake, BLUE);
         setTint(btnReal, BLUE);
         btnFake.setAlpha(1f);
@@ -53,14 +52,12 @@ public class Website6Activity extends BaseTTSActivity {
 
         setButtonState(btnNext, false);
 
-        // U Ciebie: FAŁSZYWA = poprawna
         btnFake.setOnClickListener(v -> handleAnswer(true));
         btnReal.setOnClickListener(v -> handleAnswer(false));
 
         btnNext.setOnClickListener(v -> {
             tts.stop();
 
-            // zaliczenie części: test stron ukończony
             ProgressStore.markDone(this, ProgressKeys.M3_WEBSITE_DONE);
 
             int score = ScoreManager.score;
@@ -89,14 +86,12 @@ public class Website6Activity extends BaseTTSActivity {
         btnNext.setVisibility(View.VISIBLE);
 
         if (isCorrect) {
-            // klik FAŁSZYWA - dobrze
             setTint(btnFake, GREEN);
             setTint(btnReal, BLUE);
             btnFake.setAlpha(1f);
             btnReal.setAlpha(0.35f);
             ScoreManager.addPoint();
         } else {
-            // klik PRAWDZIWA - źle
             setTint(btnReal, RED);
             setTint(btnFake, BLUE);
             btnReal.setAlpha(1f);

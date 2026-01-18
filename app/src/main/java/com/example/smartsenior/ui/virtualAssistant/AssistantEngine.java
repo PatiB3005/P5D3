@@ -78,7 +78,7 @@ public class AssistantEngine {
     private double score(String uNorm, Set<String> uTokens, QAEntry e) {
         double score = 0.0;
 
-        // 1) keywords
+        // keywords
         int kwHits = 0;
         for (String kw : e.keywordsNorm) {
             if (kw.isBlank()) continue;
@@ -91,7 +91,7 @@ public class AssistantEngine {
         }
         score += Math.min(0.75, kwHits * 0.22);
 
-        // 2) overlap słów z pytaniem bazowym
+        // overlap words
         int common = 0;
         for (String t : uTokens) {
             if (e.qTokens.contains(t)) common++;
@@ -99,7 +99,6 @@ public class AssistantEngine {
         double overlap = (uTokens.size() == 0) ? 0.0 : (double) common / (double) uTokens.size();
         score += overlap * 0.45;
 
-        // 3) bonus frazy
         if (uNorm.contains(e.questionNorm)) score += 0.35;
 
         return Math.min(1.0, score);
