@@ -107,6 +107,7 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman5Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6bActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman7Activity" />
 
         <!-- Scenariusz: Telefon na bank -->
@@ -120,6 +121,8 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank7Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank8Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.BankPositiveResultActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.BankNegativeResultActivity" />
 
         <!-- Scenariusz: Telefon na wnuczka -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild1Activity" />
