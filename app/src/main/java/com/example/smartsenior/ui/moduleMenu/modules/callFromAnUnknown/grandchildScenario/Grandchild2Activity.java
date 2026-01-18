@@ -36,6 +36,9 @@ public class Grandchild2Activity extends BaseTTSActivity {
         // Czerwona słuchawka – przerwanie scenariusza
         declineCall.setOnClickListener(v -> {
             tts.stop();
+            Intent intent = new Intent(Grandchild2Activity.this, Grandchild6PositiveActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }

@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartsenior.R;
@@ -22,6 +21,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.JustifyContent;
 
 public class MiniGame22Activity extends AppCompatActivity implements TileAdapter.OnTileClickListener {
 
@@ -76,7 +80,12 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         spaceBackEvaluate = findViewById(R.id.spaceBackEvaluate);
         spaceRepeatFinish = findViewById(R.id.spaceRepeatFinish);
 
-        rvTiles.setLayoutManager(new GridLayoutManager(this, 4));
+        FlexboxLayoutManager lm = new FlexboxLayoutManager(this);
+        lm.setFlexDirection(FlexDirection.ROW);
+        lm.setFlexWrap(FlexWrap.WRAP);
+        lm.setJustifyContent(JustifyContent.FLEX_START);
+        rvTiles.setLayoutManager(lm);
+
         adapter = new TileAdapter(availableTiles, this);
         rvTiles.setAdapter(adapter);
 
@@ -236,10 +245,8 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
     private void recalcAndUpdateUi() {
         boolean hasAny = !selectedTiles.isEmpty();
 
-        // ✅ Wstecz ZAWSZE działa
         btnBack.setEnabled(true);
 
-        // ✅ Oceń tylko gdy coś ułożono
         btnEvaluate.setEnabled(hasAny);
 
         if (!hasAny) {
@@ -309,7 +316,6 @@ public class MiniGame22Activity extends AppCompatActivity implements TileAdapter
         progressStrength.setProgress(0);
         tvStrength.setText("Moc hasła: 0%");
 
-        // ✅ Wstecz zawsze aktywny, Oceń dopiero po dodaniu kafelków
         btnBack.setEnabled(true);
         btnEvaluate.setEnabled(false);
     }

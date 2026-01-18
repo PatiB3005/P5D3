@@ -35,7 +35,7 @@ public class Policeman2Activity extends BaseTTSActivity {
         declineCall.setOnClickListener(v -> {
             tts.stop();
 
-            Intent intent = new Intent(Policeman2Activity.this, ModuleMenuActivity.class);
+            Intent intent = new Intent(Policeman2Activity.this, Policeman6bActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

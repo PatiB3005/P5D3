@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
+import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild5Activity;
+import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity;
 
 public class Bank2Activity extends BaseTTSActivity {
 
@@ -25,6 +27,9 @@ public class Bank2Activity extends BaseTTSActivity {
 
         declineCall.setOnClickListener(v -> {
             tts.stop();
+            Intent intent = new Intent(Bank2Activity.this, BankPositiveResultActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }

@@ -51,7 +51,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:text="Przekazałaś/łeś pieniądze obcej osobie, wierząc, że pomagasz wnukowi. Okazało się, że to był oszust."
+            android:text="Przekazałaś/łeś pieniądze obcej osobie, wierząc, że twoje pieniadzę będą przekazane policji. Okazało się, że to był oszust."
             android:textSize="22sp"
             android:textColor="#000000"
             android:lineSpacingExtra="4dp"

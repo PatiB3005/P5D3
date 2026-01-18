@@ -26,11 +26,14 @@ public class Bank4aActivity extends BaseTTSActivity {
 
         textAnswerB.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(Bank4aActivity.this, Bank8Activity.class));
+            startActivity(new Intent(Bank4aActivity.this, BankPositiveResultActivity.class));
         });
 
         declineCall.setOnClickListener(v -> {
             tts.stop();
+            Intent intent = new Intent(Bank4aActivity.this, BankPositiveResultActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }

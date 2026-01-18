@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Miejsce na odpowiedź (tu będzie placeholder lub kafelek) -->
         <FrameLayout
             android:id="@+id/answerHost"
             android:layout_width="wrap_content"
@@ -24,7 +23,6 @@
             android:clickable="true"
             android:focusable="true">
 
-            <!-- Placeholder (ciemny) - widoczny na start -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/placeholder"
                 android:layout_width="170dp"
