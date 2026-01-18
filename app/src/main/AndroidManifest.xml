@@ -58,6 +58,7 @@
 
         <receiver
             android:name=".ui.notifications.BootReceiver"
+            android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -194,9 +195,6 @@
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto5Activity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPhoto6Activity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiResultActivity" />
-        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalBronzeActivity" />
-        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalGoldActivity" />
-        <activity android:name=".ui.moduleMenu.modules.aiLite.AiMedalSilverActivity" />
         <activity android:name=".ui.moduleMenu.modules.aiLite.AiPracticeMoreActivity" />
         <activity android:name=".ui.notifications.CategoryItemsActivity" />
         <activity android:name=".ui.notifications.ShoppingListDetailActivity" />

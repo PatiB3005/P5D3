@@ -24,6 +24,12 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
+    <style name="ThemeOverlay.SmartSenior.TimePicker" parent="ThemeOverlay.MaterialComponents">
+        <item name="colorPrimary">#2B6CB0</item>
+        <item name="colorSecondary">#2B6CB0</item>
+    </style>
+
+
 
 
 </resources>

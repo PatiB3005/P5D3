@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cbItem"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:padding="14dp"
-    android:textSize="26sp"
-    android:textColor="#1A202C"
-    android:fontFamily="@font/montserrat_bold" />
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="26dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#D7DEE8"
+    app:strokeWidth="1dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <CheckBox
+        android:id="@+id/cbItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="Produkt"
+        android:textSize="24sp"
+        android:textColor="#1A202C"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center_vertical"
+        android:buttonTint="#2B6CB0" />
+
+</com.google.android.material.card.MaterialCardView>
