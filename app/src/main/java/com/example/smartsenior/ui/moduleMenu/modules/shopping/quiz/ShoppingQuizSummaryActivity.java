@@ -16,12 +16,12 @@ import com.google.android.material.button.MaterialButton;
 
 public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
 
-    private ImageView finishMedal;          // summaryIcon w XML
-    private TextView resultText;            // summaryTitle
-    private TextView resultScore;           // summaryScore
-    private TextView summaryMessage;        // summaryMessage (opis)
-    private MaterialButton retryButton;     // btnRetry
-    private MaterialButton backToMenuButton; // btnFinish
+    private ImageView finishMedal;
+    private TextView resultText;
+    private TextView resultScore;
+    private TextView summaryMessage;
+    private MaterialButton retryButton;
+    private MaterialButton backToMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,10 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
         retryButton = findViewById(R.id.btnRetry);
         backToMenuButton = findViewById(R.id.btnFinish);
 
-        // U Ciebie z quizu przychodzą: QUIZ_RESULT i stałe maxScore = 8
         int score = getIntent().getIntExtra("QUIZ_RESULT", 0);
         int maxScore = 8;
 
-        setupResult(score, maxScore);
+        setupResult(score, maxScore, finishMedal, resultText, resultScore, summaryMessage, retryButton, backToMenuButton);
 
         retryButton.setOnClickListener(v -> {
             tts.stop();
@@ -64,36 +63,70 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
         });
     }
 
-    private void setupResult(int score, int maxScore) {
-        resultScore.setText("Twój wynik: " + score + "/" + maxScore);
+    private void setupResult(int score, int maxScore, ImageView finishMedal, TextView resultText,
+                             TextView resultScore, TextView summaryMessage, MaterialButton retryButton,
+                             MaterialButton backToMenuButton) {
+
+        if (resultScore != null) {
+            resultScore.setText("Twój wynik: " + score + "/" + maxScore);
+        }
 
         float percent = score * 100f / maxScore;
         ProfileManager pm = new ProfileManager(this);
+        String medalType = null;
+        String message = "";
+        String detailedMessage = "";
 
-        if (percent >= 80f) {
-            // ZO1 – złoty medal
-            finishMedal.setImageResource(R.drawable.ic_medal_gold);
-            resultText.setText("GRATULACJE!");
-            summaryMessage.setText("Świetnie rozpoznajesz fałszywe sklepy.");
-            pm.upgradeMedal("ZO", "GOLD");
-        } else if (percent >= 60f) {
-            // ZO2 – srebrny medal
-            finishMedal.setImageResource(R.drawable.ic_medal_silver);
-            resultText.setText("Bardzo dobrze!");
-            summaryMessage.setText("Masz dobrą intuicję, ale warto zachować czujność.");
-            pm.upgradeMedal("ZO", "SILVER");
-        } else if (percent >= 40f) {
-            // ZO3 – brązowy medal
-            finishMedal.setImageResource(R.drawable.ic_medal_bronze);
-            resultText.setText("Całkiem nieźle!");
-            summaryMessage.setText("Warto jeszcze poćwiczyć bezpieczne zakupy.");
-            pm.upgradeMedal("ZO", "BRONZE");
-        } else {
-            // brak medalu – smutna buźka
-            finishMedal.setImageResource(R.drawable.ic_sad_emoji);
-            resultText.setText("Tym razem się nie udało.");
-            summaryMessage.setText("Spróbuj jeszcze raz i uważnie analizuj sklepy.");
+        if (finishMedal != null && resultText != null && summaryMessage != null) {
+            if (percent >= 80f) {
+                medalType = "GOLD";
+                finishMedal.setImageResource(R.drawable.ic_medal_gold);
+                message = "GRATULACJE!";
+                detailedMessage = "Świetnie rozpoznajesz fałszywe sklepy.";
+            } else if (percent >= 60f) {
+                medalType = "SILVER";
+                finishMedal.setImageResource(R.drawable.ic_medal_silver);
+                message = "Bardzo dobrze!";
+                detailedMessage = "Masz dobrą intuicję, ale warto zachować czujność.";
+            } else if (percent >= 40f) {
+                medalType = "BRONZE";
+                finishMedal.setImageResource(R.drawable.ic_medal_bronze);
+                message = "Całkiem nieźle!";
+                detailedMessage = "Warto jeszcze poćwiczyć bezpieczne zakupy.";
+            } else {
+                finishMedal.setImageResource(R.drawable.ic_sad_emoji);
+                message = "Tym razem się nie udało.";
+                detailedMessage = "Spróbuj jeszcze raz i uwaznie analizuj sklepy.";
+            }
+            resultText.setText(message);
+            summaryMessage.setText(detailedMessage);
         }
+
+        if (medalType != null) {
+            pm.upgradeMedal("shopping", medalType, "Bezpieczne zakupy", score, maxScore);
+        }
+
+        if (retryButton != null) {
+            retryButton.setOnClickListener(v -> {
+                tts.stop();
+                Intent intent = new Intent(ShoppingQuizSummaryActivity.this, ShoppingQuizIntroActivity.class);
+                startActivity(intent);
+                finish();
+            });
+        }
+
+        if (backToMenuButton != null) {
+            backToMenuButton.setOnClickListener(v -> {
+                tts.stop();
+                ProgressStore.markDone(this, ProgressKeys.M3_QUIZ_DONE);
+                Intent intent = new Intent(ShoppingQuizSummaryActivity.this, Module3Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            });
+        }
+
+        getWindow().getDecorView().post(this::speakIfEnabled);
     }
 
     @Override

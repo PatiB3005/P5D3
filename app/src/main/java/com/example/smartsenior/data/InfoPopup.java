@@ -12,7 +12,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.smartsenior.R;
 import com.google.android.material.button.MaterialButton;
 
-public class ResultPopup {
+public class InfoPopup {
 
     public interface OnDismissListener {
         void onDismiss();
@@ -25,7 +25,7 @@ public class ResultPopup {
     private final Context context;
     private OnDismissListener onDismissListener;
 
-    public ResultPopup(Activity activity) {
+    public InfoPopup(Activity activity) {
         context = activity;
 
         overlay = activity.findViewById(R.id.popupOverlay);
@@ -40,8 +40,8 @@ public class ResultPopup {
         popupList = overlay.findViewById(R.id.popupList);
         btnOk = overlay.findViewById(R.id.btnOk);
 
-        overlay.setOnClickListener(v -> hideInternal());
-        btnOk.setOnClickListener(v -> hideInternal());
+        overlay.setOnClickListener(v -> hide());
+        btnOk.setOnClickListener(v -> hide());
 
         overlay.setVisibility(View.GONE);
     }
@@ -50,38 +50,16 @@ public class ResultPopup {
         this.onDismissListener = listener;
     }
 
-    public void show(boolean isCorrect, String explanation, String buttonText) {
-        if (isCorrect) {
-            titleText.setText("Poprawna odpowiedź!");
-        } else {
-            titleText.setText("Niepoprawna odpowiedź");
-        }
 
-        popupList.removeAllViews();
-
-        TextView explanationView = new TextView(context);
-        explanationView.setText(explanation);
-        explanationView.setTextSize(16);
-        explanationView.setTextColor(Color.parseColor("#374151"));
-        explanationView.setGravity(Gravity.CENTER);
-        explanationView.setPadding(dpToPx(16), dpToPx(8), dpToPx(16), dpToPx(8));
-        explanationView.setTypeface(
-                ResourcesCompat.getFont(context, R.font.montserrat_regular),
-                Typeface.NORMAL
-        );
-        explanationView.setLineSpacing(dpToPx(2), 1.1f);
-
-        popupList.addView(explanationView);
-
-        btnOk.setText(buttonText != null && !buttonText.isEmpty() ? buttonText : "OK");
-
-        showOverlay();
+    public void show(String title, String message) {
+        show(title, message, "OK");
     }
 
-    public void showInfo(String title, String message, String buttonText) {
-        titleText.setText(title);
 
+    public void show(String title, String message, String buttonText) {
+        titleText.setText(title);
         popupList.removeAllViews();
+
 
         TextView messageView = new TextView(context);
         messageView.setText(message);
@@ -99,10 +77,6 @@ public class ResultPopup {
 
         btnOk.setText(buttonText != null && !buttonText.isEmpty() ? buttonText : "OK");
 
-        showOverlay();
-    }
-
-    private void showOverlay() {
         overlay.setAlpha(0f);
         overlay.setVisibility(View.VISIBLE);
         overlay.animate()
@@ -111,8 +85,7 @@ public class ResultPopup {
                 .start();
     }
 
-
-    private void hideInternal() {
+    public void hide() {
         overlay.animate()
                 .alpha(0f)
                 .setDuration(200)
@@ -126,10 +99,6 @@ public class ResultPopup {
                 .start();
     }
 
-
-    public void hide() {
-        hideInternal();
-    }
 
     private int dpToPx(int dp) {
         float density = context.getResources().getDisplayMetrics().density;
