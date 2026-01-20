@@ -22,12 +22,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
     private static final int INTRO_SCREEN = 1;
     private static final int FIRST_QUESTION_SCREEN = 2;
     private static final int LAST_QUESTION_SCREEN = 9;
-    private static final int RESULT_SCREEN = 100;
+    private static final int RESULT_SCREEN = 100; // wspólny ekran wyniku
 
     private int currentScreen = INTRO_SCREEN;
     private int score = 0;
     private boolean firstScreenAlreadyShown = false;
-    private boolean progressMarked = false;
+    private boolean progressMarked = false; // żeby nie zapisywać wielokrotnie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class SmsEmailActivity extends BaseTTSActivity {
             case 9:  setContentView(R.layout.activity_sms_9);         break;
             case RESULT_SCREEN:
                 setContentView(R.layout.activity_sms_result);
-                setupResultUi();
-                return;
+                setupResultUi(); // konfiguracja toolbara, przycisków i tekstu wyniku
+                return;          // nie ustawiamy tu przycisków TAK/NIE
         }
 
         setupButtons();
@@ -123,7 +123,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
         showScreen(currentScreen);
     }
 
+    /**
+     * Konfiguracja ekranu wyniku – ten sam design co FakeNewsResultActivity,
+     * ale w tym samym Activity.
+     */
     private void setupResultUi() {
+        // Toolbar
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         if (toolbar != null) {
             toolbar.setNavigationOnClickListener(v -> {
@@ -132,10 +137,11 @@ public class SmsEmailActivity extends BaseTTSActivity {
             });
         }
 
+
         ImageView finishMedal = findViewById(R.id.finishMedal);
-        TextView resultText = findViewById(R.id.resultText);
-        TextView resultScore = findViewById(R.id.resultScore);
-        MaterialButton retryButton = findViewById(R.id.retryTestButton);
+        TextView resultText   = findViewById(R.id.resultText);
+        TextView resultScore  = findViewById(R.id.resultScore);
+        MaterialButton retryButton    = findViewById(R.id.retryTestButton);
         MaterialButton backToMenuButton = findViewById(R.id.backToMenuButton);
 
         int maxScore = LAST_QUESTION_SCREEN - FIRST_QUESTION_SCREEN + 1; // 8
@@ -145,31 +151,21 @@ public class SmsEmailActivity extends BaseTTSActivity {
 
         float percent = score * 100f / maxScore;
         ProfileManager pm = new ProfileManager(this);
-        String medalType = null;
-        String message = "";
 
         if (finishMedal != null && resultText != null) {
             if (percent >= 80f) {
-                medalType = "GOLD";
                 finishMedal.setImageResource(R.drawable.ic_medal_gold);
-                message = "BRAWO! Perfekcyjnie ukończyłeś moduł „Bezpieczne wiadomości”. Gratulacje!";
+                resultText.setText("BRAWO! Perfekcyjnie ukończyłeś moduł „Bezpieczne wiadomości”.");
             } else if (percent >= 60f) {
-                medalType = "SILVER";
                 finishMedal.setImageResource(R.drawable.ic_medal_silver);
-                message = "Bardzo dobrze! Kilka drobiazgów do dopracowania, ale świetnie sobie radzisz.";
+                resultText.setText("Bardzo dobrze! Kilka drobiazgów do dopracowania, ale świetnie sobie radzisz.");
             } else if (percent >= 40f) {
-                medalType = "BRONZE";
                 finishMedal.setImageResource(R.drawable.ic_medal_bronze);
-                message = "Całkiem nieźle, warto jeszcze trochę poćwiczyć, aby lepiej rozpoznawać zagrożenia.";
+                resultText.setText("Całkiem nieźle, warto jeszcze trochę poćwiczyć, aby lepiej rozpoznawać zagrożenia.");
             } else {
                 finishMedal.setImageResource(R.drawable.ic_sad_emoji);
-                message = "Tym razem się nie udało. Spróbuj jeszcze raz i uważnie czytaj treść wiadomości.";
+                resultText.setText("Tym razem się nie udało. Spróbuj jeszcze raz i uważnie czytaj treść wiadomości.");
             }
-            resultText.setText(message);
-        }
-
-        if (medalType != null) {
-            pm.upgradeMedal("smsemail", medalType, "Bezpieczne wiadomości", score, maxScore);
         }
 
         if (retryButton != null) {
@@ -192,7 +188,6 @@ public class SmsEmailActivity extends BaseTTSActivity {
         // TTS treści wyniku
         getWindow().getDecorView().post(this::speakIfEnabled);
     }
-
 
     private void setupButtons() {
         View next = findViewById(R.id.btnNext);
@@ -227,6 +222,7 @@ public class SmsEmailActivity extends BaseTTSActivity {
             });
         }
 
+        // przyciski retry/back na ekranach starych wyników, jeśli jeszcze są używane
         View retryTestButton = findViewById(R.id.retryTestButton);
         if (retryTestButton != null && currentScreen != RESULT_SCREEN) {
             retryTestButton.setOnClickListener(v -> {

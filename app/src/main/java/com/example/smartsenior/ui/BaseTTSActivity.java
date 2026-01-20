@@ -14,7 +14,7 @@ import com.example.smartsenior.tts.TTSManager;
 
 public abstract class BaseTTSActivity extends AppCompatActivity {
 
-    // WAŻNE: teraz tts to Twój manager, więc istnieją: isEnabled(), speak(String), stop()
+
     protected TTSManager tts;
 
     public static final String PREFS_NAME = "app_prefs";
@@ -23,17 +23,15 @@ public abstract class BaseTTSActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tts = TTSManager.get(this); // zawsze istnieje
+        tts = TTSManager.get(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        // Jeżeli gdzieś jeszcze masz stary przycisk do TTS w layoutach – ukryj go
         setupTtsToggleIfPresent();
 
-        // czytaj dopiero po wyrenderowaniu widoku
         getWindow().getDecorView().post(this::speakIfEnabled);
     }
 
@@ -45,17 +43,14 @@ public abstract class BaseTTSActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // Nie wyłączamy globalnie TTS (shutdown) przy niszczeniu Activity – manager ma żyć globalnie.
         stopTts();
         super.onDestroy();
     }
 
-    /** Bezpieczne – zostawiamy, żeby moduły mogły dalej robić tts.stop() */
     protected void stopTts() {
         if (tts != null) tts.stop();
     }
 
-    /** Centralne czytanie – manager sam sprawdza enabled */
     protected void speakIfEnabled() {
         if (tts == null) return;
         String text = getSpeakText();
@@ -67,10 +62,6 @@ public abstract class BaseTTSActivity extends AppCompatActivity {
         tts.speak(text);
     }
 
-    /**
-     * Kompatybilność z tutorialami: wcześniej to wywoływałeś w kilku ekranach.
-     * Teraz, skoro przełącznik ma być TYLKO w Settings, ukrywamy go, jeśli istnieje.
-     */
     protected void setupTtsToggleIfPresent() {
         View v = findViewById(com.example.smartsenior.R.id.btnTtsToggle);
         if (v != null) {

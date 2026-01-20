@@ -24,11 +24,9 @@ public class TrustedContactsStorage {
                 JSONObject o = arr.getJSONObject(i);
                 TrustedContact c = TrustedContact.fromJson(o);
 
-                // Normalizacja numeru do +48... (żeby nie trzymać śmieci)
                 String norm = PhoneUtils.normalizeToPL(c.phone);
                 c.phone = (norm == null ? "" : norm);
 
-                // bezpieczeństwo nulli
                 c.id = (c.id == null ? "" : c.id);
                 c.name = (c.name == null ? "" : c.name);
                 c.photoUri = (c.photoUri == null ? "" : c.photoUri);

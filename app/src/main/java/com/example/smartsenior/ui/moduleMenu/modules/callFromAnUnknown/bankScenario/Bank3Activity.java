@@ -29,9 +29,10 @@ public class Bank3Activity extends BaseTTSActivity {
             startActivity(new Intent(Bank3Activity.this, Bank3aActivity.class));
         });
 
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
-            Intent intent = new Intent(Bank3Activity.this, BankPositiveResultActivity.class);
+            Intent intent = new Intent(this, BankPositiveResultActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

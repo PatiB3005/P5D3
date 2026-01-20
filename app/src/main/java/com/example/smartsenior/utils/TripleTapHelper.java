@@ -17,7 +17,6 @@ public class TripleTapHelper {
         this.windowMs = windowMs;
     }
 
-    /** Zwraca true jeśli wykryto triple-tap i obsłużono (otwarto TrustedContacts). */
     public boolean onTouch(Activity activity, MotionEvent ev) {
         if (ev.getAction() != MotionEvent.ACTION_UP) return false;
 
@@ -33,7 +32,7 @@ public class TripleTapHelper {
             if (!(activity instanceof TrustedContactsActivity)) {
                 activity.startActivity(new Intent(activity, TrustedContactsActivity.class));
             }
-            return true; // obsłużone
+            return true;
         }
         return false;
     }

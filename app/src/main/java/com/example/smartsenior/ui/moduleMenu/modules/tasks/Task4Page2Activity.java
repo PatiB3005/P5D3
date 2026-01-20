@@ -1,12 +1,12 @@
 package com.example.smartsenior.ui.moduleMenu.modules.tasks;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.content.Intent;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class Task4Page2Activity extends BaseTTSActivity {
 
-    MaterialButton btnAmount, btnLink, btnSender, btnNext;
+    MaterialButton btnAmount, btnLink, btnSender, btnNext, btnCheck, btnTasksMenu;
     View overlay;
     LinearLayout popupBox;
     TextView popupText;
@@ -25,31 +25,56 @@ public class Task4Page2Activity extends BaseTTSActivity {
     boolean linkSelected = false;
 
     boolean locked = false;
+    boolean resultReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task4_page2);
 
+        btnTasksMenu = findViewById(R.id.btnTasksMenu);
         btnAmount = findViewById(R.id.btnAmount);
         btnLink = findViewById(R.id.btnLink);
         btnSender = findViewById(R.id.btnSender);
         btnNext = findViewById(R.id.btnNext);
+        btnCheck = findViewById(R.id.btnCheck);
 
         overlay = findViewById(R.id.overlay);
         popupBox = findViewById(R.id.popupBox);
         popupText = findViewById(R.id.popupText);
         popupClose = findViewById(R.id.popupClose);
 
+        btnTasksMenu.setOnClickListener(v -> {
+            tts.stop();
+            Intent i = new Intent(Task4Page2Activity.this, TasksActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            finish();
+        });
+
         btnNext.setVisibility(View.GONE);
+
+        btnCheck.setEnabled(false);
+        btnCheck.setAlpha(0.6f);
 
         btnAmount.setOnClickListener(v -> { tts.stop(); toggle(btnAmount, 1); });
         btnSender.setOnClickListener(v -> { tts.stop(); toggle(btnSender, 2); });
         btnLink.setOnClickListener(v -> { tts.stop(); toggle(btnLink, 3); });
 
+        btnCheck.setOnClickListener(v -> {
+            tts.stop();
+            checkAnswer();
+        });
+
         popupClose.setOnClickListener(v -> {
             tts.stop();
             hidePopup();
+            if (resultReady) showNextButton();
+        });
+
+        btnNext.setOnClickListener(v -> {
+            tts.stop();
+            startActivity(new Intent(this, Task4Page3Activity.class));
         });
     }
 
@@ -60,22 +85,15 @@ public class Task4Page2Activity extends BaseTTSActivity {
         if (id == 1) {
             amountSelected = !amountSelected;
             highlight(btn, amountSelected);
-
-            if (amountSelected) {
-                showError();
-                return;
-            }
-
         } else if (id == 2) {
             senderSelected = !senderSelected;
             highlight(btn, senderSelected);
-
         } else {
             linkSelected = !linkSelected;
             highlight(btn, linkSelected);
         }
 
-        checkIfReady();
+        updateCheckButtonState();
     }
 
     private void highlight(MaterialButton btn, boolean selected) {
@@ -85,15 +103,26 @@ public class Task4Page2Activity extends BaseTTSActivity {
             btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A7D0FF")));
     }
 
-    private void checkIfReady() {
+    private void updateCheckButtonState() {
         if (locked) return;
-        if (senderSelected && linkSelected) {
-            showSuccess();
-        }
+        boolean anything = amountSelected || senderSelected || linkSelected;
+        btnCheck.setEnabled(anything);
+        btnCheck.setAlpha(anything ? 1f : 0.6f);
+    }
+
+    private void checkAnswer() {
+        if (locked) return;
+
+        // Poprawne: Nadawca + Link, błędne: Numer klienta
+        boolean correct = senderSelected && linkSelected && !amountSelected;
+
+        if (correct) showSuccess();
+        else showError();
     }
 
     private void showSuccess() {
         locked = true;
+        resultReady = true;
 
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
@@ -102,11 +131,12 @@ public class Task4Page2Activity extends BaseTTSActivity {
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CFF9C7")));
 
         disableButtons();
-        showNextButton();
+        btnCheck.setEnabled(false);
     }
 
     private void showError() {
         locked = true;
+        resultReady = true;
 
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
@@ -115,7 +145,7 @@ public class Task4Page2Activity extends BaseTTSActivity {
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1D1")));
 
         disableButtons();
-        showNextButton();
+        btnCheck.setEnabled(false);
     }
 
     private void disableButtons() {
@@ -128,10 +158,6 @@ public class Task4Page2Activity extends BaseTTSActivity {
         btnNext.setVisibility(View.VISIBLE);
         btnNext.setEnabled(true);
         btnNext.setAlpha(1f);
-        btnNext.setOnClickListener(v -> {
-            tts.stop();
-            startActivity(new Intent(this, Task4Page3Activity.class));
-        });
     }
 
     private void hidePopup() {

@@ -18,13 +18,11 @@ public class CallFromAnUnknownMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_from_unknown_menu);
 
-        // Znajdź kafelki po ID
         LinearLayout btnTeoria = findViewById(R.id.btnTeoria);
         LinearLayout btnGrandChild = findViewById(R.id.btnGrandChild);
         LinearLayout btnPoliceman = findViewById(R.id.btnPoliceman);
         LinearLayout btnBankEmployee = findViewById(R.id.btnBankEmployee);
 
-        // Obsługa kliknięć — otwieranie nowych ekranów
         btnTeoria.setOnClickListener(v -> {
             Intent intent = new Intent(this, TheoryActivity.class);
             startActivity(intent);

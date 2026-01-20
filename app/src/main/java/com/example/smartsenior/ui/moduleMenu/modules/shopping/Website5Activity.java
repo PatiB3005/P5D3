@@ -43,7 +43,6 @@ public class Website5Activity extends BaseTTSActivity {
         titleTrue  = findViewById(R.id.titleTrue);
         scrollView = findViewById(R.id.scrollView);
 
-        // Start: oba niebieskie
         setTint(btnFake, BLUE);
         setTint(btnReal, BLUE);
         btnFake.setAlpha(1f);
@@ -51,9 +50,8 @@ public class Website5Activity extends BaseTTSActivity {
 
         setButtonState(btnNext, false);
 
-        // Website5: poprawna jest FAŁSZYWA
-        btnFake.setOnClickListener(v -> handleAnswer(true));   // FAŁSZYWA = dobrze
-        btnReal.setOnClickListener(v -> handleAnswer(false));  // PRAWDZIWA = źle
+        btnFake.setOnClickListener(v -> handleAnswer(true));
+        btnReal.setOnClickListener(v -> handleAnswer(false));
 
         btnNext.setOnClickListener(v -> {
             tts.stop();
@@ -73,14 +71,12 @@ public class Website5Activity extends BaseTTSActivity {
         btnNext.setVisibility(View.VISIBLE);
 
         if (isCorrect) {
-            // klik FAŁSZYWA - dobrze
             setTint(btnFake, GREEN);
             setTint(btnReal, BLUE);
             btnFake.setAlpha(1f);
             btnReal.setAlpha(0.35f);
             ScoreManager.addPoint();
         } else {
-            // klik PRAWDZIWA - źle
             setTint(btnReal, RED);
             setTint(btnFake, BLUE);
             btnReal.setAlpha(1f);

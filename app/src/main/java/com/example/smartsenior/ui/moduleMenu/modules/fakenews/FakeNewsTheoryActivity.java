@@ -15,10 +15,15 @@ import com.example.smartsenior.data.progress.ProgressStore;
 
 public class FakeNewsTheoryActivity extends AppCompatActivity {
 
+    private static final int LAST_SCREEN = 7;
+
     private int currentScreen = 1;
 
-    private ScrollView scrollArea;
-    private View scrollThumb;
+    // aktualny scroll + listener (żeby nie mnożyć listenerów)
+    private ScrollView scroll;
+    private View thumb;
+    private View track;
+    private ViewTreeObserver.OnScrollChangedListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,98 +33,88 @@ public class FakeNewsTheoryActivity extends AppCompatActivity {
 
     private void showScreen(int screenNumber) {
         switch (screenNumber) {
-            case 1:
-                setContentView(R.layout.activity_fake_news_theory_1);
-                break;
-            case 2:
-                setContentView(R.layout.activity_fake_news_theory_2);
-                break;
-            case 3:
-                setContentView(R.layout.activity_fake_news_theory_3);
-                break;
-            case 4:
-                setContentView(R.layout.activity_fake_news_theory_4);
-                break;
-            case 5:
-                setContentView(R.layout.activity_fake_news_theory_5);
-                break;
-            case 6:
-                setContentView(R.layout.activity_fake_news_theory_6);
-                break;
-            case 7:
-                setContentView(R.layout.activity_fake_news_theory_7);
-                break;
+            case 1: setContentView(R.layout.activity_fake_news_theory_1); break;
+            case 2: setContentView(R.layout.activity_fake_news_theory_2); break;
+            case 3: setContentView(R.layout.activity_fake_news_theory_3); break;
+            case 4: setContentView(R.layout.activity_fake_news_theory_4); break;
+            case 5: setContentView(R.layout.activity_fake_news_theory_5); break;
+            case 6: setContentView(R.layout.activity_fake_news_theory_6); break;
+            case 7: setContentView(R.layout.activity_fake_news_theory_7); break;
         }
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
-        // --- CUSTOM SCROLL (po KAŻDYM setContentView) ---
-        bindCustomScrollForCurrentLayout();
-
         setupButtons();
+        setupCustomScrollThumbIfPresent(); // ✅ tak jak w TheoryActivity
     }
 
-    private void bindCustomScrollForCurrentLayout() {
-        // Jeśli masz inne ID w XML, zmień tutaj:
-        scrollArea = findViewById(R.id.scrollArea);
-        scrollThumb = findViewById(R.id.customScrollThumb);
+    private void setupCustomScrollThumbIfPresent() {
+        // ✅ WAŻNE: ID jak w XML
+        ScrollView newScroll = findViewById(R.id.scrollContent);
+        View newThumb = findViewById(R.id.customScrollThumb);
+        View newTrack = findViewById(R.id.customScrollTrack); // może być null na niektórych ekranach
 
-        if (scrollArea == null || scrollThumb == null) return;
+        // jeśli nie ma scrolla/thumba na danym layoucie -> nic nie rób
+        if (newScroll == null || newThumb == null) return;
 
-        // 1) ustaw thumb na start po layout
-        scrollArea.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                scrollArea.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                updateThumbPosition();
-            }
+        // usuń listener z poprzedniego scrolla (przed podmianą)
+        if (scroll != null && scrollListener != null) {
+            scroll.getViewTreeObserver().removeOnScrollChangedListener(scrollListener);
+        }
+
+        scroll = newScroll;
+        thumb = newThumb;
+        track = newTrack;
+
+        // ustaw start: przewiń do góry i ustaw thumb
+        scroll.post(() -> {
+            scroll.scrollTo(0, 0);
+            thumb.setTranslationY(0f);
+            updateThumbPosition();
         });
 
-        // 2) aktualizuj podczas scrollowania
-        scrollArea.getViewTreeObserver().addOnScrollChangedListener(this::updateThumbPosition);
+        scrollListener = this::updateThumbPosition;
+        scroll.getViewTreeObserver().addOnScrollChangedListener(scrollListener);
 
-        // 3) dodatkowo: jak przełączasz ekrany, ScrollView czasem pamięta pozycję — ustaw na górę
-        scrollArea.post(() -> {
-            scrollArea.scrollTo(0, 0);
-            updateThumbPosition();
+        // po pierwszym layoucie też zaktualizuj (na wypadek, gdyby wysokości były 0)
+        scroll.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override public void onGlobalLayout() {
+                scroll.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                updateThumbPosition();
+            }
         });
     }
 
     private void updateThumbPosition() {
-        if (scrollArea == null || scrollThumb == null) return;
+        if (scroll == null || thumb == null) return;
+        if (scroll.getChildCount() == 0) return;
 
-        View child = scrollArea.getChildAt(0);
-        if (child == null) return;
+        View content = scroll.getChildAt(0);
 
-        int scrollRange = Math.max(0, child.getHeight() - scrollArea.getHeight());
-        int scrollY = scrollArea.getScrollY();
+        int scrollY = scroll.getScrollY();
+        int contentHeight = content.getHeight();
+        int viewportHeight = scroll.getHeight();
+        int maxScroll = Math.max(1, contentHeight - viewportHeight);
 
-        float trackHeight = scrollArea.getHeight();
-        float thumbHeight = scrollThumb.getHeight();
+        // ✅ Jeśli masz track w XML, to poruszaj się po jego wysokości (lepsze wizualnie).
+        // Jeśli track == null, to fallback jak w TheoryActivity (po wysokości ScrollView).
+        int travelBaseHeight = (track != null ? track.getHeight() : scroll.getHeight());
+        float trackHeight = Math.max(0f, travelBaseHeight - thumb.getHeight());
 
-        if (scrollRange == 0 || trackHeight <= thumbHeight) {
-            scrollThumb.setTranslationY(0f);
-            return;
-        }
-
-        float progress = scrollY / (float) scrollRange; // 0..1
-        float maxThumbTravel = trackHeight - thumbHeight;
-
-        scrollThumb.setTranslationY(progress * maxThumbTravel);
+        float progress = Math.min(1f, Math.max(0f, scrollY / (float) maxScroll));
+        thumb.setTranslationY(trackHeight * progress);
     }
 
     private void setupButtons() {
         View next = findViewById(R.id.btnNext);
         if (next != null) {
             next.setOnClickListener(v -> {
-                if (currentScreen < 7) {
+                if (currentScreen < LAST_SCREEN) {
                     currentScreen++;
                     showScreen(currentScreen);
                 } else {
                     ProgressStore.markDone(this, ProgressKeys.M2_THEORY_DONE);
-                    Intent intent = new Intent(FakeNewsTheoryActivity.this, FakeNewsMenuActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(this, FakeNewsMenuActivity.class));
                     finish();
                 }
             });
@@ -136,5 +131,13 @@ public class FakeNewsTheoryActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (scroll != null && scrollListener != null) {
+            scroll.getViewTreeObserver().removeOnScrollChangedListener(scrollListener);
+        }
+        super.onDestroy();
     }
 }

@@ -19,7 +19,7 @@ public class Bank8Activity extends BaseTTSActivity {
 
         Button btnFinish = findViewById(R.id.btnFinish);
         btnFinish.setOnClickListener(v -> {
-            // ZALICZENIE CZĘŚCI: scenariusz bank ukończony
+            // Progress
             ProgressStore.markDone(this, ProgressKeys.M2_BANK_DONE);
 
             tts.stop();

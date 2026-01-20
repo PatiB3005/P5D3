@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import androidx.activity.OnBackPressedCallback;
+
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.modules.Module1Activity;
@@ -23,31 +25,33 @@ public class TasksActivity extends BaseTTSActivity {
 
         task1.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, Task1Activity.class));
+            startActivity(new Intent(TasksActivity.this, Task1Activity.class));
         });
 
         task2.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, Task2Activity.class));
+            startActivity(new Intent(TasksActivity.this, Task2Activity.class));
         });
 
         task3.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, Task3Activity.class));
+            startActivity(new Intent(TasksActivity.this, Task3Activity.class));
         });
 
         task4.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(this, Task4Activity.class));
+            startActivity(new Intent(TasksActivity.this, Task4Activity.class));
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         toolbar.setNavigationOnClickListener(v -> goBackToModule());
-    }
 
-    @Override
-    public void onBackPressed() {
-        goBackToModule();
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                goBackToModule();
+            }
+        });
     }
 
     private void goBackToModule() {

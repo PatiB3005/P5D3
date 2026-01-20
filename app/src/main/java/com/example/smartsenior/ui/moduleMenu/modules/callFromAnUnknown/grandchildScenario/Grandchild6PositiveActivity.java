@@ -16,7 +16,6 @@ public class Grandchild6PositiveActivity extends BaseTTSActivity {
 
         Button next = findViewById(R.id.btnNext);
 
-        // Dalej -> to samo POUCZENIE co po negatywnym wyniku
         next.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild6PositiveActivity.this, Grandchild7Activity.class);

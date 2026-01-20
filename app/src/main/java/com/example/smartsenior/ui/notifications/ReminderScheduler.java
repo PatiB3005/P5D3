@@ -18,11 +18,9 @@ public class ReminderScheduler {
 
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                // Android 12+ : exact alarm może wymagać uprawnień
                 if (am.canScheduleExactAlarms()) {
                     am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAt, pi);
                 } else {
-                    // fallback - bez exact (nie crashuje)
                     am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAt, pi);
                 }
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -31,7 +29,6 @@ public class ReminderScheduler {
                 am.setExact(AlarmManager.RTC_WAKEUP, triggerAt, pi);
             }
         } catch (SecurityException se) {
-            // ostatnia deska ratunku - żeby nie wywaliło aplikacji
             am.set(AlarmManager.RTC_WAKEUP, triggerAt, pi);
         }
     }
@@ -44,7 +41,6 @@ public class ReminderScheduler {
     public static void rescheduleAll(Context context) {
         ArrayList<Reminder> list = ReminderStore.load(context);
         for (Reminder r : list) {
-            // dla zakupów nie planujemy alarmów
             if (r.type == ReminderType.SHOPPING) continue;
             if (r.timeMillis <= 0L) continue;
             schedule(context, r);

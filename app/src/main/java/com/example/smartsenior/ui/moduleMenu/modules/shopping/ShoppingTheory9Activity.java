@@ -34,7 +34,6 @@ public class ShoppingTheory9Activity extends BaseTTSActivity {
             startActivity(new Intent(ShoppingTheory9Activity.this, ShoppingTheory10Activity.class));
         });
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
         // CUSTOM SCROLLBAR

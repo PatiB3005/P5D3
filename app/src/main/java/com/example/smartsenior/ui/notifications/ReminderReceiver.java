@@ -25,10 +25,9 @@ public class ReminderReceiver extends BroadcastReceiver {
         Reminder reminder = ReminderStore.findById(context, id);
         if (reminder == null) return;
 
-        // Zakupy: brak alarmów / brak notyfikacji
         if (reminder.type == ReminderType.SHOPPING) return;
 
-        // Android 13+: jeśli brak pozwolenia na notyfikacje, nie próbujemy notify()
+
         if (Build.VERSION.SDK_INT >= 33) {
             boolean granted = ContextCompat.checkSelfPermission(
                     context, Manifest.permission.POST_NOTIFICATIONS

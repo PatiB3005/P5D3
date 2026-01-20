@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- Scroll z treścią -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -28,13 +27,11 @@
             android:paddingTop="6dp"
             android:paddingBottom="8dp">
 
-            <!-- minimalny luz u góry -->
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.02" />
 
-            <!-- Tytuł -->
             <TextView
                 android:id="@+id/text_tytul"
                 android:layout_width="match_parent"
@@ -47,7 +44,6 @@
                 android:textAlignment="center"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Krótszy opis -->
             <TextView
                 android:id="@+id/text_opis"
                 android:layout_width="match_parent"
@@ -61,7 +57,6 @@
                 android:lineSpacingExtra="6dp"
                 android:layout_marginBottom="10dp" />
 
-            <!-- 2 krótkie zdania -->
             <TextView
                 android:id="@+id/text_dopisek1"
                 android:layout_width="match_parent"
@@ -87,7 +82,6 @@
                 android:lineSpacingExtra="6dp"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Ikona (większa, ale bez ryzyka przycięcia) -->
             <ImageView
                 android:id="@+id/img_hat"
                 android:layout_width="230dp"
@@ -98,7 +92,6 @@
                 android:scaleType="fitCenter"
                 android:contentDescription="@null" />
 
-            <!-- minimalny oddech na dole -->
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -107,7 +100,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Separator -->
     <View
         android:id="@+id/separator"
         android:layout_width="0dp"
@@ -117,7 +109,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dół: przycisk zawsze widoczny -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"

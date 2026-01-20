@@ -19,7 +19,7 @@ public class BankNegativeResultActivity extends BaseTTSActivity {
 
         Button next = findViewById(R.id.btnNext);
 
-        // Dalej -> to samo POUCZENIE co po negatywnym wyniku
+
         next.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(BankNegativeResultActivity.this, Bank8Activity.class);

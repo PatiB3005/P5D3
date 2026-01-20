@@ -16,12 +16,12 @@ public class Grandchild6Activity extends BaseTTSActivity {
 
         Button next = findViewById(R.id.btnNext);
 
-        // Dalej -> POUCZENIE (Grandchild7Activity)
         next.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild6Activity.this, Grandchild7Activity.class);
             startActivity(intent);
         });
+
     }
 
     @Override

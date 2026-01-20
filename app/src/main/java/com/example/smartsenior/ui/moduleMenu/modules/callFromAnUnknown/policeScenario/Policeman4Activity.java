@@ -19,22 +19,22 @@ public class Policeman4Activity extends BaseTTSActivity {
         TextView answerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A → SCENA 5
+        // A → scene 5
         answerA.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(this, Policeman5Activity.class);
             startActivity(intent);
         });
 
-        // Czerwona słuchawka → KONIEC
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
-
-            Intent intent = new Intent(Policeman4Activity.this, Policeman6bActivity.class);
+            Intent intent = new Intent(this, Policeman6bActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });
+
     }
 
     @Override

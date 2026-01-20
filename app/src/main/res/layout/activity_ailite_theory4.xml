@@ -7,22 +7,23 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-
-    <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingEnd="26dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:paddingStart="24dp"
@@ -30,7 +31,6 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
-            <!-- Tytuł -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
@@ -42,7 +42,6 @@
                 android:gravity="center"
                 android:layout_marginBottom="8dp"/>
 
-            <!-- Podtytuł -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -54,7 +53,6 @@
                 android:gravity="center"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Dwa obrazki w rzędzie -->
             <LinearLayout
                 android:id="@+id/imagesRow"
                 android:layout_width="match_parent"
@@ -62,7 +60,6 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="18dp">
 
-                <!-- Lewy -->
                 <FrameLayout
                     android:id="@+id/imageFrameLeft"
                     android:layout_width="0dp"
@@ -79,9 +76,19 @@
                         android:src="@drawable/kon"
                         android:scaleType="centerCrop"
                         android:contentDescription="@null"/>
+
+                    <ImageButton
+                        android:id="@+id/btnZoomLeft"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="top|end"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_zoom_in_24"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="@string/zoom_image"/>
                 </FrameLayout>
 
-                <!-- Prawy -->
                 <FrameLayout
                     android:id="@+id/imageFrameRight"
                     android:layout_width="0dp"
@@ -98,11 +105,21 @@
                         android:src="@drawable/phot2"
                         android:scaleType="centerCrop"
                         android:contentDescription="@null"/>
+
+                    <ImageButton
+                        android:id="@+id/btnZoomRight"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="top|end"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_zoom_in_24"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="@string/zoom_image"/>
                 </FrameLayout>
 
             </LinearLayout>
 
-            <!-- Tekst 1 -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -119,7 +136,6 @@
                 android:text="Warto zwracać uwagę na szczegóły zdjęcia ilość palców, elementy tła,  układ ciała
 i innych rzeczy na obrazie. Na przykład pani na pierwszym zdjęciu stoi obok konia z chałki. Czy jest to realistyczne? Nie! "/>
 
-            <!-- Tekst 2 -->
             <TextView
                 android:id="@+id/contentText2"
                 android:layout_width="match_parent"
@@ -144,8 +160,28 @@ To są klasyczne przykłady zdjęć wygenerowanych przez sztuczną inteligencje.
         </LinearLayout>
     </ScrollView>
 
-    <!-- separator -->
     <View
+        android:id="@+id/customScrollTrack"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:background="#D9E2EF"
+        app:layout_constraintTop_toTopOf="@id/scrollArea"
+        app:layout_constraintBottom_toBottomOf="@id/scrollArea"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/customScrollThumb"
+        android:layout_width="6dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="12dp"
+        android:background="#2B6CB0"
+        app:layout_constraintTop_toTopOf="@id/customScrollTrack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <View
+        android:id="@+id/bottomDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#D9E2EF"
@@ -153,7 +189,6 @@ To są klasyczne przykłady zdjęć wygenerowanych przez sztuczną inteligencje.
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"

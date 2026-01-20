@@ -34,7 +34,6 @@ public class ShoppingTheory5Activity extends BaseTTSActivity {
             startActivity(new Intent(ShoppingTheory5Activity.this, ShoppingTheory6Activity.class));
         });
 
-        // zastosuj duży/mały font na aktualnym layoucie
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
 
         // ✅ Custom scroll (niebieski pasek)

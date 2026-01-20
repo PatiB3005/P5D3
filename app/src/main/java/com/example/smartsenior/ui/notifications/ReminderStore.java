@@ -32,7 +32,6 @@ public class ReminderStore {
                     try {
                         type = ReminderType.valueOf(typeStr);
                     } catch (Exception e) {
-                        // stare/zepsute dane -> pomijamy rekord
                         continue;
                     }
 
@@ -43,7 +42,6 @@ public class ReminderStore {
 
                     out.add(new Reminder(id, type, title, timeMillis, repeatMinutes, extra));
                 } catch (Exception ignoredOneItem) {
-                    // uszkodzony element -> pomijamy
                 }
             }
         } catch (JSONException ignored) {}

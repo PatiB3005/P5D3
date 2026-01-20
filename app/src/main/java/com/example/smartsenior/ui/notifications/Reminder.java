@@ -7,7 +7,6 @@ public class Reminder {
     public long timeMillis;
     public int repeatMinutes;
 
-    // NOWE: dodatkowe dane (np. lista zakupów)
     public String extra;
 
     public Reminder(int id, ReminderType type, String title, long timeMillis, int repeatMinutes, String extra) {

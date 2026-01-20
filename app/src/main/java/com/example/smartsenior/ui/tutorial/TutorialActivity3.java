@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
@@ -19,19 +19,21 @@ public class TutorialActivity3 extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_3);
 
-        // Inicjalizacja przycisku TTS, jeśli jest w layoucie
         setupTtsToggleIfPresent();
+
+        ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain.setOnClickListener(v -> {
+            tts.stop();
+            goToMainMenu();
+        });
 
         Button showModulesButton = findViewById(R.id.button_pokaz_moduly);
         showModulesButton.setOnClickListener(v -> {
-            // Zapisz postęp, że użytkownik ukończył ekran 3
             SharedPreferences prefs = getSharedPreferences("tutorial_progress", MODE_PRIVATE);
             prefs.edit().putInt("last_completed", 3).apply();
 
-            // Zatrzymaj lektora przed zmianą ekranu
             tts.stop();
 
-            // Przejdź do menu modułów
             Intent intent = new Intent(TutorialActivity3.this, ModuleMenuActivity.class);
             intent.putExtra("from_tutorial", true);
             startActivity(intent);
@@ -39,10 +41,22 @@ public class TutorialActivity3 extends BaseTTSActivity {
         });
     }
 
+    private void goToMainMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     protected String getSpeakText() {
-        CharSequence t = ((TextView) findViewById(R.id.text_tytul)).getText();
-        CharSequence d = ((TextView) findViewById(R.id.text_opis)).getText();
-        return (t == null ? "" : t + ". ") + (d == null ? "" : d.toString());
+        TextView t = findViewById(R.id.text_tytul);
+        TextView d = findViewById(R.id.text_opis);
+
+        StringBuilder sb = new StringBuilder();
+        if (t != null && t.getText() != null) sb.append(t.getText()).append(". ");
+        if (d != null && d.getText() != null) sb.append(d.getText());
+
+        return sb.toString().trim();
     }
 }

@@ -28,11 +28,11 @@ public class Bank1Activity extends AppCompatActivity {
         LinearLayout answerCall = findViewById(R.id.answerCall);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // Włącz dźwięk i wibracje po wejściu na ekran
+        // Ringtone and Vibration
         startRingtoneSafely();
         startVibrationSafely();
 
-        // Po wciśnięciu zielonej słuchawki → przejście dalej
+        // Green
         answerCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
@@ -41,7 +41,7 @@ public class Bank1Activity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Po kliknięciu "Koniec" → wyłącz wszystko i zamknij
+        // Result
         declineCall.setOnClickListener(v -> {
             stopRingtone();
             stopVibration();
@@ -101,7 +101,6 @@ public class Bank1Activity extends AppCompatActivity {
         }
     }
 
-    // Bezpieczeństwo – wyłączamy wszystko po opuszczeniu ekranu
     @Override
     protected void onPause() {
         super.onPause();

@@ -16,7 +16,7 @@ public class Policeman6bActivity extends BaseTTSActivity {
 
         Button next = findViewById(R.id.btnNext);
 
-        // „Dalej” → Policeman7Activity
+        // A → scene 7
         next.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(this, Policeman7Activity.class);

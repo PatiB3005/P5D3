@@ -7,21 +7,23 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollArea"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingEnd="26dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:paddingStart="24dp"
@@ -29,7 +31,6 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
-            <!-- Tytuł -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
@@ -41,7 +42,6 @@
                 android:gravity="center"
                 android:layout_marginBottom="8dp"/>
 
-            <!-- Podtytuł -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -53,12 +53,10 @@
                 android:gravity="center"
                 android:layout_marginBottom="0dp"/>
 
-            <!-- Oddech zamiast obrazka -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="18dp" />
 
-            <!-- Tekst 1 (treść bez zmian) -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -75,7 +73,6 @@
                 android:text="Jak rozpoznać takie zdjęcia i jak się przed tym bronić? Zwracajmy
   uwagę na szczegóły zdjęć: ilość palców, realistyzność, obiekty na zdjęciu, cień od obiektów, itp. " />
 
-            <!-- Tekst 2 (treść bez zmian) -->
             <TextView
                 android:id="@+id/contentText2"
                 android:layout_width="match_parent"
@@ -101,8 +98,28 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Separator -->
     <View
+        android:id="@+id/customScrollTrack"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:background="#D9E2EF"
+        app:layout_constraintTop_toTopOf="@id/scrollArea"
+        app:layout_constraintBottom_toBottomOf="@id/scrollArea"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/customScrollThumb"
+        android:layout_width="6dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="12dp"
+        android:background="#2B6CB0"
+        app:layout_constraintTop_toTopOf="@id/customScrollTrack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <View
+        android:id="@+id/bottomDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#D9E2EF"
@@ -110,7 +127,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"

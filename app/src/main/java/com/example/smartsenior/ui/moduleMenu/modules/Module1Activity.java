@@ -16,12 +16,10 @@ public class Module1Activity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_1);
 
-        // Znajdź kafelki po ID
         LinearLayout teoria = findViewById(R.id.btnTeoria);
         LinearLayout smsEmail = findViewById(R.id.btnSmsEmail);
         LinearLayout zadania = findViewById(R.id.btnZadania);
 
-        // Obsługa kliknięć — otwieranie nowych ekranów
         teoria.setOnClickListener(v -> {
             tts.stop();
             startActivity(new Intent(this, TheoryActivity.class));

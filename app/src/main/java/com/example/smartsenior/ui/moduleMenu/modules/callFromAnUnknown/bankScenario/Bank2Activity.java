@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
-import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild5Activity;
-import com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild6PositiveActivity;
 
 public class Bank2Activity extends BaseTTSActivity {
 
@@ -25,6 +23,7 @@ public class Bank2Activity extends BaseTTSActivity {
             startActivity(new Intent(Bank2Activity.this, Bank3Activity.class));
         });
 
+        // Czerwona słuchawka -> pozytywny rezultat
         declineCall.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Bank2Activity.this, BankPositiveResultActivity.class);

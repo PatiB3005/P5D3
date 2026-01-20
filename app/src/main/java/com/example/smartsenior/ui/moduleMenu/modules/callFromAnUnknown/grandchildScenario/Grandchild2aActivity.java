@@ -20,21 +20,22 @@ public class Grandchild2aActivity extends BaseTTSActivity {
         TextView answerA = findViewById(R.id.textAnswerA);
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
-        // A -> "Dobrze, mów szybko..." -> scena 3
+        // A -> scene 3
         answerA.setOnClickListener(v -> {
             tts.stop();
             Intent intent = new Intent(Grandchild2aActivity.this, Grandchild3Activity.class);
             startActivity(intent);
         });
 
-        // Czerwona słuchawka – przerwanie
+        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
-            Intent intent = new Intent(Grandchild2aActivity.this, Grandchild6PositiveActivity.class);
+            Intent intent = new Intent(this, Grandchild6PositiveActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });
+
     }
 
     @Override

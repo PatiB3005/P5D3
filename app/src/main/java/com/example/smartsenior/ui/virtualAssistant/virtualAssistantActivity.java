@@ -37,13 +37,11 @@ public class virtualAssistantActivity extends AppCompatActivity {
         answerLabel = findViewById(R.id.answerLabel);
         answerArea = findViewById(R.id.answerArea);
 
-        // Na start ukryj odpowiedź
         answerLabel.setVisibility(View.GONE);
         answerArea.setVisibility(View.GONE);
         answerArea.setText("");
 
         try {
-            // JSON wrzuć do: app/src/main/assets/qa_pl.json
             engine = new AssistantEngine(this, "qa_pl.json");
         } catch (Exception e) {
             e.printStackTrace();
