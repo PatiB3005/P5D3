@@ -1,6 +1,9 @@
 package com.example.smartsenior.ui.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,10 +11,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.ProfileManager;
 import com.example.smartsenior.data.ProfileManager.MedalInfo;
 import com.example.smartsenior.data.InfoPopup;
+
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -29,12 +35,31 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toolbar toolbar = findViewById(R.id.toolbarSettings);
+        setSupportActionBar(toolbar);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+
+
+        /* =======================
+           WIDOKI
+           ======================= */
         inputName = findViewById(R.id.inputName);
         inputSurname = findViewById(R.id.inputSurname);
         inputAge = findViewById(R.id.inputAge);
+
         btnEditSave = findViewById(R.id.btnEditSave);
         btnBack = findViewById(R.id.backButton);
+
         labelMedal = findViewById(R.id.labelMedal);
         medalsLayout = findViewById(R.id.medalsLayout);
 
@@ -43,7 +68,6 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             infoPopup = new InfoPopup(this);
         } catch (Exception e) {
-            android.util.Log.w("ProfileActivity", "InfoPopup not available - popupOverlay missing in layout");
             infoPopup = null;
         }
 
@@ -53,6 +77,9 @@ public class ProfileActivity extends AppCompatActivity {
         updateMedals();
     }
 
+    /* =======================
+       PRZYCISKI
+       ======================= */
     private void setupButtons() {
         btnEditSave.setOnClickListener(v -> {
             if (!isEditing) {
@@ -76,11 +103,15 @@ public class ProfileActivity extends AppCompatActivity {
         inputAge.setEnabled(enabled);
     }
 
+    /* =======================
+       DANE PROFILU
+       ======================= */
     private void saveProfileData() {
-        String name = inputName.getText().toString();
-        String surname = inputSurname.getText().toString();
-        String age = inputAge.getText().toString();
-        profileManager.saveProfile(name, surname, age);
+        profileManager.saveProfile(
+                inputName.getText().toString(),
+                inputSurname.getText().toString(),
+                inputAge.getText().toString()
+        );
     }
 
     private void loadProfileData() {
@@ -89,6 +120,9 @@ public class ProfileActivity extends AppCompatActivity {
         inputAge.setText(profileManager.getAge());
     }
 
+    /* =======================
+       MEDALE
+       ======================= */
     private void updateMedals() {
         try {
             List<MedalInfo> medals = profileManager.getMedalsInfo();
@@ -103,25 +137,24 @@ public class ProfileActivity extends AppCompatActivity {
             labelMedal.setVisibility(View.VISIBLE);
             medalsLayout.removeAllViews();
 
-            float density = getResources().getDisplayMetrics().density;
-            int size = (int) (64 * density);
-            int margin = (int) (4 * density);
+            int size = (int) (64 * getResources().getDisplayMetrics().density);
+            int margin = (int) (4 * getResources().getDisplayMetrics().density);
 
             for (MedalInfo medal : medals) {
                 ImageView iv = new ImageView(this);
                 iv.setImageResource(getMedalDrawable(medal.type));
                 iv.setBackgroundResource(R.drawable.edittext_bg);
 
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(size, size);
+                LinearLayout.LayoutParams lp =
+                        new LinearLayout.LayoutParams(size, size);
                 lp.setMargins(margin, margin, margin, margin);
                 iv.setLayoutParams(lp);
 
                 iv.setOnClickListener(v -> showMedalPopup(medal));
-
                 medalsLayout.addView(iv);
             }
+
         } catch (Exception e) {
-            android.util.Log.e("ProfileActivity", "Error loading medals", e);
             updateMedalsOldWay();
         }
     }
@@ -139,16 +172,16 @@ public class ProfileActivity extends AppCompatActivity {
         labelMedal.setVisibility(View.VISIBLE);
         medalsLayout.removeAllViews();
 
-        float density = getResources().getDisplayMetrics().density;
-        int size = (int) (64 * density);
-        int margin = (int) (4 * density);
+        int size = (int) (64 * getResources().getDisplayMetrics().density);
+        int margin = (int) (4 * getResources().getDisplayMetrics().density);
 
         for (String type : medals) {
             ImageView iv = new ImageView(this);
             iv.setImageResource(getMedalDrawable(type));
             iv.setBackgroundResource(R.drawable.edittext_bg);
 
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(size, size);
+            LinearLayout.LayoutParams lp =
+                    new LinearLayout.LayoutParams(size, size);
             lp.setMargins(margin, margin, margin, margin);
             iv.setLayoutParams(lp);
 
@@ -167,14 +200,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void showMedalPopup(MedalInfo medal) {
         if (infoPopup != null) {
-            infoPopup.setOnDismissListener(() -> {});
             infoPopup.show(medal.getTitle(), medal.getDescription());
-        } else {
-            new androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setTitle(medal.getTitle())
-                    .setMessage(medal.getDescription())
-                    .setPositiveButton("OK", null)
-                    .show();
         }
     }
 

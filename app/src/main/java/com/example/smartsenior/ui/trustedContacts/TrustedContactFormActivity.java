@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.smartsenior.R;
 import com.google.android.material.button.MaterialButton;
@@ -63,7 +64,21 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         setTheme(com.google.android.material.R.style.Theme_MaterialComponents_Light_NoActionBar);
         setContentView(R.layout.activity_trusted_contact_form);
 
-        TextView btnBack = findViewById(R.id.btnBack);
+        /* =======================
+           TOOLBAR – STRZAŁKA
+           ======================= */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        /* =======================
+           WIDOKI
+           ======================= */
         tvTitle = findViewById(R.id.tvTitle);
         tvInitials = findViewById(R.id.tvInitials);
         imgAvatar = findViewById(R.id.imgAvatar);
@@ -78,15 +93,18 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         MaterialButton btnSave = findViewById(R.id.btnSave);
         MaterialButton btnCancel = findViewById(R.id.btnCancel);
 
-        btnBack.setOnClickListener(v -> finish());
         btnCancel.setOnClickListener(v -> finish());
 
-        // Telefon
+        /* =======================
+           TELEFON – 9 CYFR
+           ======================= */
         etPhone.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         etPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
         etPhone.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(9) });
 
-        // Set title
+        /* =======================
+           TRYB: DODAJ / EDYTUJ
+           ======================= */
         String mode = getIntent().getStringExtra("mode");
         id = getIntent().getStringExtra("id");
 
@@ -112,7 +130,12 @@ public class TrustedContactFormActivity extends AppCompatActivity {
             tvTitle.setText("Dodaj kontakt");
         }
 
-        btnPickPhoto.setOnClickListener(v -> pickPhotoLauncher.launch(new String[]{"image/*"}));
+        /* =======================
+           ZDJĘCIE
+           ======================= */
+        btnPickPhoto.setOnClickListener(v ->
+                pickPhotoLauncher.launch(new String[]{"image/*"})
+        );
 
         imgAvatar.setOnLongClickListener(v -> {
             if (photoUri == null || photoUri.isEmpty()) return true;
@@ -125,10 +148,15 @@ public class TrustedContactFormActivity extends AppCompatActivity {
 
         etName.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) { updateInitialsPreview(); }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateInitialsPreview();
+            }
             @Override public void afterTextChanged(Editable s) {}
         });
 
+        /* =======================
+           ZAPIS
+           ======================= */
         btnSave.setOnClickListener(v -> {
             String name = etName.getText() == null ? "" : etName.getText().toString().trim();
             String phone9 = etPhone.getText() == null ? "" : etPhone.getText().toString().trim();
@@ -161,6 +189,9 @@ public class TrustedContactFormActivity extends AppCompatActivity {
         refreshPhotoUi();
     }
 
+    /* =======================
+       UI – ZDJĘCIE / INICJAŁY
+       ======================= */
     private void refreshPhotoUi() {
         boolean hasPhoto = photoUri != null && !photoUri.isEmpty();
 

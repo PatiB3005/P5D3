@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E9EEF5">
 
-    <!-- GŁÓWNA TREŚĆ -->
+    <!-- TOOLBAR: TYLKO STRZAŁKA -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSettings"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#2B6CB0"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="" />
+
+    <!-- GŁÓWNA TREŚĆ (ODSUNIĘTA POD TOOLBAR) -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +33,6 @@
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:text="Profil użytkownika"
                 android:textAlignment="center"
                 android:textColor="#000000"

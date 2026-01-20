@@ -25,4 +25,7 @@
 
     <string name="close">Zamknij</string>
     <string name="zoom_image">Powiększ zdjęcie</string>
+    <string name="cd_back_to_main">Wróć do menu głównego</string>
+    <string name="initials_placeholder">"?"</string>
+
 </resources>

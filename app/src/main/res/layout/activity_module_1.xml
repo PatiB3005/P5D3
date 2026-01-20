@@ -13,7 +13,7 @@
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="#4F46E5"
+        android:background="#2B6CB0"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:titleTextColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"

@@ -123,6 +123,10 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank7Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.Bank8Activity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.BankNegativeResultActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.bankScenario.BankPositiveResultActivity" />
+
+
 
         <!-- Scenariusz: Telefon na wnuczka -->
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.grandchildScenario.Grandchild1Activity" />
