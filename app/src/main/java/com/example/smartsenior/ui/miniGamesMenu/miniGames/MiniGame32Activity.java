@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.smartsenior.R;
 import com.example.smartsenior.data.scores.HighScoreStore;
 import com.example.smartsenior.data.scores.ScoreKeys;
 import com.example.smartsenior.ui.miniGamesMenu.MiniGamesMenuActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
@@ -70,23 +72,21 @@ public class MiniGame32Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_game3_2);
 
-        // bind: top
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
         topScroll = findViewById(R.id.topScroll);
         topChipsContainer = findViewById(R.id.topChipsContainer);
 
-        // bind: buttons
         btnBack = findViewById(R.id.btnBack);
         btnEvaluate = findViewById(R.id.btnEvaluate);
 
-        // bind: score UI
         tvHighScore = findViewById(R.id.tvHighScore);
         tvCurrentScore = findViewById(R.id.tvCurrentScore);
 
-        // pokaż rekord od razu
         updateHighScoreUi();
         tvCurrentScore.setText("Wynik: -/4");
 
-        // definicje/sloty
         LinearLayout defsContainer = findViewById(R.id.definitionsContainer);
 
         for (int i = 0; i < ROUND_SIZE; i++) {
@@ -103,10 +103,8 @@ public class MiniGame32Activity extends AppCompatActivity {
             host.setOnDragListener(this::onHostDrag);
         }
 
-        // baza pytań
         buildQuestionBank();
 
-        // back
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(this, MiniGamesMenuActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -114,17 +112,12 @@ public class MiniGame32Activity extends AppCompatActivity {
             finish();
         });
 
-        // evaluate
         btnEvaluate.setOnClickListener(v -> evaluateAnswers());
 
-        // start
         startNewRound();
     }
 
     private void buildQuestionBank() {
-        // Możesz tu dopisywać ile chcesz.
-        // Ważne: "answer" musi być dokładnie takie, jak chcesz mieć na chipie.
-
         questionBank.clear();
 
         questionBank.add(new Question(
@@ -182,8 +175,6 @@ public class MiniGame32Activity extends AppCompatActivity {
                 "Link",
                 "- odnośnik, który przenosi do innej strony lub zasobu w internecie."
         ));
-
-        // Zmyłki NIE muszą być w banku pytań — lepiej trzymać je osobno.
     }
 
     private void updateHighScoreUi() {
@@ -195,7 +186,6 @@ public class MiniGame32Activity extends AppCompatActivity {
         evaluated = false;
         tvCurrentScore.setText("Wynik: -/4");
 
-        // czyść hosty i przywróć placeholdery
         for (int i = 0; i < answerHosts.length; i++) {
             ViewGroup host = answerHosts[i];
             host.removeAllViews();
@@ -204,16 +194,13 @@ public class MiniGame32Activity extends AppCompatActivity {
 
         topChipsContainer.removeAllViews();
 
-        // --- losuj 4 pytania ---
         roundQuestions.clear();
         List<Question> copy = new ArrayList<>(questionBank);
         Collections.shuffle(copy);
 
-        // zabezpieczenie: jeśli kiedyś będziesz miał mniej niż 4 w banku
         int take = Math.min(ROUND_SIZE, copy.size());
         for (int i = 0; i < take; i++) roundQuestions.add(copy.get(i));
 
-        // ustaw definicje w UI (4 wiersze)
         for (int i = 0; i < ROUND_SIZE; i++) {
             if (i < roundQuestions.size()) {
                 defTexts[i].setText(roundQuestions.get(i).definition);
@@ -222,7 +209,6 @@ public class MiniGame32Activity extends AppCompatActivity {
             }
         }
 
-        // --- buduj pulę chipów: 4 poprawne + zmyłki ---
         pool.clear();
         HashSet<String> used = new HashSet<>();
 
@@ -231,7 +217,6 @@ public class MiniGame32Activity extends AppCompatActivity {
             used.add(q.answer);
         }
 
-        // zmyłki (możesz dopisywać)
         String[] decoys = new String[]{"http", "WWW", "SMS", "1234", "Admin"};
 
         int added = 0;
@@ -271,7 +256,6 @@ public class MiniGame32Activity extends AppCompatActivity {
                 int index = findHostIndex(parent);
                 parent.removeView(v);
 
-                // wraca na górę -> LayoutParams dla LinearLayout
                 LinearLayout.LayoutParams topLp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
@@ -285,7 +269,6 @@ public class MiniGame32Activity extends AppCompatActivity {
             }
         });
 
-        // long press -> start drag (fix: scroll)
         chip.setOnLongClickListener(v -> {
             if (evaluated) return true;
             if (topScroll != null) topScroll.requestDisallowInterceptTouchEvent(true);
@@ -319,7 +302,6 @@ public class MiniGame32Activity extends AppCompatActivity {
                 View dragged = (View) event.getLocalState();
                 if (dragged == null) return true;
 
-                // jeśli host ma już chip (poza placeholderem) -> zwróć go na górę
                 View existingChip = findChipInHost(host);
                 if (existingChip != null) {
                     host.removeView(existingChip);
@@ -333,15 +315,12 @@ public class MiniGame32Activity extends AppCompatActivity {
                     existingChip.setLayoutParams(topLp);
                 }
 
-                // usuń dragged z poprzedniego rodzica
                 ViewGroup oldParent = (ViewGroup) dragged.getParent();
                 if (oldParent != null) oldParent.removeView(dragged);
 
-                // host ma pokazać tylko chip (placeholder znika)
                 host.removeAllViews();
                 host.addView(dragged);
 
-                // host jest FrameLayout -> muszą być FrameLayout.LayoutParams
                 android.widget.FrameLayout.LayoutParams hostLp =
                         new android.widget.FrameLayout.LayoutParams(
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -399,7 +378,6 @@ public class MiniGame32Activity extends AppCompatActivity {
 
             String word = (String) chip.getTag();
 
-            // poprawna odpowiedź dla i-tego pytania w rundzie
             String correctAnswer = (i < roundQuestions.size()) ? roundQuestions.get(i).answer : null;
 
             if (correctAnswer != null && correctAnswer.equals(word)) {

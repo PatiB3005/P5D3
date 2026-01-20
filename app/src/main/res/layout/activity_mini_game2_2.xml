@@ -7,155 +7,185 @@
     android:layout_height="match_parent"
     android:background="#F6F8FB">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="18dp"
-        android:gravity="center"
-        android:text="Bezpieczne hasło"
-        android:textAlignment="center"
-        android:textColor="#0B0B0B"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="Spróbuj zbudować silne i\nbezpieczne hasło"
-        android:textColor="#1B1B1B"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    <TextView
-        android:id="@+id/tvStrength"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="20dp"
-        android:text="Moc hasła: 0%"
-        android:textColor="#1B1B1B"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
-
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progressStrength"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:indeterminate="false"
-        android:progress="0"
-        app:indicatorColor="#8CCFE0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvStrength"
-        app:trackColor="#DADDE2"
-        app:trackCornerRadius="10dp" />
-
-    <TextView
-        android:id="@+id/tvYourPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:text="Twoje hasło:"
-        android:textColor="#1B1B1B"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressStrength" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/passwordBox"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        app:cardBackgroundColor="#F6F1DD"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:contentPadding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#2B6CB0"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvYourPassword">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/passwordChipsContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" />
-        </HorizontalScrollView>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/tvTiles"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:text="Kafelki do wyboru:"
-        android:textColor="#1B1B1B"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordBox" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/tilesCard"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="#E9ECF0"
-        app:cardCornerRadius="14dp"
-        app:cardElevation="0dp"
-        app:contentPadding="14dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
         app:layout_constraintBottom_toTopOf="@id/bottomButtons"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTiles">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTiles"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentRoot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingBottom="4dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="4" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:text="Bezpieczne hasło"
+                android:textAlignment="center"
+                android:textColor="#0B0B0B"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="Spróbuj zbudować silne i\nbezpieczne hasło"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <TextView
+                android:id="@+id/tvStrength"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="20dp"
+                android:text="Moc hasła: 0%"
+                android:textColor="#1B1B1B"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressStrength"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:indeterminate="false"
+                android:progress="0"
+                app:indicatorColor="#8CCFE0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStrength"
+                app:trackColor="#DADDE2"
+                app:trackCornerRadius="10dp" />
+
+            <TextView
+                android:id="@+id/tvYourPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:text="Twoje hasło:"
+                android:textColor="#1B1B1B"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressStrength" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/passwordBox"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                app:cardBackgroundColor="#F6F1DD"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:contentPadding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvYourPassword">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/passwordChipsContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvTiles"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:text="Kafelki do wyboru:"
+                android:textColor="#1B1B1B"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordBox" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tilesCard"
+                android:layout_width="0dp"
+                android:layout_height="520dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#E9ECF0"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:contentPadding="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTiles"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingBottom="4dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="4" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottomButtons"
@@ -172,7 +202,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Wstecz -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
             android:layout_width="0dp"
@@ -184,14 +213,19 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="22dp" />
+            app:cornerRadius="22dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeStepGranularity="1sp"/>
 
         <Space
             android:id="@+id/spaceBackEvaluate"
             android:layout_width="14dp"
             android:layout_height="1dp" />
 
-        <!-- Oceń -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEvaluate"
             android:layout_width="0dp"
@@ -203,9 +237,14 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="22dp" />
+            app:cornerRadius="22dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeStepGranularity="1sp"/>
 
-        <!-- Powtórz -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRepeat"
             android:layout_width="0dp"
@@ -218,7 +257,13 @@
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="22dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeStepGranularity="1sp"/>
 
         <Space
             android:id="@+id/spaceRepeatFinish"
@@ -226,7 +271,6 @@
             android:layout_height="1dp"
             android:visibility="gone" />
 
-        <!-- Zakończ -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinish"
             android:layout_width="0dp"
@@ -239,7 +283,13 @@
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="22dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeStepGranularity="1sp"/>
 
     </LinearLayout>
 
