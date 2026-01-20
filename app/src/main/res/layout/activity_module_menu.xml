@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8F0FA">
 
+    <!-- NIEBIESKI PASEK -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#2B6CB0"
+        app:title="" />
+
+    <!-- STRZAŁKA COFANIA -->
+    <ImageButton
+        android:id="@+id/btnBackToMain"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back_black"
+        android:padding="12dp"
+        android:scaleType="center"
+        app:tint="#FFFFFF"
+        android:contentDescription="@string/cd_back_to_main" />
+
+    <!-- TREŚĆ -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E8F0FA"
+        android:layout_marginTop="56dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -17,6 +42,8 @@
             android:gravity="center_horizontal"
             android:padding="24dp">
 
+            <!-- PRZYCISK: WRÓĆ DO SAMOUCZKA -->
+            <!-- widoczność sterowana w kodzie -->
             <Button
                 android:id="@+id/button_back_to_tutorial"
                 android:layout_width="wrap_content"
@@ -26,17 +53,11 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#2B6CB0"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="20dp"
-
-                android:layout_gravity="end"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="72dp"
-
-                android:visibility="gone" />
-
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone"
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/textModulesHeader"
@@ -370,17 +391,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <ImageButton
-        android:id="@+id/btnBackToMain"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_gravity="top|start"
-        android:layout_margin="16dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back_black"
-        android:contentDescription="Wróć do menu głównego"
-        android:scaleType="centerInside"
-        android:padding="10dp" />
 
 </FrameLayout>

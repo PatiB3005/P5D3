@@ -6,26 +6,41 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- NIEBIESKI PASEK -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="#2B6CB0"
+        app:title=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- STRZAŁKA – IDENTYCZNA JAK WSZĘDZIE -->
     <ImageButton
         android:id="@+id/btnBackToMain"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_margin="16dp"
-        android:background="@android:color/transparent"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_arrow_back_black"
-        android:contentDescription="Wróć do menu głównego"
-        android:scaleType="centerInside"
-        android:padding="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:scaleType="center"
+        android:padding="12dp"
+        app:tint="#FFFFFF"
+        android:contentDescription="@string/cd_back_to_main"
+        app:layout_constraintTop_toTopOf="@id/topAppBar"
+        app:layout_constraintBottom_toBottomOf="@id/topAppBar"
+        app:layout_constraintStart_toStartOf="@id/topAppBar"
+        android:layout_marginStart="4dp" />
 
+    <!-- SCROLL Z TREŚCIĄ (NIC NIE ZMIENIONE) -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
         app:layout_constraintBottom_toTopOf="@id/bottomContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -77,6 +92,7 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- SEPARATOR -->
     <View
         android:id="@+id/separator"
         android:layout_width="0dp"
@@ -86,6 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- DOLNY PRZYCISK -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"
@@ -109,7 +126,6 @@
             android:textSize="22sp"
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="20dp"
-            app:strokeWidth="0dp"
             android:insetLeft="0dp"
             android:insetRight="0dp"
             android:insetTop="0dp"

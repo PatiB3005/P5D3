@@ -22,10 +22,14 @@ public class TutorialActivity3 extends BaseTTSActivity {
         setupTtsToggleIfPresent();
 
         ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain.bringToFront();
+        btnBackToMain.setTranslationZ(50f);
+
         btnBackToMain.setOnClickListener(v -> {
-            tts.stop();
+            if (tts != null) tts.stop();
             goToMainMenu();
         });
+
 
         Button showModulesButton = findViewById(R.id.button_pokaz_moduly);
         showModulesButton.setOnClickListener(v -> {

@@ -20,10 +20,14 @@ public class TutorialActivity4 extends BaseTTSActivity {
         setupTtsToggleIfPresent();
 
         ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain.bringToFront();
+        btnBackToMain.setTranslationZ(50f);
+
         btnBackToMain.setOnClickListener(v -> {
-            tts.stop();
+            if (tts != null) tts.stop();
             goToMainMenu();
         });
+
 
         Button nextButton = findViewById(R.id.button_dalej);
         nextButton.setOnClickListener(v -> {
@@ -33,11 +37,16 @@ public class TutorialActivity4 extends BaseTTSActivity {
     }
 
     private void goToMainMenu() {
+        getSharedPreferences("tutorial_progress", MODE_PRIVATE)
+                .edit()
+                .clear()
+                .apply();
+
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
     }
+
 
     @Override
     protected String getSpeakText() {

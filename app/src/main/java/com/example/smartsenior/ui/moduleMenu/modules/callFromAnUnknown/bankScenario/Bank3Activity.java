@@ -20,21 +20,18 @@ public class Bank3Activity extends BaseTTSActivity {
         LinearLayout declineCall = findViewById(R.id.declineCall);
 
         textAnswerA.setOnClickListener(v -> {
-            tts.stop();
+            if (tts != null) tts.stop();
             startActivity(new Intent(Bank3Activity.this, Bank4Activity.class));
         });
 
         textAnswerB.setOnClickListener(v -> {
-            tts.stop();
+            if (tts != null) tts.stop();
             startActivity(new Intent(Bank3Activity.this, Bank3aActivity.class));
         });
 
-        // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
-            tts.stop();
-            Intent intent = new Intent(this, BankPositiveResultActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            if (tts != null) tts.stop();
+            startActivity(new Intent(Bank3Activity.this, BankPositiveResultActivity.class));
             finish();
         });
     }

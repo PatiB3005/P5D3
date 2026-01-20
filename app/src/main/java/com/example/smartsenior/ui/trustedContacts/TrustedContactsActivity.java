@@ -27,6 +27,8 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import androidx.appcompat.widget.Toolbar;
+
 
 public class TrustedContactsActivity extends AppCompatActivity {
 
@@ -76,12 +78,20 @@ public class TrustedContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trusted_contacts);
 
-        TextView btnBack = findViewById(R.id.btnBack);
+        // ===== TOOLBAR (STRZAŁKA) =====
+        Toolbar toolbar = findViewById(R.id.toolbarTrusted);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        // ===== WIDOKI =====
         ConstraintLayout addNewRow = findViewById(R.id.addNewRow);
         RecyclerView rvTrusted = findViewById(R.id.rvTrusted);
         tvEmpty = findViewById(R.id.tvEmpty);
-
-        btnBack.setOnClickListener(v -> finish());
 
         contacts = TrustedContactsStorage.load(this);
 
@@ -104,6 +114,7 @@ public class TrustedContactsActivity extends AppCompatActivity {
 
         updateEmpty();
     }
+
 
     private void updateEmpty() {
         if (tvEmpty == null) return;

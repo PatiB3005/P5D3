@@ -1,11 +1,9 @@
 package com.example.smartsenior.ui.settings;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-
 import com.example.smartsenior.R;
 import com.example.smartsenior.tts.TTSManager;
 
@@ -24,6 +22,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarSettings);
         setSupportActionBar(toolbar);
+
+        // ⬇⬇⬇ TO JEST KLUCZ
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
         toolbar.setNavigationOnClickListener(v -> finish());
 
         switchFontSize = findViewById(R.id.switchFontSize);
@@ -43,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
             prefs.edit().putBoolean("large_font", isLarge).apply();
         });
 
-        // TTS – switch buttona
+        // TTS
         switchTts.setChecked(isTtsEnabled);
         switchTts.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked != isTtsEnabled) {
@@ -52,10 +56,8 @@ public class SettingsActivity extends AppCompatActivity {
                 isTtsEnabled = isChecked;
             }
 
-
             if (isTtsEnabled && isChecked) {
                 tts.speak("Lektor włączony");
-            } else if (!isTtsEnabled && !isChecked) {
             }
         });
     }

@@ -20,10 +20,14 @@ public class TutorialActivity2 extends BaseTTSActivity {
         setupTtsToggleIfPresent();
 
         ImageButton btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain.bringToFront();
+        btnBackToMain.setTranslationZ(50f);
+
         btnBackToMain.setOnClickListener(v -> {
-            tts.stop();
+            if (tts != null) tts.stop();
             goToMainMenu();
         });
+
 
         Button nextButton = findViewById(R.id.button_dalej);
         nextButton.setOnClickListener(v -> {
