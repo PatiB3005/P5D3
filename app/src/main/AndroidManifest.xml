@@ -74,6 +74,8 @@
         <activity android:name=".ui.tutorial.TutorialActivity4" />
         <activity android:name=".ui.tutorial.TutorialActivity5" />
         <activity android:name=".ui.tutorial.TutorialActivity6" />
+        <activity android:name=".ui.tutorial.TutorialActivity7" />
+        <activity android:name=".ui.tutorial.TutorialActivity8" />
 
         <!-- Zadania -->
         <activity android:name=".ui.moduleMenu.modules.tasks.TasksActivity" />

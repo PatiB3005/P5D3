@@ -76,7 +76,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void saveProfileData() {
         String name = inputName.getText().toString();
-        profileManager.saveProfile(name, 0); // progress możesz obsłużyć po swojemu
+        String surname = inputSurname.getText().toString();
+        String age = inputAge.getText().toString();
+        profileManager.saveProfile(name, surname, age); // progress możesz obsłużyć po swojemu
     }
 
     private void loadProfileData() {

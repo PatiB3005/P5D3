@@ -1,7 +1,6 @@
 package com.example.smartsenior.ui.tutorial;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,14 +9,13 @@ import android.widget.TextView;
 import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
-import com.example.smartsenior.ui.moduleMenu.ModuleMenuActivity;
 
-public class TutorialActivity3 extends BaseTTSActivity {
+public class TutorialActivity8 extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial_3);
+        setContentView(R.layout.activity_tutorial_8);
 
         setupTtsToggleIfPresent();
 
@@ -27,17 +25,11 @@ public class TutorialActivity3 extends BaseTTSActivity {
             goToMainMenu();
         });
 
-        Button showModulesButton = findViewById(R.id.button_pokaz_moduly);
-        showModulesButton.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("tutorial_progress", MODE_PRIVATE);
-            prefs.edit().putInt("last_completed", 3).apply();
-
+        Button nextButton = findViewById(R.id.button_dalej);
+        nextButton.setOnClickListener(v -> {
             tts.stop();
-
-            Intent intent = new Intent(TutorialActivity3.this, ModuleMenuActivity.class);
-            intent.putExtra("from_tutorial", true);
-            startActivity(intent);
-            finish();
+            // TU przechodzisz do istniejącego ekranu "Gratulacje!" = TutorialActivity6
+            startActivity(new Intent(TutorialActivity8.this, TutorialActivity6.class));
         });
     }
 
@@ -50,12 +42,16 @@ public class TutorialActivity3 extends BaseTTSActivity {
 
     @Override
     protected String getSpeakText() {
-        TextView t = findViewById(R.id.text_tytul);
-        TextView d = findViewById(R.id.text_opis);
+        CharSequence t = ((TextView) findViewById(R.id.text_tytul)).getText();
+        CharSequence d = ((TextView) findViewById(R.id.text_opis)).getText();
+        CharSequence h = null;
+        TextView hint = findViewById(R.id.text_hint);
+        if (hint != null) h = hint.getText();
 
         StringBuilder sb = new StringBuilder();
-        if (t != null && t.getText() != null) sb.append(t.getText()).append(". ");
-        if (d != null && d.getText() != null) sb.append(d.getText());
+        if (t != null) sb.append(t).append(". ");
+        if (d != null) sb.append(d);
+        if (h != null) sb.append(". ").append(h);
 
         return sb.toString().trim();
     }

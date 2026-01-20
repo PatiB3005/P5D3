@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class Task4Page1Activity extends BaseTTSActivity {
 
-    MaterialButton btnName, btnContent, btnLink, btnNext, popupClose;
+    MaterialButton btnName, btnContent, btnLink, btnNext, popupClose, btnTasksMenu;
     View overlay;
     LinearLayout popupBox;
     TextView popupText;
@@ -29,6 +29,7 @@ public class Task4Page1Activity extends BaseTTSActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task4_page1);
 
+        btnTasksMenu = findViewById(R.id.btnTasksMenu);
         btnName = findViewById(R.id.btnName);
         btnContent = findViewById(R.id.btnContent);
         btnLink = findViewById(R.id.btnLink);
@@ -38,6 +39,14 @@ public class Task4Page1Activity extends BaseTTSActivity {
         popupBox = findViewById(R.id.popupBox);
         popupText = findViewById(R.id.popupText);
         popupClose = findViewById(R.id.popupClose);
+
+        btnTasksMenu.setOnClickListener(v -> {
+            tts.stop();
+            Intent i = new Intent(Task4Page1Activity.this, TasksActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            finish();
+        });
 
         btnNext.setVisibility(View.GONE);
 
@@ -79,7 +88,6 @@ public class Task4Page1Activity extends BaseTTSActivity {
     }
 
     private void showPopup(boolean correct) {
-
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
 

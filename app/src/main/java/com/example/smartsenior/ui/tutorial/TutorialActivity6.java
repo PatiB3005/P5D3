@@ -3,6 +3,7 @@ package com.example.smartsenior.ui.tutorial;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.smartsenior.MainActivity;
@@ -33,10 +34,26 @@ public class TutorialActivity6 extends BaseTTSActivity {
         });
     }
 
+    private void goToMainMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     protected String getSpeakText() {
-        CharSequence t = ((TextView) findViewById(R.id.text_tytul)).getText();
-        CharSequence d = ((TextView) findViewById(R.id.text_opis)).getText();
-        return (t == null ? "" : t + ". ") + (d == null ? "" : d.toString());
+        TextView t = findViewById(R.id.text_tytul);
+        TextView d = findViewById(R.id.text_opis);
+        TextView d1 = findViewById(R.id.text_dopisek1);
+        TextView d2 = findViewById(R.id.text_dopisek2);
+
+        StringBuilder sb = new StringBuilder();
+        if (t != null && t.getText() != null) sb.append(t.getText()).append(". ");
+        if (d != null && d.getText() != null) sb.append(d.getText()).append(" ");
+        if (d1 != null && d1.getText() != null) sb.append(d1.getText()).append(" ");
+        if (d2 != null && d2.getText() != null) sb.append(d2.getText());
+
+        return sb.toString().trim();
     }
 }

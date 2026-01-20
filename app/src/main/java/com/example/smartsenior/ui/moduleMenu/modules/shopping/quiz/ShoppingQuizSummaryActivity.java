@@ -75,19 +75,16 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
             finishMedal.setImageResource(R.drawable.ic_medal_gold);
             resultText.setText("GRATULACJE!");
             summaryMessage.setText("Świetnie rozpoznajesz fałszywe sklepy.");
-            pm.upgradeMedal("ZO", "GOLD");
         } else if (percent >= 60f) {
             // ZO2 – srebrny medal
             finishMedal.setImageResource(R.drawable.ic_medal_silver);
             resultText.setText("Bardzo dobrze!");
             summaryMessage.setText("Masz dobrą intuicję, ale warto zachować czujność.");
-            pm.upgradeMedal("ZO", "SILVER");
         } else if (percent >= 40f) {
             // ZO3 – brązowy medal
             finishMedal.setImageResource(R.drawable.ic_medal_bronze);
             resultText.setText("Całkiem nieźle!");
             summaryMessage.setText("Warto jeszcze poćwiczyć bezpieczne zakupy.");
-            pm.upgradeMedal("ZO", "BRONZE");
         } else {
             // brak medalu – smutna buźka
             finishMedal.setImageResource(R.drawable.ic_sad_emoji);

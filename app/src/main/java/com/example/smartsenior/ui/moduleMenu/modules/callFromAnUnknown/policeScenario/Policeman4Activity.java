@@ -29,12 +29,12 @@ public class Policeman4Activity extends BaseTTSActivity {
         // Czerwona słuchawka → result
         declineCall.setOnClickListener(v -> {
             tts.stop();
-
-            Intent intent = new Intent(Policeman4Activity.this, Policeman6bActivity.class);
+            Intent intent = new Intent(this, Policeman6bActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         });
+
     }
 
     @Override

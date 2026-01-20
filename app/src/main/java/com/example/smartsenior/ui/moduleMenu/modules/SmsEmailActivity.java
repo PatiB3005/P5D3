@@ -156,15 +156,12 @@ public class SmsEmailActivity extends BaseTTSActivity {
             if (percent >= 80f) {
                 finishMedal.setImageResource(R.drawable.ic_medal_gold);
                 resultText.setText("BRAWO! Perfekcyjnie ukończyłeś moduł „Bezpieczne wiadomości”.");
-                pm.upgradeMedal("SMS1", "GOLD");
             } else if (percent >= 60f) {
                 finishMedal.setImageResource(R.drawable.ic_medal_silver);
                 resultText.setText("Bardzo dobrze! Kilka drobiazgów do dopracowania, ale świetnie sobie radzisz.");
-                pm.upgradeMedal("SMS1", "SILVER");
             } else if (percent >= 40f) {
                 finishMedal.setImageResource(R.drawable.ic_medal_bronze);
                 resultText.setText("Całkiem nieźle, warto jeszcze trochę poćwiczyć, aby lepiej rozpoznawać zagrożenia.");
-                pm.upgradeMedal("SMS1", "BRONZE");
             } else {
                 finishMedal.setImageResource(R.drawable.ic_sad_emoji);
                 resultText.setText("Tym razem się nie udało. Spróbuj jeszcze raz i uważnie czytaj treść wiadomości.");

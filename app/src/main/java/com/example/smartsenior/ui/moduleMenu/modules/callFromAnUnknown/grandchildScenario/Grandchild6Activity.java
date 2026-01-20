@@ -21,6 +21,7 @@ public class Grandchild6Activity extends BaseTTSActivity {
             Intent intent = new Intent(Grandchild6Activity.this, Grandchild7Activity.class);
             startActivity(intent);
         });
+
     }
 
     @Override

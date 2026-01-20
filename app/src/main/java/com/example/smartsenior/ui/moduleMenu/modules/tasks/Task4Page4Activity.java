@@ -16,7 +16,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class Task4Page4Activity extends BaseTTSActivity {
 
-    MaterialButton btnApp, btnLink, btnContent, btnFinish;
+    MaterialButton btnApp, btnLink, btnContent, btnFinish, btnCheck, btnTasksMenu;
     View overlay;
     LinearLayout popupBox;
     TextView popupText;
@@ -25,17 +25,21 @@ public class Task4Page4Activity extends BaseTTSActivity {
     boolean appSelected = false;
     boolean linkSelected = false;
     boolean contentSelected = false;
+
     boolean locked = false;
+    boolean resultReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task4_page4);
 
+        btnTasksMenu = findViewById(R.id.btnTasksMenu);
         btnApp = findViewById(R.id.btnApp);
         btnLink = findViewById(R.id.btnLink);
         btnContent = findViewById(R.id.btnContent);
         btnFinish = findViewById(R.id.btnFinish);
+        btnCheck = findViewById(R.id.btnCheck);
 
         overlay = findViewById(R.id.overlay);
         popupBox = findViewById(R.id.popupBox);
@@ -44,18 +48,34 @@ public class Task4Page4Activity extends BaseTTSActivity {
 
         btnFinish.setVisibility(View.GONE);
 
+        btnTasksMenu.setOnClickListener(v -> {
+            tts.stop();
+            Intent i = new Intent(Task4Page4Activity.this, TasksActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            finish();
+        });
+
+        btnCheck.setEnabled(false);
+        btnCheck.setAlpha(0.6f);
+
         btnApp.setOnClickListener(v -> { tts.stop(); toggle(btnApp, 1); });
         btnLink.setOnClickListener(v -> { tts.stop(); toggle(btnLink, 2); });
         btnContent.setOnClickListener(v -> { tts.stop(); toggle(btnContent, 3); });
 
+        btnCheck.setOnClickListener(v -> {
+            tts.stop();
+            checkAnswer();
+        });
+
         popupClose.setOnClickListener(v -> {
             tts.stop();
             hidePopup();
+            if (resultReady) showFinish();
         });
 
         btnFinish.setOnClickListener(v -> {
             tts.stop();
-
             ProgressStore.markDone(this, ProgressKeys.M1_TASK4_DONE);
 
             Intent i = new Intent(this, TasksActivity.class);
@@ -77,43 +97,59 @@ public class Task4Page4Activity extends BaseTTSActivity {
         } else {
             contentSelected = !contentSelected;
             highlight(btn, contentSelected);
-
-            if (contentSelected) {
-                showError();
-                return;
-            }
         }
-        checkIfReady();
+
+        updateCheckButtonState();
     }
 
     private void highlight(MaterialButton btn, boolean selected) {
-        if (selected) btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6FB6FF")));
-        else btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A7D0FF")));
+        if (selected)
+            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6FB6FF")));
+        else
+            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#A7D0FF")));
     }
 
-    private void checkIfReady() {
+    private void updateCheckButtonState() {
         if (locked) return;
-        if (appSelected && linkSelected) showSuccess();
+        boolean anything = appSelected || linkSelected || contentSelected;
+        btnCheck.setEnabled(anything);
+        btnCheck.setAlpha(anything ? 1f : 0.6f);
+    }
+
+    private void checkAnswer() {
+        if (locked) return;
+
+        // Poprawne: Aplikacja + Link, błędne: Treść wiadomości
+        boolean correct = appSelected && linkSelected && !contentSelected;
+
+        if (correct) showSuccess();
+        else showError();
     }
 
     private void showSuccess() {
         locked = true;
+        resultReady = true;
+
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
         popupText.setText("✓ Dobrze!\n");
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CFF9C7")));
+
         disableButtons();
-        showFinish();
+        btnCheck.setEnabled(false);
     }
 
     private void showError() {
         locked = true;
+        resultReady = true;
+
         overlay.setVisibility(View.VISIBLE);
         popupBox.setVisibility(View.VISIBLE);
         popupText.setText("✗ Niepoprawnie.\n");
         popupBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1D1")));
+
         disableButtons();
-        showFinish();
+        btnCheck.setEnabled(false);
     }
 
     private void disableButtons() {

@@ -10,12 +10,12 @@ import com.example.smartsenior.MainActivity;
 import com.example.smartsenior.R;
 import com.example.smartsenior.ui.BaseTTSActivity;
 
-public class TutorialActivity4 extends BaseTTSActivity {
+public class TutorialActivity7 extends BaseTTSActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial_4);
+        setContentView(R.layout.activity_tutorial_7);
 
         setupTtsToggleIfPresent();
 
@@ -28,7 +28,7 @@ public class TutorialActivity4 extends BaseTTSActivity {
         Button nextButton = findViewById(R.id.button_dalej);
         nextButton.setOnClickListener(v -> {
             tts.stop();
-            startActivity(new Intent(TutorialActivity4.this, TutorialActivity5.class));
+            startActivity(new Intent(TutorialActivity7.this, TutorialActivity8.class));
         });
     }
 
@@ -41,13 +41,8 @@ public class TutorialActivity4 extends BaseTTSActivity {
 
     @Override
     protected String getSpeakText() {
-        TextView t = findViewById(R.id.text_tytul);
-        TextView d = findViewById(R.id.text_opis);
-
-        StringBuilder sb = new StringBuilder();
-        if (t != null && t.getText() != null) sb.append(t.getText()).append(". ");
-        if (d != null && d.getText() != null) sb.append(d.getText());
-
-        return sb.toString().trim();
+        CharSequence t = ((TextView) findViewById(R.id.text_tytul)).getText();
+        CharSequence d = ((TextView) findViewById(R.id.text_opis)).getText();
+        return (t == null ? "" : t + ". ") + (d == null ? "" : d.toString());
     }
 }
