@@ -31,7 +31,7 @@
             android:id="@+id/textMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Właśnie wykryliśmy podejrzaną próbę zalogowania się na Pani konto.\nCzy możemy szybko potwierdzić dane, by zablokować oszustów?"
+            android:text="Rozumiem Pani obawy. Proszę sprawdzić, że numer na wyświetlaczu to oficjalna infolinia banku — widzi Pani?\nTo połączenie jest szyfrowane i bezpieczne."
             android:textSize="22sp"
             android:textColor="#000000"
             android:lineSpacingExtra="4dp"
@@ -96,28 +96,13 @@
                 android:background="@drawable/bluer_box_radius"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="16dp"
-                android:text="A) „Oczywiście, proszę mówić, co mam zrobić.”"
+                android:text="A) „Faktycznie, widzę nazwę banku. Dobrze, proszę mówić dalej.”"
                 android:textColor="#000000"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textQuestion" />
 
-            <TextView
-                android:id="@+id/textAnswerB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:background="@drawable/bluer_box_radius"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="16dp"
-                android:text="B) „Skąd mam wiedzieć, że dzwoni Pan naprawdę z banku?”"
-                android:textColor="#000000"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textAnswerA"  />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Kontener na przyciski -->

@@ -136,7 +136,7 @@ public class AddReminderActivity extends AppCompatActivity {
         if (acCategory != null) {
             ArrayAdapter<String> catAdapter = new ArrayAdapter<>(
                     this,
-                    android.R.layout.simple_list_item_1,
+                    R.layout.item_dropdown_category,
                     categories
             );
             acCategory.setAdapter(catAdapter);

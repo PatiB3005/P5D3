@@ -79,16 +79,19 @@
                 <TextView
                     android:id="@+id/tvTypeChosen"
                     android:layout_width="match_parent"
-                    android:layout_height="74dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="74dp"
                     android:background="#F3F6FB"
                     android:paddingStart="18dp"
                     android:paddingEnd="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
                     android:gravity="center_vertical"
                     android:text="Wybierz kategorię"
                     android:textColor="#1A202C"
                     android:textSize="24sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:ellipsize="end"
                     android:clickable="true"
                     android:focusable="true"
@@ -162,7 +165,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center_vertical|start"
+                    android:gravity="center"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
                     android:paddingStart="22dp"
                     android:paddingEnd="22dp"
                     app:backgroundTint="#2B6CB0"
@@ -220,99 +225,105 @@
                     android:autofillHints="" />
             </LinearLayout>
 
-        <!-- CHECKLISTA ZAKUPÓW -->
-        <LinearLayout
-            android:id="@+id/sectionShopping"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#FFFFFF"
-            android:padding="18dp"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Produkty do kupienia"
-                android:textColor="#4A5568"
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="10dp" />
-
-            <!-- ✅ KATEGORIA (pokazuje się tylko jak user wybrał grupowanie) -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilCategory"
+            <!-- CHECKLISTA ZAKUPÓW -->
+            <LinearLayout
+                android:id="@+id/sectionShopping"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:hint="Kategoria"
-                android:visibility="gone"
-                app:endIconMode="dropdown_menu">
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/acCategory"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Produkty do kupienia"
+                    android:textColor="#4A5568"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="10dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:hint="Kategoria"
+                    android:visibility="gone"
+                    app:endIconMode="dropdown_menu">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/acCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:background="#F3F6FB"
+                        android:padding="18dp"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:inputType="none"
+                        android:textColor="#1A202C"
+                        android:textColorHint="#718096" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <EditText
+                    android:id="@+id/etShoppingItem"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:background="#F3F6FB"
                     android:padding="18dp"
                     android:textSize="22sp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="np. Chleb"
+                    android:textColor="#1A202C"
+                    android:textColorHint="#718096"
+                    android:inputType="textCapSentences"
+                    android:importantForAutofill="no"
+                    android:autofillHints="" />
 
-            <EditText
-                android:id="@+id/etShoppingItem"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:background="#F3F6FB"
-                android:padding="18dp"
-                android:textSize="22sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="np. Chleb"
-                android:textColor="#1A202C"
-                android:textColorHint="#718096"
-                android:inputType="textCapSentences"
-                android:importantForAutofill="no"
-                android:autofillHints="" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Dodaj produkt"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
+                    app:backgroundTint="#2B6CB0"
+                    app:cornerRadius="26dp"
+                    app:icon="@android:drawable/ic_input_add"
+                    app:iconGravity="textStart"
+                    app:iconPadding="18dp"
+                    app:iconSize="32dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddItem"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="12dp"
-                android:text="Dodaj produkt"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat_bold"
-                app:backgroundTint="#2B6CB0"
-                app:cornerRadius="26dp"
-                app:icon="@android:drawable/ic_input_add"
-                app:iconGravity="textStart"
-                app:iconPadding="18dp"
-                app:iconSize="32dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(Przytrzymaj produkt, aby usunąć)"
+                    android:textColor="#4A5568"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginTop="10dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="(Przytrzymaj produkt, aby usunąć)"
-                android:textColor="#4A5568"
-                android:textSize="16sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:layout_marginTop="10dp" />
+                <ListView
+                    android:id="@+id/listShopping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:divider="#D7DEE8"
+                    android:dividerHeight="1dp"
+                    android:padding="6dp" />
+            </LinearLayout>
 
-            <ListView
-                android:id="@+id/listShopping"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:divider="#D7DEE8"
-                android:dividerHeight="1dp"
-                android:padding="6dp" />
         </LinearLayout>
-        </LinearLayout>
-
     </ScrollView>
 
     <!-- BOTTOM SAVE -->
@@ -338,6 +349,8 @@
             android:textSize="28sp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:onClick="onSaveClicked"
             app:backgroundTint="#2B6CB0"
             app:cornerRadius="30dp" />
