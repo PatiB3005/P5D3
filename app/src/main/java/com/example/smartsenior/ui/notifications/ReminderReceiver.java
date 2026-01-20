@@ -27,7 +27,6 @@ public class ReminderReceiver extends BroadcastReceiver {
 
         if (reminder.type == ReminderType.SHOPPING) return;
 
-
         if (Build.VERSION.SDK_INT >= 33) {
             boolean granted = ContextCompat.checkSelfPermission(
                     context, Manifest.permission.POST_NOTIFICATIONS
@@ -55,7 +54,6 @@ public class ReminderReceiver extends BroadcastReceiver {
                 break;
         }
 
-        // ✅ Klik w notyfikację -> NotificationsActivity + banner
         Intent open = new Intent(context, NotificationsActivity.class);
         open.putExtra("open_reminder_id", id);
         open.putExtra("open_type", reminder.type.name());
@@ -68,7 +66,6 @@ public class ReminderReceiver extends BroadcastReceiver {
                 .addNextIntentWithParentStack(open)
                 .getPendingIntent(id, piFlags);
 
-        // Fallback (gdyby TaskStackBuilder dał null)
         if (contentPi == null) {
             contentPi = PendingIntent.getActivity(context, id, open, piFlags);
         }
