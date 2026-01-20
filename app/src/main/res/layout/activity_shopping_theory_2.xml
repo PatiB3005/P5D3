@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
-        android:scrollbars="none"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,20 +85,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <!-- ✅ Custom "scrollbar" -->
-    <View
-        android:id="@+id/customScrollThumb"
-        android:layout_width="12dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
-        android:alpha="0.85"
-        android:background="#2B6CB0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/scrollContent"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
-        app:layout_constraintVertical_bias="0" />
 
     <!-- separator -->
     <View

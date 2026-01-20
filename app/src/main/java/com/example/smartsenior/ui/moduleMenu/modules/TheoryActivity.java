@@ -3,8 +3,6 @@ package com.example.smartsenior.ui.moduleMenu.modules;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
 
 import com.example.smartsenior.R;
@@ -20,8 +18,6 @@ public class TheoryActivity extends BaseTTSActivity {
     private int currentScreen = 1;
 
     private boolean firstScreenAlreadyShown = false;
-
-    private ViewTreeObserver.OnScrollChangedListener customScrollbarListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +43,10 @@ public class TheoryActivity extends BaseTTSActivity {
 
         setupButtons();
 
-        // ✅ zawsze start od góry
         ScrollView scroll = findViewById(R.id.scrollContent);
         if (scroll != null) {
             scroll.post(() -> scroll.scrollTo(0, 0));
         }
-
-        // ✅ gruby scrollbar (jeśli jest w tym layoucie)
-        setupCustomScrollbarIfPresent();
 
         if (firstScreenAlreadyShown) {
             getWindow().getDecorView().post(this::speakIfEnabled);
@@ -101,79 +93,6 @@ public class TheoryActivity extends BaseTTSActivity {
                 }
             });
         }
-    }
-
-    private void setupCustomScrollbarIfPresent() {
-        ScrollView scroll = findViewById(R.id.scrollContent);
-        View thumb = findViewById(R.id.customScrollThumb);
-        View bottomDivider = findViewById(R.id.bottomDivider);
-
-        // topGuide to Guideline -> w kodzie go nie potrzebujesz, bo track liczymy z położeń widoków
-        if (scroll == null || thumb == null || bottomDivider == null) return;
-
-        // usuń poprzedni listener
-        if (customScrollbarListener != null) {
-            try {
-                scroll.getViewTreeObserver().removeOnScrollChangedListener(customScrollbarListener);
-            } catch (Exception ignored) {}
-        }
-
-        Runnable update = () -> {
-            View child = scroll.getChildAt(0);
-            if (child == null) return;
-
-            int contentH = child.getHeight();
-            int viewportH = scroll.getHeight();
-
-            // brak scrolla => ukryj
-            if (contentH <= viewportH) {
-                thumb.setVisibility(View.GONE);
-                thumb.setTranslationY(0f);
-                return;
-            } else {
-                thumb.setVisibility(View.VISIBLE);
-            }
-
-            // ✅ wysokość toru: od góry ScrollView do dividera (nad przyciskami)
-            int[] scrollLoc = new int[2];
-            int[] dividerLoc = new int[2];
-            scroll.getLocationOnScreen(scrollLoc);
-            bottomDivider.getLocationOnScreen(dividerLoc);
-
-            int trackTop = scrollLoc[1];
-            int trackBottom = dividerLoc[1]; // divider jest linią nad przyciskami
-            int trackHeight = Math.max(1, trackBottom - trackTop);
-
-            // wysokość thumb proporcjonalna
-            int computed = (int) (trackHeight * (viewportH / (float) contentH));
-            int minPx = dpToPx(120);
-            int thumbHeight = Math.max(minPx, computed);
-
-            ViewGroup.LayoutParams lp = thumb.getLayoutParams();
-            if (lp != null && lp.height != thumbHeight) {
-                lp.height = thumbHeight;
-                thumb.setLayoutParams(lp);
-            }
-
-            int scrollRange = Math.max(1, contentH - viewportH);
-            float ratio = scroll.getScrollY() / (float) scrollRange;
-
-            float maxY = trackHeight - thumbHeight;
-            if (maxY < 0) maxY = 0;
-
-            // ✅ przesunięcie w dół w torze
-            thumb.setTranslationY(maxY * ratio);
-        };
-
-        customScrollbarListener = update::run;
-        scroll.getViewTreeObserver().addOnScrollChangedListener(customScrollbarListener);
-
-        scroll.post(update);
-    }
-
-    private int dpToPx(int dp) {
-        float density = getResources().getDisplayMetrics().density;
-        return Math.round(dp * density);
     }
 
     @Override
