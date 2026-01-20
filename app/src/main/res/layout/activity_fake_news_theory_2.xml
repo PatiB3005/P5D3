@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- Scroll -->
+    <!-- SCROLL -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -14,24 +14,23 @@
         android:fillViewport="true"
         android:overScrollMode="never"
         android:scrollbars="none"
-        android:paddingStart="0dp"
-        android:paddingEnd="26dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- CONTENT -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:paddingStart="22dp"
-            android:paddingEnd="22dp"
-            android:paddingTop="22dp"
-            android:paddingBottom="18dp">
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-            <!-- Tytuł główny -->
+            <!-- FAKE NEWS -->
             <TextView
                 android:id="@+id/headerMain"
                 android:layout_width="wrap_content"
@@ -41,9 +40,9 @@
                 android:textSize="32sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginTop="8dp" />
+                android:layout_marginBottom="6dp"/>
 
-            <!-- Podtytuł -->
+            <!-- CZYM SĄ -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -53,8 +52,9 @@
                 android:textSize="28sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginTop="14dp" />
+                android:layout_marginBottom="8dp"/>
 
+            <!-- CZĘŚĆ TEORETYCZNA -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
@@ -64,22 +64,20 @@
                 android:textSize="22sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="14dp" />
+                android:layout_marginBottom="20dp"/>
 
-            <!-- Obrazek -->
+            <!-- OBRAZ -->
             <ImageView
                 android:id="@+id/headerImage"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="280dp"
+                android:layout_height="160dp"
                 android:src="@drawable/ic_fake_news_1"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:padding="4dp"
-                android:contentDescription="@null" />
+                android:contentDescription="@null"
+                android:layout_marginBottom="20dp"/>
 
-            <!-- Blok 1 -->
+            <!-- TEKST -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -90,17 +88,12 @@
                 android:lineSpacingExtra="7dp"
                 android:textColor="#1A202C"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="Fake newsy to wiadomości, które wyglądają jak prawdziwe, ale wprowadzają w błąd. Czasem są całkiem zmyślone, a czasem zawierają półprawdę lub przekręcone fakty. Ich celem bywa wywołanie emocji, zdobycie kliknięć albo oszukanie odbiorcy."
-                android:layout_marginBottom="14dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:text="Fake newsy to wiadomości, które wyglądają jak prawdziwe, ale wprowadzają w błąd. Czasem są całkiem zmyślone, a czasem zawierają półprawdę lub przekręcone fakty. Ich celem bywa wywołanie emocji, zdobycie kliknięć albo oszukanie odbiorcy." />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- divider nad przyciskami -->
+    <!-- DIVIDER -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -108,9 +101,9 @@
         android:background="#D9E2EF"
         app:layout_constraintBottom_toTopOf="@id/bottomButtons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Bottom buttons -->
+    <!-- BUTTONS -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
@@ -121,7 +114,6 @@
         android:paddingBottom="18dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:baselineAligned="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -137,11 +129,11 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="22dp" />
+            app:cornerRadius="22dp"/>
 
         <Space
             android:layout_width="14dp"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
@@ -154,7 +146,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="22dp" />
+            app:cornerRadius="22dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
