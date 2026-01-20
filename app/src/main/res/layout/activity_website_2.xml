@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- Scroll (zawartość) -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -29,7 +28,6 @@
             android:paddingTop="12dp"
             android:paddingBottom="12dp">
 
-            <!-- Tytuł -->
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
@@ -41,7 +39,6 @@
                 android:gravity="center"
                 android:layout_marginBottom="4dp" />
 
-            <!-- Podtytuł -->
             <TextView
                 android:id="@+id/textSubtitle"
                 android:layout_width="wrap_content"
@@ -53,7 +50,6 @@
                 android:gravity="center"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Karta strony -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/websiteCard"
                 android:layout_width="match_parent"
@@ -72,7 +68,6 @@
                     android:padding="18dp"
                     android:gravity="center_horizontal">
 
-                    <!-- Pasek adresu -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
@@ -100,7 +95,6 @@
                             android:fontFamily="@font/montserrat_regular" />
                     </LinearLayout>
 
-                    <!-- Zdjęcie produktu -->
                     <ImageView
                         android:id="@+id/productImage"
                         android:layout_width="match_parent"
@@ -113,7 +107,6 @@
                         android:layout_marginBottom="14dp"
                         android:contentDescription="@null" />
 
-                    <!-- Tytuł -->
                     <TextView
                         android:id="@+id/productTitle"
                         android:layout_width="match_parent"
@@ -136,7 +129,6 @@
                         android:gravity="start"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- Cena -->
                     <TextView
                         android:id="@+id/productPrice"
                         android:layout_width="match_parent"
@@ -148,7 +140,6 @@
                         android:gravity="start"
                         android:layout_marginBottom="14dp" />
 
-                    <!-- Opis -->
                     <TextView
                         android:id="@+id/descHeader"
                         android:layout_width="match_parent"
@@ -180,7 +171,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- separator -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -190,7 +180,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dolny sticky pasek -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"
@@ -208,9 +197,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:baselineAligned="false">
 
-            <!-- Startowo oba NIEBIESKIE -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnFake"
                 android:layout_width="0dp"
@@ -218,12 +207,17 @@
                 android:layout_weight="1"
                 android:text="Fałszywa"
                 android:textAllCaps="false"
-                android:textSize="22sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
                 app:backgroundTint="#2B6CB0"
                 app:cornerRadius="24dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginEnd="10dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="22sp"
+                android:autoSizeStepGranularity="1sp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReal"
@@ -232,12 +226,17 @@
                 android:layout_weight="1"
                 android:text="Prawdziwa"
                 android:textAllCaps="false"
-                android:textSize="22sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
                 app:backgroundTint="#2B6CB0"
                 app:cornerRadius="24dp"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="22sp"
+                android:autoSizeStepGranularity="1sp"/>
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -255,7 +254,6 @@
             android:visibility="gone" />
     </LinearLayout>
 
-    <!-- POPUP OVERLAY -->
     <LinearLayout
         android:id="@+id/popupOverlay"
         android:layout_width="0dp"
