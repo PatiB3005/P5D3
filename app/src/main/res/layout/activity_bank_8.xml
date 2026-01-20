@@ -11,23 +11,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="28dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
 
-        <!-- OBRAZEK -->
-        <ImageView
-            android:id="@+id/headerImage"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_mortarboard"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:contentDescription="@null" />
+        <!-- OBRAZEK w białym, zaokrąglonym kafelku -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/headerCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="6dp"
+            app:contentPadding="10dp">
 
-        <!-- TYTUŁ -->
+            <ImageView
+                android:id="@+id/headerImage"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:src="@drawable/ic_mortarboard"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- TYTUŁ (wyżej + mniejsza przerwa) -->
         <TextView
             android:id="@+id/textTitle"
             android:layout_width="wrap_content"
@@ -36,7 +47,7 @@
             android:textSize="34sp"
             android:textColor="#000000"
             android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="18dp" />
 
         <!-- ITEM 1 -->
         <com.google.android.material.card.MaterialCardView
@@ -186,7 +197,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="14dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="#FFFFFF"
@@ -234,7 +245,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="18dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="#FFFFFF"
@@ -278,20 +289,22 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRZYCISK -->
+        <!-- PRZYCISK (wyśrodkowany + równo) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinish"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="74dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="10dp"
             android:text="Zakończ"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="26sp"
             android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="24dp"/>
+            app:cornerRadius="24dp" />
 
     </LinearLayout>
 

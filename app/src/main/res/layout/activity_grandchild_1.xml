@@ -4,14 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9EEF5">
+    android:background="#E9EEF5"
+    android:paddingTop="18dp">
 
-    <!-- Tytuł -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:text="SYMULACJA\nROZMOWY"
         android:gravity="center"
         android:fontFamily="@font/montserrat_bold"
@@ -22,21 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Avatar -->
     <ImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:src="@drawable/ic_contact"
         android:scaleType="centerInside"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintTop_toBottomOf="@id/textTitle"
         app:layout_constraintBottom_toTopOf="@id/textNumber"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed"/>
 
-    <!-- Nieznany numer -->
     <TextView
         android:id="@+id/textNumber"
         android:layout_width="wrap_content"
@@ -46,13 +44,12 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar"
         app:layout_constraintBottom_toTopOf="@id/buttonContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Kontener na przyciski -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttonContainer"
         android:layout_width="0dp"
@@ -65,7 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Odbierz -->
         <LinearLayout
             android:id="@+id/answerCall"
             android:layout_width="wrap_content"
@@ -91,7 +87,6 @@
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
 
-        <!-- Odrzuć -->
         <LinearLayout
             android:id="@+id/declineCall"
             android:layout_width="wrap_content"

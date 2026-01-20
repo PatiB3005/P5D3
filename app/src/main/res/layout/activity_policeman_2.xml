@@ -8,14 +8,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="18dp">
 
-        <!-- Tytuł -->
         <TextView
             android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:text="SYMULACJA\nROZMOWY"
             android:gravity="center"
             android:fontFamily="@font/montserrat_bold"
@@ -26,7 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Wiadomość -->
         <TextView
             android:id="@+id/textMessage"
             android:layout_width="0dp"
@@ -40,24 +38,32 @@
             android:background="@drawable/edittext_bg"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@id/textTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Avatar -->
-        <ImageView
-            android:id="@+id/imgPoliceman"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_policeman"
-            android:background="@drawable/full_rounded_image"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/policemanCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="32dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="6dp"
+            app:contentPadding="4dp"
             app:layout_constraintTop_toBottomOf="@id/textMessage"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Pytania i odpowiedzi -->
+            <ImageView
+                android:id="@+id/imgPoliceman"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_policeman"
+                android:scaleType="centerInside" />
+        </com.google.android.material.card.MaterialCardView>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/question"
             android:layout_width="0dp"
@@ -65,7 +71,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/imgPoliceman"
+            app:layout_constraintTop_toBottomOf="@id/policemanCard"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -76,7 +82,6 @@
                 android:background="@drawable/blue_box_radius"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-
                 android:paddingHorizontal="32dp"
                 android:paddingVertical="16dp"
                 android:text="Co robisz?"
@@ -120,7 +125,6 @@
                 app:layout_constraintTop_toBottomOf="@id/textAnswerA" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Kontener na przyciski -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/buttonContainer"
             android:layout_width="0dp"
@@ -130,10 +134,9 @@
             android:paddingBottom="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question"
+            app:layout_constraintTop_toBottomOf="@id/question"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <!-- Zakończ połączenie -->
             <LinearLayout
                 android:id="@+id/declineCall"
                 android:layout_width="wrap_content"
