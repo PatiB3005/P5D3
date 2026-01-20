@@ -3,8 +3,6 @@ package com.example.smartsenior.ui.moduleMenu.modules.callFromAnUnknown;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ScrollView;
 
 import com.example.smartsenior.R;
 import com.example.smartsenior.data.increaseFont.FontScaler;
@@ -18,9 +16,6 @@ public class TheoryActivity extends BaseTTSActivity {
 
     private int currentScreen = 1;
     private boolean hasResumed = false;
-
-    // żeby nie dodawać wielu listenerów
-    private ViewTreeObserver.OnScrollChangedListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,59 +41,8 @@ public class TheoryActivity extends BaseTTSActivity {
             case 8: setContentView(R.layout.activity_call_from_unknown_8); break;
         }
 
-        // Font
         FontScaler.applyFontSize(this, findViewById(android.R.id.content));
-
         setupButtons();
-
-        // ✅ tutaj podpinamy thumb do scrolla (jeśli jest w layoucie)
-        setupCustomScrollThumbIfPresent();
-    }
-
-    private void setupCustomScrollThumbIfPresent() {
-        ScrollView scroll = findViewById(R.id.scrollContent);
-        View thumb = findViewById(R.id.customScrollThumb);
-
-        // Jeśli na danym ekranie nie ma custom scrolla -> nic nie robimy
-        if (scroll == null || thumb == null) return;
-
-        // usuń poprzedni listener (gdy przechodzisz między screenami)
-        if (scrollListener != null) {
-            scroll.getViewTreeObserver().removeOnScrollChangedListener(scrollListener);
-            scrollListener = null;
-        }
-
-        // ustaw na start: przewiń do góry i thumb na górze
-        scroll.post(() -> {
-            scroll.scrollTo(0, 0);
-            thumb.setTranslationY(0f);
-            updateThumbPosition(scroll, thumb);
-        });
-
-        // listener przewijania
-        scrollListener = () -> updateThumbPosition(scroll, thumb);
-        scroll.getViewTreeObserver().addOnScrollChangedListener(scrollListener);
-    }
-
-    private void updateThumbPosition(ScrollView scroll, View thumb) {
-        if (scroll.getChildCount() == 0) return;
-
-        View content = scroll.getChildAt(0);
-
-        int scrollY = scroll.getScrollY();
-        int contentHeight = content.getHeight();
-        int viewportHeight = scroll.getHeight();
-
-        int maxScroll = Math.max(1, contentHeight - viewportHeight); // unikamy dzielenia przez 0
-
-        // tor, po którym porusza się thumb (od 0 do trackHeight)
-        // trackHeight = (wysokość ScrollView) - (wysokość thumb)
-        float trackHeight = Math.max(0, scroll.getHeight() - thumb.getHeight());
-
-        float progress = Math.min(1f, Math.max(0f, scrollY / (float) maxScroll));
-        float thumbY = trackHeight * progress;
-
-        thumb.setTranslationY(thumbY);
     }
 
     private void setupButtons() {
@@ -137,15 +81,5 @@ public class TheoryActivity extends BaseTTSActivity {
     @Override
     protected String getSpeakText() {
         return collectSpeakableTextFromLayout();
-    }
-
-    @Override
-    protected void onDestroy() {
-        // porządek: usuń listener
-        ScrollView scroll = findViewById(R.id.scrollContent);
-        if (scroll != null && scrollListener != null) {
-            scroll.getViewTreeObserver().removeOnScrollChangedListener(scrollListener);
-        }
-        super.onDestroy();
     }
 }

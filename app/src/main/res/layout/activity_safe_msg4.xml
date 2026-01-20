@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- ✅ Tor scrolla startuje pod górnym paskiem -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="56dp" />
-
-    <!-- Scroll content -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -22,7 +13,7 @@
         android:fillViewport="true"
         android:overScrollMode="never"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/topGuide"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -37,7 +28,6 @@
             android:paddingTop="20dp"
             android:paddingBottom="18dp">
 
-            <!-- Główny nagłówek -->
             <TextView
                 android:id="@+id/headerMain"
                 android:layout_width="wrap_content"
@@ -49,7 +39,6 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp" />
 
-            <!-- Podtytuł -->
             <TextView
                 android:id="@+id/headerSubtitle"
                 android:layout_width="wrap_content"
@@ -61,7 +50,6 @@
                 android:gravity="center"
                 android:layout_marginTop="14dp" />
 
-            <!-- Część teoretyczna -->
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="wrap_content"
@@ -74,7 +62,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="14dp" />
 
-            <!-- Obrazek -->
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="match_parent"
@@ -86,7 +73,6 @@
                 android:scaleType="fitCenter"
                 android:padding="4dp" />
 
-            <!-- Treść -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -106,21 +92,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- ✅ Gruby niebieski “scrollbar” -->
-    <View
-        android:id="@+id/customScrollThumb"
-        android:layout_width="12dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
-        android:alpha="0.85"
-        android:background="#2B6CB0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topGuide"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
-        app:layout_constraintVertical_bias="0" />
-
-    <!-- separator nad przyciskami -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -130,7 +101,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dolne przyciski -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"

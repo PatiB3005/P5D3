@@ -8,15 +8,6 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
-    <!-- ✅ tor zaczyna się pod górnym paskiem -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="56dp" />
-
-    <!-- Scroll content -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -26,7 +17,7 @@
         android:clipToPadding="false"
         android:paddingBottom="12dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/topGuide"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -107,21 +98,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- ✅ gruby pasek: start pod topGuide, koniec nad przyciskami; bias=0 żeby startował u góry -->
-    <View
-        android:id="@+id/customScrollThumb"
-        android:layout_width="12dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
-        android:alpha="0.85"
-        android:background="#2B6CB0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topGuide"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
-        app:layout_constraintVertical_bias="0" />
-
-    <!-- separator nad przyciskami -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -131,7 +107,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dolne przyciski -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"

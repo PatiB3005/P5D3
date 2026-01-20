@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
-    <!-- ✅ Tor scrolla startuje pod górnym paskiem -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/topGuide"
         android:layout_width="wrap_content"
@@ -14,7 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="56dp" />
 
-    <!-- Scroll -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -37,7 +35,6 @@
             android:paddingTop="22dp"
             android:paddingBottom="18dp">
 
-            <!-- Tytuł główny -->
             <TextView
                 android:id="@+id/headerMain"
                 android:layout_width="wrap_content"
@@ -72,7 +69,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="14dp" />
 
-            <!-- OBRAZEK -->
             <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="match_parent"
@@ -84,7 +80,6 @@
                 android:padding="4dp"
                 android:contentDescription="@null" />
 
-            <!-- Blok 1 -->
             <TextView
                 android:id="@+id/contentText1"
                 android:layout_width="match_parent"
@@ -98,7 +93,6 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Uważaj na następujące sygnały, które powinny wzbudzić Twoją czujność:" />
 
-            <!-- ITEM 1 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,7 +141,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ITEM 2 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,7 +189,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ITEM 3 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -251,21 +243,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- ✅ Gruby niebieski “scrollbar” -->
-    <View
-        android:id="@+id/customScrollThumb"
-        android:layout_width="12dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="6dp"
-        android:alpha="0.85"
-        android:background="#2B6CB0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topGuide"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
-        app:layout_constraintVertical_bias="0" />
-
-    <!-- ✅ separator -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -275,7 +252,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
