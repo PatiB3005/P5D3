@@ -4,31 +4,34 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.InfoPopup;
 import com.example.smartsenior.ui.BaseTTSActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 public class Task1Page3Activity extends BaseTTSActivity {
 
-    MaterialCardView card1, card2, card3, card4;
-    MaterialButton btnNext;
+    private MaterialCardView card1, card2, card3, card4;
+    private MaterialButton btnNext;
+
+    private InfoPopup infoPopup;
+    private boolean answered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1_page3);
 
+        infoPopup = new InfoPopup(this);
+
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
         card3 = findViewById(R.id.card3);
         card4 = findViewById(R.id.card4);
-        btnNext = findViewById(R.id.btnNext);
 
-        btnNext.setEnabled(false);
-        btnNext.setAlpha(0.4f);
+        btnNext = findViewById(R.id.btnNext);
+        setNextEnabled(false);
 
         setupCard(card1, false);
         setupCard(card2, false);
@@ -41,24 +44,37 @@ public class Task1Page3Activity extends BaseTTSActivity {
         });
     }
 
+    private void setNextEnabled(boolean enabled) {
+        btnNext.setEnabled(enabled);
+        btnNext.setClickable(enabled);
+        btnNext.setAlpha(enabled ? 1f : 0.4f);
+    }
+
     private void setupCard(MaterialCardView card, boolean isCorrect) {
         card.setOnClickListener(v -> {
             tts.stop();
+            if (answered) return;
+            answered = true;
 
             disableAll();
-            btnNext.setEnabled(true);
-            btnNext.setAlpha(1f);
 
             if (isCorrect) {
                 card.setCardBackgroundColor(Color.parseColor("#A7F3D0"));
                 card.setStrokeColor(Color.parseColor("#059669"));
                 card.setStrokeWidth(6);
+
+                infoPopup.setOnDismissListener(() -> setNextEnabled(true));
+                infoPopup.show("Dobrze!", "Możesz przejść dalej.");
             } else {
                 card.setCardBackgroundColor(Color.parseColor("#FECACA"));
                 card.setStrokeColor(Color.parseColor("#DC2626"));
                 card.setStrokeWidth(6);
 
-                showErrorDialog();
+                infoPopup.setOnDismissListener(() -> setNextEnabled(true));
+                infoPopup.show(
+                        "Niepoprawna odpowiedź",
+                        "Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”"
+                );
             }
         });
     }
@@ -68,14 +84,6 @@ public class Task1Page3Activity extends BaseTTSActivity {
         card2.setClickable(false);
         card3.setClickable(false);
         card4.setClickable(false);
-    }
-
-    private void showErrorDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Niepoprawna odpowiedź")
-                .setMessage("Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .show();
     }
 
     @Override

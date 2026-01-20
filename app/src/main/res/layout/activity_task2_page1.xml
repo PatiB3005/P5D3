@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="40dp">
 
-        <!-- TYTUŁ -->
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -24,11 +23,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        <!-- ===================================================== -->
-        <!-- ===================== PYTANIE 1 ===================== -->
-        <!-- ===================================================== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ1"
@@ -58,7 +52,6 @@
                 android:fontFamily="@font/montserrat_bold"/>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRZYCISKI Q1 -->
         <LinearLayout
             android:id="@+id/buttonsQ1"
             android:layout_width="wrap_content"
@@ -98,7 +91,6 @@
                 app:cornerRadius="20dp"/>
         </LinearLayout>
 
-        <!-- KOMENTARZ 1 (tło jak ekran) -->
         <TextView
             android:id="@+id/commentQ1"
             android:layout_width="0dp"
@@ -115,12 +107,6 @@
             app:layout_constraintTop_toBottomOf="@id/buttonsQ1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-        <!-- ===================================================== -->
-        <!-- ===================== PYTANIE 2 ===================== -->
-        <!-- ===================================================== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ2"
@@ -189,7 +175,6 @@
                 app:cornerRadius="20dp"/>
         </LinearLayout>
 
-        <!-- KOMENTARZ 2 (tło jak ekran) -->
         <TextView
             android:id="@+id/commentQ2"
             android:layout_width="0dp"
@@ -206,12 +191,6 @@
             app:layout_constraintTop_toBottomOf="@id/buttonsQ2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-        <!-- ===================================================== -->
-        <!-- ===================== PYTANIE 3 ===================== -->
-        <!-- ===================================================== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ3"
@@ -280,7 +259,6 @@
                 app:cornerRadius="20dp"/>
         </LinearLayout>
 
-        <!-- KOMENTARZ 3 (tło jak ekran) -->
         <TextView
             android:id="@+id/commentQ3"
             android:layout_width="0dp"
@@ -298,8 +276,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-
-        <!-- PRZYCISK DALEJ -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="170dp"

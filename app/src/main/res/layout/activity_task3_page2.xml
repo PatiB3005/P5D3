@@ -14,8 +14,6 @@
         android:paddingTop="32dp"
         android:paddingBottom="32dp">
 
-        <!-- ====================== PARA 1 ====================== -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,8 +117,6 @@
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
-
-        <!-- ====================== PARA 2 ====================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -226,8 +222,6 @@
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
 
-        <!-- ====================== PARA 3 ====================== -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -253,7 +247,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:text="poczta-polska"
+                        android:text="poczta-\npolska"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
@@ -292,7 +286,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:text="p0czta-polska"
+                        android:text="p0czta-\npolska"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
@@ -329,8 +323,6 @@
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
-
-        <!-- ====================== PARA 4 ====================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -433,8 +425,6 @@
             android:layout_marginBottom="72dp"
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
-
-        <!-- ====================== PRZYCISK ZAKOŃCZ ====================== -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinish"

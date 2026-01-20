@@ -14,7 +14,6 @@
         android:paddingTop="32dp"
         android:paddingBottom="32dp">
 
-        <!-- PARA 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,8 +123,6 @@
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
 
-
-        <!-- === PARA 2 === -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -232,7 +229,6 @@
             android:visibility="gone"/>
 
 
-        <!-- === PARA 3 === -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -336,8 +332,6 @@
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
 
-
-        <!-- === PARA 4 === -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -445,8 +439,6 @@
             android:lineSpacingExtra="4dp"
             android:visibility="gone"/>
 
-
-        <!-- PRZYCISK DALEJ (styl jak w wzorcu) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"
             android:layout_width="200dp"

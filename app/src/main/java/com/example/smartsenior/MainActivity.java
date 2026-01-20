@@ -92,22 +92,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         applyFontSize();
-        ensureTrustedContactsExist();
     }
 
-    private void ensureTrustedContactsExist() {
-        if (!TrustedContactsStorage.load(this).isEmpty()) return;
-
-        new AlertDialog.Builder(this)
-                .setTitle("Dodaj zaufany kontakt")
-                .setMessage("Aby funkcja „Pomoc” mogła działać, dodaj przynajmniej jeden zaufany kontakt.")
-                .setCancelable(false)
-                .setPositiveButton("Dodaj teraz", (d, w) -> {
-                    startActivity(new Intent(MainActivity.this, TrustedContactsActivity.class));
-                })
-                .setNegativeButton("Później", null)
-                .show();
-    }
 
     private void applyFontSize() {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);

@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.example.smartsenior.R;
+import com.example.smartsenior.data.InfoPopup;
 import com.example.smartsenior.data.progress.ProgressKeys;
 import com.example.smartsenior.data.progress.ProgressStore;
 import com.example.smartsenior.ui.BaseTTSActivity;
@@ -17,12 +16,16 @@ public class Task1Page4Activity extends BaseTTSActivity {
 
     private MaterialCardView card1, card2, card3, card4;
     private MaterialButton btnFinish;
+
+    private InfoPopup infoPopup;
     private boolean answered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task1_page4);
+
+        infoPopup = new InfoPopup(this);
 
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
@@ -39,9 +42,7 @@ public class Task1Page4Activity extends BaseTTSActivity {
 
         btnFinish.setOnClickListener(v -> {
             tts.stop();
-
             ProgressStore.markDone(this, ProgressKeys.M1_TASK1_DONE);
-
             startActivity(new Intent(Task1Page4Activity.this, TasksActivity.class));
             finish();
         });
@@ -56,23 +57,28 @@ public class Task1Page4Activity extends BaseTTSActivity {
     private void setupCard(MaterialCardView card, boolean isCorrect) {
         card.setOnClickListener(v -> {
             tts.stop();
-
             if (answered) return;
             answered = true;
 
-            setFinishEnabled(true);
             disableAll();
 
             if (isCorrect) {
                 card.setCardBackgroundColor(Color.parseColor("#A7F3D0"));
                 card.setStrokeColor(Color.parseColor("#059669"));
                 card.setStrokeWidth(6);
+
+                infoPopup.setOnDismissListener(() -> setFinishEnabled(true));
+                infoPopup.show("Dobrze!", "Możesz zakończyć zadanie.");
             } else {
                 card.setCardBackgroundColor(Color.parseColor("#FECACA"));
                 card.setStrokeColor(Color.parseColor("#DC2626"));
                 card.setStrokeWidth(6);
 
-                showErrorDialog();
+                infoPopup.setOnDismissListener(() -> setFinishEnabled(true));
+                infoPopup.show(
+                        "Niepoprawna odpowiedź",
+                        "Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”"
+                );
             }
         });
     }
@@ -82,14 +88,6 @@ public class Task1Page4Activity extends BaseTTSActivity {
         card2.setClickable(false);
         card3.setClickable(false);
         card4.setClickable(false);
-    }
-
-    private void showErrorDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Niepoprawna odpowiedź")
-                .setMessage("Prawidłowa odpowiedź to:\n\n„Nigdy nie podawaj kodów ani haseł.”")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .show();
     }
 
     @Override

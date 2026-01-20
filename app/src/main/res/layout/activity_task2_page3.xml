@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="64dp">
 
-        <!-- TYTUŁ -->
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -25,8 +24,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- =============== PYTANIE 1 =============== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ1"
@@ -56,7 +53,6 @@
                 android:fontFamily="@font/montserrat_bold" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRZYCISKI Q1 -->
         <LinearLayout
             android:id="@+id/buttonsQ1"
             android:layout_width="wrap_content"
@@ -98,7 +94,6 @@
                 app:rippleColor="#00000000" />
         </LinearLayout>
 
-        <!-- KOMENTARZ Q1 -->
         <TextView
             android:id="@+id/commentQ1"
             android:layout_width="0dp"
@@ -115,8 +110,6 @@
             app:layout_constraintTop_toBottomOf="@id/buttonsQ1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- =============== PYTANIE 2 =============== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ2"
@@ -146,7 +139,6 @@
                 android:fontFamily="@font/montserrat_bold" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRZYCISKI Q2 -->
         <LinearLayout
             android:id="@+id/buttonsQ2"
             android:layout_width="wrap_content"
@@ -188,7 +180,6 @@
                 app:rippleColor="#00000000" />
         </LinearLayout>
 
-        <!-- KOMENTARZ Q2 -->
         <TextView
             android:id="@+id/commentQ2"
             android:layout_width="0dp"
@@ -205,8 +196,6 @@
             app:layout_constraintTop_toBottomOf="@id/buttonsQ2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- =============== PYTANIE 3 =============== -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardQ3"
@@ -236,7 +225,6 @@
                 android:fontFamily="@font/montserrat_bold" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRZYCISKI Q3 -->
         <LinearLayout
             android:id="@+id/buttonsQ3"
             android:layout_width="wrap_content"
@@ -278,7 +266,6 @@
                 app:rippleColor="#00000000" />
         </LinearLayout>
 
-        <!-- KOMENTARZ Q3 -->
         <TextView
             android:id="@+id/commentQ3"
             android:layout_width="0dp"
@@ -296,7 +283,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- ZAKOŃCZ -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinish"
             android:layout_width="170dp"

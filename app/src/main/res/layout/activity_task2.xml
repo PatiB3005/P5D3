@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9EEF5"
-    tools:context=".ui.moduleMenu.modules.TasksActivity">
+    tools:context=".ui.moduleMenu.modules.tasks.Task2Activity">
 
-    <!-- Scroll content -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -31,7 +30,6 @@
             android:paddingTop="22dp"
             android:paddingBottom="16dp">
 
-            <!-- Zadanie 2 -->
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
@@ -46,7 +44,6 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="10dp" />
 
-            <!-- Prawda / Fałsz -->
             <TextView
                 android:id="@+id/subtitle"
                 android:layout_width="match_parent"
@@ -60,7 +57,6 @@
                 android:includeFontPadding="false"
                 android:layout_marginBottom="18dp" />
 
-            <!-- OBRAZEK (baner jak w stylu appki) -->
             <ImageView
                 android:id="@+id/iconEnvelope"
                 android:layout_width="match_parent"
@@ -73,7 +69,6 @@
                 android:contentDescription="@null"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Opis w kafelku jak wzorzec -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/descCard"
                 android:layout_width="match_parent"
@@ -102,7 +97,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- separator nad przyciskami -->
     <View
         android:id="@+id/bottomDivider"
         android:layout_width="0dp"
@@ -112,7 +106,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Dolne przyciski -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="0dp"
@@ -139,7 +132,13 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="24dp" />
+            app:cornerRadius="24dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeStepGranularity="1sp"/>
 
         <Space
             android:layout_width="14dp"
@@ -156,7 +155,13 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="#FFFFFF"
             app:backgroundTint="#2B6CB0"
-            app:cornerRadius="24dp" />
+            app:cornerRadius="24dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeStepGranularity="1sp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
