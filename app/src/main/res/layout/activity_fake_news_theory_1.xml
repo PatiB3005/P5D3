@@ -8,8 +8,7 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.fakenews.FakeNewsTheoryActivity">
 
-
-    <!-- Scroll: jak w Samouczku (center) -->
+    <!-- SCROLL -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -21,17 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- CONTENT -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:paddingTop="22dp"
-            android:paddingBottom="14dp">
+            android:paddingTop="32dp"
+            android:paddingBottom="24dp">
 
-            <!-- Tytuł -->
+            <!-- TYTUŁ -->
             <TextView
                 android:id="@+id/titleFakeNewsTitle"
                 android:layout_width="wrap_content"
@@ -41,9 +41,9 @@
                 android:textSize="40sp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="8dp"/>
 
-            <!-- Podtytuł (większy) -->
+            <!-- PODTYTUŁ -->
             <TextView
                 android:id="@+id/titleTheory"
                 android:layout_width="wrap_content"
@@ -53,20 +53,20 @@
                 android:textSize="22sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:layout_marginBottom="18dp"/>
+                android:layout_marginBottom="20dp"/>
 
-            <!-- Obrazek (większy) -->
+            <!-- OBRAZ -->
             <ImageView
                 android:id="@+id/phoneImage"
-                android:layout_width="310dp"
-                android:layout_height="310dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:src="@drawable/ic_fake_news_3"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
-                android:layout_marginBottom="18dp"/>
+                android:layout_marginBottom="20dp"/>
 
-            <!-- Opis (większy + bliżej) -->
+            <!-- OPIS -->
             <TextView
                 android:id="@+id/tvHint"
                 android:layout_width="match_parent"
@@ -76,22 +76,19 @@
                 android:textSize="26sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:lineSpacingExtra="8dp"
-                android:layout_marginBottom="6dp"/>
-
+                android:lineSpacingExtra="8dp"/>
         </LinearLayout>
     </ScrollView>
 
-    <!-- Dolny przycisk -->
+    <!-- DOLNY PRZYCISK -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
-        android:paddingTop="10dp"
+        android:paddingTop="12dp"
         android:paddingBottom="18dp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
