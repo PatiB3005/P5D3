@@ -31,7 +31,6 @@ public final class PhoneUtils {
         return null;
     }
 
-    /** Wyciąga 9 cyfr krajowych z dowolnego wejścia. */
     public static String national9FromAny(@Nullable String input) {
         String norm = normalizeToPL(input);
         if (norm == null) return "";

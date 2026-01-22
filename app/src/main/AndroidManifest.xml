@@ -110,6 +110,7 @@
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman5Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6Activity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6aActivity" />
+        <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman6bActivity" />
         <activity android:name=".ui.moduleMenu.modules.callFromAnUnknown.policeScenario.Policeman7Activity" />
 
         <!-- Scenariusz: Telefon na bank -->

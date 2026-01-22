@@ -81,7 +81,6 @@ public class HelpRequestManager {
         String msg = HelpMessageFactory.build(ctx);
         HelpSmsSender.Result r = HelpSmsSender.sendToAll(ctx, pendingContacts, msg);
 
-        // opcjonalnie: log ostatniego wysłania
         ctx.getSharedPreferences("help_prefs", Context.MODE_PRIVATE)
                 .edit()
                 .putLong("last_help_sent_ms", System.currentTimeMillis())

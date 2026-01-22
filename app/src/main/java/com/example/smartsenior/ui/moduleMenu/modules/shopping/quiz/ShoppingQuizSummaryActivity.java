@@ -41,7 +41,6 @@ public class ShoppingQuizSummaryActivity extends BaseTTSActivity {
         retryButton = findViewById(R.id.btnRetry);
         backToMenuButton = findViewById(R.id.btnFinish);
 
-        // U Ciebie z quizu przychodzą: QUIZ_RESULT i stałe maxScore = 8
         int score = getIntent().getIntExtra("QUIZ_RESULT", 0);
         int maxScore = 8;
 

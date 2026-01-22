@@ -46,7 +46,6 @@ public class MemoryActivity extends AppCompatActivity {
 
         startTimeMs = SystemClock.elapsedRealtime();
 
-        // pokaż rekord od razu
         int best = HighScoreStore.getHighScore(this, ScoreKeys.MG1_MEMORY_HIGH_SCORE);
         tvHighScore.setText("Rekord: " + best);
 
@@ -107,7 +106,6 @@ public class MemoryActivity extends AppCompatActivity {
         boolean newRecord = HighScoreStore.submitHighScore(this, ScoreKeys.MG1_MEMORY_HIGH_SCORE, score);
         int best = HighScoreStore.getHighScore(this, ScoreKeys.MG1_MEMORY_HIGH_SCORE);
 
-        // aktualizacja UI rekordu na górze
         tvHighScore.setText("Rekord: " + best);
 
         String msg = "Wygrana! Punkty: " + score

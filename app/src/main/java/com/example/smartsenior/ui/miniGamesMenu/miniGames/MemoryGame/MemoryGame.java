@@ -32,7 +32,6 @@ public class MemoryGame {
         Integer singleIndex = indexOfSingleSelectedCard;
 
         if (singleIndex == null) {
-            // Zamknij wszystkie nie-dopasowane, które są chwilowo odkryte
             for (int i = 0; i < cards.size(); i++) {
                 Card c = cards.get(i);
                 if (!c.isMatched() && c.isFaceUp()) {
@@ -46,7 +45,6 @@ public class MemoryGame {
             indexOfSingleSelectedCard = position;
 
         } else {
-            // Druga karta w ruchu
             card.setFaceUp(true);
             changed.add(position);
 
@@ -59,7 +57,6 @@ public class MemoryGame {
                 changed.add(singleIndex);
                 indexOfSingleSelectedCard = null;
             } else {
-                // zostają odkryte chwilę; Activity zrobi flip-back po delay
                 indexOfSingleSelectedCard = null;
             }
         }
