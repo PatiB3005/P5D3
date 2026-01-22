@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="#E9EEF5">
 
+    <!-- Pasek górny z powrotem -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="#2563EB"
-        app:navigationIcon="@drawable/ic_arrow_back_black"
-        app:title=""
+        android:background="#2B6CB0"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
