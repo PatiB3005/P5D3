@@ -8,13 +8,13 @@
     android:background="#E8F0FA"
     tools:context=".ui.moduleMenu.modules.tasks.TasksActivity">
 
+    <!-- Pasek górny z powrotem -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="#4F46E5"
+        android:background="#2B6CB0"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title=""
         app:titleTextColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

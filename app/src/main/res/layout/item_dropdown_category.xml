@@ -6,4 +6,5 @@
     android:padding="16dp"
     android:textColor="#1A202C"
     android:textSize="20sp"
-    android:fontFamily="@font/montserrat_regular" />
+    android:fontFamily="@font/montserrat_regular"
+    android:background="#FFFFFF" />

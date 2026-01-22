@@ -207,7 +207,7 @@
             android:layout_width="0dp"
             android:layout_height="66dp"
             android:layout_weight="1"
-            android:text="Wstecz"
+            android:text="Wyjdź"
             android:textAllCaps="false"
             android:textSize="20sp"
             android:fontFamily="@font/montserrat_bold"

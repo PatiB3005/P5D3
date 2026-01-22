@@ -259,6 +259,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="72dp"
                         android:background="#F3F6FB"
+                        android:popupBackground="#FFFFFF"
                         android:padding="18dp"
                         android:textSize="22sp"
                         android:fontFamily="@font/montserrat_regular"

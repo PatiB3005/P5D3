@@ -8,25 +8,38 @@
     android:background="#E9EEF5"
     tools:context=".ui.moduleMenu.modules.SmsEmailActivity">
 
+    <!-- Pasek górny z powrotem -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="#2B6CB0"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Treść pod paskiem -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
         app:layout_constraintBottom_toTopOf="@id/bottomContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:paddingTop="10dp"
+            android:paddingTop="18dp"
             android:paddingBottom="10dp">
 
             <!-- Tytuł -->
@@ -65,7 +78,7 @@
                 android:lineSpacingExtra="8dp"
                 android:layout_marginBottom="4dp"/>
 
-            <!-- Obrazek  -->
+            <!-- Obrazek -->
             <ImageView
                 android:id="@+id/phoneImage"
                 android:layout_width="400dp"
